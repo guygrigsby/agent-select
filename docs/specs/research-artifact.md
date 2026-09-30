@@ -608,14 +608,17 @@ publication permissions remain `unknown` until a phase 8 rights decision.
 
 ### 10.2 Task file
 
-`data/research-inputs/backlog-tasks.json` materializes every batch and
-source inventory item as an acquisition/extraction task: `id`, `kind`
+`data/research-inputs/backlog-tasks.json` materializes every batch that
+contributes research rows (a `model_research`, `benchmark_measurements` or
+`unresolved_measurements` row — measurements-only batches like
+`coverage-followup` included) and every source inventory item as an
+acquisition/extraction task: `id`, `kind`
 (`batch_acquisition` with ≥1 `batches`, or `source_acquisition`),
 `evidence_files` (each must be in the capture inventory — gate 5 applies),
 `evidence_urls`, `desired_fields`, `closure` (a task closes with verified
 evidence or a bounded documented outcome, never web exhaustion). Validation
 rejects: duplicate ids, kind/batch mismatches, uninventoried evidence,
-empty desired fields, empty closure, and any `model_research` batch without
+empty desired fields, empty closure, and any research-row batch without
 a claiming task.
 
 ### 10.3 Backlog gates
@@ -630,10 +633,15 @@ all-offer, unresolved measurements vs identity proposals, image-accounting
 gaps = image-output models lacking image-specific limit facts, protocol
 metadata, rights state, access states). The report is deterministic (no
 timestamps); `--check` fails exit 1 on any byte drift between
-`docs/research/backlog.md` and a regeneration.
+`docs/research/backlog.md` and a regeneration. The image-output
+equivalence gate applies to every catalog row, not only in-scope ones.
 
 ## Changelog
 
+- 2026-09-30 phase 5 review fix: task completeness covers
+  measurements-only batches (coverage-followup claimed by
+  unresolved-historical); image equivalence gated on all rows; review
+  round 1 findings addressed.
 - 2026-09-30 phase 5: `research backlog` (§10) with per-model channel
   records, the validated task file and the drift-checked markdown report;
   image-output/batch-membership equality gate; `make check` runs the

@@ -102,11 +102,11 @@
     {
       "id": "unresolved-historical",
       "kind": "batch_acquisition",
-      "batches": ["unresolved"],
-      "evidence_files": ["data/research/unresolved/findings.json"],
+      "batches": ["unresolved", "coverage-followup"],
+      "evidence_files": ["data/research/unresolved/findings.json", "data/research/coverage-followup/findings.json"],
       "evidence_urls": [],
       "desired_fields": ["evaluated revision pinning", "protocol metadata", "current binding"],
-      "closure": "All 252 unresolved labels and lexemes preserved; immutable evaluated revision, protocol and current binding researched separately per cell; unresolved stays a first-class state."
+      "closure": "All 252 unresolved labels and lexemes across the unresolved (210) and coverage-followup (42) batches are preserved; immutable evaluated revision, protocol and current binding researched separately per cell; unresolved stays a first-class state."
     },
     {
       "id": "vercel-modelsdev",

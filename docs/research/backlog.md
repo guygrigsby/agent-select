@@ -38,7 +38,7 @@ Generated from the assembled build tables and `data/research-inputs/backlog-task
 | other-text | other-text | 55 | data/research/other-text/findings.json | Step 3.5/3.7 and Trinity repairs preserved; the remaining 52 IDs each have a per-model outcome from their publisher channel, bounded to checked sources. |
 | images | images | 41 | data/research/images/findings.json | Each of the 41 assigned IDs has generation/editing evaluation coverage and capability facts (format, mask, alpha, dimensions, combined accounting) or a bounded outcome; GenEval historical labels never substitute; image prices distinguished from token prices. |
 | mixedbread | mixedbread | 1 | data/research/mixedbread/findings.json | mixedbread/toast-1 researched from its exact primary identity and capability sources with an explicit outcome; never silently excluded. |
-| unresolved-historical | unresolved | 0 | data/research/unresolved/findings.json | All 252 unresolved labels and lexemes preserved; immutable evaluated revision, protocol and current binding researched separately per cell; unresolved stays a first-class state. |
+| unresolved-historical | unresolved;coverage-followup | 0 | data/research/unresolved/findings.json; data/research/coverage-followup/findings.json | All 252 unresolved labels and lexemes across the unresolved (210) and coverage-followup (42) batches are preserved; immutable evaluated revision, protocol and current binding researched separately per cell; unresolved stays a first-class state. |
 
 ### Source acquisition
 

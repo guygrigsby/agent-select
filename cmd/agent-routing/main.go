@@ -97,7 +97,7 @@ func jsonable(v any) any {
 }
 
 func usage() {
-	fmt.Fprintln(os.Stderr, "usage: agent-routing [--root dir] [--json] research {check|rebuild|coverage}")
+	fmt.Fprintln(os.Stderr, "usage: agent-routing [--root dir] [--json] research {check|rebuild|coverage|backlog}")
 	fmt.Fprintln(os.Stderr, "       agent-routing [--root dir] research backlog [--report PATH|--check PATH]")
 }
 

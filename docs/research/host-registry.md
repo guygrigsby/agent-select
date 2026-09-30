@@ -27,8 +27,9 @@ consume this.
   The registry is a synchronous compatibility facade over `ModelRuntime`.
 - `registerProvider(provider | name, config: ProviderConfigInput)` /
   `unregisterProvider`, `registerVirtualModel(definition)` /
-  `unregisterVirtualModel` — runtime layer changes; registrations are not
-  persisted across host restarts.
+  `unregisterVirtualModel` — runtime layer changes. Persistence across host
+  restarts is not stated in the installed types either way; treat
+  registrations as session-scoped until phase 14 verifies.
 
 `ProviderConfigInput` (provider-composer.d.ts): `name`, `baseUrl`, `apiKey`,
 `api`, `streamSimple`, `images`, `classifiers`, `headers`, `authHeader`,

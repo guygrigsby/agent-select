@@ -92,7 +92,7 @@ func TestBacklogDriftCheck(t *testing.T) {
 }
 
 // TestBacklogTaskValidation drives LoadTasks rejections: uninventoried
-// evidence file, unclaimed research batch, empty closure.
+// evidence file, and a research batch left without a claiming task.
 func TestBacklogTaskValidation(t *testing.T) {
 	root := copyCorpus(t)
 	_, inv, _, _, tables, err := loadInputs(root)
@@ -105,23 +105,22 @@ func TestBacklogTaskValidation(t *testing.T) {
 	orig, _ := os.ReadFile(p)
 	defer os.WriteFile(p, orig, 0o644)
 
-	for _, tc := range []struct {
-		name, repl string
-	}{
-		{"uninventoried evidence", `"data/research/anthropic/findings.json"`},
-		{"unclaimed batch", `"batches": ["anthropic"]`},
-	} {
-		switch tc.name {
-		case "uninventoried evidence":
-			os.WriteFile(p, []byte(strings.Replace(string(orig), `"data/research/anthropic/findings.json"`, `"data/research/nope/findings.json"`, 1)), 0o644)
-		case "unclaimed batch":
-			os.WriteFile(p, []byte(strings.Replace(string(orig), `"batches": ["anthropic"]`, `"batches": []`, 1)), 0o644)
-		}
+	t.Run("uninventoried evidence", func(t *testing.T) {
+		os.WriteFile(p, []byte(strings.Replace(string(orig), `"data/research/anthropic/findings.json"`, `"data/research/nope/findings.json"`, 1)), 0o644)
 		_, err := LoadTasks(root, inv, batches)
 		if ce, ok := err.(*Error); err == nil || !ok || ce.Code != ExitInvalid {
-			t.Fatalf("%s: error = %v, want ExitInvalid", tc.name, err)
+			t.Fatalf("error = %v, want ExitInvalid", err)
 		}
-	}
+	})
+	t.Run("unclaimed research batch", func(t *testing.T) {
+		// Point the mixedbread task at anthropic so mixedbread (a batch with
+		// model_research rows) has no claiming task; kind rules still hold.
+		os.WriteFile(p, []byte(strings.Replace(string(orig), `"batches": ["mixedbread"]`, `"batches": ["anthropic"]`, 1)), 0o644)
+		_, err := LoadTasks(root, inv, batches)
+		if ce, ok := err.(*Error); err == nil || !ok || ce.Code != ExitInvalid || !strings.Contains(err.Error(), "mixedbread") {
+			t.Fatalf("error = %v, want ExitInvalid naming mixedbread", err)
+		}
+	})
 }
 
 // TestBacklogImageGate adds a language model to the images batch in the

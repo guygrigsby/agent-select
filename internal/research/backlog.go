@@ -509,20 +509,27 @@ func Backlog(root string) (tsv, report []byte, summary string, err error) {
 	return tsv, report, summary, nil
 }
 
+// researchBatchNames returns every batch that contributes research rows:
+// model_research assignments plus both measurement tables, so a
+// measurements-only batch (e.g. coverage-followup) cannot slip past the
+// task-completeness gate.
 func researchBatchNames(tables []*tableRows) []string {
-	var tResearch *tableRows
-	for _, t := range tables {
-		if t.name == "model_research" {
-			tResearch = t
-		}
-	}
+	// batch column: model_research(1), benchmark_measurements(2, after the
+	// generated id), unresolved_measurements(1).
+	want := map[string]int{"model_research": 1, "benchmark_measurements": 2, "unresolved_measurements": 1}
 	seen := map[string]bool{}
 	var out []string
-	for _, r := range tResearch.rows {
-		b := r[1].(string)
-		if !seen[b] {
-			seen[b] = true
-			out = append(out, b)
+	for _, t := range tables {
+		col, ok := want[t.name]
+		if !ok {
+			continue
+		}
+		for _, r := range t.rows {
+			b := r[col].(string)
+			if b != "" && !seen[b] {
+				seen[b] = true
+				out = append(out, b)
+			}
 		}
 	}
 	sort.Strings(out)
@@ -550,10 +557,11 @@ func backlogGates(rows []BacklogRow, researchBatches []string) error {
 					return invalidf("backlog gate: model %s assigned to unknown batch %s", r.ModelID, b)
 				}
 			}
-			if r.ImageOutput != containsBatch(r.Batches, "images") {
-				return invalidf("backlog gate: model %s image-output %t disagrees with images-batch assignment", r.ModelID, r.ImageOutput)
-			}
-		} else if containsBatch(r.Batches, "images") {
+		}
+		if r.ImageOutput != containsBatch(r.Batches, "images") {
+			return invalidf("backlog gate: model %s image-output %t disagrees with images-batch assignment", r.ModelID, r.ImageOutput)
+		}
+		if r.InScope != "in_scope" && containsBatch(r.Batches, "images") {
 			return invalidf("backlog gate: out-of-scope model %s assigned to the images batch", r.ModelID)
 		}
 	}
