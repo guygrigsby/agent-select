@@ -1,0 +1,12 @@
+# Evidence review
+
+Reviewed current files against `git HEAD` (read-only; no network/git changes).
+
+| batch | source-evidence readiness | basis |
+|---|---|---|
+| other-text | PASS | 8 benchmark rows, including all affected StepFun/Trinity rows, point to existing saved source bytes. Step 3.5's Detailed Benchmarks header and exact `Step 3.5 Flash` column are present; raw lexemes are `97.3`, `74.4`, and `51.0`, with AIME/SWE-bench/Terminal-Bench labels. Configuration explicitly leaves harness/shots/tools unknown; asterisk/reproduction caveat is retained. Step 3.5 contradiction is removed and catalog/source gaps remain gaps. |
+| mistral-meta | FAIL | Saved source paths exist and the Meta HTML tables contain the numeric cells, with base/instruct generally represented. However the affected evidence is not wholly column/identity-safe: the `Llama 3.1 70B` MBPP row's locator says `Llama 3.1 70B Instruct` while its benchmark/configuration says base (`MBPP ++ base version`), so base/instruct distinction is contradictory for an actual row. This prevents PASS despite the path repair. |
+| unresolved | PASS | Exactly 210 measurements were checked as records, not numeric substrings. Historical `reported_model` labels remain unchanged, all are `identity_status: unresolved`, and all proposed ID lists are empty. DeepSeek V3.1 records retain table headers/row and applicable column context; the DeepSeek R1 paper rows retain the comparison-table row, rightmost DeepSeek R1 column, and extracted cell. The three R1 locators are descriptive rather than literal source strings, but the saved HTML contains the corresponding table/value cells. Unknown paper configuration/footnotes are explicitly recorded as unknown/gap. OpenAI rows do not claim footnotes were checked: they state footnote-dependent details require source inspection. |
+| coverage-followup | PASS | Emits zero measurements. It explicitly treats repository/API 404s, challenge/blocked responses, contents-only listings, and arena CSV/export preference ratings as non-retrieved/non-score evidence; no 404 or arena artifact is marked as retrieved export data. |
+
+Additional checks: source URLs and repository-relative source paths were checked for the affected rows; raw JSON parses successfully. PASS here means source values/labels/settings are accurately preserved with unknowns explicit only; it does not imply full coverage, independent replication, quality, or routing eligibility. Source metadata repair is not a license or calibration approval.

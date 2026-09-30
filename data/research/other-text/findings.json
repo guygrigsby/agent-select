@@ -72,7 +72,7 @@
       "id": "arcee-ai/trinity-large-thinking",
       "strengths": [
         {
-          "text": "Trinity-Large-Thinking is a reasoning-optimized variant of Arcee AI's Trinity-Large family — a 398B-parameter sparse Mixture-of-Experts (MoE) model with approximately 13B active parameters per token. Built on Trinity-Large-Base and post-trained with extended chain-of-thought reasoning and agentic RL, Trinity-Large-Thinking delivers state-of-the-art performance on agentic benchmarks while maintaining strong general capabilities.",
+          "text": "Trinity-Large-Thinking is a reasoning-optimized variant of Arcee AI's Trinity-Large family \u2014 a 398B-parameter sparse Mixture-of-Experts (MoE) model with approximately 13B active parameters per token. Built on Trinity-Large-Base and post-trained with extended chain-of-thought reasoning and agentic RL, Trinity-Large-Thinking delivers state-of-the-art performance on agentic benchmarks while maintaining strong general capabilities.",
           "basis": "catalog_claim",
           "source_url": "https://vercel.com/docs/ai/models",
           "source_file": "data/research/other-text/assignment.json",
@@ -125,7 +125,7 @@
       "id": "bytedance/seed-2.1-turbo",
       "strengths": [
         {
-          "text": "Seed 2.1 Turbo is ByteDance’s multimodal language model supporting text, image, and video inputs with text output. It offers a 262,144-token context window, reasoning, function calling, and structured JSON output.",
+          "text": "Seed 2.1 Turbo is ByteDance\u2019s multimodal language model supporting text, image, and video inputs with text output. It offers a 262,144-token context window, reasoning, function calling, and structured JSON output.",
           "basis": "catalog_claim",
           "source_url": "https://vercel.com/docs/ai/models",
           "source_file": "data/research/other-text/assignment.json",
@@ -163,7 +163,7 @@
       "id": "fireworks/ember-1",
       "strengths": [
         {
-          "text": "Ember-1 is Fireworks’ research-preview reasoning model built on Kimi K3 for coding and agentic workflows. It supports image input, function calling, and a 1M-token context window. Fireworks reports approximately 40% fewer generated tokens while maintaining comparable quality across its evaluations, helping reduce the cost of workloads with extensive reasoning.",
+          "text": "Ember-1 is Fireworks\u2019 research-preview reasoning model built on Kimi K3 for coding and agentic workflows. It supports image input, function calling, and a 1M-token context window. Fireworks reports approximately 40% fewer generated tokens while maintaining comparable quality across its evaluations, helping reduce the cost of workloads with extensive reasoning.",
           "basis": "catalog_claim",
           "source_url": "https://vercel.com/docs/ai/models",
           "source_file": "data/research/other-text/assignment.json",
@@ -201,7 +201,7 @@
       "id": "inception/mercury-2.5",
       "strengths": [
         {
-          "text": "Mercury 2.5 is Inception’s diffusion-based reasoning model for chat, agents, and structured workflows, with tool calling, structured outputs, and a 260K context window.",
+          "text": "Mercury 2.5 is Inception\u2019s diffusion-based reasoning model for chat, agents, and structured workflows, with tool calling, structured outputs, and a 260K context window.",
           "basis": "catalog_claim",
           "source_url": "https://vercel.com/docs/ai/models",
           "source_file": "data/research/other-text/assignment.json",
@@ -270,7 +270,7 @@
       "id": "inclusionai/ling-3.0-flash-fin",
       "strengths": [
         {
-          "text": "Ling 3.0 Flash Fin is InclusionAI’s finance-enhanced MoE language model, combining 124 billion total parameters with approximately 5.1 billion active parameters for efficient financial reasoning. Its 256K context window, function calling, and support for complex, multi-step investment workflows make it ideal for financial research, analysis, long-horizon planning, and execution, while retaining strong capabilities in coding and mathematics.",
+          "text": "Ling 3.0 Flash Fin is InclusionAI\u2019s finance-enhanced MoE language model, combining 124 billion total parameters with approximately 5.1 billion active parameters for efficient financial reasoning. Its 256K context window, function calling, and support for complex, multi-step investment workflows make it ideal for financial research, analysis, long-horizon planning, and execution, while retaining strong capabilities in coding and mathematics.",
           "basis": "catalog_claim",
           "source_url": "https://vercel.com/docs/ai/models",
           "source_file": "data/research/other-text/assignment.json",
@@ -293,7 +293,7 @@
       "id": "inclusionai/ling-3.0-flash-sante",
       "strengths": [
         {
-          "text": "Ling-3.0-Flash-Sante is inclusionAI’s language model specialized for health and medicine, built on a Mixture-of-Experts architecture with 124 billion total parameters and approximately 5.1 billion active per token. With a 256K context window and function calling, it supports medical knowledge reasoning, evidence-based retrieval, and complex medical workflows while retaining general reasoning, coding, and agentic capabilities.",
+          "text": "Ling-3.0-Flash-Sante is inclusionAI\u2019s language model specialized for health and medicine, built on a Mixture-of-Experts architecture with 124 billion total parameters and approximately 5.1 billion active per token. With a 256K context window and function calling, it supports medical knowledge reasoning, evidence-based retrieval, and complex medical workflows while retaining general reasoning, coding, and agentic capabilities.",
           "basis": "catalog_claim",
           "source_url": "https://vercel.com/docs/ai/models",
           "source_file": "data/research/other-text/assignment.json",
@@ -316,7 +316,7 @@
       "id": "inclusionai/ling-3.0-flash-sante-free",
       "strengths": [
         {
-          "text": "Ling-3.0-Flash-Sante is inclusionAI’s language model specialized for health and medicine, built on a Mixture-of-Experts architecture with 124 billion total parameters and approximately 5.1 billion active per token. With a 256K context window and function calling, it supports medical knowledge reasoning, evidence-based retrieval, and complex medical workflows while retaining general reasoning, coding, and agentic capabilities.",
+          "text": "Ling-3.0-Flash-Sante is inclusionAI\u2019s language model specialized for health and medicine, built on a Mixture-of-Experts architecture with 124 billion total parameters and approximately 5.1 billion active per token. With a 256K context window and function calling, it supports medical knowledge reasoning, evidence-based retrieval, and complex medical workflows while retaining general reasoning, coding, and agentic capabilities.",
           "basis": "catalog_claim",
           "source_url": "https://vercel.com/docs/ai/models",
           "source_file": "data/research/other-text/assignment.json",
@@ -461,7 +461,7 @@
       "id": "meituan/longcat-2.5-preview",
       "strengths": [
         {
-          "text": "LongCat-2.5-Preview is Meituan’s multimodal reasoning model for coding and agentic workflows, with a 1M-token context window and support for text and image inputs. It combines image understanding, visual question answering, and content summarization with code generation, code understanding, and automated programming, and supports tool calling and optional thinking for complex tasks.",
+          "text": "LongCat-2.5-Preview is Meituan\u2019s multimodal reasoning model for coding and agentic workflows, with a 1M-token context window and support for text and image inputs. It combines image understanding, visual question answering, and content summarization with code generation, code understanding, and automated programming, and supports tool calling and optional thinking for complex tasks.",
           "basis": "catalog_claim",
           "source_url": "https://vercel.com/docs/ai/models",
           "source_file": "data/research/other-text/assignment.json",
@@ -713,7 +713,7 @@
       "id": "sakana/fugu-max",
       "strengths": [
         {
-          "text": "Fugu Max orchestrates our largest pool of models to push the cost–performance Pareto frontier. It dynamically finds efficient combinations of expert agents, aiming to improve model performance and cost efficiency together.",
+          "text": "Fugu Max orchestrates our largest pool of models to push the cost\u2013performance Pareto frontier. It dynamically finds efficient combinations of expert agents, aiming to improve model performance and cost efficiency together.",
           "basis": "catalog_claim",
           "source_url": "https://vercel.com/docs/ai/models",
           "source_file": "data/research/other-text/assignment.json",
@@ -797,13 +797,13 @@
       ],
       "weaknesses": [],
       "benchmark_status": "found",
-      "notes": "No exact-model numeric benchmark was located in the inspected saved sources."
+      "notes": "Saved provider README Detailed Benchmarks table contains three exact-model rows: AIME 2025 (97.3), SWE-bench Verified (74.4), Terminal-Bench 2.0 (51.0). Other benchmarks/configuration details are not established by this evidence."
     },
     {
       "id": "stepfun/step-3.7-flash",
       "strengths": [
         {
-          "text": "StepFun’s flagship multimodal reasoning model. Powered by a 198B-parameter / 11B-activation sparse MoE architecture, with native support for image and video understanding.",
+          "text": "StepFun\u2019s flagship multimodal reasoning model. Powered by a 198B-parameter / 11B-activation sparse MoE architecture, with native support for image and video understanding.",
           "basis": "catalog_claim",
           "source_url": "https://vercel.com/docs/ai/models",
           "source_file": "data/research/other-text/assignment.json",
@@ -812,13 +812,13 @@
       ],
       "weaknesses": [],
       "benchmark_status": "found",
-      "notes": "No exact-model numeric benchmark was located in the inspected saved sources."
+      "notes": "Published source records are exported for SWE-Bench PRO 56.3. Source settings not established in those records remain unknown; no calibration or independent replication claim."
     },
     {
       "id": "stepfun/step-5-preview",
       "strengths": [
         {
-          "text": "Step 5 Preview is StepFun’s flagship AI model for agentic coding, professional knowledge work, and financial analysis. Built on a sparse Mixture-of-Experts architecture with 600B total parameters and 27B active per token, it combines a 1M-token context window with vision input. From building interactive applications and debugging code to conducting research and producing analytical reports, it supports complex workflows that require sustained reasoning, tool use, and iterative refinement.",
+          "text": "Step 5 Preview is StepFun\u2019s flagship AI model for agentic coding, professional knowledge work, and financial analysis. Built on a sparse Mixture-of-Experts architecture with 600B total parameters and 27B active per token, it combines a 1M-token context window with vision input. From building interactive applications and debugging code to conducting research and producing analytical reports, it supports complex workflows that require sustained reasoning, tool use, and iterative refinement.",
           "basis": "catalog_claim",
           "source_url": "https://vercel.com/docs/ai/models",
           "source_file": "data/research/other-text/assignment.json",
@@ -833,7 +833,7 @@
       "id": "tencent/hy-mt2-lite",
       "strengths": [
         {
-          "text": "Hy-MT2-Lite is Tencent Cloud Hunyuan’s lightweight 1.8B translation model, combining efficient performance with an 8K-token context window and broad multilingual coverage. It supports translation across 33 languages and five ethnic Chinese and dialect variants, delivering strong results on benchmarks including FLORES-200 and WMT25. Designed for professional and real-world business use, it reliably follows instructions for structured, delimiter-preserving, context-aware, glossary-guided, and style-specific translation.",
+          "text": "Hy-MT2-Lite is Tencent Cloud Hunyuan\u2019s lightweight 1.8B translation model, combining efficient performance with an 8K-token context window and broad multilingual coverage. It supports translation across 33 languages and five ethnic Chinese and dialect variants, delivering strong results on benchmarks including FLORES-200 and WMT25. Designed for professional and real-world business use, it reliably follows instructions for structured, delimiter-preserving, context-aware, glossary-guided, and style-specific translation.",
           "basis": "catalog_claim",
           "source_url": "https://vercel.com/docs/ai/models",
           "source_file": "data/research/other-text/assignment.json",
@@ -856,7 +856,7 @@
       "id": "tencent/hy-mt2-plus",
       "strengths": [
         {
-          "text": "Hy-MT2-Plus is Tencent Cloud Hunyuan’s 7B translation model, offering an 8K-token context window and broad multilingual coverage. Optimized for translation across 33 languages and five ethnic Chinese and dialect variants, it delivers industry-leading performance on benchmarks including FLORES-200 and WMT25. It excels in professional domains and real-world business scenarios, with strong instruction-following for structured, delimiter-preserving, context-aware, glossary-guided, and style-specific translation.",
+          "text": "Hy-MT2-Plus is Tencent Cloud Hunyuan\u2019s 7B translation model, offering an 8K-token context window and broad multilingual coverage. Optimized for translation across 33 languages and five ethnic Chinese and dialect variants, it delivers industry-leading performance on benchmarks including FLORES-200 and WMT25. It excels in professional domains and real-world business scenarios, with strong instruction-following for structured, delimiter-preserving, context-aware, glossary-guided, and style-specific translation.",
           "basis": "catalog_claim",
           "source_url": "https://vercel.com/docs/ai/models",
           "source_file": "data/research/other-text/assignment.json",
@@ -879,7 +879,7 @@
       "id": "tencent/hy-mt2-pro",
       "strengths": [
         {
-          "text": "Hy-MT2-Pro is Tencent Cloud Hunyuan’s flagship translation model, featuring 30B-A3B parameters and an 8K-token context window. It delivers bidirectional translation across 33 core language pairs, plus five minority-language and dialect pairs. With industry-leading performance on FLORES-200 and WMT25, it excels in specialized domains and real-world business scenarios while supporting structured, contextual, terminology-aware, style-specific, and delimiter-preserving translation.",
+          "text": "Hy-MT2-Pro is Tencent Cloud Hunyuan\u2019s flagship translation model, featuring 30B-A3B parameters and an 8K-token context window. It delivers bidirectional translation across 33 core language pairs, plus five minority-language and dialect pairs. With industry-leading performance on FLORES-200 and WMT25, it excels in specialized domains and real-world business scenarios while supporting structured, contextual, terminology-aware, style-specific, and delimiter-preserving translation.",
           "basis": "catalog_claim",
           "source_url": "https://vercel.com/docs/ai/models",
           "source_file": "data/research/other-text/assignment.json",
@@ -925,7 +925,7 @@
       "id": "tencent/hy4-preview",
       "strengths": [
         {
-          "text": "Tencent Hy4 preview is Tencent Hy’s open-source large language model, featuring 770B total parameters, 49B active parameters, and a context window exceeding 1 million tokens. Built for real-world productivity, it supports long-horizon coding, cross-document analysis, office content creation, game development, and scientific reasoning, making it well-suited to complex agents and multi-step professional workflows.",
+          "text": "Tencent Hy4 preview is Tencent Hy\u2019s open-source large language model, featuring 770B total parameters, 49B active parameters, and a context window exceeding 1 million tokens. Built for real-world productivity, it supports long-horizon coding, cross-document analysis, office content creation, game development, and scientific reasoning, making it well-suited to complex agents and multi-step professional workflows.",
           "basis": "catalog_claim",
           "source_url": "https://vercel.com/docs/ai/models",
           "source_file": "data/research/other-text/assignment.json",
@@ -1349,7 +1349,7 @@
       "license": "unknown"
     },
     {
-      "url": "saved source URL recovered from other-text.log",
+      "url": "https://huggingface.co/stepfun-ai/Step-3.5-Flash",
       "file": "data/research/other-text/sources/stepfun-step-3.5-flash-readme.md",
       "status": "retrieved",
       "purpose": "StepFun provider README with Detailed Benchmarks table: Step 3.5 Flash column, AIME 2025 and Terminal-Bench 2.0 labels/configuration context.",

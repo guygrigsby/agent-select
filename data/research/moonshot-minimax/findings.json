@@ -12,8 +12,8 @@
         }
       ],
       "weaknesses": [],
-      "benchmark_status": "found",
-      "notes": "Published evidence is provider/model-card material; benchmark results are not independent unless noted."
+      "benchmark_status": "unresearched",
+      "notes": "Published evidence is provider/model-card material; benchmark results are not independent unless noted. Status correction: prior found status was inconsistent with the exported benchmarks array, which contains no numeric row for this exact ID; benchmark extraction is not complete. This does not establish that no published benchmark exists, and no adjacent revision result is assigned."
     },
     {
       "id": "minimax/minimax-m2.1",
@@ -69,8 +69,8 @@
         }
       ],
       "weaknesses": [],
-      "benchmark_status": "found",
-      "notes": "Published evidence is provider/model-card material; benchmark results are not independent unless noted."
+      "benchmark_status": "unresearched",
+      "notes": "Published evidence is provider/model-card material; benchmark results are not independent unless noted. Status correction: prior found status was inconsistent with the exported benchmarks array, which contains no numeric row for this exact ID; benchmark extraction is not complete. This does not establish that no published benchmark exists, and no adjacent revision result is assigned."
     },
     {
       "id": "moonshotai/kimi-k2",
@@ -84,8 +84,8 @@
         }
       ],
       "weaknesses": [],
-      "benchmark_status": "found",
-      "notes": "Published evidence is provider/model-card material; benchmark results are not independent unless noted."
+      "benchmark_status": "unresearched",
+      "notes": "Published evidence is provider/model-card material; benchmark results are not independent unless noted. Status correction: prior found status was inconsistent with the exported benchmarks array, which contains no numeric row for this exact ID; benchmark extraction is not complete. This does not establish that no published benchmark exists, and no adjacent revision result is assigned."
     },
     {
       "id": "moonshotai/kimi-k2-thinking",
@@ -106,8 +106,8 @@
         }
       ],
       "weaknesses": [],
-      "benchmark_status": "found",
-      "notes": "Published evidence is provider/model-card material; benchmark results are not independent unless noted."
+      "benchmark_status": "unresearched",
+      "notes": "Published evidence is provider/model-card material; benchmark results are not independent unless noted. Status correction: prior found status was inconsistent with the exported benchmarks array, which contains no numeric row for this exact ID; benchmark extraction is not complete. This does not establish that no published benchmark exists, and no adjacent revision result is assigned."
     },
     {
       "id": "moonshotai/kimi-k2.6",
@@ -142,8 +142,8 @@
         }
       ],
       "weaknesses": [],
-      "benchmark_status": "found",
-      "notes": "Published evidence is provider/model-card material; benchmark results are not independent unless noted."
+      "benchmark_status": "unresearched",
+      "notes": "Published evidence is provider/model-card material; benchmark results are not independent unless noted. Status correction: prior found status was inconsistent with the exported benchmarks array, which contains no numeric row for this exact ID; benchmark extraction is not complete. This does not establish that no published benchmark exists, and no adjacent revision result is assigned."
     },
     {
       "id": "moonshotai/kimi-k3-fast",
@@ -363,6 +363,7 @@
   "gaps": [
     "No numeric benchmark table was found for M2.1, M2.1 Lightning, M2.5, M2.5 High Speed, M2.7, M2.7 High Speed, K2 Thinking, K2.6, K2.7 Code, K2.7 Code High Speed, or K3 Fast in the checked saved sources.",
     "Future-dated or unfamiliar catalog revisions were not assigned predecessor scores.",
-    "The checked benchmark tables are provider/model-card reported; independent replication was not established."
+    "The checked benchmark tables are provider/model-card reported; independent replication was not established.",
+    "Status correction: withdrew prior found status for minimax/minimax-m2, minimax/minimax-m3, moonshotai/kimi-k2, moonshotai/kimi-k2.5, moonshotai/kimi-k3 because the exported benchmarks array has no numeric row for this exact ID. Extraction is incomplete; this does not establish that no published benchmark exists, and adjacent revisions were not substituted."
   ]
 }

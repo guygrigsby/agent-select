@@ -16,6 +16,8 @@ test:
 	@test "$$(sqlite3 $(DB) "SELECT COUNT(*)=(SELECT CAST(value AS INTEGER) FROM metadata WHERE key='expected_exact_joins') FROM exact_catalog_joins;")" = 1 || { echo 'Exact-ID pricing join count differs from captured metadata.'; exit 1; }
 	@test "$$(sqlite3 $(DB) "SELECT COUNT(DISTINCT model_id)=(SELECT CAST(value AS INTEGER) FROM metadata WHERE key='expected_text_and_image_research_models') FROM model_research;")" = 1 || { echo 'Text/image model research coverage is incomplete.'; exit 1; }
 	@test "$$(sqlite3 $(DB) "SELECT COUNT(*) FROM catalog_models m WHERE (m.kind='language' OR EXISTS(SELECT 1 FROM catalog_modalities d WHERE d.model_id=m.id AND d.direction='output' AND d.modality='image')) AND NOT EXISTS(SELECT 1 FROM model_research r WHERE r.model_id=m.id);")" = 0 || { echo 'A text/image model has no explicit research status.'; exit 1; }
+	@test "$$(sqlite3 $(DB) "SELECT COUNT(*) FROM model_research r WHERE r.benchmark_status='found' AND NOT EXISTS(SELECT 1 FROM benchmark_measurements b WHERE b.model_id=r.model_id AND b.batch=r.batch);")" = 0 || { echo 'Found benchmark status has no source measurement. Fix the batch findings and rebuild the export.'; exit 1; }
+	@test "$$(sqlite3 $(DB) "SELECT COUNT(*) FROM model_research r WHERE r.notes LIKE '%No exact-model numeric benchmark was located%' AND EXISTS(SELECT 1 FROM benchmark_measurements b WHERE b.model_id=r.model_id AND b.batch=r.batch);")" = 0 || { echo 'Research notes contradict recorded benchmark rows. Fix the batch findings and rebuild the export.'; exit 1; }
 	@test "$$(sqlite3 $(DB) "SELECT COUNT(*) FROM accepted_benchmarks;")" = 0 || { echo 'Benchmark acceptance changed. Update the review ledger and acceptance gate only after evidence review.'; exit 1; }
 
 lint:

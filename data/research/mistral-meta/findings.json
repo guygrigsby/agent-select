@@ -448,7 +448,7 @@
       "unit": "percent",
       "configuration": "5-shot, internal Meta evaluation library",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_1/MODEL_CARD.md",
-      "source_file": "sources/meta_llama_eval_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama_eval_github.html",
       "locator": "Llama 3.1 70B Instruct: MMLU 83.6 (5-shot, macro_avg/acc)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama 3.1 70B Instruct"
@@ -462,7 +462,7 @@
       "unit": "percent",
       "configuration": "0-shot CoT, internal Meta evaluation library",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_1/MODEL_CARD.md",
-      "source_file": "sources/meta_llama_eval_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama_eval_github.html",
       "locator": "Llama 3.1 70B Instruct: MMLU (CoT) 86.0 (0-shot, macro_avg/acc)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama 3.1 70B Instruct"
@@ -476,7 +476,7 @@
       "unit": "percent",
       "configuration": "5-shot CoT, internal Meta evaluation library",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_1/MODEL_CARD.md",
-      "source_file": "sources/meta_llama_eval_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama_eval_github.html",
       "locator": "Llama 3.1 70B Instruct: MMLU-Pro (CoT) 66.4 (5-shot, macro_avg/acc)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama 3.1 70B Instruct"
@@ -490,7 +490,7 @@
       "unit": "percent",
       "configuration": "0-shot, internal Meta evaluation library",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_1/MODEL_CARD.md",
-      "source_file": "sources/meta_llama_eval_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama_eval_github.html",
       "locator": "Llama 3.1 70B Instruct: HumanEval 80.5 (0-shot, pass@1)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama 3.1 70B Instruct"
@@ -504,7 +504,7 @@
       "unit": "percent",
       "configuration": "0-shot CoT, internal Meta evaluation library",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_1/MODEL_CARD.md",
-      "source_file": "sources/meta_llama_eval_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama_eval_github.html",
       "locator": "Llama 3.1 70B Instruct: MATH (CoT) 68.0 (0-shot, final_em)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama 3.1 70B Instruct"
@@ -518,7 +518,7 @@
       "unit": "percent",
       "configuration": "8-shot CoT, internal Meta evaluation library",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_1/MODEL_CARD.md",
-      "source_file": "sources/meta_llama_eval_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama_eval_github.html",
       "locator": "Llama 3.1 70B Instruct: GSM-8K (CoT) 95.1 (8-shot, em_maj1@1)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama 3.1 70B Instruct"
@@ -532,10 +532,10 @@
       "unit": "percent",
       "configuration": "0-shot, internal Meta evaluation library, base version",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_1/MODEL_CARD.md",
-      "source_file": "sources/meta_llama_eval_github.html",
-      "locator": "Llama 3.1 70B Instruct: MBPP ++ base version 86.0 (0-shot, pass@1)",
+      "source_file": "data/research/mistral-meta/sources/meta_llama_eval_github.html",
+      "locator": "Base pretrained models table (Code row): MBPP ++ base version, 0 shots, pass@1; Llama 3.1 70B column = 86.0",
       "evidence_class": "provider_reported",
-      "identity_basis": "Model card explicitly names Llama 3.1 70B Instruct"
+      "identity_basis": "Source table is explicitly headed Base pretrained models; benchmark value is under the Llama 3.1 70B column"
     },
     {
       "model_id": "meta/llama-3.1-70b",
@@ -546,7 +546,7 @@
       "unit": "percent",
       "configuration": "5-shot, internal Meta evaluation library (pretrained model)",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_1/MODEL_CARD.md",
-      "source_file": "sources/meta_llama_eval_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama_eval_github.html",
       "locator": "Llama 3.1 70B (base pretrained): MMLU 79.3 (5-shot, macro_avg/acc_char)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama 3.1 70B"
@@ -560,7 +560,7 @@
       "unit": "percent",
       "configuration": "Internal Meta evaluation library, instruction-tuned model",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_1/MODEL_CARD.md",
-      "source_file": "sources/meta_llama_eval_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama_eval_github.html",
       "locator": "Llama 3.1 70B Instruct: IFEval 87.5",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama 3.1 70B Instruct"
@@ -574,7 +574,7 @@
       "unit": "percent",
       "configuration": "0-shot, internal Meta evaluation library",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_1/MODEL_CARD.md",
-      "source_file": "sources/meta_llama_eval_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama_eval_github.html",
       "locator": "Llama 3.1 70B Instruct: GPQA 46.7 (0-shot, em)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama 3.1 70B Instruct"
@@ -588,7 +588,7 @@
       "unit": "percent",
       "configuration": "5-shot, internal Meta evaluation library",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_1/MODEL_CARD.md",
-      "source_file": "sources/meta_llama_eval_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama_eval_github.html",
       "locator": "Llama 3.1 8B Instruct: MMLU 69.4 (5-shot, macro_avg/acc)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama 3.1 8B Instruct"
@@ -602,7 +602,7 @@
       "unit": "percent",
       "configuration": "0-shot CoT, internal Meta evaluation library",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_1/MODEL_CARD.md",
-      "source_file": "sources/meta_llama_eval_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama_eval_github.html",
       "locator": "Llama 3.1 8B Instruct: MMLU (CoT) 73.0 (0-shot, macro_avg/acc)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama 3.1 8B Instruct"
@@ -616,7 +616,7 @@
       "unit": "percent",
       "configuration": "0-shot, internal Meta evaluation library",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_1/MODEL_CARD.md",
-      "source_file": "sources/meta_llama_eval_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama_eval_github.html",
       "locator": "Llama 3.1 8B Instruct: HumanEval 72.6 (0-shot, pass@1)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama 3.1 8B Instruct"
@@ -630,7 +630,7 @@
       "unit": "percent",
       "configuration": "0-shot CoT, internal Meta evaluation library",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_3/MODEL_CARD.md",
-      "source_file": "sources/meta_llama3_3_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama3_3_github.html",
       "locator": "Llama-3.3 70B Instruct: MMLU (CoT) 86.0 (0-shot, macro_avg/acc)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama-3.3 70B Instruct"
@@ -644,7 +644,7 @@
       "unit": "percent",
       "configuration": "5-shot CoT, internal Meta evaluation library",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_3/MODEL_CARD.md",
-      "source_file": "sources/meta_llama3_3_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama3_3_github.html",
       "locator": "Llama-3.3 70B Instruct: MMLU Pro (CoT) 68.9 (5-shot, macro_avg/acc)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama-3.3 70B Instruct"
@@ -658,7 +658,7 @@
       "unit": "percent",
       "configuration": "Internal Meta evaluation library",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_3/MODEL_CARD.md",
-      "source_file": "sources/meta_llama3_3_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama3_3_github.html",
       "locator": "Llama-3.3 70B Instruct: IFEval 92.1",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama-3.3 70B Instruct"
@@ -672,7 +672,7 @@
       "unit": "percent",
       "configuration": "0-shot CoT, internal Meta evaluation library",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_3/MODEL_CARD.md",
-      "source_file": "sources/meta_llama3_3_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama3_3_github.html",
       "locator": "Llama-3.3 70B Instruct: GPQA Diamond (CoT) 50.5 (0-shot, acc)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama-3.3 70B Instruct"
@@ -686,7 +686,7 @@
       "unit": "percent",
       "configuration": "0-shot, internal Meta evaluation library",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_3/MODEL_CARD.md",
-      "source_file": "sources/meta_llama3_3_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama3_3_github.html",
       "locator": "Llama-3.3 70B Instruct: HumanEval 88.4 (0-shot, pass@1)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama-3.3 70B Instruct"
@@ -700,7 +700,7 @@
       "unit": "percent",
       "configuration": "0-shot CoT, internal Meta evaluation library",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_3/MODEL_CARD.md",
-      "source_file": "sources/meta_llama3_3_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama3_3_github.html",
       "locator": "Llama-3.3 70B Instruct: MATH (CoT) 77.0 (0-shot, sympy_intersection_score)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama-3.3 70B Instruct"
@@ -714,7 +714,7 @@
       "unit": "percent",
       "configuration": "0-shot, internal Meta evaluation library, multilingual",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_3/MODEL_CARD.md",
-      "source_file": "sources/meta_llama3_3_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama3_3_github.html",
       "locator": "Llama-3.3 70B Instruct: MGSM 91.1 (0-shot, em)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama-3.3 70B Instruct"
@@ -726,12 +726,12 @@
       "metric": "pass@1",
       "value": "87.6",
       "unit": "percent",
-      "configuration": "0-shot, internal Meta evaluation library, base version",
+      "configuration": "0-shot, internal Meta evaluation library, base version identity unverified",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_3/MODEL_CARD.md",
-      "source_file": "sources/meta_llama3_3_github.html",
-      "locator": "Llama-3.3 70B Instruct: MBPP EvalPlus (base) 87.6 (0-shot, pass@1)",
+      "source_file": "data/research/mistral-meta/sources/meta_llama3_3_github.html",
+      "locator": "MBPP EvalPlus (base) 87.6 (0-shot, pass@1) as labeled in source table; base/instruct identity not established",
       "evidence_class": "provider_reported",
-      "identity_basis": "Model card explicitly names Llama-3.3 70B Instruct"
+      "identity_basis": "Base benchmark label conflicts with instruct-labeled table context; identity unresolved"
     },
     {
       "model_id": "meta/llama-4-maverick",
@@ -742,7 +742,7 @@
       "unit": "percent",
       "configuration": "5-shot, internal Meta evaluation library, pretrained model",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama4/MODEL_CARD.md",
-      "source_file": "sources/meta_llama4_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama4_github.html",
       "locator": "Llama 4 Maverick (pretrained): MMLU 85.5 (5-shot, macro_avg/acc_char)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama 4 Maverick"
@@ -756,7 +756,7 @@
       "unit": "percent",
       "configuration": "5-shot, internal Meta evaluation library, pretrained model",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama4/MODEL_CARD.md",
-      "source_file": "sources/meta_llama4_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama4_github.html",
       "locator": "Llama 4 Maverick (pretrained): MMLU-Pro 62.9 (5-shot, macro_avg/em)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama 4 Maverick"
@@ -770,7 +770,7 @@
       "unit": "percent",
       "configuration": "0-shot, internal Meta evaluation library, instruction-tuned model",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama4/MODEL_CARD.md",
-      "source_file": "sources/meta_llama4_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama4_github.html",
       "locator": "Llama 4 Maverick (instruct): MMLU Pro 80.5 (0-shot, macro_avg/acc)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama 4 Maverick"
@@ -784,7 +784,7 @@
       "unit": "percent",
       "configuration": "0-shot, internal Meta evaluation library, instruction-tuned model",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama4/MODEL_CARD.md",
-      "source_file": "sources/meta_llama4_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama4_github.html",
       "locator": "Llama 4 Maverick (instruct): GPQA Diamond 69.8 (0-shot, accuracy)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama 4 Maverick"
@@ -798,7 +798,7 @@
       "unit": "percent",
       "configuration": "0-shot, internal Meta evaluation library, instruction-tuned model",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama4/MODEL_CARD.md",
-      "source_file": "sources/meta_llama4_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama4_github.html",
       "locator": "Llama 4 Maverick (instruct): MMMU 73.4 (0-shot, accuracy)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama 4 Maverick"
@@ -812,7 +812,7 @@
       "unit": "percent",
       "configuration": "0-shot, internal Meta evaluation library, instruction-tuned model",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama4/MODEL_CARD.md",
-      "source_file": "sources/meta_llama4_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama4_github.html",
       "locator": "Llama 4 Maverick (instruct): LiveCodeBench 43.4 (0-shot, pass@1)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama 4 Maverick"
@@ -826,7 +826,7 @@
       "unit": "percent",
       "configuration": "0-shot, internal Meta evaluation library, instruction-tuned model, multilingual",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama4/MODEL_CARD.md",
-      "source_file": "sources/meta_llama4_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama4_github.html",
       "locator": "Llama 4 Maverick (instruct): MGSM 92.3 (0-shot, average/em)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama 4 Maverick"
@@ -840,7 +840,7 @@
       "unit": "percent",
       "configuration": "5-shot, internal Meta evaluation library, pretrained model",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama4/MODEL_CARD.md",
-      "source_file": "sources/meta_llama4_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama4_github.html",
       "locator": "Llama 4 Scout (pretrained): MMLU 79.6 (5-shot, macro_avg/acc_char)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama 4 Scout"
@@ -854,7 +854,7 @@
       "unit": "percent",
       "configuration": "5-shot, internal Meta evaluation library, pretrained model",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama4/MODEL_CARD.md",
-      "source_file": "sources/meta_llama4_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama4_github.html",
       "locator": "Llama 4 Scout (pretrained): MMLU-Pro 58.2 (5-shot, macro_avg/em)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama 4 Scout"
@@ -868,7 +868,7 @@
       "unit": "percent",
       "configuration": "0-shot, internal Meta evaluation library, instruction-tuned model",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama4/MODEL_CARD.md",
-      "source_file": "sources/meta_llama4_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama4_github.html",
       "locator": "Llama 4 Scout (instruct): MMLU Pro 74.3 (0-shot, macro_avg/acc)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama 4 Scout"
@@ -882,7 +882,7 @@
       "unit": "percent",
       "configuration": "0-shot, internal Meta evaluation library, instruction-tuned model",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama4/MODEL_CARD.md",
-      "source_file": "sources/meta_llama4_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama4_github.html",
       "locator": "Llama 4 Scout (instruct): GPQA Diamond 57.2 (0-shot, accuracy)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama 4 Scout"
@@ -896,7 +896,7 @@
       "unit": "percent",
       "configuration": "0-shot, internal Meta evaluation library, instruction-tuned model",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama4/MODEL_CARD.md",
-      "source_file": "sources/meta_llama4_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama4_github.html",
       "locator": "Llama 4 Scout (instruct): MMMU 69.4 (0-shot, accuracy)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama 4 Scout"
@@ -910,7 +910,7 @@
       "unit": "percent",
       "configuration": "0-shot, internal Meta evaluation library, instruction-tuned model",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama4/MODEL_CARD.md",
-      "source_file": "sources/meta_llama4_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama4_github.html",
       "locator": "Llama 4 Scout (instruct): LiveCodeBench 32.8 (0-shot, pass@1)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama 4 Scout"
@@ -924,7 +924,7 @@
       "unit": "percent",
       "configuration": "0-shot, internal Meta evaluation library, instruction-tuned model, multilingual",
       "source_url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama4/MODEL_CARD.md",
-      "source_file": "sources/meta_llama4_github.html",
+      "source_file": "data/research/mistral-meta/sources/meta_llama4_github.html",
       "locator": "Llama 4 Scout (instruct): MGSM 90.6 (0-shot, average/em)",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Llama 4 Scout"
@@ -938,7 +938,7 @@
       "unit": "percent",
       "configuration": "Base model; shots not specified in source table header",
       "source_url": "https://huggingface.co/mistralai/Ministral-8B-Instruct-2410/raw/main/README.md",
-      "source_file": "sources/hf_ministral_8b.html",
+      "source_file": "data/research/mistral-meta/sources/hf_ministral_8b.html",
       "locator": "Ministral 3B Base: MMLU 60.9",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card includes benchmarks for both Ministral 3B and 8B variants"
@@ -952,7 +952,7 @@
       "unit": "percent",
       "configuration": "Base model; human evaluation",
       "source_url": "https://huggingface.co/mistralai/Ministral-8B-Instruct-2410/raw/main/README.md",
-      "source_file": "sources/hf_ministral_8b.html",
+      "source_file": "data/research/mistral-meta/sources/hf_ministral_8b.html",
       "locator": "Ministral 3B Base: HumanEval pass@1 34.2",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card includes benchmarks for both Ministral 3B and 8B variants"
@@ -966,7 +966,7 @@
       "unit": "percent",
       "configuration": "Base model; majority@8",
       "source_url": "https://huggingface.co/mistralai/Ministral-8B-Instruct-2410/raw/main/README.md",
-      "source_file": "sources/hf_ministral_8b.html",
+      "source_file": "data/research/mistral-meta/sources/hf_ministral_8b.html",
       "locator": "Ministral 3B Base: GSM8K maj@8 50.9",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card includes benchmarks for both Ministral 3B and 8B variants"
@@ -980,7 +980,7 @@
       "unit": "points",
       "configuration": "Instruct model; GPT-4o judge",
       "source_url": "https://huggingface.co/mistralai/Ministral-8B-Instruct-2410/raw/main/README.md",
-      "source_file": "sources/hf_ministral_8b.html",
+      "source_file": "data/research/mistral-meta/sources/hf_ministral_8b.html",
       "locator": "Ministral 3B Instruct: MTBench 8.1",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card includes benchmarks for both Ministral 3B and 8B variants"
@@ -994,7 +994,7 @@
       "unit": "percent",
       "configuration": "Instruct model; GPT-4o judge",
       "source_url": "https://huggingface.co/mistralai/Ministral-8B-Instruct-2410/raw/main/README.md",
-      "source_file": "sources/hf_ministral_8b.html",
+      "source_file": "data/research/mistral-meta/sources/hf_ministral_8b.html",
       "locator": "Ministral 3B Instruct: Arena Hard 64.3",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card includes benchmarks for both Ministral 3B and 8B variants"
@@ -1008,7 +1008,7 @@
       "unit": "percent",
       "configuration": "Base model; shots not specified in source table header",
       "source_url": "https://huggingface.co/mistralai/Ministral-8B-Instruct-2410/raw/main/README.md",
-      "source_file": "sources/hf_ministral_8b.html",
+      "source_file": "data/research/mistral-meta/sources/hf_ministral_8b.html",
       "locator": "Ministral 8B Base: MMLU 65.0",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Ministral-8B-Instruct-2410"
@@ -1022,7 +1022,7 @@
       "unit": "percent",
       "configuration": "Base model",
       "source_url": "https://huggingface.co/mistralai/Ministral-8B-Instruct-2410/raw/main/README.md",
-      "source_file": "sources/hf_ministral_8b.html",
+      "source_file": "data/research/mistral-meta/sources/hf_ministral_8b.html",
       "locator": "Ministral 8B Base: HumanEval pass@1 34.8",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Ministral-8B-Instruct-2410"
@@ -1036,7 +1036,7 @@
       "unit": "percent",
       "configuration": "Base model; majority@8",
       "source_url": "https://huggingface.co/mistralai/Ministral-8B-Instruct-2410/raw/main/README.md",
-      "source_file": "sources/hf_ministral_8b.html",
+      "source_file": "data/research/mistral-meta/sources/hf_ministral_8b.html",
       "locator": "Ministral 8B Base: GSM8K maj@8 64.5",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Ministral-8B-Instruct-2410"
@@ -1050,7 +1050,7 @@
       "unit": "points",
       "configuration": "Instruct model; GPT-4o judge",
       "source_url": "https://huggingface.co/mistralai/Ministral-8B-Instruct-2410/raw/main/README.md",
-      "source_file": "sources/hf_ministral_8b.html",
+      "source_file": "data/research/mistral-meta/sources/hf_ministral_8b.html",
       "locator": "Ministral 8B Instruct: MTBench 8.3",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Ministral-8B-Instruct-2410"
@@ -1064,7 +1064,7 @@
       "unit": "percent",
       "configuration": "Instruct model; GPT-4o judge",
       "source_url": "https://huggingface.co/mistralai/Ministral-8B-Instruct-2410/raw/main/README.md",
-      "source_file": "sources/hf_ministral_8b.html",
+      "source_file": "data/research/mistral-meta/sources/hf_ministral_8b.html",
       "locator": "Ministral 8B Instruct: Arena Hard 70.9",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Ministral-8B-Instruct-2410"
@@ -1078,7 +1078,7 @@
       "unit": "percent",
       "configuration": "5-shot",
       "source_url": "https://huggingface.co/mistralai/Mistral-Nemo-Instruct-2407/raw/main/README.md",
-      "source_file": "sources/hf_mistral_nemo.html",
+      "source_file": "data/research/mistral-meta/sources/hf_mistral_nemo.html",
       "locator": "Mistral-Nemo-Instruct-2407: MMLU (5-shot) 68.0%",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Mistral-Nemo-Instruct-2407"
@@ -1092,7 +1092,7 @@
       "unit": "percent",
       "configuration": "0-shot",
       "source_url": "https://huggingface.co/mistralai/Mistral-Nemo-Instruct-2407/raw/main/README.md",
-      "source_file": "sources/hf_mistral_nemo.html",
+      "source_file": "data/research/mistral-meta/sources/hf_mistral_nemo.html",
       "locator": "Mistral-Nemo-Instruct-2407: HellaSwag (0-shot) 83.5%",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Mistral-Nemo-Instruct-2407"
@@ -1106,7 +1106,7 @@
       "unit": "percent",
       "configuration": "0-shot",
       "source_url": "https://huggingface.co/mistralai/Mistral-Nemo-Instruct-2407/raw/main/README.md",
-      "source_file": "sources/hf_mistral_nemo.html",
+      "source_file": "data/research/mistral-meta/sources/hf_mistral_nemo.html",
       "locator": "Mistral-Nemo-Instruct-2407: TruthfulQA (0-shot) 50.3%",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Mistral-Nemo-Instruct-2407"
@@ -1120,7 +1120,7 @@
       "unit": "percent",
       "configuration": "5-shot",
       "source_url": "https://huggingface.co/mistralai/Mistral-Nemo-Instruct-2407/raw/main/README.md",
-      "source_file": "sources/hf_mistral_nemo.html",
+      "source_file": "data/research/mistral-meta/sources/hf_mistral_nemo.html",
       "locator": "Mistral-Nemo-Instruct-2407: TriviaQA (5-shot) 73.8%",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Mistral-Nemo-Instruct-2407"
@@ -1134,7 +1134,7 @@
       "unit": "percent",
       "configuration": "5-shot, Mistral evaluation harness (Mistral Small 3.1 24B Instruct)",
       "source_url": "https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/raw/main/README.md",
-      "source_file": "sources/hf_mistral_small3.html",
+      "source_file": "data/research/mistral-meta/sources/hf_mistral_small3.html",
       "locator": "Mistral Small 3.1 24B Instruct: MMLU 80.62%",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Mistral-Small-3.1-24B-Instruct-2503"
@@ -1148,7 +1148,7 @@
       "unit": "percent",
       "configuration": "5-shot CoT, Mistral evaluation harness",
       "source_url": "https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/raw/main/README.md",
-      "source_file": "sources/hf_mistral_small3.html",
+      "source_file": "data/research/mistral-meta/sources/hf_mistral_small3.html",
       "locator": "Mistral Small 3.1 24B Instruct: MMLU Pro (5-shot CoT) 66.76%",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Mistral-Small-3.1-24B-Instruct-2503"
@@ -1162,7 +1162,7 @@
       "unit": "percent",
       "configuration": "Mistral evaluation harness",
       "source_url": "https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/raw/main/README.md",
-      "source_file": "sources/hf_mistral_small3.html",
+      "source_file": "data/research/mistral-meta/sources/hf_mistral_small3.html",
       "locator": "Mistral Small 3.1 24B Instruct: MATH 69.30%",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Mistral-Small-3.1-24B-Instruct-2503"
@@ -1176,7 +1176,7 @@
       "unit": "percent",
       "configuration": "5-shot CoT, Mistral evaluation harness",
       "source_url": "https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/raw/main/README.md",
-      "source_file": "sources/hf_mistral_small3.html",
+      "source_file": "data/research/mistral-meta/sources/hf_mistral_small3.html",
       "locator": "Mistral Small 3.1 24B Instruct: GPQA Diamond (5-shot CoT) 45.96%",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Mistral-Small-3.1-24B-Instruct-2503"
@@ -1190,7 +1190,7 @@
       "unit": "percent",
       "configuration": "Mistral evaluation harness",
       "source_url": "https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/raw/main/README.md",
-      "source_file": "sources/hf_mistral_small3.html",
+      "source_file": "data/research/mistral-meta/sources/hf_mistral_small3.html",
       "locator": "Mistral Small 3.1 24B Instruct: HumanEval 88.41%",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Mistral-Small-3.1-24B-Instruct-2503"
@@ -1204,7 +1204,7 @@
       "unit": "percent",
       "configuration": "Mistral evaluation harness",
       "source_url": "https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/raw/main/README.md",
-      "source_file": "sources/hf_mistral_small3.html",
+      "source_file": "data/research/mistral-meta/sources/hf_mistral_small3.html",
       "locator": "Mistral Small 3.1 24B Instruct: MBPP 74.71%",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Mistral-Small-3.1-24B-Instruct-2503"
@@ -1218,7 +1218,7 @@
       "unit": "percent",
       "configuration": "Vision evaluation, Mistral evaluation harness",
       "source_url": "https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/raw/main/README.md",
-      "source_file": "sources/hf_mistral_small3.html",
+      "source_file": "data/research/mistral-meta/sources/hf_mistral_small3.html",
       "locator": "Mistral Small 3.1 24B Instruct (Vision): MMMU 64.00%",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Mistral-Small-3.1-24B-Instruct-2503"
@@ -1232,7 +1232,7 @@
       "unit": "percent",
       "configuration": "Vision evaluation, Mistral evaluation harness",
       "source_url": "https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/raw/main/README.md",
-      "source_file": "sources/hf_mistral_small3.html",
+      "source_file": "data/research/mistral-meta/sources/hf_mistral_small3.html",
       "locator": "Mistral Small 3.1 24B Instruct (Vision): MathVista 68.91%",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Mistral-Small-3.1-24B-Instruct-2503"
@@ -1246,7 +1246,7 @@
       "unit": "percent",
       "configuration": "Vision evaluation, Mistral evaluation harness",
       "source_url": "https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/raw/main/README.md",
-      "source_file": "sources/hf_mistral_small3.html",
+      "source_file": "data/research/mistral-meta/sources/hf_mistral_small3.html",
       "locator": "Mistral Small 3.1 24B Instruct (Vision): ChartQA 86.24%",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Mistral-Small-3.1-24B-Instruct-2503"
@@ -1260,7 +1260,7 @@
       "unit": "percent",
       "configuration": "Vision evaluation, Mistral evaluation harness",
       "source_url": "https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/raw/main/README.md",
-      "source_file": "sources/hf_mistral_small3.html",
+      "source_file": "data/research/mistral-meta/sources/hf_mistral_small3.html",
       "locator": "Mistral Small 3.1 24B Instruct (Vision): DocVQA 94.08%",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Mistral-Small-3.1-24B-Instruct-2503"
@@ -1274,7 +1274,7 @@
       "unit": "percent",
       "configuration": "Long context evaluation, Mistral evaluation harness",
       "source_url": "https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/raw/main/README.md",
-      "source_file": "sources/hf_mistral_small3.html",
+      "source_file": "data/research/mistral-meta/sources/hf_mistral_small3.html",
       "locator": "Mistral Small 3.1 24B Instruct: LongBench v2 37.18%",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Mistral-Small-3.1-24B-Instruct-2503"
@@ -1288,7 +1288,7 @@
       "unit": "percent",
       "configuration": "Long context evaluation, Mistral evaluation harness",
       "source_url": "https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/raw/main/README.md",
-      "source_file": "sources/hf_mistral_small3.html",
+      "source_file": "data/research/mistral-meta/sources/hf_mistral_small3.html",
       "locator": "Mistral Small 3.1 24B Instruct: RULER 32K 93.96%",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Mistral-Small-3.1-24B-Instruct-2503"
@@ -1302,7 +1302,7 @@
       "unit": "percent",
       "configuration": "Long context evaluation, Mistral evaluation harness",
       "source_url": "https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/raw/main/README.md",
-      "source_file": "sources/hf_mistral_small3.html",
+      "source_file": "data/research/mistral-meta/sources/hf_mistral_small3.html",
       "locator": "Mistral Small 3.1 24B Instruct: RULER 128K 81.20%",
       "evidence_class": "provider_reported",
       "identity_basis": "Model card explicitly names Mistral-Small-3.1-24B-Instruct-2503"
