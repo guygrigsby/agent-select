@@ -125,7 +125,7 @@ func (d *SnapshotData) UnmarshalJSON(b []byte) error {
 	dec := json.NewDecoder(strings.NewReader(string(b)))
 	dec.DisallowUnknownFields()
 	if err := dec.Decode(&o); err != nil {
-		return invalidSnapshot("snapshot member decode failed: %v", err)
+		return decodeFailure("snapshot member decode failed", err)
 	}
 	ca, err := parseMillisJSON(o.CreatedAt, "created_at")
 	if err != nil {
@@ -174,7 +174,7 @@ func (o *OfferData) UnmarshalJSON(b []byte) error {
 	dec := json.NewDecoder(strings.NewReader(string(b)))
 	dec.DisallowUnknownFields()
 	if err := dec.Decode(&v); err != nil {
-		return invalidSnapshot("offer member decode failed: %v", err)
+		return decodeFailure("offer member decode failed", err)
 	}
 	if len(v.ConfirmedAt) == 0 {
 		o.ID = v.ID
@@ -208,7 +208,7 @@ func validateSnapshotData(d SnapshotData) error {
 		return schemaIncompatible("schema %d is not %d", d.Schema, SnapshotSchema)
 	}
 	if d.Policy != SnapshotPolicy {
-		return schemaIncompatible("policy %q is not %q", d.Policy, SnapshotPolicy)
+		return schemaIncompatible("unsupported snapshot policy")
 	}
 	if err := validateSnapshotFields(d); err != nil {
 		// Field violations from shared helpers carry invalid_request; on the
@@ -247,7 +247,7 @@ func validateSnapshotFields(d SnapshotData) error {
 			return invalidRequest("offer %d: %v", i, err)
 		}
 		if seen[o.ID] {
-			return invalidRequest("duplicate offer id %q", o.ID)
+			return invalidRequest("duplicate offer id")
 		}
 		seen[o.ID] = true
 	}
@@ -268,7 +268,7 @@ func validateInputs(in []InputData) error {
 			return err
 		}
 		if seen[inp.ObservationID] {
-			return invalidRequest("duplicate input observation %q", inp.ObservationID)
+			return invalidRequest("duplicate input observation")
 		}
 		seen[inp.ObservationID] = true
 	}
@@ -324,7 +324,7 @@ func validateOffer(o *OfferData, cutoff time.Time) error {
 			return invalidRequest("signal %d: %v", i, err)
 		}
 		if seenSignals[s.ID] {
-			return invalidRequest("duplicate signal id %q", s.ID)
+			return invalidRequest("duplicate signal id")
 		}
 		seenSignals[s.ID] = true
 	}
@@ -345,17 +345,17 @@ func validateLimits(ls []LimitData) error {
 	for i := range ls {
 		l := &ls[i]
 		if !resourceTokens[l.Resource] {
-			return invalidRequest("unknown limit resource %q", l.Resource)
+			return invalidRequest("unknown limit resource")
 		}
 		if seen[l.Resource] {
-			return invalidRequest("duplicate limit resource %q", l.Resource)
+			return invalidRequest("duplicate limit resource")
 		}
 		seen[l.Resource] = true
 		if l.Maximum <= 0 {
-			return invalidRequest("limit %s must be positive", l.Resource)
+			return invalidRequest("limit maximum must be positive")
 		}
 		if l.Maximum > canonicalIntMax {
-			return invalidRequest("limit %s exceeds the canonical integer range", l.Resource)
+			return invalidRequest("limit maximum exceeds the canonical integer range")
 		}
 	}
 	return nil
@@ -366,17 +366,17 @@ func validatePrices(ps []PriceData) error {
 	for i := range ps {
 		p := &ps[i]
 		if !priceComponentTokens[p.Component] {
-			return invalidRequest("unknown price component %q", p.Component)
+			return invalidRequest("unknown price component")
 		}
 		if seen[p.Component] {
-			return invalidRequest("duplicate price component %q", p.Component)
+			return invalidRequest("duplicate price component")
 		}
 		seen[p.Component] = true
 		if len(p.USDPerMillion) > 64 {
 			return invalidRequest("price decimal exceeds 64 characters")
 		}
 		if !decimalPattern.MatchString(p.USDPerMillion) {
-			return invalidRequest("price %q does not match the decimal syntax", p.USDPerMillion)
+			return invalidRequest("price does not match the decimal syntax")
 		}
 		if err := checkDecimalBounds(p.USDPerMillion); err != nil {
 			return err
@@ -391,7 +391,7 @@ func validatePrices(ps []PriceData) error {
 // denominator (gcd reduction) and undercount digits.
 func checkDecimalBounds(s string) error {
 	if _, ok := new(big.Rat).SetString(s); !ok {
-		return invalidRequest("price %q is not an exact decimal", s)
+		return invalidRequest("price is not an exact decimal")
 	}
 	frac := 0
 	if i := strings.IndexByte(s, '.'); i >= 0 {
@@ -406,16 +406,16 @@ func checkDecimalBounds(s string) error {
 		var err error
 		exp, err = parseExponent(s[i+1:])
 		if err != nil {
-			return invalidRequest("price %q has an invalid exponent", s)
+			return invalidRequest("price has an invalid exponent")
 		}
 		if exp > 18 || exp < -18 {
-			return invalidRequest("price %q exponent exceeds the ±18 bound", s)
+			return invalidRequest("price exponent exceeds the ±18 bound")
 		}
 	}
 	// Fractional digits after expansion: shifting the decimal point by exp.
 	digits := int64(frac) - exp
 	if digits > 18 {
-		return invalidRequest("price %q has more than 18 fractional digits after expansion", s)
+		return invalidRequest("price has more than 18 fractional digits after expansion")
 	}
 	return nil
 }
@@ -425,7 +425,7 @@ func validateSignal(s *SignalData, offerRevision string) error {
 		return err
 	}
 	if !taskTokens[s.Task] {
-		return invalidRequest("unknown signal task %q", s.Task)
+		return invalidRequest("unknown signal task")
 	}
 	if s.Value < 0 || s.Value > 10000 {
 		return invalidRequest("signal value %d outside 0..10000", s.Value)
@@ -434,7 +434,7 @@ func validateSignal(s *SignalData, offerRevision string) error {
 		return invalidRequest("signal weight %d outside 1..10000", s.Weight)
 	}
 	if !basisTokens[s.Basis] {
-		return invalidRequest("unknown signal basis %q", s.Basis)
+		return invalidRequest("unknown signal basis")
 	}
 	if err := checkIDPart(s.EvidenceID, "signal evidence id"); err != nil {
 		return err
@@ -443,14 +443,14 @@ func validateSignal(s *SignalData, offerRevision string) error {
 		return err
 	}
 	if s.Revision != "" && offerRevision != "" && s.Revision != offerRevision {
-		return invalidRequest("signal revision %q conflicts with offer revision %q", s.Revision, offerRevision)
+		return invalidRequest("signal revision conflicts with offer revision")
 	}
 	if len(s.Warnings) > maxWarnings {
 		return invalidRequest("more than %d warnings", maxWarnings)
 	}
 	for _, w := range s.Warnings {
 		if !warningPattern.MatchString(w) {
-			return invalidRequest("warning %q is not a bounded token", w)
+			return invalidRequest("warning is not a bounded token")
 		}
 	}
 	return nil
@@ -461,10 +461,10 @@ func checkTokenList(list []string, vocab map[string]bool, what string) error {
 	seen := make(map[string]bool, len(list))
 	for _, t := range list {
 		if !vocab[t] {
-			return invalidRequest("unknown %s token %q", what, t)
+			return invalidRequest("unknown %s token", what)
 		}
 		if seen[t] {
-			return invalidRequest("duplicate %s token %q", what, t)
+			return invalidRequest("duplicate %s token", what)
 		}
 		seen[t] = true
 	}
@@ -514,7 +514,7 @@ func parseExponent(s string) (int64, error) {
 	}
 	for _, c := range s {
 		if c < '0' || c > '9' {
-			return 0, invalidRequest("exponent digit %q", c)
+			return 0, invalidRequest("invalid exponent digit")
 		}
 		n = n*10 + int64(c-'0')
 		if n > 1<<30 {

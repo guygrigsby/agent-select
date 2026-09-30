@@ -11,6 +11,11 @@ import (
 type Snapshot struct {
 	data SnapshotData
 	hash string // lowercase hex SHA-256 over the canonical artifact bytes
+	// byID maps offer ID to a pointer into data.Offers. It is built once
+	// at construction and never mutated afterwards, so concurrent Route
+	// calls may read it without synchronization. It is not part of the
+	// encoding, the hash or any public API.
+	byID map[string]*OfferData
 }
 
 // NewSnapshot validates the DTO, deep-copies all slices (nil slices become
@@ -28,7 +33,18 @@ func NewSnapshot(d SnapshotData) (*Snapshot, error) {
 	if len(enc) > MaxArtifactBytes {
 		return nil, invalidSnapshot("canonical artifact is %d bytes, at most %d allowed", len(enc), MaxArtifactBytes)
 	}
-	return &Snapshot{data: norm, hash: hashCanonical(enc)}, nil
+	return &Snapshot{data: norm, hash: hashCanonical(enc), byID: buildOfferIndex(norm.Offers)}, nil
+}
+
+// buildOfferIndex indexes validated, normalized offers by ID. Offer IDs are
+// unique (enforced by validateSnapshotData), so the map is total. The empty
+// snapshot gets an empty, non-nil map.
+func buildOfferIndex(offers []OfferData) map[string]*OfferData {
+	idx := make(map[string]*OfferData, len(offers))
+	for i := range offers {
+		idx[offers[i].ID] = &offers[i]
+	}
+	return idx
 }
 
 // Data returns a deep copy of the snapshot data.
@@ -94,7 +110,8 @@ func DecodeSnapshot(data []byte) (*Snapshot, error) {
 	if !bytes.Equal(enc, data) {
 		return nil, invalidSnapshot("decoded value does not re-encode to the same canonical bytes")
 	}
-	return &Snapshot{data: copySnapshotData(d), hash: hashCanonical(enc)}, nil
+	norm := copySnapshotData(d)
+	return &Snapshot{data: norm, hash: hashCanonical(enc), byID: buildOfferIndex(norm.Offers)}, nil
 }
 
 // copySnapshotData deep-copies all slices; nil slices become empty so

@@ -80,7 +80,7 @@ func (d *RequestData) UnmarshalJSON(b []byte) error {
 	dec := json.NewDecoder(strings.NewReader(string(b)))
 	dec.DisallowUnknownFields()
 	if err := dec.Decode(&v); err != nil {
-		return invalidSnapshot("request member decode failed: %v", err)
+		return decodeFailure("request member decode failed", err)
 	}
 	at, err := parseMillisJSON(v.EffectiveAt, "effective_at")
 	if err != nil {
@@ -114,10 +114,10 @@ func validateRequestData(d RequestData) error {
 		return err
 	}
 	if !taskTokens[d.Task] {
-		return invalidRequest("unknown task %q", d.Task)
+		return invalidRequest("unknown task")
 	}
 	if !modeTokens[d.Mode] {
-		return invalidRequest("unknown mode %q", d.Mode)
+		return invalidRequest("unknown mode")
 	}
 	if err := checkMillisTime(d.EffectiveAt, "effective_at", invalidRequest); err != nil {
 		return err
@@ -188,7 +188,7 @@ func validateRequestData(d RequestData) error {
 
 func validateImageOperation(d RequestData) error {
 	if !imageOperationTokens[d.ImageOperation] {
-		return invalidRequest("unknown image operation %q", d.ImageOperation)
+		return invalidRequest("unknown image operation")
 	}
 	if d.ImageOperation == "none" {
 		if d.ImageCount != 0 || d.ImageWidth != 0 || d.ImageHeight != 0 || d.ImageBytes != 0 {
@@ -200,7 +200,7 @@ func validateImageOperation(d RequestData) error {
 		return nil
 	}
 	if d.ImageCount <= 0 || d.ImageWidth <= 0 || d.ImageHeight <= 0 || d.ImageBytes <= 0 {
-		return invalidRequest("image operation %s requires positive count, width, height and bytes", d.ImageOperation)
+		return invalidRequest("image operation requires positive count, width, height and bytes")
 	}
 	if d.Mask && d.ImageOperation != "edit" {
 		return invalidRequest("mask requires the edit operation")
@@ -225,7 +225,7 @@ func validateRuntime(rs []RuntimeOfferData) error {
 			return invalidRequest("runtime id must equal provider/upstream")
 		}
 		if seen[r.ID] {
-			return invalidRequest("duplicate runtime offer %q", r.ID)
+			return invalidRequest("duplicate runtime offer")
 		}
 		seen[r.ID] = true
 		if err := checkTokenList(r.Capabilities, capabilityTokens, "runtime capability"); err != nil {
@@ -245,7 +245,7 @@ func validateRuntime(rs []RuntimeOfferData) error {
 		for _, c := range r.UnsupportedCapabilities {
 			for _, p := range r.Capabilities {
 				if c == p {
-					return invalidRequest("capability %q appears in both runtime capability lists", c)
+					return invalidRequest("capability appears in both runtime capability lists")
 				}
 			}
 		}
@@ -266,7 +266,7 @@ func validateProviderList(list []string) error {
 			return err
 		}
 		if seen[s] {
-			return invalidRequest("duplicate allowed provider %q", s)
+			return invalidRequest("duplicate allowed provider")
 		}
 		seen[s] = true
 	}

@@ -37,7 +37,7 @@ func checkMillisTime(t time.Time, what string, errf func(string, ...any) *Error)
 		return errf("%s is not millisecond-aligned", what)
 	}
 	if t.Year() < 1 || t.Year() > 9999 {
-		return errf("%s year %d is outside 1..9999", what, t.Year())
+		return errf("%s year is outside 1..9999", what)
 	}
 	return nil
 }
@@ -59,7 +59,7 @@ func parseMillisJSON(b []byte, what string) (time.Time, error) {
 	}
 	t, err := time.Parse(millisFormat, s)
 	if err != nil {
-		return time.Time{}, invalidSnapshot("%s %q does not match the canonical format", what, s)
+		return time.Time{}, invalidSnapshot("%s does not match the canonical format", what)
 	}
 	return t, nil
 }
@@ -68,11 +68,11 @@ func parseMillisJSON(b []byte, what string) (time.Time, error) {
 func canonicalize(v any) ([]byte, error) {
 	raw, err := json.Marshal(v)
 	if err != nil {
-		return nil, invalidSnapshot("encoding failed: %v", err)
+		return nil, invalidSnapshot("encoding failed: invalid snapshot fields")
 	}
 	out, err := jsoncanonicalizer.Transform(raw)
 	if err != nil {
-		return nil, invalidSnapshot("canonicalization failed: %v", err)
+		return nil, invalidSnapshot("canonicalization failed: invalid snapshot encoding")
 	}
 	return out, nil
 }
@@ -102,7 +102,7 @@ func strictCheck(data []byte) error {
 func walkValue(dec *json.Decoder) error {
 	tok, err := dec.Token()
 	if err != nil {
-		return invalidSnapshot("invalid JSON: %v", err)
+		return invalidSnapshot("invalid JSON")
 	}
 	return walkToken(dec, tok)
 }
@@ -116,14 +116,14 @@ func walkToken(dec *json.Decoder, tok json.Token) error {
 			for dec.More() {
 				keyTok, err := dec.Token()
 				if err != nil {
-					return invalidSnapshot("invalid JSON object: %v", err)
+					return invalidSnapshot("invalid JSON object")
 				}
 				key, ok := keyTok.(string)
 				if !ok {
 					return invalidSnapshot("object key is not a string")
 				}
 				if seen[key] {
-					return invalidSnapshot("duplicate JSON key %q", key)
+					return invalidSnapshot("duplicate JSON key")
 				}
 				seen[key] = true
 				if err := walkValue(dec); err != nil {
@@ -160,14 +160,14 @@ func walkToken(dec *json.Decoder, tok json.Token) error {
 func checkInt53(n json.Number) error {
 	if i, err := n.Int64(); err == nil {
 		if i < canonicalIntMin || i > canonicalIntMax {
-			return invalidSnapshot("integer %s exceeds the signed 53-bit canonical range", n.String())
+			return invalidSnapshot("integer exceeds the signed 53-bit canonical range")
 		}
 		return nil
 	}
 	if _, ok := new(big.Rat).SetString(n.String()); ok {
-		return invalidSnapshot("float %s is not a canonical-v1 integer", n.String())
+		return invalidSnapshot("float is not a canonical-v1 integer")
 	}
-	return invalidSnapshot("number %s is not a canonical-v1 integer", n.String())
+	return invalidSnapshot("number is not a canonical-v1 integer")
 }
 
 // strictUnmarshal validates raw bytes with strictCheck, then decodes into v
@@ -179,7 +179,16 @@ func strictUnmarshal(data []byte, v any) error {
 	dec := json.NewDecoder(bytes.NewReader(data))
 	dec.DisallowUnknownFields()
 	if err := dec.Decode(v); err != nil {
-		return invalidSnapshot("decode failed: %v", err)
+		return decodeFailure("decode failed", err)
 	}
 	return nil
+}
+
+// Preserve diagnostics produced by our fixed DTO parsers, never raw decoder
+// messages that can contain untrusted keys or values. Context is a fixed label.
+func decodeFailure(context string, err error) *Error {
+	if e, ok := err.(*Error); ok {
+		return invalidSnapshot("%s: %s", context, e.Detail)
+	}
+	return invalidSnapshot("%s: unknown or invalid member", context)
 }

@@ -4,7 +4,10 @@
 // exists here by contract.
 package routing
 
-import "fmt"
+import (
+	"fmt"
+	"unicode/utf8"
+)
 
 // Closed error codes (educated-routing.md "Errors have ...").
 const (
@@ -25,7 +28,14 @@ type Error struct {
 func (e *Error) Error() string { return e.Code + ": " + e.Detail }
 
 func newError(code, format string, args ...any) *Error {
-	return &Error{Code: code, Detail: fmt.Sprintf(format, args...)}
+	detail := fmt.Sprintf(format, args...)
+	if len(detail) > 512 {
+		detail = detail[:512]
+		for !utf8.ValidString(detail) {
+			detail = detail[:len(detail)-1]
+		}
+	}
+	return &Error{Code: code, Detail: detail}
 }
 
 // invalidRequest reports a caller bug in a request or constructor argument.
