@@ -1,0 +1,27 @@
+{
+ "batch": "qwen",
+ "scope": "published_measurements",
+ "state": "source_validated",
+ "reason": "Phase 6 provider extraction: 4 measurement rows extracted from saved batch sources under the section 11 extraction contract; per-row source accuracy verified independently against cited bytes. Source-accuracy validation only.",
+ "review_path": "data/reviews/phase6-qwen-2026-09-30.md",
+ "pins": [
+  {
+   "path": "data/research/qwen/findings.json",
+   "sha256": "bbab30d04410333619f1859dedf30c89088493db3854da402c2925a9a2d708f2"
+  },
+  {
+   "path": "data/research/qwen/sources/qwen3_235b_hf.html",
+   "sha256": "1feab6566e1a0ec303785d4ea82da34d83732db068be0c21d27f4053a0c3e838"
+  },
+  {
+   "path": "data/research/qwen/sources/qwen3_32b_hf.html",
+   "sha256": "800d76f6eaaf08a09a5a70e8e640e176605f20b2f341d2f6a8d83af044aef38c"
+  },
+  {
+   "path": "data/reviews/phase6-qwen-2026-09-30.md",
+   "sha256": "7b8b28bcc90e4c85e88ec4c79f527f0cbd4d032249ff1756a21d763248021d78"
+  }
+ ],
+ "decision_version": 1,
+ "decided_at": "2026-09-30T12:00:00Z"
+}

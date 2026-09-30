@@ -277,7 +277,19 @@
     }
   ],
   "gaps": [
-    "Saved Anthropic documentation pages contained no verified numeric benchmark rows in the inspected evidence.",
+    "anthropic: anthropic_cookbook_readme.md: recipe/link index only; contains no numeric benchmark data or model score tables.",
+    "anthropic: anthropic_docs_fable5_1.html: model overview page has only spec/pricing/feature tables (context window, pricing, effort, latency); its sole percent figure is the Batch API 50% discount; no benchmark scores.",
+    "anthropic: anthropic_docs_haiku4_5.html: model overview page has only spec/pricing/feature tables; sole percent figure is the Batch API 50% discount; no benchmark scores.",
+    "anthropic: anthropic_docs_models.html: models-overview page compares features (context, pricing, effort, knowledge cutoff) only; no benchmark columns or scores.",
+    "anthropic: anthropic_docs_opus4.html: JS shell page; visible text is 31 chars (title only), remaining bytes are navigation/script metadata with no page body or benchmark content.",
+    "anthropic: anthropic_docs_opus5_5.html: model overview page has only spec/pricing/feature tables; sole percent figure is the Batch API 50% discount; no benchmark scores.",
+    "anthropic: anthropic_docs_sonnet4.html: JS shell page; visible text is 31 chars (title only), remaining bytes are navigation/script metadata with no page body or benchmark content.",
+    "anthropic: anthropic_docs_sonnet5_5.html: model overview page has only spec/pricing/feature tables; sole percent figure is the Batch API 50% discount; no benchmark scores.",
+    "anthropic: anthropic_models_page.html: duplicate capture of the models-overview page; feature comparison only (context, pricing, effort, latency), no benchmark scores.",
+    "anthropic: anthropic_news.html: news post listing; percent figures are speed/cost/adoption claims (e.g. 30% faster, 40% less), not benchmark scores; only SWE-bench mention is a 2024 post title about Claude 3.5 Sonnet with no number and no assigned-id match.",
+    "anthropic: anthropic_research.html: research post listing; percent figures are usage/adoption statistics (automation/augmentation shares), not model benchmark scores.",
+    "anthropic: hf_anthropic_models.json: Hugging Face API listing of third-party models matching the search term; metadata only (downloads, likes, tags), no benchmark rows.",
+    "anthropic: hf_claude_models.json: empty JSON array (2 bytes, \"[]\"); no model or benchmark data.",
     "Several assigned IDs are future or unfamiliar revisions; they remain unresearched rather than inheriting historical scores.",
     "Exact URL mapping is preserved in /tmp/agent-routing-research/anthropic.log.",
     "Status correction: withdrawn prior found statuses for anthropic/claude-fable-5.1, anthropic/claude-haiku-4.5, anthropic/claude-opus-4, anthropic/claude-opus-5.5, anthropic/claude-sonnet-4, anthropic/claude-sonnet-5.5 because the exported benchmarks array has no numeric rows for these exact IDs. Extraction is incomplete; this does not establish that no published benchmark exists, and adjacent revisions were not substituted."

@@ -636,12 +636,67 @@ timestamps); `--check` fails exit 1 on any byte drift between
 `docs/research/backlog.md` and a regeneration. The image-output
 equivalence gate applies to every catalog row, not only in-scope ones.
 
+## 11. Extraction (phase 6)
+
+### 11.1 Row discipline
+
+Extracted measurement rows cite saved bytes only: `source_file` is the
+capture-inventory path, `source_url` the URL it was fetched from, `locator`
+a byte-level pointer (a quoted raw line for text tables, or a structural
+pointer like `evalResults: dataset X, task_id Y, value Z` for embedded
+JSON). `value` is the exact source lexeme — no rounding, no unit
+conversion, no repair of typos; footnotes normalize only when the source
+itself states them. Nulls stay missing: a null cell produces no row and a
+gap note, never a zero. `benchmark_version` is `unknown` unless the source
+states it. Rows carry one of three `evidence_class` values, decided per
+entry from the reporting party named in the source bytes, not per page:
+`provider_reported` (bytes trace to the provider's own card or report,
+including provider values mirrored with attribution into the model repo's
+eval-results metadata), `third_party_reported` (an external evaluator's
+result — EvalEval, LEXam, Scale AI, SwissLegalEvals, Liquid AI, Aider —
+cited or mirrored on any page), and `competitor_reported` (a rival
+publisher's numbers for another vendor's model, e.g. DeepSeek model cards
+reporting Zhipu GLM columns). Every row keeps an `identity_basis` sentence
+stating why the row belongs to the exact `model_id`; rows whose column
+cannot be tied to the exact revision are not emitted (identity resolution
+is phase 9, not extraction). Unverified community-submitted mirrors are
+named as such in `configuration` (PR number) and never upgrade the
+evidence class. A model gaining rows flips its `benchmark_status` to
+`found` and loses any no-benchmark-located note; other statuses are
+untouched.
+
+### 11.2 Cross-model sources
+
+Saved cross-publisher leaderboards (EvalPlus, SWE-bench, Aider, LMArena,
+LiveCodeBench) publish labels, not catalog ids. Each becomes (or extends)
+a `unresolved_only`-adapter batch named for the source, rows carry
+`identity_status: unresolved` with empty `proposed_offer_ids`, and the
+captured source file set is pinned by that batch's decision. Derived JSON
+(e.g. the SWE-bench extracted file) may seed rows only after a per-row
+validation against the captured primary source, recorded in the batch
+review; agent-vs-model rows keep the agent harness in `configuration` and
+never claim model identity. Saved responses that are 404/login/stub pages
+are documented extraction blockers in `gaps`, not silent skips.
+
+### 11.3 Decisions
+
+Every batch whose findings change in phase 6 records a new
+`published_measurements` decision pinning the findings file, the review
+document and every `source_path` the new rows cite; the rebuild gate set
+(§5) applies unchanged. Existing reviewed cells must survive every rebuild
+byte-identically or the change is rejected.
+
 ## Changelog
 
 - 2026-09-30 phase 5 review fix: task completeness covers
   measurements-only batches (coverage-followup claimed by
   unresolved-historical); image equivalence gated on all rows; review
   round 1 findings addressed.
+- 2026-09-30 phase 6: §11 extraction contract (row discipline,
+  cross-model unresolved batches, per-batch decisions). §11.1 evidence-class
+  vocabulary (data-meaning change): per-entry provider_reported /
+  third_party_reported / competitor_reported classification with unverified
+  community mirrors named in configuration.
 - 2026-09-30 phase 5: `research backlog` (§10) with per-model channel
   records, the validated task file and the drift-checked markdown report;
   image-output/batch-membership equality gate; `make check` runs the

@@ -1,0 +1,31 @@
+{
+ "batch": "openai",
+ "scope": "published_measurements",
+ "state": "source_validated",
+ "reason": "Phase 6 provider extraction: 152 measurement rows extracted from saved batch sources under the section 11 extraction contract; per-row source accuracy verified independently against cited bytes. Source-accuracy validation only.",
+ "review_path": "data/reviews/phase6-openai-2026-09-30.md",
+ "pins": [
+  {
+   "path": "data/research/openai/findings.json",
+   "sha256": "64682dd512c9f65e8d7dbcedbc2fbf0f361d021f431cb0b267115e9eb062ced2"
+  },
+  {
+   "path": "data/research/openai/sources/github-simple-evals-readme.md",
+   "sha256": "d9647c4a0e34cd9b2b528ff6986141734aac6f5f2f18a068eeadb2af0b29786f"
+  },
+  {
+   "path": "data/research/openai/sources/huggingface-gpt-oss-120b.html",
+   "sha256": "ac5534e7aeacad5f813f4e8a04faf40a825d143e790ab9fe9fd350c7b352b988"
+  },
+  {
+   "path": "data/research/openai/sources/huggingface-gpt-oss-20b.html",
+   "sha256": "7fcab5c7d679ee11add0584ff6fd4d53ca70e1035ac2119f59552e76a2fa5fa6"
+  },
+  {
+   "path": "data/reviews/phase6-openai-2026-09-30.md",
+   "sha256": "88480c319ccfc0e7ac1206b902aea13c05bf37d913bce3756c2015b7cf22e985"
+  }
+ ],
+ "decision_version": 1,
+ "decided_at": "2026-09-30T12:00:00Z"
+}
