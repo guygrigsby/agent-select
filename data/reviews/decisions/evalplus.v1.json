@@ -1,0 +1,23 @@
+{
+ "batch": "evalplus",
+ "scope": "published_measurements",
+ "state": "source_validated",
+ "reason": "Phase 6 cross-model extraction: 428 EvalPlus leaderboard pass@1 rows (HumanEval/HumanEval+/MBPP/MBPP+) extracted with byte-exact lexemes from the leaderboard's own results.json endpoint; null MBPP cells retained as gaps. Source-accuracy validation only; entries are author-submitted without per-entry settings disclosure.",
+ "review_path": "data/reviews/phase6-evalplus-2026-09-30.md",
+ "pins": [
+  {
+   "path": "data/research/evalplus/findings.json",
+   "sha256": "1b0d64110a35b3d5d443c020fcf8e92b0b449fd5f2e773f16a4d8c9ea261f9da"
+  },
+  {
+   "path": "data/research/benchmark-sources/_evalplus_results.json",
+   "sha256": "e6837dc3b94f32cb1da0ced012e52edc4a722007b684df5b63da029bbd3b46d2"
+  },
+  {
+   "path": "data/reviews/phase6-evalplus-2026-09-30.md",
+   "sha256": "ce7c438d1244849c81992bccb14521ee95da1003804d79153fe8d9396309f791"
+  }
+ ],
+ "decision_version": 1,
+ "decided_at": "2026-09-30T12:00:00Z"
+}

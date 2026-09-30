@@ -3,6 +3,7 @@ data/raw/models-dev.headers	https://models.dev/api.json	d4092bf6c2f75cf7afc2bc1d
 data/raw/models-dev.json	https://models.dev/api.json	a174062643509bd51dc6338a3e8bb26ae19d398cdd445af1762ca2d1186f1a50	5263829	2026-09-30T01:33:14.844883+00:00	local_file_mtime_not_http_retrieval	unknown	unknown
 data/raw/vercel-models.json	https://ai-gateway.vercel.sh/v1/models	f9355018ab702213372743a19f6e0202abedbcaf0bac11a1141f1fa7219ce152	450985	2026-09-30T01:33:14.868660+00:00	local_file_mtime_not_http_retrieval	unknown	unknown
 data/raw/vercel.headers	https://ai-gateway.vercel.sh/v1/models	8e07a1066b5c4d1fd6b0109ba517c9b4c42fce0f8fe4f49f385396bdb12da1c7	1073	2026-09-30T01:33:14.827694+00:00	local_file_mtime_not_http_retrieval	unknown	unknown
+data/research/aider/findings.json		07e42aab15ebe3b2f2d937a4e2b70f8cab03834f834cb3db0dddd307838881bd	95869	2026-09-30	file_mtime	MIT	unknown
 data/research/anthropic/assignment.json		eb9e69a3ad80da4f8f2bbec403e62b2230f0e6456036d876b247a7825de45432	43418	2026-09-30T01:34:41.419120+00:00	local_file_mtime_not_http_retrieval	unknown	unknown
 data/research/anthropic/findings.json		d5e9d546d83f760e54891806fd1904ed974c4f7ffa1443275168b86a17302c94	17420	2026-09-30T04:12:00+00:00	local_file_mtime_not_http_retrieval	unknown	unknown
 data/research/anthropic/sources/anthropic_cookbook_readme.md	https://raw.githubusercontent.com/anthropics/anthropic-cookbook/main/README.md	5d5af555aff7b94e67b38478e20463c09aaa1c6d7202b75d91ee1eb49a262a41	6083	2026-09-30T01:40:20.921119+00:00	local_file_mtime_not_http_retrieval	unknown	unknown
@@ -113,6 +114,7 @@ data/research/deepseek-zai/saved_sources/hf-glm-4-9b-readme.md	https://huggingfa
 data/research/deepseek-zai/saved_sources/hf-glm-5-models.json	https://huggingface.co/api/models/THUDM/glm-5-9b	65842e3d84e6b7f62a470c85204e80b953bb8f944e9b69813130a9d7f3eaa1d8	41	2026-09-30T01:40:57.662706+00:00	local_file_mtime_not_http_retrieval	unknown	unknown
 data/research/deepseek-zai/saved_sources/hf-glm-models.json	https://huggingface.co/api/models?search=THUDM/glm-4-9b&limit=3	4c1e260b23d79cdb97a6b0f235db395eaa338be3ad8fdf0f354db9e2127152fd	1080	2026-09-30T01:40:42.350793+00:00	local_file_mtime_not_http_retrieval	unknown	unknown
 data/research/deepseek-zai/saved_sources/hf-glm.json	https://huggingface.co/api/models?search=THUDM/glm&limit=5	bed21080dc1cac9aa38ff36dc3fba2048eb99ed0c45569cddf14ec1c541bd252	1928	2026-09-30T01:40:05.976267+00:00	local_file_mtime_not_http_retrieval	unknown	unknown
+data/research/evalplus/findings.json		1b0d64110a35b3d5d443c020fcf8e92b0b449fd5f2e773f16a4d8c9ea261f9da	292375	2026-09-30	file_mtime	MIT	unknown
 data/research/google/assignment.json		6ea9aab2788aa7274325c8464b8b0bb9816a2ed4d12119e063bc9ae0dcf31b18	42128	2026-09-30T01:34:41.419479+00:00	local_file_mtime_not_http_retrieval	unknown	unknown
 data/research/google/findings.json		3f8c7fc9ba90f9bcf768afa9abe863d5d0f8d09933847f268c811cede96db751	42385	2026-09-30T04:12:00+00:00	local_file_mtime_not_http_retrieval	unknown	unknown
 data/research/google/sources/gemini-models-overview.html	https://ai.google.dev/gemini-api/docs/models#gemini-2.5-flash	7475698fe94cf9055e2db4d784ccc03c231df2b9b7b786adb0d43fef5e2ba7fc	155300	2026-09-30T01:36:40.083486+00:00	local_file_mtime_not_http_retrieval	unknown	unknown
@@ -319,6 +321,7 @@ data/research/qwen/sources/qwen3_vl_blog.html	https://qwenlm.github.io/blog/qwen
 data/research/qwen/sources/qwen3_vl_hf.html	https://huggingface.co/Qwen/Qwen3-VL-235B-A22B	de7d3ebba0b0b61acb9afe9c16485dbab751a3c949c62ad37ed31ba2636cb33f	52351	2026-09-30T01:37:11.749531+00:00	local_file_mtime_not_http_retrieval	unknown	unknown
 data/research/qwen/sources/qwen_ai_research.html	https://qwen.ai/research	9239df5bfc91e3d9b95b94de0af7f0830c7be06f3a7b274f0e3ad42087829d11	94344	2026-09-30T01:37:35.514866+00:00	local_file_mtime_not_http_retrieval	unknown	unknown
 data/research/qwen/sources/qwen_coder_hf.html	https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B	3dde0599b211db7a11c722facd36f22ec414d23ed681268b4ba3f6c881220013	52353	2026-09-30T01:37:02.161291+00:00	local_file_mtime_not_http_retrieval	unknown	unknown
+data/research/swebench/findings.json		fa6ad3b5c131f853710181100e35030ca947c3590e0319df715fc617268b7767	119100	2026-09-30	file_mtime	MIT	unknown
 data/research/unresolved/findings.json		e8a61f98b048d3ce3314b01c1b0ddd013a0723e7dad345ee46e9b7830c35d4be	213610	2026-09-30T02:26:41.960451+00:00	local_file_mtime_not_http_retrieval	unknown	unknown
 data/research/xai/assignment.json		ac3782ecaad60821f2f8f19641b424a8b5b6ede6747ffe56c99a1cb7697914f6	28663	2026-09-30T01:34:41.421018+00:00	local_file_mtime_not_http_retrieval	unknown	unknown
 data/research/xai/findings.json		c8189367730ba6cc294d6a5118c09cc398702847b264b9c4e33c5ba95b5451d7	10545	2026-09-30T01:44:19.068957+00:00	local_file_mtime_not_http_retrieval	unknown	unknown
@@ -338,8 +341,11 @@ data/research/xai/sources/xai_news_grok3.html	https://x.ai/news/grok-3	9cc74a62b
 data/research/xai/sources/xai_public_models.json		ca7e5603f518fac7c92dba873f49d137ef83a115d342e0791377ce33544e45b0	66080	2026-09-30T01:37:23.582758+00:00	local_file_mtime_not_http_retrieval	unknown	unknown
 data/reviews/google-moonshot-source-validation.md		c12c68721f1a4819ff7f357fbc455863835ac4c54d64dbc2a13b604d4f0243a2	1117	2026-09-30T03:22:53.342640+00:00	local_file_mtime_not_http_retrieval	unknown	unknown
 data/reviews/phase3-provenance-2026-09-30.md		ec8dff760ce0e122edad3360a4da3e40f34d030c703b853378ea065378fd608b	4568	2026-09-30T04:30:00+00:00	local_file_mtime_not_http_retrieval	unknown	unknown
+data/reviews/phase6-aider-2026-09-30.md		68692fbfa317df623ebc7921d543de336591d072d6c8b8b91ffe6b0392d75258	1920	2026-09-30	file_mtime	MIT	unknown
 data/reviews/phase6-deepseek-zai-2026-09-30.md		be652df5ecf49695543905d40bd9f27b330928f60917ac26a219009a3cb7a251	2249	2026-09-30T18:28:20.124257+00:00	local_file_mtime_not_http_retrieval	unknown	unknown
+data/reviews/phase6-evalplus-2026-09-30.md		ce7c438d1244849c81992bccb14521ee95da1003804d79153fe8d9396309f791	2483	2026-09-30	file_mtime	MIT	unknown
 data/reviews/phase6-openai-2026-09-30.md		88480c319ccfc0e7ac1206b902aea13c05bf37d913bce3756c2015b7cf22e985	2969	2026-09-30T18:28:20.124257+00:00	local_file_mtime_not_http_retrieval	unknown	unknown
 data/reviews/phase6-qwen-2026-09-30.md		7b8b28bcc90e4c85e88ec4c79f527f0cbd4d032249ff1756a21d763248021d78	1681	2026-09-30T18:28:20.124257+00:00	local_file_mtime_not_http_retrieval	unknown	unknown
+data/reviews/phase6-swebench-2026-09-30.md		3f36f03c26e24bfcc80e2c8820623b69034c741f857cff3fafd017cd3f0818cf	2633	2026-09-30	file_mtime	MIT	unknown
 data/reviews/source-evidence-2026-09-30.md		913f55d1f3a1cc4b25dd3d8a0c9927a66be363d1752b05828749985189c221f7	2514	2026-09-30T02:50:04.721940+00:00	local_file_mtime_not_http_retrieval	unknown	unknown
 data/reviews/source-evidence-corrections-2026-09-30.md		755eb29926c5ace7690f909430116659e2b524d80a25276e330d6ef89f696dbf	2323	2026-09-30T02:50:04.725001+00:00	local_file_mtime_not_http_retrieval	unknown	unknown

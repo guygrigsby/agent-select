@@ -15,7 +15,7 @@ Generated from the assembled build tables and `data/research-inputs/backlog-task
   - images: 39
   - mistral-meta: 13
 - price leaves: 5108 numeric with 2198 carrying source_specific_unresolved units across catalog-joined offers; all provider offers carry 31659 numeric leaves with 3109 unresolved (unjoined offers are models.dev inventory beyond catalog scope)
-- alias/revision gaps: 252 unresolved measurements, 0 identity proposals recorded
+- alias/revision gaps: 975 unresolved measurements, 0 identity proposals recorded
 - image-accounting gaps: 41 of 41 image-output models have no image-specific limit facts (format, mask, alpha, dimensions, count accounting)
 - protocol metadata: cells missing evaluated-revision, harness or setting components stay unresolved rather than comparison-qualified; `accepted_benchmarks` remains empty
 - rights: 302 in-scope models have publication_permission unknown, 0 have a decided permission
@@ -39,6 +39,9 @@ Generated from the assembled build tables and `data/research-inputs/backlog-task
 | images | images | 41 | data/research/images/findings.json | Each of the 41 assigned IDs has generation/editing evaluation coverage and capability facts (format, mask, alpha, dimensions, combined accounting) or a bounded outcome; GenEval historical labels never substitute; image prices distinguished from token prices. |
 | mixedbread | mixedbread | 1 | data/research/mixedbread/findings.json | mixedbread/toast-1 researched from its exact primary identity and capability sources with an explicit outcome; never silently excluded. |
 | unresolved-historical | unresolved;coverage-followup | 0 | data/research/unresolved/findings.json; data/research/coverage-followup/findings.json | All 252 unresolved labels and lexemes across the unresolved (210) and coverage-followup (42) batches are preserved; immutable evaluated revision, protocol and current binding researched separately per cell; unresolved stays a first-class state. |
+| swebench | swebench | 0 | data/research/benchmark-sources/_swebench_leaderboard_extracted.json; data/research/benchmark-sources/_swebench_verified.json; data/research/benchmark-sources/_swebench_pro.json | Derived JSON verified against its captured source or quarantined; splits kept separate; no Pro result inferred from the failed fetch. |
+| evalplus | evalplus | 0 | data/research/benchmark-sources/_evalplus_results.json | Genuine result JSON parsed with nulls retained as missing; provenance repaired under review; release/harness metadata located through official links. |
+| aider | aider | 0 | (none captured yet) | Saved leaderboard HTML inspected; a documented structured source used if evidenced; guessed JSON/YAML paths never asserted as API. |
 
 ### Source acquisition
 
@@ -46,9 +49,6 @@ Generated from the assembled build tables and `data/research-inputs/backlog-task
 |---|---|---|---|
 | vercel-modelsdev | data/raw/vercel-models.json | full raw schemas; exact-ID join state; permitted collection/extraction terms; scoped price interpretation | Join invariants hold (394/395, jev unmatched documented); units and price interpretation scoped per dimension; permitted collection terms recorded before any production fetch; conditional-support claims limited to demonstrated headers. |
 | provider-apis | (none captured yet) | documented URLs per family; commit/release identifiers; exact source labels; numeric cells; limits | Each assigned family has an inventoried documented URL set; captures follow actual release links; no guessed endpoint loops. |
-| swebench | data/research/benchmark-sources/_swebench_leaderboard_extracted.json; data/research/benchmark-sources/_swebench_verified.json; data/research/benchmark-sources/_swebench_pro.json | split records; agent/scaffold/harness details | Derived JSON verified against its captured source or quarantined; splits kept separate; no Pro result inferred from the failed fetch. |
-| evalplus | data/research/benchmark-sources/_evalplus_results.json | HumanEval/MBPP vs plus variants; pass@k; prompted/base variants; harness/decoding metadata | Genuine result JSON parsed with nulls retained as missing; provenance repaired under review; release/harness metadata located through official links. |
-| aider | (none captured yet) | leaderboard HTML; edit format; scaffold; settings | Saved leaderboard HTML inspected; a documented structured source used if evidenced; guessed JSON/YAML paths never asserted as API. |
 | livecodebench | data/research/benchmark-sources/_livecodebench_results.json | tagged result release; problem window; sampling; evaluated identity | A documented tagged result release located with window/release/sampling/identity or the source stays a recorded blocked outcome; repository listings never treated as results. |
 | helm | (none captured yet) | official run/scenario artifacts; adaptation; release; evaluator metadata | Official machine-readable run artifacts located or HELM stays a documented unusable-source outcome; SPA/error pages never claimed as tables. |
 | hf-open-llm | (none captured yet) | dataset/card/release revisions; licenses; harness/precision/task metadata; evaluated revision | Documented dataset/card/release revisions and licenses captured with harness metadata, or bounded outcome; landing pages never treated as scores. |

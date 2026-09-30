@@ -1,0 +1,23 @@
+{
+ "batch": "swebench",
+ "scope": "published_measurements",
+ "state": "source_validated",
+ "reason": "Phase 6 cross-model extraction: 157 checked SWE-bench leaderboard rows (Multilingual 13, Test 13, Verified 83, Lite 27, Multimodal 21) with section-scoped byte-exact resolved-rate lexemes; 166 checked=false submissions excluded as a gap. Source-accuracy validation only; rows are submitted agent+model systems.",
+ "review_path": "data/reviews/phase6-swebench-2026-09-30.md",
+ "pins": [
+  {
+   "path": "data/research/swebench/findings.json",
+   "sha256": "fa6ad3b5c131f853710181100e35030ca947c3590e0319df715fc617268b7767"
+  },
+  {
+   "path": "data/research/benchmark-sources/_swebench_site.html",
+   "sha256": "c862011a4ee1d1a7199fad6ca0905fa5c64f58216f7217ac1eddf37f28788433"
+  },
+  {
+   "path": "data/reviews/phase6-swebench-2026-09-30.md",
+   "sha256": "3f36f03c26e24bfcc80e2c8820623b69034c741f857cff3fafd017cd3f0818cf"
+  }
+ ],
+ "decision_version": 1,
+ "decided_at": "2026-09-30T12:00:00Z"
+}
