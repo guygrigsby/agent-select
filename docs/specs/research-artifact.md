@@ -502,7 +502,10 @@ batches moves from the frozen per-batch review documents to
 pins are repointed to the corrected findings files (10 input rows differ:
 five findings.json pins move to the corrected hashes, five old review-doc
 pins are replaced by the provenance-document pin).
-The nine findings files corrected by the phase 3 review also change their `source_files` `sha256`, `bytes` and `observed_at` rows (observed_at = the correction event). Future changes append a
+The nine findings files corrected by the phase 3 review also change their
+`source_files` `sha256` and `observed_at` rows (observed_at = the correction
+event); `bytes` changes for eight of the nine (google's findings.json hash
+and observed_at change while its byte count does not). Future changes append a
 `schema_version` bump plus a documented delta in this spec's changelog; the
 tool refuses to rebuild when `build.json.schema_version` differs from the DDL
 it carries (exit 3). No production Postgres DDL may be derived from this
@@ -681,7 +684,13 @@ consistency verdicts.
   came from a `(batch, path)` join that multiplies unchanged sibling rows in
   multi-URL groups);
   §7 enumerates the structural delta classes (generated-id reassignment,
-  accepted-batch review reason derivation, the 8-row claims/unlocated split);
+  accepted-batch review reason derivation, the 8-row claims/unlocated split,
+  and the v3 review-pins repointing: 5 evidence_reviews rows move
+  review_path to the phase 3 provenance document and 10
+  evidence_review_inputs rows re-pin the corrected findings files,
+  attributed to the current v3 decisions rather than the superseded v2
+  records — commit b3a53fa's message overstated this as already done in the
+  changelog);
   §3 step 7 rename order corrected to TSV, hash manifest, DB
   (cheapest-to-regenerate first, matching the parenthetical rationale);
   gate 3 envelope definition gains the authentication-failure `message` case
