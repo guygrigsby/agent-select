@@ -8,6 +8,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"github.com/guygrigsby/agent-routing/internal/research"
 )
@@ -25,7 +26,14 @@ func run(args []string) int {
 		return research.ExitUsage
 	}
 	rest := fs.Args()
-	if len(rest) != 2 || rest[0] != "research" {
+	if len(rest) < 2 || rest[0] != "research" {
+		usage()
+		return research.ExitUsage
+	}
+	if rest[1] == "backlog" {
+		return runBacklog(*root, fs)
+	}
+	if len(rest) != 2 {
 		usage()
 		return research.ExitUsage
 	}
@@ -90,4 +98,58 @@ func jsonable(v any) any {
 
 func usage() {
 	fmt.Fprintln(os.Stderr, "usage: agent-routing [--root dir] [--json] research {check|rebuild|coverage}")
+	fmt.Fprintln(os.Stderr, "       agent-routing [--root dir] research backlog [--report PATH|--check PATH]")
+}
+
+// runBacklog handles the backlog subcommand's extra flags. Both modes run
+// full validation and the backlog gates; --report writes the markdown
+// report, --check compares it (drift gate), the default prints the TSV.
+func runBacklog(root string, parent *flag.FlagSet) int {
+	bfs := flag.NewFlagSet("backlog", flag.ContinueOnError)
+	bfs.SetOutput(os.Stderr)
+	report := bfs.String("report", "", "write the markdown report to this path (relative to --root)")
+	check := bfs.String("check", "", "compare the markdown report at this path against a regeneration")
+	if err := bfs.Parse(parent.Args()[2:]); err != nil {
+		return research.ExitUsage
+	}
+	if *report != "" && *check != "" {
+		fmt.Fprintln(os.Stderr, "agent-routing: --report and --check are mutually exclusive")
+		return research.ExitUsage
+	}
+	tsv, rep, summary, err := research.Backlog(root)
+	if err != nil {
+		code := research.ExitIO
+		if e, ok := err.(*research.Error); ok {
+			code = e.Code
+		}
+		fmt.Fprintf(os.Stderr, "agent-routing: %v\n", err)
+		return code
+	}
+	switch {
+	case *report != "":
+		p := filepath.Join(root, *report)
+		if err := os.MkdirAll(filepath.Dir(p), 0o755); err != nil {
+			fmt.Fprintf(os.Stderr, "agent-routing: %v\n", err)
+			return research.ExitIO
+		}
+		if err := os.WriteFile(p, rep, 0o644); err != nil {
+			fmt.Fprintf(os.Stderr, "agent-routing: %v\n", err)
+			return research.ExitIO
+		}
+		fmt.Fprint(os.Stderr, summary)
+	case *check != "":
+		if err := research.BacklogCheck(root, *check); err != nil {
+			code := research.ExitIO
+			if e, ok := err.(*research.Error); ok {
+				code = e.Code
+			}
+			fmt.Fprintf(os.Stderr, "agent-routing: %v\n", err)
+			return code
+		}
+		fmt.Fprint(os.Stderr, summary)
+	default:
+		fmt.Fprint(os.Stderr, summary)
+		os.Stdout.Write(tsv)
+	}
+	return research.ExitOK
 }

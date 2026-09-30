@@ -23,6 +23,7 @@ inferred approvals, no execution of fetched content.
 | `agent-routing research coverage` | Derive the coverage inventory (machine-readable TSV on stdout, human summary on stderr) from the same facts the export uses. Columns: `model_id`, `kind`, `batches` (`;`-joined sorted batch names with a `model_research` row), `benchmark_coverage` (the schema 3 coverage view value), `measurements`, `unresolved_measurements`, `located_claims`, `unlocated_claims` (counts). Rows sorted by `model_id`. Applies the same load-time validation as
 `check` (path rules, inventory completeness, pin gates): on invalid or stale
 inputs it exits per §1 without emitting the TSV. Never parses the published DB for facts the inputs already carry. Shared lock. |
+| `agent-routing research backlog [--report PATH\|--check PATH]` | Phase 5 backlog (§10). Default: one TSV row per catalog model (all 395, in scope and out) on stdout, covering the benchmark, pricing, capability, access and rights channels from the same assembled tables that feed the export. `--report PATH` writes the deterministic markdown report; `--check PATH` regenerates and byte-compares (drift gate used by `make check`). Applies the same load-time validation as `check` plus the §10.2 task-file and §10.3 backlog gates. Shared lock. |
 
 Locking: one lock file `data/.research-rebuild.lock`. `rebuild` takes an
 exclusive `flock` (bounded retry, then exit 4). `check` and `coverage` take a
@@ -589,8 +590,54 @@ deterministic than SIGKILL mid-publication): complete, rename-needed,
 corrupt-with-rollback, corrupt-first-generation, torn-journal each with their
 consistency verdicts.
 
+## 10. Backlog (phase 5)
+
+### 10.1 Per-model records
+
+`research backlog` emits one TSV row per catalog model (395), extending the
+coverage columns with the other channels: `in_scope` (`in_scope` iff a
+`model_research` row exists), `image_output` (an `output`/`image` row in
+`catalog_modalities`), `offers` (1 iff an `exact_catalog_joins` row exists),
+`price_leaves`/`price_unresolved_unit` (numeric leaves on the joined offer;
+unresolved means `unit = source_specific_unresolved`), `limit_facts`,
+`modality_facts`, `parameter_facts` (catalog fact counts), `access_states`
+(sorted distinct `source_access.status` values across the model's batches),
+`licenses`/`publication_permission` (sorted distinct inventory values for
+the batch findings files). Rights are reported, never decided: all
+publication permissions remain `unknown` until a phase 8 rights decision.
+
+### 10.2 Task file
+
+`data/research-inputs/backlog-tasks.json` materializes every batch and
+source inventory item as an acquisition/extraction task: `id`, `kind`
+(`batch_acquisition` with ≥1 `batches`, or `source_acquisition`),
+`evidence_files` (each must be in the capture inventory — gate 5 applies),
+`evidence_urls`, `desired_fields`, `closure` (a task closes with verified
+evidence or a bounded documented outcome, never web exhaustion). Validation
+rejects: duplicate ids, kind/batch mismatches, uninventoried evidence,
+empty desired fields, empty closure, and any `model_research` batch without
+a claiming task.
+
+### 10.3 Backlog gates
+
+Exit 1 when: an in-scope model lacks a channel assignment or research
+status; a model's assigned batch is unknown to `model_research`; image-output
+modality disagrees with images-batch membership (either direction); an
+out-of-scope model claims the images batch. The report renders the same
+rows plus the task table and cross-model gap markers (unlocated claims per
+batch with the frozen-baseline note, price leaves catalog-scoped and
+all-offer, unresolved measurements vs identity proposals, image-accounting
+gaps = image-output models lacking image-specific limit facts, protocol
+metadata, rights state, access states). The report is deterministic (no
+timestamps); `--check` fails exit 1 on any byte drift between
+`docs/research/backlog.md` and a regeneration.
+
 ## Changelog
 
+- 2026-09-30 phase 5: `research backlog` (§10) with per-model channel
+  records, the validated task file and the drift-checked markdown report;
+  image-output/batch-membership equality gate; `make check` runs the
+  `--check` drift gate.
 - 2026-09-30: proposed (phase 2). Replaces the recovered Python exporter's
   implicit behavior; no prior version of this contract existed. Independent
   review round 1 findings addressed: control-file coverage and self-reference
