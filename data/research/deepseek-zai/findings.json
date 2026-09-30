@@ -1,0 +1,681 @@
+{
+  "models": [
+    {
+      "id": "deepseek/deepseek-r1",
+      "strengths": [
+        {
+          "text": "DeepSeek-R1 provides customers a state-of-the-art reasoning model, optimized for general reasoning tasks, math, science, and code generation.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "DeepSeek-R1 provides customers a state-of-the-art reasoning model, optimized for general reasoning tasks, math, science, and code generation."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Operational context limit is 128000 tokens; this is not an empirical weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 128000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark evidence was verified in the inspected saved sources; catalog capability claims are not benchmark measurements."
+    },
+    {
+      "id": "deepseek/deepseek-v3.1",
+      "strengths": [
+        {
+          "text": "DeepSeek-V3.1 is post-trained on the top of DeepSeek-V3.1-Base, which is built upon the original V3 base checkpoint through a two-phase long context extension approach, following the methodology outlined in the original DeepSeek-V3 report. We have expanded our dataset by collecting additional long documents and substantially extending both training phases. The 32K extension phase has been increased 10-fold to 630B tokens, while the 128K extension phase has been extended by 3.3x to 209B tokens. Additionally, DeepSeek-V3.1 is trained using the UE8M0 FP8 scale data format to ensure compatibility with microscaling data formats.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "DeepSeek-V3.1 is post-trained on the top of DeepSeek-V3.1-Base, which is built upon the original V3 base checkpoint through a two-phase long context extension approach, following the methodology outlined in the original DeepSeek-V3 report. We have expanded our dataset by collecting additional long documents and substantially extending both training phases. The 32K extension phase has been increased 10-fold to 630B tokens, while the 128K extension phase has been extended by 3.3x to 209B tokens. Additionally, DeepSeek-V3.1 is trained using the UE8M0 FP8 scale data format to ensure compatibility with microscaling data formats."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Operational context limit is 163840 tokens; this is not an empirical weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 163840"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark evidence was verified in the inspected saved sources; catalog capability claims are not benchmark measurements."
+    },
+    {
+      "id": "deepseek/deepseek-v3.1-terminus",
+      "strengths": [
+        {
+          "text": "DeepSeek-V3.1-Terminus delivers more stable & reliable outputs across benchmarks compared to the previous version and addresses user feedback (i.e. language consistency and agent upgrades).",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "DeepSeek-V3.1-Terminus delivers more stable & reliable outputs across benchmarks compared to the previous version and addresses user feedback (i.e. language consistency and agent upgrades)."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Operational context limit is 131072 tokens; this is not an empirical weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 131072"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark evidence was verified in the inspected saved sources; catalog capability claims are not benchmark measurements."
+    },
+    {
+      "id": "deepseek/deepseek-v3.2",
+      "strengths": [
+        {
+          "text": "DeepSeek\u2011V3.2 from DeepSeek harmonizes high computational efficiency with superior reasoning and agent performance. It builds on three main techniques: DeepSeek Sparse Attention for long\u2011context efficiency, a scalable reinforcement learning framework, and a large\u2011scale agentic task synthesis pipeline. This model excels at long-context reasoning and agentic tasks, efficiently handling extended inputs while maintaining strong accuracy. Its sparse attention design enables it to process complex, multi-step workflows without excessive compute costs. Overall, DeepSeek\u2011V3.2 targets long\u2011context reasoning, tool\u2011using agents, and efficient deployment in production environments.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "DeepSeek\u2011V3.2 from DeepSeek harmonizes high computational efficiency with superior reasoning and agent performance. It builds on three main techniques: DeepSeek Sparse Attention for long\u2011context efficiency, a scalable reinforcement learning framework, and a large\u2011scale agentic task synthesis pipeline. This model excels at long-context reasoning and agentic tasks, efficiently handling extended inputs while maintaining strong accuracy. Its sparse attention design enables it to process complex, multi-step workflows without excessive compute costs. Overall, DeepSeek\u2011V3.2 targets long\u2011context reasoning, tool\u2011using agents, and efficient deployment in production environments."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Operational context limit is 128000 tokens; this is not an empirical weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 128000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark evidence was verified in the inspected saved sources; catalog capability claims are not benchmark measurements."
+    },
+    {
+      "id": "deepseek/deepseek-v3.2-thinking",
+      "strengths": [
+        {
+          "text": "DeepSeek\u2011V3.2 from DeepSeek harmonizes high computational efficiency with superior reasoning and agent performance. It builds on three main techniques: DeepSeek Sparse Attention for long\u2011context efficiency, a scalable reinforcement learning framework, and a large\u2011scale agentic task synthesis pipeline. This model excels at long-context reasoning and agentic tasks, efficiently handling extended inputs while maintaining strong accuracy. Its sparse attention design enables it to process complex, multi-step workflows without excessive compute costs. Overall, DeepSeek\u2011V3.2 targets long\u2011context reasoning, tool\u2011using agents, and efficient deployment in production environments.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "DeepSeek\u2011V3.2 from DeepSeek harmonizes high computational efficiency with superior reasoning and agent performance. It builds on three main techniques: DeepSeek Sparse Attention for long\u2011context efficiency, a scalable reinforcement learning framework, and a large\u2011scale agentic task synthesis pipeline. This model excels at long-context reasoning and agentic tasks, efficiently handling extended inputs while maintaining strong accuracy. Its sparse attention design enables it to process complex, multi-step workflows without excessive compute costs. Overall, DeepSeek\u2011V3.2 targets long\u2011context reasoning, tool\u2011using agents, and efficient deployment in production environments."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Operational context limit is 128000 tokens; this is not an empirical weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 128000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark evidence was verified in the inspected saved sources; catalog capability claims are not benchmark measurements."
+    },
+    {
+      "id": "deepseek/deepseek-v4-flash",
+      "strengths": [],
+      "weaknesses": [
+        {
+          "text": "Operational context limit is 1000000 tokens; this is not an empirical weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1000000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark evidence was verified in the inspected saved sources; catalog capability claims are not benchmark measurements."
+    },
+    {
+      "id": "deepseek/deepseek-v4-flash-0731",
+      "strengths": [],
+      "weaknesses": [
+        {
+          "text": "Operational context limit is 1000000 tokens; this is not an empirical weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1000000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark evidence was verified in the inspected saved sources; catalog capability claims are not benchmark measurements."
+    },
+    {
+      "id": "deepseek/deepseek-v4-flash-vision-exp",
+      "strengths": [
+        {
+          "text": "DeepSeek-V4-Flash-Vision-Exp is an experimental multimodal model that combines the agentic reasoning, coding, and world knowledge capabilities of DeepSeek-V4-Flash with advanced visual understanding. It delivers major gains on vision-dependent agent workflows while performing strongly across leading coding, repository, data science, automation, and multimodal benchmarks.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "DeepSeek-V4-Flash-Vision-Exp is an experimental multimodal model that combines the agentic reasoning, coding, and world knowledge capabilities of DeepSeek-V4-Flash with advanced visual understanding. It delivers major gains on vision-dependent agent workflows while performing strongly across leading coding, repository, data science, automation, and multimodal benchmarks."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Operational context limit is 1048576 tokens; this is not an empirical weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1048576"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark evidence was verified in the inspected saved sources; catalog capability claims are not benchmark measurements."
+    },
+    {
+      "id": "deepseek/deepseek-v4-pro",
+      "strengths": [
+        {
+          "text": "DeepSeek-V4 series incorporate several key upgrades in architecture and optimization: (1) a hybrid attention architecture that combines Compressed Sparse Attention (CSA)\nand Heavily Compressed Attention (HCA) to improve long-context efficiency; (2) ManifoldConstrained Hyper-Connections (mHC) that enhance conventional residual connections; (3)\nand the Muon optimizer for faster convergence and greater training stability",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "DeepSeek-V4 series incorporate several key upgrades in architecture and optimization: (1) a hybrid attention architecture that combines Compressed Sparse Attention (CSA)\nand Heavily Compressed Attention (HCA) to improve long-context efficiency; (2) ManifoldConstrained Hyper-Connections (mHC) that enhance conventional residual connections; (3)\nand the Muon optimizer for faster convergence and greater training stability"
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Operational context limit is 1000000 tokens; this is not an empirical weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1000000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark evidence was verified in the inspected saved sources; catalog capability claims are not benchmark measurements."
+    },
+    {
+      "id": "deepseek/deepseek-v4-pro-0813",
+      "strengths": [
+        {
+          "text": "This is the 8/13 updated weights version of DeepSeek V4 Pro.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "This is the 8/13 updated weights version of DeepSeek V4 Pro."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Operational context limit is 1000000 tokens; this is not an empirical weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1000000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark evidence was verified in the inspected saved sources; catalog capability claims are not benchmark measurements."
+    },
+    {
+      "id": "deepseek/deepseek-v4.1-flash",
+      "strengths": [
+        {
+          "text": "DeepSeek V4.1 Flash is an AI model from DeepSeek designed for fast, efficient multimodal interactions. It combines native multimodal capabilities with a new architecture focused on stronger performance, faster responses, and lower computational cost.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "DeepSeek V4.1 Flash is an AI model from DeepSeek designed for fast, efficient multimodal interactions. It combines native multimodal capabilities with a new architecture focused on stronger performance, faster responses, and lower computational cost."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Operational context limit is 1048576 tokens; this is not an empirical weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1048576"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark evidence was verified in the inspected saved sources; catalog capability claims are not benchmark measurements."
+    },
+    {
+      "id": "zai/glm-4.5",
+      "strengths": [
+        {
+          "text": "GLM-4.5 and GLM-4.5-Air are our latest flagship models, purpose-built as foundational models for agent-oriented applications. Both leverage a Mixture-of-Experts (MoE) architecture. GLM-4.5 has a total parameter count of 355B with 32B active parameters per forward pass, while GLM-4.5-Air adopts a more streamlined design with 106B total parameters and 12B active parameters.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GLM-4.5 and GLM-4.5-Air are our latest flagship models, purpose-built as foundational models for agent-oriented applications. Both leverage a Mixture-of-Experts (MoE) architecture. GLM-4.5 has a total parameter count of 355B with 32B active parameters per forward pass, while GLM-4.5-Air adopts a more streamlined design with 106B total parameters and 12B active parameters."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Operational context limit is 128000 tokens; this is not an empirical weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 128000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark evidence was verified in the inspected saved sources; catalog capability claims are not benchmark measurements."
+    },
+    {
+      "id": "zai/glm-4.5-air",
+      "strengths": [
+        {
+          "text": "GLM-4.5 and GLM-4.5-Air are our latest flagship models, purpose-built as foundational models for agent-oriented applications. Both leverage a Mixture-of-Experts (MoE) architecture. GLM-4.5 has a total parameter count of 355B with 32B active parameters per forward pass, while GLM-4.5-Air adopts a more streamlined design with 106B total parameters and 12B active parameters.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GLM-4.5 and GLM-4.5-Air are our latest flagship models, purpose-built as foundational models for agent-oriented applications. Both leverage a Mixture-of-Experts (MoE) architecture. GLM-4.5 has a total parameter count of 355B with 32B active parameters per forward pass, while GLM-4.5-Air adopts a more streamlined design with 106B total parameters and 12B active parameters."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Operational context limit is 128000 tokens; this is not an empirical weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 128000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark evidence was verified in the inspected saved sources; catalog capability claims are not benchmark measurements."
+    },
+    {
+      "id": "zai/glm-4.5v",
+      "strengths": [
+        {
+          "text": "Built on the GLM-4.5-Air base model, GLM-4.5V inherits proven techniques from GLM-4.1V-Thinking while achieving effective scaling through a powerful 106B-parameter MoE architecture.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Built on the GLM-4.5-Air base model, GLM-4.5V inherits proven techniques from GLM-4.1V-Thinking while achieving effective scaling through a powerful 106B-parameter MoE architecture."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Operational context limit is 66000 tokens; this is not an empirical weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 66000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark evidence was verified in the inspected saved sources; catalog capability claims are not benchmark measurements."
+    },
+    {
+      "id": "zai/glm-4.6",
+      "strengths": [
+        {
+          "text": "As the latest iteration in the GLM series, GLM-4.6 achieves comprehensive enhancements across multiple domains, including real-world coding, long-context processing, reasoning, searching, writing, and agentic applications.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "As the latest iteration in the GLM series, GLM-4.6 achieves comprehensive enhancements across multiple domains, including real-world coding, long-context processing, reasoning, searching, writing, and agentic applications."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Operational context limit is 200000 tokens; this is not an empirical weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 200000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark evidence was verified in the inspected saved sources; catalog capability claims are not benchmark measurements."
+    },
+    {
+      "id": "zai/glm-4.7",
+      "strengths": [
+        {
+          "text": "GLM-4.7 is a powerful next-generation coding model that delivers major gains in multilingual agentic coding, terminal-based workflows, and tool use, with strong improvements across benchmarks like SWE-bench, Terminal Bench, and \u03c4\u00b2-Bench. It also features enhanced reasoning and math performance, plus significantly upgraded UI generation\u2014producing cleaner, more modern web pages and better-designed slides.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GLM-4.7 is a powerful next-generation coding model that delivers major gains in multilingual agentic coding, terminal-based workflows, and tool use, with strong improvements across benchmarks like SWE-bench, Terminal Bench, and \u03c4\u00b2-Bench. It also features enhanced reasoning and math performance, plus significantly upgraded UI generation\u2014producing cleaner, more modern web pages and better-designed slides."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Operational context limit is 200000 tokens; this is not an empirical weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 200000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark evidence was verified in the inspected saved sources; catalog capability claims are not benchmark measurements."
+    },
+    {
+      "id": "zai/glm-4.7-flash",
+      "strengths": [
+        {
+          "text": "GLM-4.7-Flash balances high performance with efficiency, making it the perfect lightweight deployment option. Beyond coding, it is also recommended for creative writing, translation, long-context tasks, and roleplay.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GLM-4.7-Flash balances high performance with efficiency, making it the perfect lightweight deployment option. Beyond coding, it is also recommended for creative writing, translation, long-context tasks, and roleplay."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Operational context limit is 200000 tokens; this is not an empirical weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 200000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark evidence was verified in the inspected saved sources; catalog capability claims are not benchmark measurements."
+    },
+    {
+      "id": "zai/glm-4.7-flashx",
+      "strengths": [
+        {
+          "text": " GLM-4.7-Flash balances high performance with efficiency, making it the perfect lightweight deployment option. ",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": " GLM-4.7-Flash balances high performance with efficiency, making it the perfect lightweight deployment option. "
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Operational context limit is 200000 tokens; this is not an empirical weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 200000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark evidence was verified in the inspected saved sources; catalog capability claims are not benchmark measurements."
+    },
+    {
+      "id": "zai/glm-5",
+      "strengths": [
+        {
+          "text": "GLM 5 is a frontier-class, general-purpose large language model optimized for complex systems engineering and long-horizon agentic tasks. It builds on the GLM 4.5 agent-centric lineage and is designed to support multi-step reasoning, math (including AIME-style benchmarks), advanced coding, and tool-augmented workflows, with long context support suitable for sophisticated agents and enterprise applications. Typical uses include autonomous agents for software engineering, data and systems troubleshooting, operations copilots, and high-end chat assistants that must break down complex tasks, call tools reliably, and reason over long sequences of instructions or documents.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GLM 5 is a frontier-class, general-purpose large language model optimized for complex systems engineering and long-horizon agentic tasks. It builds on the GLM 4.5 agent-centric lineage and is designed to support multi-step reasoning, math (including AIME-style benchmarks), advanced coding, and tool-augmented workflows, with long context support suitable for sophisticated agents and enterprise applications. Typical uses include autonomous agents for software engineering, data and systems troubleshooting, operations copilots, and high-end chat assistants that must break down complex tasks, call tools reliably, and reason over long sequences of instructions or documents."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Operational context limit is 202800 tokens; this is not an empirical weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 202800"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark evidence was verified in the inspected saved sources; catalog capability claims are not benchmark measurements."
+    },
+    {
+      "id": "zai/glm-5-turbo",
+      "strengths": [
+        {
+          "text": "GLM 5 Turbo is a foundation model deeply optimized for the OpenClaw scenario. It has been specifically optimized for the core requirements of OpenClaw tasks since the training phase, enhancing key capabilities such as tool invocation, command following, timed and persistent tasks, and long-chain execution.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GLM 5 Turbo is a foundation model deeply optimized for the OpenClaw scenario. It has been specifically optimized for the core requirements of OpenClaw tasks since the training phase, enhancing key capabilities such as tool invocation, command following, timed and persistent tasks, and long-chain execution."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Operational context limit is 202800 tokens; this is not an empirical weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 202800"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark evidence was verified in the inspected saved sources; catalog capability claims are not benchmark measurements."
+    },
+    {
+      "id": "zai/glm-5.1",
+      "strengths": [
+        {
+          "text": "GLM-5.1 delivers a major leap in coding capability, with particularly significant gains in handling long-horizon tasks. Unlike previous models built around minute-level interactions, GLM-5.1 can work independently and continuously on a single task for more than 8 hours\u2014autonomously planning, executing, and improving itself throughout the process\u2014ultimately delivering complete, engineering-grade results.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GLM-5.1 delivers a major leap in coding capability, with particularly significant gains in handling long-horizon tasks. Unlike previous models built around minute-level interactions, GLM-5.1 can work independently and continuously on a single task for more than 8 hours\u2014autonomously planning, executing, and improving itself throughout the process\u2014ultimately delivering complete, engineering-grade results."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Operational context limit is 202800 tokens; this is not an empirical weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 202800"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark evidence was verified in the inspected saved sources; catalog capability claims are not benchmark measurements."
+    },
+    {
+      "id": "zai/glm-5.2",
+      "strengths": [
+        {
+          "text": "GLM-5.2 delivers powerful coding capabilities, usable 1M-context support, and continued strengths in long-horizon tasks.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GLM-5.2 delivers powerful coding capabilities, usable 1M-context support, and continued strengths in long-horizon tasks."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Operational context limit is 1000000 tokens; this is not an empirical weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1000000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark evidence was verified in the inspected saved sources; catalog capability claims are not benchmark measurements."
+    },
+    {
+      "id": "zai/glm-5.2-fast",
+      "strengths": [
+        {
+          "text": "GLM-5.2-Fast-Preview is the high-speed variant of Zhipu AI&#39;s GLM-5.2, with 1M context and capabilities on par with the standard version. Inference-optimized to deliver 1.5\u20132\u00d7 the output TPS, it fits latency-sensitive use cases such as real-time chat, multi-turn agents, and streaming code generation.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GLM-5.2-Fast-Preview is the high-speed variant of Zhipu AI&#39;s GLM-5.2, with 1M context and capabilities on par with the standard version. Inference-optimized to deliver 1.5\u20132\u00d7 the output TPS, it fits latency-sensitive use cases such as real-time chat, multi-turn agents, and streaming code generation."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Operational context limit is 1000000 tokens; this is not an empirical weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1000000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark evidence was verified in the inspected saved sources; catalog capability claims are not benchmark measurements."
+    },
+    {
+      "id": "zai/glm-5.3",
+      "strengths": [
+        {
+          "text": "GLM 5.3 delivers comprehensive advancements in complex software engineering and agent capabilities. It uses the same base model as GLM-5.2, with all improvements driven by post-training.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GLM 5.3 delivers comprehensive advancements in complex software engineering and agent capabilities. It uses the same base model as GLM-5.2, with all improvements driven by post-training."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Operational context limit is 1000000 tokens; this is not an empirical weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1000000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark evidence was verified in the inspected saved sources; catalog capability claims are not benchmark measurements."
+    },
+    {
+      "id": "zai/glm-5.3-fast",
+      "strengths": [
+        {
+          "text": "Speed-optimized version of Z.AI\u2019s GLM-5.3 agentic coding model, built for responsive, real-time workloads. It supports advanced coding, long-horizon task execution, testing, vulnerability discovery, and cybersecurity analysis, making it ideal for developer tools, coding agents, and complex multi-step engineering workflows.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Speed-optimized version of Z.AI\u2019s GLM-5.3 agentic coding model, built for responsive, real-time workloads. It supports advanced coding, long-horizon task execution, testing, vulnerability discovery, and cybersecurity analysis, making it ideal for developer tools, coding agents, and complex multi-step engineering workflows."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Operational context limit is 1048576 tokens; this is not an empirical weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1048576"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark evidence was verified in the inspected saved sources; catalog capability claims are not benchmark measurements."
+    },
+    {
+      "id": "zai/glm-5.3-flash",
+      "strengths": [
+        {
+          "text": "GLM-5.3-Flash is Z.ai\u2019s native multimodal coding model, featuring 320B total parameters, 18B activated parameters, and a 1M-token context window. Its efficient hybrid attention architecture supports visual coding, tool use, and end-to-end professional workflows across code, browsers, documents, and graphical interfaces.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GLM-5.3-Flash is Z.ai\u2019s native multimodal coding model, featuring 320B total parameters, 18B activated parameters, and a 1M-token context window. Its efficient hybrid attention architecture supports visual coding, tool use, and end-to-end professional workflows across code, browsers, documents, and graphical interfaces."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Operational context limit is 1000000 tokens; this is not an empirical weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1000000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark evidence was verified in the inspected saved sources; catalog capability claims are not benchmark measurements."
+    },
+    {
+      "id": "zai/glm-5.3-flashx",
+      "strengths": [
+        {
+          "text": "GLM-5.3-FlashX is the high-speed serving option for Z.ai\u2019s native multimodal coding model, featuring 320B total parameters, 18B activated parameters, and a 1M-token context window. Its efficient hybrid attention architecture supports visual coding, tool use, and end-to-end professional workflows across code, browsers, documents, and graphical interfaces.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GLM-5.3-FlashX is the high-speed serving option for Z.ai\u2019s native multimodal coding model, featuring 320B total parameters, 18B activated parameters, and a 1M-token context window. Its efficient hybrid attention architecture supports visual coding, tool use, and end-to-end professional workflows across code, browsers, documents, and graphical interfaces."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Operational context limit is 1000000 tokens; this is not an empirical weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1000000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark evidence was verified in the inspected saved sources; catalog capability claims are not benchmark measurements."
+    },
+    {
+      "id": "zai/glm-5v-turbo",
+      "strengths": [
+        {
+          "text": "GLM-5V-Turbo is Z.AI\u2019s first multimodal coding foundation model, built for vision-based coding tasks. It can natively process multimodal inputs such as images, video, and text, while also excelling at long-horizon planning, complex coding, and action execution. Deeply optimized for agent workflows, it works seamlessly with agents such as Claude Code and OpenClaw to complete the full loop of \u201cunderstand the environment \u2192 plan actions \u2192 execute tasks\u201d.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GLM-5V-Turbo is Z.AI\u2019s first multimodal coding foundation model, built for vision-based coding tasks. It can natively process multimodal inputs such as images, video, and text, while also excelling at long-horizon planning, complex coding, and action execution. Deeply optimized for agent workflows, it works seamlessly with agents such as Claude Code and OpenClaw to complete the full loop of \u201cunderstand the environment \u2192 plan actions \u2192 execute tasks\u201d."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Operational context limit is 200000 tokens; this is not an empirical weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 200000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark evidence was verified in the inspected saved sources; catalog capability claims are not benchmark measurements."
+    }
+  ],
+  "benchmarks": [],
+  "sources": [
+    {
+      "url": "https://arxiv.org/html/2501.12948v1",
+      "file": "data/research/deepseek-zai/saved_sources/deepseek-r1-paper.html",
+      "status": "retrieved",
+      "purpose": "DeepSeek-R1 primary paper",
+      "license": "unknown"
+    },
+    {
+      "url": "https://arxiv.org/abs/2501.12948",
+      "file": "data/research/deepseek-zai/saved_sources/deepseek-r1-abs.html",
+      "status": "retrieved",
+      "purpose": "DeepSeek-R1 abstract",
+      "license": "unknown"
+    },
+    {
+      "url": "https://api.github.com/repos/deepseek-ai/DeepSeek-R1",
+      "file": "data/research/deepseek-zai/saved_sources/deepseek-r1-github.json",
+      "status": "retrieved",
+      "purpose": "DeepSeek-R1 repository metadata",
+      "license": "unknown"
+    },
+    {
+      "url": "https://arxiv.org/html/2412.19437v1",
+      "file": "data/research/deepseek-zai/saved_sources/deepseek-v3-paper.html",
+      "status": "retrieved",
+      "purpose": "DeepSeek-V3 primary paper",
+      "license": "unknown"
+    },
+    {
+      "url": "https://arxiv.org/abs/2412.19437",
+      "file": "data/research/deepseek-zai/saved_sources/deepseek-v3-abs.html",
+      "status": "retrieved",
+      "purpose": "DeepSeek-V3 abstract",
+      "license": "unknown"
+    },
+    {
+      "url": "https://api.github.com/repos/deepseek-ai/DeepSeek-V3",
+      "file": "data/research/deepseek-zai/saved_sources/deepseek-v3-github.json",
+      "status": "retrieved",
+      "purpose": "DeepSeek-V3 repository metadata",
+      "license": "unknown"
+    }
+  ],
+  "gaps": [
+    "Numeric tables were not promoted without a verified exact-model row and locator. DeepSeek V3 paper evidence does not establish scores for later V3.1/V3.2/V4 revisions or GLM variants.",
+    "No checked source established benchmark results for the unfamiliar future-dated catalog revisions."
+  ]
+}

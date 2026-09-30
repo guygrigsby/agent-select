@@ -1,0 +1,32 @@
+{
+  "models": [
+    {
+      "id": "mixedbread/toast-1",
+      "strengths": [
+        {
+          "text": "Built for knowledge-intensive questions, multi-step retrieval, and evidence synthesis. Toast 1 can work with any backend exposed through function calling.",
+          "basis": "catalog_claim",
+          "source_url": "https://ai-gateway.vercel.sh/v1/models",
+          "source_file": "data/raw/vercel-models.json",
+          "locator": "data entry id=mixedbread/toast-1 description"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "unresearched",
+      "notes": "Catalog-only coverage. No exact-revision primary source checked; no demonstrated empirical weakness."
+    }
+  ],
+  "benchmarks": [],
+  "sources": [
+    {
+      "url": "https://ai-gateway.vercel.sh/v1/models",
+      "file": "data/raw/vercel-models.json",
+      "status": "retrieved",
+      "purpose": "Discovery baseline",
+      "license": "unknown"
+    }
+  ],
+  "gaps": [
+    "Exact-revision sources and published evaluations remain unresearched."
+  ]
+}

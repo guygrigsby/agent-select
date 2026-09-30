@@ -1,0 +1,658 @@
+{
+  "models": [
+    {
+      "id": "alibaba/qwen-3-14b",
+      "strengths": [
+        {
+          "text": "Qwen3 is the latest generation of large language models in Qwen series, offering a comprehensive suite of dense and mixture-of-experts (MoE) models. Built upon extensive training, Qwen3 delivers groundbreaking advancements in reasoning, instruction-following, agent capabilities, and multilingual support",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen-3-14b"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen-3-235b",
+      "strengths": [],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen-3-30b",
+      "strengths": [
+        {
+          "text": "Qwen3 is the latest generation of large language models in Qwen series, offering a comprehensive suite of dense and mixture-of-experts (MoE) models. Built upon extensive training, Qwen3 delivers groundbreaking advancements in reasoning, instruction-following, agent capabilities, and multilingual support",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen-3-30b"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen-3-32b",
+      "strengths": [
+        {
+          "text": "Qwen3-32B is a world-class model with comparable quality to DeepSeek R1 while outperforming GPT-4.1 and Claude Sonnet 3.7. It excels in code-gen, tool-calling, and advanced reasoning, making it an exceptional model for a wide range of production use cases.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen-3-32b"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen-3.6-max-preview",
+      "strengths": [
+        {
+          "text": "Compared with the previously released Qwen3-Max and Qwen3.6-Plus, this model features enhanced vibe coding abilities, more efficient coding agent execution, and significantly improved front-end development skills. Additionally, its long-tail knowledge retention has been further upgraded.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen-3.6-max-preview"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen3-235b-a22b-thinking",
+      "strengths": [
+        {
+          "text": "Qwen3 series VL models feature significantly enhanced multimodal reasoning capabilities, with a particular focus on optimizing the model for STEM and mathematical reasoning. Visual perception and recognition abilities have been comprehensively improved, and OCR capabilities have undergone a major upgrade.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen3-235b-a22b-thinking"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen3-coder",
+      "strengths": [
+        {
+          "text": "Qwen3-Coder-480B-A35B-Instruct is a cutting-edge open coding model from Qwen, matching Claude Sonnet\u2019s performance in agentic programming, browser automation, and core development tasks.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen3-coder"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen3-coder-30b-a3b",
+      "strengths": [
+        {
+          "text": "Efficient coding specialist balancing performance with cost-effectiveness for daily development tasks while maintaining strong tool integration capabilities.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen3-coder-30b-a3b"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen3-coder-next",
+      "strengths": [
+        {
+          "text": "Qwen3-Coder-Next is an open-weight language model built specifically for coding, with strong performance on large-scale software engineering and agentic coding benchmarks. It uses a hybrid Mixture-of-Experts architecture to offer high capability at relatively modest active parameter counts, improving efficiency for real-world deployments. The model is trained on diverse code and natural language data so it can handle tasks like code generation, refactoring, debugging, repository-level reasoning, and technical explanation across multiple programming languages. It is also optimized for tool use and function calling, making it suitable as the core of coding agents that interact with shells, editors, issue trackers, and other developer tools.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen3-coder-next"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen3-coder-plus",
+      "strengths": [
+        {
+          "text": "Powered by Qwen3 this is a powerful Coding Agent that excels in tool calling and environment interaction to achieve autonomous programming. It combines outstanding coding proficiency with versatile general-purpose abilities.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen3-coder-plus"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen3-max",
+      "strengths": [
+        {
+          "text": "The Qwen 3 series Max model has undergone specialized upgrades in agent programming and tool invocation compared to the preview version. The officially released model this time has achieved state-of-the-art (SOTA) performance in its field and is better suited to meet the demands of agents operating in more complex scenarios.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen3-max"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen3-max-preview",
+      "strengths": [
+        {
+          "text": "Qwen3-Max-Preview shows substantial gains over the 2.5 series in overall capability, with significant enhancements in Chinese-English text understanding, complex instruction following, handling of subjective open-ended tasks, multilingual ability, and tool invocation; model knowledge hallucinations are reduced.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen3-max-preview"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen3-max-thinking",
+      "strengths": [
+        {
+          "text": "Compared with the snapshot as of September 23, 2025, the Qwen-3 series Max model in this release achieves an effective integration of thinking and non-thinking modes, resulting in a comprehensive and substantial improvement in the model\u2019s overall performance. In thinking mode, the model simultaneously supports web search, web information extraction, and a code interpreter tool, enabling it to tackle more complex and challenging problems with greater accuracy by leveraging external tools while engaging in slow, deliberative reasoning. This version is based on a snapshot taken on January 23, 2026.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen3-max-thinking"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen3-next-80b-a3b-instruct",
+      "strengths": [
+        {
+          "text": "A new generation of open-source, non-thinking mode model powered by Qwen3. This version demonstrates superior Chinese text understanding, augmented logical reasoning, and enhanced capabilities in text generation tasks over the previous iteration (Qwen3-235B-A22B-Instruct-2507).",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen3-next-80b-a3b-instruct"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen3-next-80b-a3b-thinking",
+      "strengths": [
+        {
+          "text": "Qwen3-Next uses a highly sparse MoE design: 80B total parameters, but only ~3B activated per inference step. Experiments show that, with global load balancing, increasing total expert parameters while keeping activated experts fixed steadily reduces training loss.Compared to Qwen3\u2019s MoE (128 total experts, 8 routed), Qwen3-Next expands to 512 total experts, combining 10 routed experts + 1 shared expert \u2014 maximizing resource usage without hurting performance. The Qwen3-Next-80B-A3B-Thinking excels at complex reasoning tasks \u2014 outperforming higher-cost models like Qwen3-30B-A3B-Thinking-2507 and Qwen3-32B-Thinking, outpeforming the closed-source Gemini-2.5-Flash-Thinking on multiple benchmarks, and approaching the performance of our top-tier model Qwen3-235B-A22B-Thinking-2507.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen3-next-80b-a3b-thinking"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen3-vl-235b-a22b-instruct",
+      "strengths": [
+        {
+          "text": "The Qwen3 series VL models has been comprehensively upgraded in areas such as visual coding and spatial perception. Its visual perception and recognition capabilities have significantly improved, supporting the understanding of ultra-long videos, and its OCR functionality has undergone a major enhancement.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen3-vl-235b-a22b-instruct"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen3-vl-instruct",
+      "strengths": [
+        {
+          "text": "The Qwen3 series VL models has been comprehensively upgraded in areas such as visual coding and spatial perception. Its visual perception and recognition capabilities have significantly improved, supporting the understanding of ultra-long videos, and its OCR functionality has undergone a major enhancement.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen3-vl-instruct"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen3-vl-thinking",
+      "strengths": [
+        {
+          "text": "Qwen3 series VL models feature significantly enhanced multimodal reasoning capabilities, with a particular focus on optimizing the model for STEM and mathematical reasoning. Visual perception and recognition abilities have been comprehensively improved, and OCR capabilities have undergone a major upgrade.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen3-vl-thinking"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen3.5-flash",
+      "strengths": [
+        {
+          "text": "The Qwen3.5 native vision-language Flash models are built on a hybrid architecture that integrates a linear attention mechanism with a sparse mixture-of-experts model, achieving higher inference efficiency. Compared to the 3 series, these models deliver a leap forward in performance for both pure text and multimodal tasks, offering fast response times while balancing inference speed and overall performance.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen3.5-flash"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen3.5-plus",
+      "strengths": [
+        {
+          "text": "The Qwen3.5 native vision-language series Plus models are built on a hybrid architecture that integrates linear attention mechanisms with sparse mixture-of-experts models, achieving higher inference efficiency. In a variety of task evaluations, the 3.5 series consistently demonstrates performance on par with state-of-the-art leading models. Compared to the 3 series, these models show a leap forward in both pure-text and multimodal capabilities.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen3.5-plus"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen3.6-27b",
+      "strengths": [
+        {
+          "text": "The Qwen3.6 35B-A3B native vision-language model is built on a hybrid architecture that integrates linear attention mechanisms with a sparse mixture-of-experts framework, achieving higher inference efficiency. Compared with the 3.5-35B-A3B, this model demonstrates significantly improved agentic coding capabilities, mathematical and code reasoning abilities, spatial intelligence, as well as object localization and object detection performance.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen3.6-27b"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen3.6-plus",
+      "strengths": [
+        {
+          "text": "The Qwen3.6 native vision-language Plus series models demonstrate exceptional performance on par with the current state-of-the-art models, with a significant improvement in overall results compared to the 3.5 series. The models have been markedly enhanced in code-related capabilities such as agentic coding, front-end programming, and Vibe coding, as well as in multi-modal general object recognition, OCR, and object localization.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen3.6-plus"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen3.7-flash",
+      "strengths": [
+        {
+          "text": "The Qwen3.7 native vision-language Flash model series delivers a comprehensive upgrade over 3.6-Flash in multimodal understanding and agent execution. This model particularly excels in enhanced multimodal foundations with stronger universal object recognition, further improved real-world perception and spatial intelligence, significantly upgraded multimodal agent capabilities for Search Agent and CI Agent scenarios with more stable end-to-end task execution, as well as optimized multimodal coding for a smoother vibe coding experience.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen3.7-flash"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen3.7-max",
+      "strengths": [
+        {
+          "text": "Qwen3.7 is a next\u2011generation flagship model designed for the agent\u2011centric era, with its core strengths lying in the breadth and depth of its agent\u2011level capabilities: it excels at programming, office and productivity tasks, and long\u2011term autonomous execution.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen3.7-max"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen3.7-plus",
+      "strengths": [
+        {
+          "text": "Among the Qwen3.7 series, the cost-effective Plus model builds on its robust text capabilities while delivering a comprehensive upgrade to its vision\u2011language abilities, all while preserving its full\u2011stack agent\u2011level intelligence for coding, tool use, and productivity workflows.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen3.7-plus"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen3.8-2.4t-a95b",
+      "strengths": [
+        {
+          "text": "Qwen 3.8 Max is a 2.4-trillion-parameter MoE model delivering a comprehensive leap in coding and professional work. Autonomously codes and delivers complete projects spanning 10+ days. Handles hundreds of specialized tasks across legal, financial, design, and other professional domains, producing production-grade results end-to-end in a single conversation. Native visual understanding runs through the full cycle of planning, execution, and verification, enabling deep semantic analysis of ultra-long documents and extended video content. In long-horizon tasks, plans autonomously, iterates through closed feedback loops, and continuously evolves.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen3.8-2.4t-a95b"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen3.8-27b",
+      "strengths": [
+        {
+          "text": "Built on the architectural foundation of Qwen3.5, Qwen3.8 delivers substantial gains across coding, professional work, research, and long-horizon agentic tasks. Qwen3.8-27B brings these advances to a compact, deployment-friendly dense model: a native vision-language model that understands images and videos, with flexible thinking control, designed to carry complex, multi-step tasks through to completion with greater reliability.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen3.8-27b"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen3.8-flash",
+      "strengths": [
+        {
+          "text": "Qwen3.8-Flash is Qwen\u2019s fast, cost-efficient multimodal model, combining advanced reasoning and generation with a native 1M-token context window. Built for coding, agentic workflows, and visual understanding, it handles large codebases, long documents, charts, videos, and desktop applications.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen3.8-flash"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen3.8-max",
+      "strengths": [
+        {
+          "text": "Qwen 3.8 Max is a 2.4-trillion-parameter MoE model delivering a comprehensive leap in coding and professional work. Autonomously codes and delivers complete projects spanning 10+ days. Handles hundreds of specialized tasks across legal, financial, design, and other professional domains, producing production-grade results end-to-end in a single conversation. Native visual understanding runs through the full cycle of planning, execution, and verification, enabling deep semantic analysis of ultra-long documents and extended video content. In long-horizon tasks, plans autonomously, iterates through closed feedback loops, and continuously evolves.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen3.8-max"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen3.8-max-0902",
+      "strengths": [
+        {
+          "text": "Qwen3.8-Max-0902 is an upgraded snapshot of qwen3.8-max.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen3.8-max-0902"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen3.8-max-prime",
+      "strengths": [
+        {
+          "text": "Qwen 3.8 Max Prime is the high-speed edition of Qwen 3.8 Max, retaining its 2.4-trillion-parameter MoE architecture and full capabilities while delivering 1.5\u20132\u00d7 higher output throughput. Built for coding, office automation, and long-running agent workflows, it supports autonomous multi-day development, professional knowledge work, and visual understanding with a 1M-token context window.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen3.8-max-prime"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    },
+    {
+      "id": "alibaba/qwen3.8-omni-flash",
+      "strengths": [
+        {
+          "text": "Qwen3.8-Omni-Flash is Alibaba\u2019s native multimodal model for understanding text, images, audio, and video and generating text. Built on Qwen3.8-Flash-Next, it supports a 1M-token context window, reasoning, and tool calling for coding, knowledge work, and multimedia analysis.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Vercel catalog description for alibaba/qwen3.8-omni-flash"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model empirical benchmark was verified in the saved sources; unfamiliar or future revision remains unresearched where applicable."
+    }
+  ],
+  "benchmarks": [],
+  "sources": [
+    {
+      "url": "https://huggingface.co/Qwen/Qwen3-235B-A22B",
+      "file": "data/research/qwen/sources/qwen3_235b_hf.html",
+      "status": "retrieved",
+      "purpose": "Saved fetching-stage evidence; URL mapping was not reliably recoverable from the available log for this file.",
+      "license": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/Qwen/Qwen3-30B-A3B",
+      "file": "data/research/qwen/sources/qwen3_30b_hf.html",
+      "status": "retrieved",
+      "purpose": "Saved fetching-stage evidence; URL mapping was not reliably recoverable from the available log for this file.",
+      "license": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/Qwen/Qwen3-32B",
+      "file": "data/research/qwen/sources/qwen3_32b_hf.html",
+      "status": "retrieved",
+      "purpose": "Saved fetching-stage evidence; URL mapping was not reliably recoverable from the available log for this file.",
+      "license": "unknown"
+    },
+    {
+      "url": "https://qwenlm.github.io/blog/qwen3.5/",
+      "file": "data/research/qwen/sources/qwen3_5_blog.html",
+      "status": "retrieved",
+      "purpose": "Saved fetching-stage evidence; URL mapping was not reliably recoverable from the available log for this file.",
+      "license": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/Qwen/Qwen3.5",
+      "file": "data/research/qwen/sources/qwen3_5_hf.html",
+      "status": "retrieved",
+      "purpose": "Saved fetching-stage evidence; URL mapping was not reliably recoverable from the available log for this file.",
+      "license": "unknown"
+    },
+    {
+      "url": "https://qwenlm.github.io/blog/6/",
+      "file": "data/research/qwen/sources/qwen3_6_blog.html",
+      "status": "not_found",
+      "purpose": "Saved fetching-stage evidence; URL mapping was not reliably recoverable from the available log for this file.",
+      "license": "unknown"
+    },
+    {
+      "url": "https://qwenlm.github.io/blog/7/",
+      "file": "data/research/qwen/sources/qwen3_7_blog.html",
+      "status": "not_found",
+      "purpose": "Saved fetching-stage evidence; URL mapping was not reliably recoverable from the available log for this file.",
+      "license": "unknown"
+    },
+    {
+      "url": "https://qwenlm.github.io/blog/8/",
+      "file": "data/research/qwen/sources/qwen3_8_blog.html",
+      "status": "not_found",
+      "purpose": "Saved fetching-stage evidence; URL mapping was not reliably recoverable from the available log for this file.",
+      "license": "unknown"
+    },
+    {
+      "url": "unknown",
+      "file": "data/research/qwen/sources/qwen3_arxiv.html",
+      "status": "retrieved",
+      "purpose": "Saved fetching-stage evidence; URL mapping was not reliably recoverable from the available log for this file.",
+      "license": "unknown"
+    },
+    {
+      "url": "https://qwenlm.github.io/blog/qwen3/",
+      "file": "data/research/qwen/sources/qwen3_blog.html",
+      "status": "retrieved",
+      "purpose": "Saved fetching-stage evidence; URL mapping was not reliably recoverable from the available log for this file.",
+      "license": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/Qwen/Qwen3-Coder-480B-A35B",
+      "file": "data/research/qwen/sources/qwen3_coder_480b_hf.html",
+      "status": "retrieved",
+      "purpose": "Saved fetching-stage evidence; URL mapping was not reliably recoverable from the available log for this file.",
+      "license": "unknown"
+    },
+    {
+      "url": "https://qwenlm.github.io/blog/qwen3-coder/",
+      "file": "data/research/qwen/sources/qwen3_coder_blog.html",
+      "status": "retrieved",
+      "purpose": "Saved fetching-stage evidence; URL mapping was not reliably recoverable from the available log for this file.",
+      "license": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/Qwen/Qwen3-Coder-Plus",
+      "file": "data/research/qwen/sources/qwen3_coder_plus_hf.html",
+      "status": "retrieved",
+      "purpose": "Saved fetching-stage evidence; URL mapping was not reliably recoverable from the available log for this file.",
+      "license": "unknown"
+    },
+    {
+      "url": "https://github.com/QwenLM/Qwen3",
+      "file": "data/research/qwen/sources/qwen3_github_eval.html",
+      "status": "retrieved",
+      "purpose": "Saved fetching-stage evidence; URL mapping was not reliably recoverable from the available log for this file.",
+      "license": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/Qwen/Qwen3-14B",
+      "file": "data/research/qwen/sources/qwen3_hf.html",
+      "status": "retrieved",
+      "purpose": "Saved fetching-stage evidence; URL mapping was not reliably recoverable from the available log for this file.",
+      "license": "unknown"
+    },
+    {
+      "url": "https://qwenlm.github.io/blog/next/",
+      "file": "data/research/qwen/sources/qwen3_next_blog.html",
+      "status": "not_found",
+      "purpose": "Saved fetching-stage evidence; URL mapping was not reliably recoverable from the available log for this file.",
+      "license": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B",
+      "file": "data/research/qwen/sources/qwen3_next_hf.html",
+      "status": "retrieved",
+      "purpose": "Saved fetching-stage evidence; URL mapping was not reliably recoverable from the available log for this file.",
+      "license": "unknown"
+    },
+    {
+      "url": "unknown",
+      "file": "data/research/qwen/sources/qwen3_paper.pdf",
+      "status": "retrieved",
+      "purpose": "Saved fetching-stage evidence; URL mapping was not reliably recoverable from the available log for this file.",
+      "license": "unknown"
+    },
+    {
+      "url": "unknown",
+      "file": "data/research/qwen/sources/qwen3_search.html",
+      "status": "retrieved",
+      "purpose": "Saved fetching-stage evidence; URL mapping was not reliably recoverable from the available log for this file.",
+      "license": "unknown"
+    },
+    {
+      "url": "unknown",
+      "file": "data/research/qwen/sources/qwen3_search2.html",
+      "status": "retrieved",
+      "purpose": "Saved fetching-stage evidence; URL mapping was not reliably recoverable from the available log for this file.",
+      "license": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/Qwen/Qwen3-VL-30B-A3B",
+      "file": "data/research/qwen/sources/qwen3_vl_30b_hf.html",
+      "status": "retrieved",
+      "purpose": "Saved fetching-stage evidence; URL mapping was not reliably recoverable from the available log for this file.",
+      "license": "unknown"
+    },
+    {
+      "url": "https://qwenlm.github.io/blog/qwen3-vl/",
+      "file": "data/research/qwen/sources/qwen3_vl_blog.html",
+      "status": "retrieved",
+      "purpose": "Saved fetching-stage evidence; URL mapping was not reliably recoverable from the available log for this file.",
+      "license": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/Qwen/Qwen3-VL-235B-A22B",
+      "file": "data/research/qwen/sources/qwen3_vl_hf.html",
+      "status": "retrieved",
+      "purpose": "Saved fetching-stage evidence; URL mapping was not reliably recoverable from the available log for this file.",
+      "license": "unknown"
+    },
+    {
+      "url": "https://qwen.ai/research",
+      "file": "data/research/qwen/sources/qwen_ai_research.html",
+      "status": "retrieved",
+      "purpose": "Saved fetching-stage evidence; URL mapping was not reliably recoverable from the available log for this file.",
+      "license": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B",
+      "file": "data/research/qwen/sources/qwen_coder_hf.html",
+      "status": "retrieved",
+      "purpose": "Saved fetching-stage evidence; URL mapping was not reliably recoverable from the available log for this file.",
+      "license": "unknown"
+    }
+  ],
+  "gaps": [
+    "No numeric benchmark row was added because saved source tables did not provide a verified exact-model value with a usable locator.",
+    "Several catalog IDs have no corresponding public primary source in the saved bytes; future revisions were not assigned predecessor scores."
+  ]
+}

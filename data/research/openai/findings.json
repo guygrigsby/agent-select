@@ -1,0 +1,1525 @@
+{
+  "models": [
+    {
+      "id": "openai/gpt-3.5-turbo",
+      "strengths": [
+        {
+          "text": "OpenAI's most capable and cost effective model in the GPT-3.5 family optimized for chat purposes, but also works well for traditional completions tasks.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "OpenAI's most capable and cost effective model in the GPT-3.5 family optimized for chat purposes, but also works well for traditional completions tasks."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 16385-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 16385"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-4-turbo",
+      "strengths": [
+        {
+          "text": "gpt-4-turbo from OpenAI has broad general knowledge and domain expertise allowing it to follow complex instructions in natural language and solve difficult problems accurately. It has a knowledge cutoff of April 2023 and a 128,000 token context window.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "gpt-4-turbo from OpenAI has broad general knowledge and domain expertise allowing it to follow complex instructions in natural language and solve difficult problems accurately. It has a knowledge cutoff of April 2023 and a 128,000 token context window."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 128000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 128000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-4.1",
+      "strengths": [
+        {
+          "text": "GPT 4.1 is OpenAI's flagship model for complex tasks. It is well suited for problem solving across domains.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT 4.1 is OpenAI's flagship model for complex tasks. It is well suited for problem solving across domains."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 1047576-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1047576"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-4.1-fast",
+      "strengths": [
+        {
+          "text": "GPT 4.1 is OpenAI's flagship model for complex tasks. It is well suited for problem solving across domains.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT 4.1 is OpenAI's flagship model for complex tasks. It is well suited for problem solving across domains."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 1047576-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1047576"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-4.1-mini",
+      "strengths": [
+        {
+          "text": "GPT 4.1 mini provides a balance between intelligence, speed, and cost that makes it an attractive model for many use cases.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT 4.1 mini provides a balance between intelligence, speed, and cost that makes it an attractive model for many use cases."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 1047576-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1047576"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-4.1-mini-fast",
+      "strengths": [
+        {
+          "text": "GPT 4.1 mini provides a balance between intelligence, speed, and cost that makes it an attractive model for many use cases.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT 4.1 mini provides a balance between intelligence, speed, and cost that makes it an attractive model for many use cases."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 1047576-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1047576"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-4.1-nano",
+      "strengths": [
+        {
+          "text": "GPT-4.1 nano is the fastest, most cost-effective GPT 4.1 model.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-4.1 nano is the fastest, most cost-effective GPT 4.1 model."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 1047576-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1047576"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-4.1-nano-fast",
+      "strengths": [
+        {
+          "text": "GPT-4.1 nano is the fastest, most cost-effective GPT 4.1 model.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-4.1 nano is the fastest, most cost-effective GPT 4.1 model."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 1047576-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1047576"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-4o",
+      "strengths": [
+        {
+          "text": "GPT-4o from OpenAI has broad general knowledge and domain expertise allowing it to follow complex instructions in natural language and solve difficult problems accurately. It matches GPT-4 Turbo performance with a faster and cheaper API.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-4o from OpenAI has broad general knowledge and domain expertise allowing it to follow complex instructions in natural language and solve difficult problems accurately. It matches GPT-4 Turbo performance with a faster and cheaper API."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 128000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 128000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-4o-fast",
+      "strengths": [
+        {
+          "text": "GPT-4o from OpenAI has broad general knowledge and domain expertise allowing it to follow complex instructions in natural language and solve difficult problems accurately. It matches GPT-4 Turbo performance with a faster and cheaper API.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-4o from OpenAI has broad general knowledge and domain expertise allowing it to follow complex instructions in natural language and solve difficult problems accurately. It matches GPT-4 Turbo performance with a faster and cheaper API."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 128000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 128000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-4o-mini",
+      "strengths": [
+        {
+          "text": "GPT-4o mini from OpenAI is their most advanced and cost-efficient small model. It is multi-modal (accepting text or image inputs and outputting text) and has higher intelligence than gpt-3.5-turbo but is just as fast.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-4o mini from OpenAI is their most advanced and cost-efficient small model. It is multi-modal (accepting text or image inputs and outputting text) and has higher intelligence than gpt-3.5-turbo but is just as fast."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 128000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 128000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-4o-mini-fast",
+      "strengths": [
+        {
+          "text": "GPT-4o mini from OpenAI is their most advanced and cost-efficient small model. It is multi-modal (accepting text or image inputs and outputting text) and has higher intelligence than gpt-3.5-turbo but is just as fast.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-4o mini from OpenAI is their most advanced and cost-efficient small model. It is multi-modal (accepting text or image inputs and outputting text) and has higher intelligence than gpt-3.5-turbo but is just as fast."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 128000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 128000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5",
+      "strengths": [
+        {
+          "text": "GPT-5 is OpenAI's flagship language model that excels at complex reasoning, broad real-world knowledge, code-intensive, and multi-step agentic tasks.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-5 is OpenAI's flagship language model that excels at complex reasoning, broad real-world knowledge, code-intensive, and multi-step agentic tasks."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 400000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 400000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5-fast",
+      "strengths": [
+        {
+          "text": "GPT-5 is OpenAI's flagship language model that excels at complex reasoning, broad real-world knowledge, code-intensive, and multi-step agentic tasks.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-5 is OpenAI's flagship language model that excels at complex reasoning, broad real-world knowledge, code-intensive, and multi-step agentic tasks."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 400000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 400000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5-codex",
+      "strengths": [
+        {
+          "text": "GPT-5-Codex is a version of GPT-5 optimized for agentic coding tasks in Codex or similar environments.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-5-Codex is a version of GPT-5 optimized for agentic coding tasks in Codex or similar environments."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 400000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 400000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5-mini",
+      "strengths": [
+        {
+          "text": "GPT-5 mini is a cost optimized model that excels at reasoning/chat tasks. It offers an optimal balance between speed, cost, and capability.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-5 mini is a cost optimized model that excels at reasoning/chat tasks. It offers an optimal balance between speed, cost, and capability."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 400000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 400000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5-mini-fast",
+      "strengths": [
+        {
+          "text": "GPT-5 mini is a cost optimized model that excels at reasoning/chat tasks. It offers an optimal balance between speed, cost, and capability.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-5 mini is a cost optimized model that excels at reasoning/chat tasks. It offers an optimal balance between speed, cost, and capability."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 400000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 400000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5-nano",
+      "strengths": [
+        {
+          "text": "GPT-5 nano is a high throughput model that excels at simple instruction or classification tasks.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-5 nano is a high throughput model that excels at simple instruction or classification tasks."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 400000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 400000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5-pro",
+      "strengths": [
+        {
+          "text": "GPT-5 pro uses more compute to think harder and provide consistently better answers. Since GPT-5 pro is designed to tackle tough problems, some requests may take several minutes to finish.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-5 pro uses more compute to think harder and provide consistently better answers. Since GPT-5 pro is designed to tackle tough problems, some requests may take several minutes to finish."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 400000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 400000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5.1-codex",
+      "strengths": [
+        {
+          "text": "GPT-5.1-Codex is a version of GPT-5.1 optimized for agentic coding tasks in Codex or similar environments.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-5.1-Codex is a version of GPT-5.1 optimized for agentic coding tasks in Codex or similar environments."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 400000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 400000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5.1-codex-max",
+      "strengths": [
+        {
+          "text": "GPT\u20115.1-Codex-Max is purpose-built for agentic coding.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT\u20115.1-Codex-Max is purpose-built for agentic coding."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 400000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 400000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5.1-codex-mini",
+      "strengths": [
+        {
+          "text": "GPT-5.1 Codex mini is a smaller, faster, and cheaper version of GPT-5.1 Codex.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-5.1 Codex mini is a smaller, faster, and cheaper version of GPT-5.1 Codex."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 400000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 400000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5.1-thinking",
+      "strengths": [
+        {
+          "text": "An upgraded version of GPT-5 that adapts thinking time more precisely to the question to spend more time on complex questions and respond more quickly to simpler tasks.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "An upgraded version of GPT-5 that adapts thinking time more precisely to the question to spend more time on complex questions and respond more quickly to simpler tasks."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 400000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 400000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5.1-thinking-fast",
+      "strengths": [
+        {
+          "text": "An upgraded version of GPT-5 that adapts thinking time more precisely to the question to spend more time on complex questions and respond more quickly to simpler tasks.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "An upgraded version of GPT-5 that adapts thinking time more precisely to the question to spend more time on complex questions and respond more quickly to simpler tasks."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 400000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 400000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5.2",
+      "strengths": [
+        {
+          "text": "GPT-5.2 is OpenAI's best general-purpose model, part of the GPT-5 flagship model family. It's their most intelligent model yet for both general and agentic tasks.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-5.2 is OpenAI's best general-purpose model, part of the GPT-5 flagship model family. It's their most intelligent model yet for both general and agentic tasks."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 400000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 400000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5.2-fast",
+      "strengths": [
+        {
+          "text": "GPT-5.2 is OpenAI's best general-purpose model, part of the GPT-5 flagship model family. It's their most intelligent model yet for both general and agentic tasks.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-5.2 is OpenAI's best general-purpose model, part of the GPT-5 flagship model family. It's their most intelligent model yet for both general and agentic tasks."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 400000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 400000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5.2-codex",
+      "strengths": [
+        {
+          "text": "GPT\u20115.2-Codex is a version of GPT\u20115.2\u2060 further optimized for agentic coding in Codex, including improvements on long-horizon work through context compaction, stronger performance on large code changes like refactors and migrations, improved performance in Windows environments, and significantly stronger cybersecurity capabilities.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT\u20115.2-Codex is a version of GPT\u20115.2\u2060 further optimized for agentic coding in Codex, including improvements on long-horizon work through context compaction, stronger performance on large code changes like refactors and migrations, improved performance in Windows environments, and significantly stronger cybersecurity capabilities."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 400000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 400000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5.2-pro",
+      "strengths": [
+        {
+          "text": "Version of GPT-5.2 that produces smarter and more precise responses.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Version of GPT-5.2 that produces smarter and more precise responses."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 400000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 400000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5.3-codex",
+      "strengths": [
+        {
+          "text": "GPT-5.3-Codex advances both the frontier coding performance of GPT\u20115.2-Codex and the reasoning and professional knowledge capabilities of GPT\u20115.2, together in one model, which is also 25% faster. This enables it to take on long-running tasks that involve research, tool use, and complex execution.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-5.3-Codex advances both the frontier coding performance of GPT\u20115.2-Codex and the reasoning and professional knowledge capabilities of GPT\u20115.2, together in one model, which is also 25% faster. This enables it to take on long-running tasks that involve research, tool use, and complex execution."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 400000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 400000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5.3-codex-fast",
+      "strengths": [
+        {
+          "text": "GPT-5.3-Codex advances both the frontier coding performance of GPT\u20115.2-Codex and the reasoning and professional knowledge capabilities of GPT\u20115.2, together in one model, which is also 25% faster. This enables it to take on long-running tasks that involve research, tool use, and complex execution.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-5.3-Codex advances both the frontier coding performance of GPT\u20115.2-Codex and the reasoning and professional knowledge capabilities of GPT\u20115.2, together in one model, which is also 25% faster. This enables it to take on long-running tasks that involve research, tool use, and complex execution."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 400000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 400000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5.4",
+      "strengths": [
+        {
+          "text": "GPT-5.4 is OpenAI's best general-purpose model, part of the GPT-5 flagship model family. It's their most intelligent model yet for both general and agentic tasks.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-5.4 is OpenAI's best general-purpose model, part of the GPT-5 flagship model family. It's their most intelligent model yet for both general and agentic tasks."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 1050000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1050000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5.4-fast",
+      "strengths": [
+        {
+          "text": "GPT-5.4 is OpenAI's best general-purpose model, part of the GPT-5 flagship model family. It's their most intelligent model yet for both general and agentic tasks.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-5.4 is OpenAI's best general-purpose model, part of the GPT-5 flagship model family. It's their most intelligent model yet for both general and agentic tasks."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 1050000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1050000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5.4-mini",
+      "strengths": [
+        {
+          "text": "GPT-5.4 Mini brings the strengths of GPT-5.4 to a faster, more efficient model designed for high-volume workloads.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-5.4 Mini brings the strengths of GPT-5.4 to a faster, more efficient model designed for high-volume workloads."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 400000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 400000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5.4-mini-fast",
+      "strengths": [
+        {
+          "text": "GPT-5.4 Mini brings the strengths of GPT-5.4 to a faster, more efficient model designed for high-volume workloads.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-5.4 Mini brings the strengths of GPT-5.4 to a faster, more efficient model designed for high-volume workloads."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 400000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 400000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5.4-nano",
+      "strengths": [
+        {
+          "text": "GPT-5.4 Nano is designed for tasks where speed and cost matter most like classification, data extraction, ranking, and sub-agents.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-5.4 Nano is designed for tasks where speed and cost matter most like classification, data extraction, ranking, and sub-agents."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 400000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 400000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5.4-pro",
+      "strengths": [
+        {
+          "text": "GPT-5.4 Pro uses more compute to think harder and provide consistently better answers. It's designed to tackle tough problems.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-5.4 Pro uses more compute to think harder and provide consistently better answers. It's designed to tackle tough problems."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 1050000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1050000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5.5",
+      "strengths": [
+        {
+          "text": "GPT\u20115.5 understands what you\u2019re trying to do faster and can carry more of the work itself. It excels at writing and debugging code, researching online, analyzing data, creating documents and spreadsheets, operating software, and moving across tools until a task is finished. Instead of carefully managing every step, you can give GPT\u20115.5 a messy, multi-part task and trust it to plan, use tools, check its work, navigate through ambiguity, and keep going.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT\u20115.5 understands what you\u2019re trying to do faster and can carry more of the work itself. It excels at writing and debugging code, researching online, analyzing data, creating documents and spreadsheets, operating software, and moving across tools until a task is finished. Instead of carefully managing every step, you can give GPT\u20115.5 a messy, multi-part task and trust it to plan, use tools, check its work, navigate through ambiguity, and keep going."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 1000000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1000000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5.5-fast",
+      "strengths": [
+        {
+          "text": "GPT\u20115.5 understands what you\u2019re trying to do faster and can carry more of the work itself. It excels at writing and debugging code, researching online, analyzing data, creating documents and spreadsheets, operating software, and moving across tools until a task is finished. Instead of carefully managing every step, you can give GPT\u20115.5 a messy, multi-part task and trust it to plan, use tools, check its work, navigate through ambiguity, and keep going.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT\u20115.5 understands what you\u2019re trying to do faster and can carry more of the work itself. It excels at writing and debugging code, researching online, analyzing data, creating documents and spreadsheets, operating software, and moving across tools until a task is finished. Instead of carefully managing every step, you can give GPT\u20115.5 a messy, multi-part task and trust it to plan, use tools, check its work, navigate through ambiguity, and keep going."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 1000000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1000000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5.5-pro",
+      "strengths": [],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 1000000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1000000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5.6-luna",
+      "strengths": [
+        {
+          "text": "GPT-5.6 Luna is a fast, affordable GPT-5.6 model that brings strong capability at the lowest cost in the series.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-5.6 Luna is a fast, affordable GPT-5.6 model that brings strong capability at the lowest cost in the series."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 1050000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1050000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5.6-luna-fast",
+      "strengths": [
+        {
+          "text": "GPT-5.6 Luna is a fast, affordable GPT-5.6 model that brings strong capability at the lowest cost in the series.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-5.6 Luna is a fast, affordable GPT-5.6 model that brings strong capability at the lowest cost in the series."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 1050000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1050000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5.6-sol",
+      "strengths": [
+        {
+          "text": "GPT-5.6 Sol is the flagship of OpenAI's GPT-5.6 series, its most capable model for long-horizon agentic work across coding, biology, and cybersecurity.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-5.6 Sol is the flagship of OpenAI's GPT-5.6 series, its most capable model for long-horizon agentic work across coding, biology, and cybersecurity."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 1050000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1050000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5.6-sol-fast",
+      "strengths": [
+        {
+          "text": "GPT-5.6 Sol is the flagship of OpenAI's GPT-5.6 series, its most capable model for long-horizon agentic work across coding, biology, and cybersecurity.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-5.6 Sol is the flagship of OpenAI's GPT-5.6 series, its most capable model for long-horizon agentic work across coding, biology, and cybersecurity."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 1050000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1050000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5.6-terra",
+      "strengths": [
+        {
+          "text": "GPT-5.6 Terra is a balanced GPT-5.6 model for everyday work, with performance comparable to the previous generation at half the cost.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-5.6 Terra is a balanced GPT-5.6 model for everyday work, with performance comparable to the previous generation at half the cost."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 1050000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1050000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-5.6-terra-fast",
+      "strengths": [
+        {
+          "text": "GPT-5.6 Terra is a balanced GPT-5.6 model for everyday work, with performance comparable to the previous generation at half the cost.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-5.6 Terra is a balanced GPT-5.6 model for everyday work, with performance comparable to the previous generation at half the cost."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 1050000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1050000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-6-astra",
+      "strengths": [
+        {
+          "text": "GPT-6 Astra is OpenAI's most capable model for complex reasoning, coding, computer use, research, and document creation.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-6 Astra is OpenAI's most capable model for complex reasoning, coding, computer use, research, and document creation."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 1050000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1050000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-6-astra-fast",
+      "strengths": [
+        {
+          "text": "GPT-6 Astra is OpenAI's most capable model for complex reasoning, coding, computer use, research, and document creation.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-6 Astra is OpenAI's most capable model for complex reasoning, coding, computer use, research, and document creation."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 1050000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1050000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-6-luna",
+      "strengths": [
+        {
+          "text": "GPT-6 Luna is OpenAI's efficient reasoning model for focused, high-volume tasks. It accepts text and images, generates text, and supports a 1,050,000-token context window with up to 128,000 output tokens. Configurable reasoning effort, structured outputs, prompt caching, and Responses API tools support cost-sensitive applications, coding tasks, and automated workflows.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-6 Luna is OpenAI's efficient reasoning model for focused, high-volume tasks. It accepts text and images, generates text, and supports a 1,050,000-token context window with up to 128,000 output tokens. Configurable reasoning effort, structured outputs, prompt caching, and Responses API tools support cost-sensitive applications, coding tasks, and automated workflows."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 1050000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1050000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-6-luna-fast",
+      "strengths": [
+        {
+          "text": "GPT-6 Luna is OpenAI's efficient reasoning model for focused, high-volume tasks. It accepts text and images, generates text, and supports a 1,050,000-token context window with up to 128,000 output tokens. Configurable reasoning effort, structured outputs, prompt caching, and Responses API tools support cost-sensitive applications, coding tasks, and automated workflows.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-6 Luna is OpenAI's efficient reasoning model for focused, high-volume tasks. It accepts text and images, generates text, and supports a 1,050,000-token context window with up to 128,000 output tokens. Configurable reasoning effort, structured outputs, prompt caching, and Responses API tools support cost-sensitive applications, coding tasks, and automated workflows."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 1050000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1050000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-6-sol",
+      "strengths": [
+        {
+          "text": "GPT-6 Sol is OpenAI's reasoning model for complex coding and agentic workflows. It accepts text and images, generates text, and supports a 1,050,000-token context window with up to 128,000 output tokens. Configurable reasoning effort, structured outputs, prompt caching, and Responses API tools make it suited to software development and multi-step automation.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-6 Sol is OpenAI's reasoning model for complex coding and agentic workflows. It accepts text and images, generates text, and supports a 1,050,000-token context window with up to 128,000 output tokens. Configurable reasoning effort, structured outputs, prompt caching, and Responses API tools make it suited to software development and multi-step automation."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 1050000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1050000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-6-sol-fast",
+      "strengths": [
+        {
+          "text": "GPT-6 Sol is OpenAI's reasoning model for complex coding and agentic workflows. It accepts text and images, generates text, and supports a 1,050,000-token context window with up to 128,000 output tokens. Configurable reasoning effort, structured outputs, prompt caching, and Responses API tools make it suited to software development and multi-step automation.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-6 Sol is OpenAI's reasoning model for complex coding and agentic workflows. It accepts text and images, generates text, and supports a 1,050,000-token context window with up to 128,000 output tokens. Configurable reasoning effort, structured outputs, prompt caching, and Responses API tools make it suited to software development and multi-step automation."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 1050000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1050000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-6.1-sol",
+      "strengths": [
+        {
+          "text": "GPT-6.1 Sol is OpenAI's reasoning model for complex coding, computer use, and professional work. It accepts text and images, generates text, and supports a 1,050,000-token context window with up to 128,000 output tokens. Configurable reasoning effort, structured outputs, prompt caching, and Responses API tools support multi-step workflows.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-6.1 Sol is OpenAI's reasoning model for complex coding, computer use, and professional work. It accepts text and images, generates text, and supports a 1,050,000-token context window with up to 128,000 output tokens. Configurable reasoning effort, structured outputs, prompt caching, and Responses API tools support multi-step workflows."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 1050000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1050000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-6.1-sol-fast",
+      "strengths": [
+        {
+          "text": "GPT-6.1 Sol is OpenAI's reasoning model for complex coding, computer use, and professional work. It accepts text and images, generates text, and supports a 1,050,000-token context window with up to 128,000 output tokens. Configurable reasoning effort, structured outputs, prompt caching, and Responses API tools support multi-step workflows.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT-6.1 Sol is OpenAI's reasoning model for complex coding, computer use, and professional work. It accepts text and images, generates text, and supports a 1,050,000-token context window with up to 128,000 output tokens. Configurable reasoning effort, structured outputs, prompt caching, and Responses API tools support multi-step workflows."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 1050000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 1050000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-oss-120b",
+      "strengths": [
+        {
+          "text": "Extremely capable general-purpose LLM with strong, controllable reasoning capabilities",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "Extremely capable general-purpose LLM with strong, controllable reasoning capabilities"
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 131072-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 131072"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-oss-20b",
+      "strengths": [
+        {
+          "text": "A compact, open-weight language model optimized for low-latency and resource-constrained environments, including local and edge deployments.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "A compact, open-weight language model optimized for low-latency and resource-constrained environments, including local and edge deployments."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 131072-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 131072"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-oss-safeguard-120b",
+      "strengths": [
+        {
+          "text": "GPT OSS Safeguard 120B is OpenAI\u2019s open-weight safety model for content moderation and guardrail enforcement. It helps teams evaluate content against custom safety policies and build scalable, adaptable protections for production AI applications.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "GPT OSS Safeguard 120B is OpenAI\u2019s open-weight safety model for content moderation and guardrail enforcement. It helps teams evaluate content against custom safety policies and build scalable, adaptable protections for production AI applications."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 128000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 128000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/gpt-oss-safeguard-20b",
+      "strengths": [
+        {
+          "text": "OpenAI's first open weight reasoning model specifically trained for safety classification tasks. Fine-tuned from GPT-OSS, this model helps classify text content based on customizable policies, enabling bring-your-own-policy Trust & Safety AI where your own taxonomy, definitions, and thresholds guide classification decisions.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "OpenAI's first open weight reasoning model specifically trained for safety classification tasks. Fine-tuned from GPT-OSS, this model helps classify text content based on customizable policies, enabling bring-your-own-policy Trust & Safety AI where your own taxonomy, definitions, and thresholds guide classification decisions."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 128000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 128000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/o1",
+      "strengths": [
+        {
+          "text": "o1 is OpenAI's flagship reasoning model, designed for complex problems that require deep thinking. It provides strong reasoning capabilities with improved accuracy for complex multi-step tasks.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "o1 is OpenAI's flagship reasoning model, designed for complex problems that require deep thinking. It provides strong reasoning capabilities with improved accuracy for complex multi-step tasks."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 200000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 200000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/o3",
+      "strengths": [
+        {
+          "text": "OpenAI's o3 is their most powerful reasoning model, setting new state-of-the-art benchmarks in coding, math, science, and visual perception. It excels at complex queries requiring multi-faceted analysis, with particular strength in analyzing images, charts, and graphics.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "OpenAI's o3 is their most powerful reasoning model, setting new state-of-the-art benchmarks in coding, math, science, and visual perception. It excels at complex queries requiring multi-faceted analysis, with particular strength in analyzing images, charts, and graphics."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 200000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 200000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/o3-fast",
+      "strengths": [
+        {
+          "text": "OpenAI's o3 is their most powerful reasoning model, setting new state-of-the-art benchmarks in coding, math, science, and visual perception. It excels at complex queries requiring multi-faceted analysis, with particular strength in analyzing images, charts, and graphics.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "OpenAI's o3 is their most powerful reasoning model, setting new state-of-the-art benchmarks in coding, math, science, and visual perception. It excels at complex queries requiring multi-faceted analysis, with particular strength in analyzing images, charts, and graphics."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 200000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 200000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/o3-mini",
+      "strengths": [
+        {
+          "text": "o3-mini is OpenAI's most recent small reasoning model, providing high intelligence at the same cost and latency targets of o1-mini.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "o3-mini is OpenAI's most recent small reasoning model, providing high intelligence at the same cost and latency targets of o1-mini."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 200000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 200000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/o3-pro",
+      "strengths": [
+        {
+          "text": "The o-series of models are trained with reinforcement learning to think before they answer and perform complex reasoning. The o3-pro model uses more compute to think harder and provide consistently better answers.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "The o-series of models are trained with reinforcement learning to think before they answer and perform complex reasoning. The o3-pro model uses more compute to think harder and provide consistently better answers."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 200000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 200000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/o4-mini",
+      "strengths": [
+        {
+          "text": "OpenAI's o4-mini delivers fast, cost-efficient reasoning with exceptional performance for its size, particularly excelling in math (best-performing on AIME benchmarks), coding, and visual tasks.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "OpenAI's o4-mini delivers fast, cost-efficient reasoning with exceptional performance for its size, particularly excelling in math (best-performing on AIME benchmarks), coding, and visual tasks."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 200000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 200000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    },
+    {
+      "id": "openai/o4-mini-fast",
+      "strengths": [
+        {
+          "text": "OpenAI's o4-mini delivers fast, cost-efficient reasoning with exceptional performance for its size, particularly excelling in math (best-performing on AIME benchmarks), coding, and visual tasks.",
+          "basis": "catalog_claim",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "OpenAI's o4-mini delivers fast, cost-efficient reasoning with exceptional performance for its size, particularly excelling in math (best-performing on AIME benchmarks), coding, and visual tasks."
+        }
+      ],
+      "weaknesses": [
+        {
+          "text": "Catalog lists a 200000-token context window; operational capacity is not a benchmark weakness.",
+          "basis": "operational_limit",
+          "source_url": "https://vercel.com/ai/models",
+          "source_file": "data/raw/models-dev.json",
+          "locator": "context_window: 200000"
+        }
+      ],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "Exact-version empirical evidence was not established in the saved sources; fast variants are catalog aliases and were not assigned predecessor scores."
+    }
+  ],
+  "benchmarks": [],
+  "sources": [
+    {
+      "url": "https://arxiv.org/abs/2303.08774",
+      "file": "data/research/openai/sources/arxiv-gpt4-paper.html",
+      "status": "retrieved",
+      "purpose": "GPT-4 technical report; exact identity evidence for GPT-4, not assigned turbo alias",
+      "license": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/openai/gpt-oss-120b",
+      "file": "data/research/openai/sources/hf-gpt-oss-120b-readme.md",
+      "status": "retrieved",
+      "purpose": "Open-weight GPT OSS 120B model card",
+      "license": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/openai/gpt-oss-20b",
+      "file": "data/research/openai/sources/hf-gpt-oss-20b-readme.md",
+      "status": "retrieved",
+      "purpose": "Open-weight GPT OSS 20B model card",
+      "license": "unknown"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/models",
+      "file": "data/research/openai/sources/developers-openai-models.html",
+      "status": "retrieved",
+      "purpose": "OpenAI model documentation shell/content",
+      "license": "unknown"
+    },
+    {
+      "url": "https://openai.com/index/introducing-gpt-5/",
+      "file": "data/research/openai/sources/openai-gpt5-blog.html",
+      "status": "blocked",
+      "purpose": "Saved response was a challenge/JS shell; no usable primary benchmark table",
+      "license": "unknown"
+    },
+    {
+      "url": "https://github.com/openai/simple-evals",
+      "file": "data/research/openai/sources/github-simple-evals-readme.md",
+      "status": "retrieved",
+      "purpose": "OpenAI simple-evals repository README; no exact assigned-model score extracted",
+      "license": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/openai/gpt-4o",
+      "file": "data/research/openai/sources/huggingface-gpt4o-api.json",
+      "status": "not_found",
+      "purpose": "Specific model card request returned authentication error",
+      "license": "unknown"
+    }
+  ],
+  "gaps": [
+    "Most assigned IDs are future or alias revisions without a saved primary source explicitly identifying that exact model.",
+    "Saved OpenAI web pages were largely JavaScript/challenge shells; no numeric table was used unless directly inspectable.",
+    "No benchmark rows are included where model identity or numeric table evidence was insufficient."
+  ]
+}

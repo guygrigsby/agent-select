@@ -1,0 +1,1112 @@
+[
+  {
+    "id": "meta/llama-3.1-70b",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1721692800,
+    "owned_by": "meta",
+    "name": "Llama 3.1 70B Instruct",
+    "description": "An update to Meta Llama 3 70B Instruct that includes an expanded 128K context length, multilinguality and improved reasoning capabilities.",
+    "context_window": 128000,
+    "max_tokens": 8192,
+    "type": "language",
+    "zdr": "all",
+    "no_training": "all",
+    "tags": [
+      "tool-use",
+      "structured-output"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      },
+      {
+        "type": "effort",
+        "values": [
+          "none",
+          "low",
+          "medium",
+          "high"
+        ]
+      }
+    ],
+    "knowledge": "2023-12",
+    "pricing": {
+      "input": "0.00000072",
+      "output": "0.00000072",
+      "varies_by_provider": true
+    }
+  },
+  {
+    "id": "meta/llama-3.1-8b",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1721692800,
+    "owned_by": "meta",
+    "name": "Llama 3.1 8B Instruct",
+    "description": "An update to Meta Llama 3 8B Instruct that includes an expanded 128K context length, multilinguality and improved reasoning capabilities.",
+    "context_window": 128000,
+    "max_tokens": 8192,
+    "type": "language",
+    "zdr": "some",
+    "no_training": "some",
+    "tags": [
+      "tool-use",
+      "structured-output"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      },
+      {
+        "type": "effort",
+        "values": [
+          "none",
+          "low",
+          "medium",
+          "high"
+        ]
+      }
+    ],
+    "knowledge": "2023-12",
+    "pricing": {
+      "input": "0.00000022",
+      "output": "0.00000022",
+      "varies_by_provider": true
+    }
+  },
+  {
+    "id": "meta/llama-3.3-70b",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1733443200,
+    "owned_by": "meta",
+    "name": "Llama 3.3 70B Instruct",
+    "description": "Where performance meets efficiency. This model supports high-performance conversational AI designed for content creation, enterprise applications, and research, offering advanced language understanding capabilities, including text summarization, classification, sentiment analysis, and code generation.",
+    "context_window": 128000,
+    "max_tokens": 8192,
+    "type": "language",
+    "zdr": "all",
+    "no_training": "all",
+    "tags": [
+      "tool-use"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      },
+      {
+        "type": "effort",
+        "values": [
+          "none",
+          "low",
+          "medium",
+          "high"
+        ]
+      }
+    ],
+    "knowledge": "2023-12",
+    "pricing": {
+      "input": "0.00000072",
+      "output": "0.00000072"
+    }
+  },
+  {
+    "id": "meta/llama-4-maverick",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1743811200,
+    "owned_by": "meta",
+    "name": "Llama 4 Maverick 17B Instruct",
+    "description": "As a general purpose LLM, Llama 4 Maverick contains 17 billion active parameters, 128 experts, and 400 billion total parameters, offering high quality at a lower price compared to Llama 3.3 70B.",
+    "context_window": 128000,
+    "max_tokens": 8192,
+    "type": "language",
+    "zdr": "all",
+    "no_training": "all",
+    "tags": [
+      "tool-use",
+      "vision",
+      "structured-output"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      },
+      {
+        "type": "effort",
+        "values": [
+          "none",
+          "low",
+          "medium",
+          "high"
+        ]
+      }
+    ],
+    "knowledge": "2024-08",
+    "pricing": {
+      "input": "0.00000024",
+      "output": "0.00000097",
+      "varies_by_provider": true
+    }
+  },
+  {
+    "id": "meta/llama-4-scout",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1743811200,
+    "owned_by": "meta",
+    "name": "Llama 4 Scout 17B Instruct",
+    "description": "Llama 4 Scout is the best multimodal model in the world in its class and is more powerful than our Llama 3 models, while fitting in a single H100 GPU. Additionally, Llama 4 Scout supports an industry-leading context window of up to 10M tokens.",
+    "context_window": 128000,
+    "max_tokens": 8192,
+    "type": "language",
+    "zdr": "all",
+    "no_training": "all",
+    "tags": [
+      "tool-use",
+      "vision",
+      "structured-output"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      },
+      {
+        "type": "effort",
+        "values": [
+          "none",
+          "low",
+          "medium",
+          "high"
+        ]
+      }
+    ],
+    "knowledge": "2024-08",
+    "pricing": {
+      "input": "0.00000017",
+      "output": "0.00000066",
+      "varies_by_provider": true
+    }
+  },
+  {
+    "id": "meta/muse-glimmer-30b",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1786320000,
+    "owned_by": "meta",
+    "name": "Muse Glimmer 30B",
+    "description": "",
+    "context_window": 131072,
+    "max_tokens": 131072,
+    "type": "language",
+    "zdr": "all",
+    "no_training": "all",
+    "tags": [
+      "vision",
+      "implicit-caching",
+      "reasoning",
+      "tool-use",
+      "structured-output"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      },
+      {
+        "type": "effort",
+        "values": [
+          "none",
+          "low",
+          "medium",
+          "high"
+        ]
+      }
+    ],
+    "knowledge": "2026-01-04",
+    "pricing": {
+      "input": "0.00000035",
+      "output": "0.0000015",
+      "input_cache_read": "0.00000004"
+    }
+  },
+  {
+    "id": "meta/muse-spark-1.1",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1783555200,
+    "owned_by": "meta",
+    "name": "Muse Spark 1.1",
+    "description": "Muse Spark 1.1 is strongest at agentic performance, tool use, and computer use. It does well on long-running tasks with 1M token context window, can delegate execution to sub-agents running in parallel, and is trained to use computer interfaces on desktop, mobile, or browser.",
+    "context_window": 1048576,
+    "max_tokens": 1048576,
+    "type": "language",
+    "zdr": "all",
+    "no_training": "all",
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "implicit-caching",
+      "file-input",
+      "vision",
+      "structured-output"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "effort",
+        "values": [
+          "minimal",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ]
+      }
+    ],
+    "pricing": {
+      "input": "0.00000125",
+      "output": "0.00000425",
+      "input_cache_read": "0.00000015"
+    }
+  },
+  {
+    "id": "meta/muse-spark-1.2",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1785888000,
+    "owned_by": "meta",
+    "name": "Muse Spark 1.2",
+    "description": "A coding-optimized model purpose-built for agentic workflows. Improvements to code generation, debugging, and codebase understanding \u2014 with a 1M context window that handles your entire project in one session.",
+    "context_window": 1048576,
+    "max_tokens": 1048576,
+    "type": "language",
+    "zdr": "all",
+    "no_training": "all",
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "implicit-caching",
+      "file-input",
+      "vision",
+      "structured-output"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "effort",
+        "values": [
+          "minimal",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ]
+      }
+    ],
+    "pricing": {
+      "input": "0.00000125",
+      "output": "0.00000425",
+      "input_cache_read": "0.00000015"
+    }
+  },
+  {
+    "id": "meta/muse-spark-1.2-contributor",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1785888000,
+    "owned_by": "meta",
+    "name": "Muse Spark 1.2 Contributor",
+    "description": "A coding-optimized model with pricing designed for builders. Same model, same capabilities \u2014 up to 95% less than Standard. Your inputs and outputs are used to train and improve Meta's AI models.",
+    "context_window": 1048576,
+    "max_tokens": 1048576,
+    "type": "language",
+    "zdr": "none",
+    "no_training": "none",
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "implicit-caching",
+      "file-input",
+      "vision",
+      "structured-output"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "effort",
+        "values": [
+          "minimal",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ]
+      }
+    ],
+    "pricing": {
+      "input": "0.0000001",
+      "output": "0.0000002",
+      "input_cache_read": "0.000000002"
+    }
+  },
+  {
+    "id": "meta/muse-spark-1.3",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1788307200,
+    "owned_by": "meta",
+    "name": "Muse Spark 1.3",
+    "description": "Muse Spark 1.3 is Meta\u2019s multimodal reasoning model for long-horizon agentic and coding workflows. With a 1M-token context window, reliable tool calling, higher first-attempt accuracy, and native understanding of video, images, and documents, it helps developers build capable coding agents and AI development workflows with fewer unnecessary turns and cleaner output.",
+    "context_window": 1048576,
+    "max_tokens": 1048576,
+    "type": "language",
+    "zdr": "all",
+    "no_training": "all",
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "implicit-caching",
+      "file-input",
+      "vision",
+      "structured-output"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "effort",
+        "values": [
+          "minimal",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ]
+      }
+    ],
+    "pricing": {
+      "input": "0.00000125",
+      "output": "0.00000425",
+      "input_cache_read": "0.00000015"
+    }
+  },
+  {
+    "id": "meta/muse-spark-1.3-contributor",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1788307200,
+    "owned_by": "meta",
+    "name": "Muse Spark 1.3 Contributor",
+    "description": "Muse Spark 1.3 Contributor is Meta\u2019s cost-optimized API option for agentic coding workflows. It offers a 1M-token context window, dependable tool calling, and multimodal perception at $0.10 per million input tokens and $0.20 per million output tokens, with usage permitted to improve Meta\u2019s products.",
+    "context_window": 1048576,
+    "max_tokens": 1048576,
+    "type": "language",
+    "zdr": "none",
+    "no_training": "none",
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "implicit-caching",
+      "file-input",
+      "vision",
+      "structured-output"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "effort",
+        "values": [
+          "minimal",
+          "low",
+          "medium",
+          "high",
+          "xhigh"
+        ]
+      }
+    ],
+    "pricing": {
+      "input": "0.0000001",
+      "output": "0.0000002",
+      "input_cache_read": "0.000000002"
+    }
+  },
+  {
+    "id": "mistral/codestral",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1716940800,
+    "owned_by": "mistral",
+    "name": "Mistral Codestral",
+    "description": "Mistral's cutting-edge language model for coding released end of July 2025, Codestral specializes in low-latency, high-frequency tasks such as fill-in-the-middle (FIM), code correction and test generation.",
+    "context_window": 128000,
+    "max_tokens": 4000,
+    "type": "language",
+    "zdr": "all",
+    "no_training": "all",
+    "tags": [
+      "tool-use",
+      "structured-output"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "knowledge": "2024-10",
+    "pricing": {
+      "input": "0.0000003",
+      "output": "0.0000009",
+      "input_cache_read": "0.00000003"
+    }
+  },
+  {
+    "id": "mistral/ministral-14b",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1764633600,
+    "owned_by": "mistral",
+    "name": "Ministral 14B",
+    "description": "Ministral 3 14B is the largest model in the Ministral 3 family, offering state-of-the-art capabilities and performance comparable to its larger Mistral Small 3.2 24B counterpart. Optimized for local deployment, it delivers high performance across diverse hardware, including local setups.",
+    "context_window": 262144,
+    "max_tokens": 256000,
+    "type": "language",
+    "zdr": "all",
+    "no_training": "all",
+    "tags": [
+      "file-input",
+      "tool-use",
+      "vision",
+      "structured-output"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "knowledge": "2024-10",
+    "pricing": {
+      "input": "0.0000002",
+      "output": "0.0000002",
+      "input_cache_read": "0.00000002"
+    }
+  },
+  {
+    "id": "mistral/ministral-3b",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1729036800,
+    "owned_by": "mistral",
+    "name": "Ministral 3B",
+    "description": "A compact, efficient model for on-device tasks like smart assistants and local analytics, offering low-latency performance.",
+    "context_window": 131072,
+    "max_tokens": 4000,
+    "type": "language",
+    "zdr": "all",
+    "no_training": "all",
+    "tags": [
+      "tool-use",
+      "vision"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice"
+    ],
+    "temperature": true,
+    "knowledge": "2024-10",
+    "pricing": {
+      "input": "0.0000001",
+      "output": "0.0000001",
+      "input_cache_read": "0.00000001"
+    }
+  },
+  {
+    "id": "mistral/ministral-8b",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1729036800,
+    "owned_by": "mistral",
+    "name": "Ministral 8B",
+    "description": "A more powerful model with faster, memory-efficient inference, ideal for complex workflows and demanding edge applications.",
+    "context_window": 262144,
+    "max_tokens": 4000,
+    "type": "language",
+    "zdr": "all",
+    "no_training": "all",
+    "tags": [
+      "tool-use",
+      "vision",
+      "structured-output"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "knowledge": "2024-10",
+    "pricing": {
+      "input": "0.00000015",
+      "output": "0.00000015",
+      "input_cache_read": "0.000000015"
+    }
+  },
+  {
+    "id": "mistral/mistral-large-3",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1764633600,
+    "owned_by": "mistral",
+    "name": "Mistral Large 3",
+    "description": "Mistral Large 3 2512 is Mistral\u2019s most capable model to date. It has a sparse mixture-of-experts architecture with 41B active parameters (675B total).",
+    "context_window": 262144,
+    "max_tokens": 256000,
+    "type": "language",
+    "zdr": "all",
+    "no_training": "all",
+    "tags": [
+      "tool-use",
+      "vision",
+      "structured-output"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "knowledge": "2024-10",
+    "pricing": {
+      "input": "0.0000005",
+      "output": "0.0000015",
+      "input_cache_read": "0.00000005"
+    }
+  },
+  {
+    "id": "mistral/mistral-medium-3.5",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1777420800,
+    "owned_by": "mistral",
+    "name": "Mistral Medium Latest",
+    "description": "Mistral's frontier-class multimodal model optimized for agentic and coding use cases.",
+    "context_window": 262144,
+    "max_tokens": 256000,
+    "type": "language",
+    "zdr": "all",
+    "no_training": "all",
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "vision",
+      "structured-output"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "effort",
+        "values": [
+          "none",
+          "high"
+        ]
+      }
+    ],
+    "pricing": {
+      "input": "0.0000015",
+      "output": "0.0000075",
+      "input_cache_read": "0.00000015"
+    }
+  },
+  {
+    "id": "mistral/mistral-nemo",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1721260800,
+    "owned_by": "mistral",
+    "name": "Mistral Nemo 12B",
+    "description": "A 12B parameter model with a 128k token context length built by Mistral in collaboration with NVIDIA. The model is multilingual, supporting English, French, German, Spanish, Italian, Portuguese, Chinese, Japanese, Korean, Arabic, and Hindi. It supports function calling and is released under the Apache 2.0 license.",
+    "context_window": 60288,
+    "max_tokens": 16000,
+    "type": "language",
+    "zdr": "some",
+    "no_training": "some",
+    "tags": [
+      "tool-use",
+      "structured-output"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "knowledge": "2024-04",
+    "pricing": {
+      "input": "0.00000004",
+      "output": "0.00000017",
+      "varies_by_provider": true
+    }
+  },
+  {
+    "id": "mistral/mistral-small",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1726531200,
+    "owned_by": "mistral",
+    "name": "Mistral Small",
+    "description": "Mistral Small currently runs Mistral Small 4, a multimodal model combining instruction following, reasoning, and coding with a 262,144-token context window.",
+    "context_window": 262144,
+    "max_tokens": 4000,
+    "type": "language",
+    "zdr": "all",
+    "no_training": "all",
+    "tags": [
+      "tool-use",
+      "vision",
+      "structured-output"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "knowledge": "2025-06",
+    "pricing": {
+      "input": "0.00000015",
+      "output": "0.0000006",
+      "input_cache_read": "0.000000015"
+    }
+  }
+]

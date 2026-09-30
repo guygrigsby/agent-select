@@ -1,0 +1,284 @@
+{
+  "models": [
+    {
+      "id": "anthropic/claude-3-haiku",
+      "strengths": [],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark was established from the saved sources; future/unfamiliar releases were not assigned predecessor results."
+    },
+    {
+      "id": "anthropic/claude-fable-5",
+      "strengths": [],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark was established from the saved sources; future/unfamiliar releases were not assigned predecessor results."
+    },
+    {
+      "id": "anthropic/claude-fable-5.1",
+      "strengths": [
+        {
+          "text": "Claude Fable 5.1 is documented in Anthropic model documentation; capability details are provider claims, not independent measurements.",
+          "basis": "primary_claim",
+          "source_url": "https://docs.anthropic.com/en/docs/models/fable-5-1/overview",
+          "source_file": "data/research/anthropic/sources/anthropic_docs_fable5_1.html",
+          "locator": "Claude Fable 5.1"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "found",
+      "notes": "No exact-model numeric benchmark was established from the saved sources; future/unfamiliar releases were not assigned predecessor results."
+    },
+    {
+      "id": "anthropic/claude-haiku-4.5",
+      "strengths": [
+        {
+          "text": "Claude Haiku 4.5 is documented in Anthropic model documentation; capability details are provider claims, not independent measurements.",
+          "basis": "primary_claim",
+          "source_url": "https://docs.anthropic.com/en/docs/models/haiku-4-5/overview",
+          "source_file": "data/research/anthropic/sources/anthropic_docs_haiku4_5.html",
+          "locator": "Claude Haiku 4.5"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "found",
+      "notes": "No exact-model numeric benchmark was established from the saved sources; future/unfamiliar releases were not assigned predecessor results."
+    },
+    {
+      "id": "anthropic/claude-opus-4",
+      "strengths": [
+        {
+          "text": "Claude Opus 4 is documented in Anthropic model documentation; capability details are provider claims, not independent measurements.",
+          "basis": "primary_claim",
+          "source_url": "https://docs.anthropic.com/en/docs/models/opus-4/overview",
+          "source_file": "data/research/anthropic/sources/anthropic_docs_opus4.html",
+          "locator": "Claude Opus 4"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "found",
+      "notes": "No exact-model numeric benchmark was established from the saved sources; future/unfamiliar releases were not assigned predecessor results."
+    },
+    {
+      "id": "anthropic/claude-opus-4.5",
+      "strengths": [],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark was established from the saved sources; future/unfamiliar releases were not assigned predecessor results."
+    },
+    {
+      "id": "anthropic/claude-opus-4.6",
+      "strengths": [],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark was established from the saved sources; future/unfamiliar releases were not assigned predecessor results."
+    },
+    {
+      "id": "anthropic/claude-opus-4.7",
+      "strengths": [],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark was established from the saved sources; future/unfamiliar releases were not assigned predecessor results."
+    },
+    {
+      "id": "anthropic/claude-opus-4.8",
+      "strengths": [],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark was established from the saved sources; future/unfamiliar releases were not assigned predecessor results."
+    },
+    {
+      "id": "anthropic/claude-opus-4.8-fast",
+      "strengths": [],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark was established from the saved sources; future/unfamiliar releases were not assigned predecessor results."
+    },
+    {
+      "id": "anthropic/claude-opus-5",
+      "strengths": [],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark was established from the saved sources; future/unfamiliar releases were not assigned predecessor results."
+    },
+    {
+      "id": "anthropic/claude-opus-5-fast",
+      "strengths": [],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark was established from the saved sources; future/unfamiliar releases were not assigned predecessor results."
+    },
+    {
+      "id": "anthropic/claude-opus-5.5",
+      "strengths": [
+        {
+          "text": "Claude Opus 5.5 is documented in Anthropic model documentation; capability details are provider claims, not independent measurements.",
+          "basis": "primary_claim",
+          "source_url": "https://docs.anthropic.com/en/docs/models/opus-5-5/overview",
+          "source_file": "data/research/anthropic/sources/anthropic_docs_opus5_5.html",
+          "locator": "Claude Opus 5.5"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "found",
+      "notes": "No exact-model numeric benchmark was established from the saved sources; future/unfamiliar releases were not assigned predecessor results."
+    },
+    {
+      "id": "anthropic/claude-opus-5.5-fast",
+      "strengths": [],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark was established from the saved sources; future/unfamiliar releases were not assigned predecessor results."
+    },
+    {
+      "id": "anthropic/claude-sonnet-4",
+      "strengths": [
+        {
+          "text": "Claude Sonnet 4 is documented in Anthropic model documentation; capability details are provider claims, not independent measurements.",
+          "basis": "primary_claim",
+          "source_url": "https://docs.anthropic.com/en/docs/models/sonnet-4/overview",
+          "source_file": "data/research/anthropic/sources/anthropic_docs_sonnet4.html",
+          "locator": "Claude Sonnet 4"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "found",
+      "notes": "No exact-model numeric benchmark was established from the saved sources; future/unfamiliar releases were not assigned predecessor results."
+    },
+    {
+      "id": "anthropic/claude-sonnet-4.5",
+      "strengths": [],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark was established from the saved sources; future/unfamiliar releases were not assigned predecessor results."
+    },
+    {
+      "id": "anthropic/claude-sonnet-4.6",
+      "strengths": [],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark was established from the saved sources; future/unfamiliar releases were not assigned predecessor results."
+    },
+    {
+      "id": "anthropic/claude-sonnet-5",
+      "strengths": [],
+      "weaknesses": [],
+      "benchmark_status": "not_found_in_checked_sources",
+      "notes": "No exact-model numeric benchmark was established from the saved sources; future/unfamiliar releases were not assigned predecessor results."
+    },
+    {
+      "id": "anthropic/claude-sonnet-5.5",
+      "strengths": [
+        {
+          "text": "Claude Sonnet 5.5 is documented in Anthropic model documentation; capability details are provider claims, not independent measurements.",
+          "basis": "primary_claim",
+          "source_url": "https://docs.anthropic.com/en/docs/models/sonnet-5-5/overview",
+          "source_file": "data/research/anthropic/sources/anthropic_docs_sonnet5_5.html",
+          "locator": "Claude Sonnet 5.5"
+        }
+      ],
+      "weaknesses": [],
+      "benchmark_status": "found",
+      "notes": "No exact-model numeric benchmark was established from the saved sources; future/unfamiliar releases were not assigned predecessor results."
+    }
+  ],
+  "benchmarks": [],
+  "sources": [
+    {
+      "url": "(see anthropic.log for recovered URL mapping)",
+      "file": "data/research/anthropic/sources/anthropic_docs_haiku4_5.html",
+      "status": "retrieved",
+      "purpose": "Checked for exact model identity, capabilities, and numeric benchmark tables.",
+      "license": "unknown"
+    },
+    {
+      "url": "(see anthropic.log for recovered URL mapping)",
+      "file": "data/research/anthropic/sources/anthropic_docs_fable5_1.html",
+      "status": "retrieved",
+      "purpose": "Checked for exact model identity, capabilities, and numeric benchmark tables.",
+      "license": "unknown"
+    },
+    {
+      "url": "(see anthropic.log for recovered URL mapping)",
+      "file": "data/research/anthropic/sources/anthropic_docs_models.html",
+      "status": "retrieved",
+      "purpose": "Checked for exact model identity, capabilities, and numeric benchmark tables.",
+      "license": "unknown"
+    },
+    {
+      "url": "(see anthropic.log for recovered URL mapping)",
+      "file": "data/research/anthropic/sources/anthropic_research.html",
+      "status": "retrieved",
+      "purpose": "Checked for exact model identity, capabilities, and numeric benchmark tables.",
+      "license": "unknown"
+    },
+    {
+      "url": "(see anthropic.log for recovered URL mapping)",
+      "file": "data/research/anthropic/sources/anthropic_docs_opus4.html",
+      "status": "retrieved",
+      "purpose": "Checked for exact model identity, capabilities, and numeric benchmark tables.",
+      "license": "unknown"
+    },
+    {
+      "url": "(see anthropic.log for recovered URL mapping)",
+      "file": "data/research/anthropic/sources/anthropic_docs_sonnet5_5.html",
+      "status": "retrieved",
+      "purpose": "Checked for exact model identity, capabilities, and numeric benchmark tables.",
+      "license": "unknown"
+    },
+    {
+      "url": "(see anthropic.log for recovered URL mapping)",
+      "file": "data/research/anthropic/sources/hf_claude_models.json",
+      "status": "retrieved",
+      "purpose": "Checked for exact model identity, capabilities, and numeric benchmark tables.",
+      "license": "unknown"
+    },
+    {
+      "url": "(see anthropic.log for recovered URL mapping)",
+      "file": "data/research/anthropic/sources/anthropic_models_page.html",
+      "status": "retrieved",
+      "purpose": "Checked for exact model identity, capabilities, and numeric benchmark tables.",
+      "license": "unknown"
+    },
+    {
+      "url": "(see anthropic.log for recovered URL mapping)",
+      "file": "data/research/anthropic/sources/anthropic_docs_sonnet4.html",
+      "status": "retrieved",
+      "purpose": "Checked for exact model identity, capabilities, and numeric benchmark tables.",
+      "license": "unknown"
+    },
+    {
+      "url": "(see anthropic.log for recovered URL mapping)",
+      "file": "data/research/anthropic/sources/hf_anthropic_models.json",
+      "status": "retrieved",
+      "purpose": "Checked for exact model identity, capabilities, and numeric benchmark tables.",
+      "license": "unknown"
+    },
+    {
+      "url": "(see anthropic.log for recovered URL mapping)",
+      "file": "data/research/anthropic/sources/anthropic_news.html",
+      "status": "retrieved",
+      "purpose": "Checked for exact model identity, capabilities, and numeric benchmark tables.",
+      "license": "unknown"
+    },
+    {
+      "url": "(see anthropic.log for recovered URL mapping)",
+      "file": "data/research/anthropic/sources/anthropic_cookbook_readme.md",
+      "status": "retrieved",
+      "purpose": "Checked for exact model identity, capabilities, and numeric benchmark tables.",
+      "license": "unknown"
+    },
+    {
+      "url": "(see anthropic.log for recovered URL mapping)",
+      "file": "data/research/anthropic/sources/anthropic_docs_opus5_5.html",
+      "status": "retrieved",
+      "purpose": "Checked for exact model identity, capabilities, and numeric benchmark tables.",
+      "license": "unknown"
+    }
+  ],
+  "gaps": [
+    "Saved Anthropic documentation pages contained no verified numeric benchmark rows in the inspected evidence.",
+    "Several assigned IDs are future or unfamiliar revisions; they remain unresearched rather than inheriting historical scores.",
+    "Exact URL mapping is preserved in /tmp/agent-routing-research/anthropic.log."
+  ]
+}

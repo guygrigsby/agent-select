@@ -1,0 +1,7 @@
+{
+  "stage": "extraction",
+  "assigned_models": [],
+  "baseline": [],
+  "benchmark_rows": [],
+  "note": "No model assignment was present in the available task artifacts; no model-level rows or rankings were inferred. Source bytes are retained beside this file."
+}

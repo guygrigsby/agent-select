@@ -1,0 +1,1858 @@
+[
+  {
+    "id": "deepseek/deepseek-r1",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1737331200,
+    "owned_by": "deepseek",
+    "name": "DeepSeek-R1",
+    "description": "DeepSeek-R1 provides customers a state-of-the-art reasoning model, optimized for general reasoning tasks, math, science, and code generation.",
+    "context_window": 128000,
+    "max_tokens": 8192,
+    "type": "language",
+    "zdr": "all",
+    "no_training": "all",
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "implicit-caching"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      },
+      {
+        "type": "effort",
+        "values": [
+          "none",
+          "low",
+          "medium",
+          "high"
+        ]
+      }
+    ],
+    "knowledge": "2024-07",
+    "pricing": {
+      "input": "0.00000135",
+      "output": "0.0000054",
+      "varies_by_provider": true
+    }
+  },
+  {
+    "id": "deepseek/deepseek-v3.1",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1755734400,
+    "owned_by": "deepseek",
+    "name": "DeepSeek V3.1",
+    "description": "DeepSeek-V3.1 is post-trained on the top of DeepSeek-V3.1-Base, which is built upon the original V3 base checkpoint through a two-phase long context extension approach, following the methodology outlined in the original DeepSeek-V3 report. We have expanded our dataset by collecting additional long documents and substantially extending both training phases. The 32K extension phase has been increased 10-fold to 630B tokens, while the 128K extension phase has been extended by 3.3x to 209B tokens. Additionally, DeepSeek-V3.1 is trained using the UE8M0 FP8 scale data format to ensure compatibility with microscaling data formats.",
+    "context_window": 163840,
+    "max_tokens": 128000,
+    "type": "language",
+    "zdr": "some",
+    "no_training": "some",
+    "tags": [
+      "implicit-caching",
+      "reasoning",
+      "tool-use",
+      "structured-output"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      },
+      {
+        "type": "effort",
+        "values": [
+          "none",
+          "low",
+          "medium",
+          "high"
+        ]
+      }
+    ],
+    "pricing": {
+      "input": "0.00000025",
+      "output": "0.00000095",
+      "input_cache_read": "0.00000013",
+      "varies_by_provider": true
+    }
+  },
+  {
+    "id": "deepseek/deepseek-v3.1-terminus",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1758499200,
+    "owned_by": "deepseek",
+    "name": "DeepSeek V3.1 Terminus",
+    "description": "DeepSeek-V3.1-Terminus delivers more stable & reliable outputs across benchmarks compared to the previous version and addresses user feedback (i.e. language consistency and agent upgrades).",
+    "context_window": 131072,
+    "max_tokens": 65536,
+    "type": "language",
+    "zdr": "none",
+    "no_training": "none",
+    "tags": [
+      "implicit-caching",
+      "reasoning",
+      "tool-use",
+      "structured-output"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      },
+      {
+        "type": "effort",
+        "values": [
+          "none",
+          "low",
+          "medium",
+          "high"
+        ]
+      }
+    ],
+    "knowledge": "2025-07",
+    "pricing": {
+      "input": "0.00000027",
+      "output": "0.000001",
+      "input_cache_read": "0.000000135"
+    }
+  },
+  {
+    "id": "deepseek/deepseek-v3.2",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1764547200,
+    "owned_by": "deepseek",
+    "name": "DeepSeek V3.2",
+    "description": "DeepSeek\u2011V3.2 from DeepSeek harmonizes high computational efficiency with superior reasoning and agent performance. It builds on three main techniques: DeepSeek Sparse Attention for long\u2011context efficiency, a scalable reinforcement learning framework, and a large\u2011scale agentic task synthesis pipeline. This model excels at long-context reasoning and agentic tasks, efficiently handling extended inputs while maintaining strong accuracy. Its sparse attention design enables it to process complex, multi-step workflows without excessive compute costs. Overall, DeepSeek\u2011V3.2 targets long\u2011context reasoning, tool\u2011using agents, and efficient deployment in production environments.",
+    "context_window": 128000,
+    "max_tokens": 8000,
+    "type": "language",
+    "zdr": "some",
+    "no_training": "some",
+    "tags": [
+      "tool-use",
+      "implicit-caching"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      },
+      {
+        "type": "effort",
+        "values": [
+          "none",
+          "low",
+          "medium",
+          "high"
+        ]
+      }
+    ],
+    "knowledge": "2024-07",
+    "pricing": {
+      "input": "0.00000062",
+      "output": "0.00000185",
+      "varies_by_provider": true
+    }
+  },
+  {
+    "id": "deepseek/deepseek-v3.2-thinking",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1764547200,
+    "owned_by": "deepseek",
+    "name": "DeepSeek V3.2 Thinking",
+    "description": "DeepSeek\u2011V3.2 from DeepSeek harmonizes high computational efficiency with superior reasoning and agent performance. It builds on three main techniques: DeepSeek Sparse Attention for long\u2011context efficiency, a scalable reinforcement learning framework, and a large\u2011scale agentic task synthesis pipeline. This model excels at long-context reasoning and agentic tasks, efficiently handling extended inputs while maintaining strong accuracy. Its sparse attention design enables it to process complex, multi-step workflows without excessive compute costs. Overall, DeepSeek\u2011V3.2 targets long\u2011context reasoning, tool\u2011using agents, and efficient deployment in production environments.",
+    "context_window": 128000,
+    "max_tokens": 8000,
+    "type": "language",
+    "zdr": "some",
+    "no_training": "some",
+    "tags": [
+      "tool-use",
+      "implicit-caching"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      },
+      {
+        "type": "effort",
+        "values": [
+          "none",
+          "low",
+          "medium",
+          "high"
+        ]
+      }
+    ],
+    "knowledge": "2024-07",
+    "interleaved": true,
+    "pricing": {
+      "input": "0.00000062",
+      "output": "0.00000185",
+      "varies_by_provider": true
+    }
+  },
+  {
+    "id": "deepseek/deepseek-v4-flash",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1776902400,
+    "owned_by": "deepseek",
+    "name": "DeepSeek V4 Flash",
+    "description": "",
+    "context_window": 1000000,
+    "max_tokens": 384000,
+    "type": "language",
+    "zdr": "some",
+    "no_training": "some",
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "implicit-caching",
+      "structured-output"
+    ],
+    "regions": [
+      "us"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      },
+      {
+        "type": "effort",
+        "values": [
+          "none",
+          "low",
+          "medium",
+          "high"
+        ]
+      }
+    ],
+    "knowledge": "2025-05",
+    "pricing": {
+      "input": "0.00000013",
+      "output": "0.00000026",
+      "input_cache_read": "0.000000028",
+      "varies_by_provider": true,
+      "regional": {
+        "us": {
+          "input": "0.00000013",
+          "output": "0.00000026",
+          "input_cache_read": "0.000000028"
+        }
+      }
+    }
+  },
+  {
+    "id": "deepseek/deepseek-v4-flash-0731",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1776902400,
+    "owned_by": "deepseek",
+    "name": "DeepSeek V4 Flash 0731",
+    "description": "",
+    "context_window": 1000000,
+    "max_tokens": 384000,
+    "type": "language",
+    "zdr": "some",
+    "no_training": "some",
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "implicit-caching",
+      "structured-output"
+    ],
+    "regions": [
+      "us"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      },
+      {
+        "type": "effort",
+        "values": [
+          "none",
+          "low",
+          "medium",
+          "high"
+        ]
+      }
+    ],
+    "knowledge": "2025-05",
+    "pricing": {
+      "input": "0.000000076",
+      "output": "0.000000153",
+      "input_cache_read": "0.000000014",
+      "varies_by_provider": true,
+      "regional": {
+        "us": {
+          "input": "0.00000013",
+          "output": "0.00000026",
+          "input_cache_read": "0.000000028"
+        }
+      }
+    }
+  },
+  {
+    "id": "deepseek/deepseek-v4-flash-vision-exp",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1787270400,
+    "owned_by": "deepseek",
+    "name": "DeepSeek V4 Flash Vision Exp",
+    "description": "DeepSeek-V4-Flash-Vision-Exp is an experimental multimodal model that combines the agentic reasoning, coding, and world knowledge capabilities of DeepSeek-V4-Flash with advanced visual understanding. It delivers major gains on vision-dependent agent workflows while performing strongly across leading coding, repository, data science, automation, and multimodal benchmarks.",
+    "context_window": 1048576,
+    "max_tokens": 1048576,
+    "type": "language",
+    "zdr": "some",
+    "no_training": "some",
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "implicit-caching",
+      "vision",
+      "structured-output"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      },
+      {
+        "type": "effort",
+        "values": [
+          "none",
+          "low",
+          "medium",
+          "high"
+        ]
+      }
+    ],
+    "pricing": {
+      "input": "0.0000002156",
+      "output": "0.0000006468",
+      "input_cache_read": "0.0000000068",
+      "varies_by_provider": true
+    }
+  },
+  {
+    "id": "deepseek/deepseek-v4-pro",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1776902400,
+    "owned_by": "deepseek",
+    "name": "DeepSeek V4 Pro",
+    "description": "DeepSeek-V4 series incorporate several key upgrades in architecture and optimization: (1) a hybrid attention architecture that combines Compressed Sparse Attention (CSA)\nand Heavily Compressed Attention (HCA) to improve long-context efficiency; (2) ManifoldConstrained Hyper-Connections (mHC) that enhance conventional residual connections; (3)\nand the Muon optimizer for faster convergence and greater training stability",
+    "context_window": 1000000,
+    "max_tokens": 384000,
+    "type": "language",
+    "zdr": "some",
+    "no_training": "some",
+    "tags": [
+      "implicit-caching",
+      "reasoning",
+      "tool-use",
+      "structured-output"
+    ],
+    "regions": [
+      "us"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      },
+      {
+        "type": "effort",
+        "values": [
+          "none",
+          "high",
+          "max"
+        ]
+      }
+    ],
+    "knowledge": "2025-05",
+    "pricing": {
+      "input": "0.00000066",
+      "output": "0.00000198",
+      "input_cache_read": "0.000000022",
+      "peak_pricing": {
+        "multiplier": 2,
+        "windows": [
+          {
+            "start_minute_utc": 60,
+            "end_minute_utc": 240,
+            "days_of_week": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          {
+            "start_minute_utc": 360,
+            "end_minute_utc": 600,
+            "days_of_week": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          }
+        ]
+      },
+      "varies_by_provider": true,
+      "regional": {
+        "us": {
+          "input": "0.00000132",
+          "output": "0.00000396",
+          "input_cache_read": "0.000000132"
+        }
+      }
+    }
+  },
+  {
+    "id": "deepseek/deepseek-v4-pro-0813",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1786492800,
+    "owned_by": "deepseek",
+    "name": "DeepSeek V4 Pro 0813",
+    "description": "This is the 8/13 updated weights version of DeepSeek V4 Pro.",
+    "context_window": 1000000,
+    "max_tokens": 384000,
+    "type": "language",
+    "zdr": "some",
+    "no_training": "some",
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "implicit-caching",
+      "structured-output"
+    ],
+    "regions": [
+      "us"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      },
+      {
+        "type": "effort",
+        "values": [
+          "none",
+          "high",
+          "max"
+        ]
+      }
+    ],
+    "pricing": {
+      "input": "0.00000066",
+      "output": "0.00000198",
+      "input_cache_read": "0.000000066",
+      "peak_pricing": {
+        "multiplier": 2,
+        "windows": [
+          {
+            "start_minute_utc": 0,
+            "end_minute_utc": 840
+          }
+        ]
+      },
+      "varies_by_provider": true,
+      "regional": {
+        "us": {
+          "input": "0.00000132",
+          "output": "0.00000396",
+          "input_cache_read": "0.000000132"
+        }
+      }
+    }
+  },
+  {
+    "id": "deepseek/deepseek-v4.1-flash",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1788825600,
+    "owned_by": "deepseek",
+    "name": "DeepSeek V4.1 Flash",
+    "description": "DeepSeek V4.1 Flash is an AI model from DeepSeek designed for fast, efficient multimodal interactions. It combines native multimodal capabilities with a new architecture focused on stronger performance, faster responses, and lower computational cost.",
+    "context_window": 1048576,
+    "max_tokens": 32768,
+    "type": "language",
+    "zdr": "some",
+    "no_training": "some",
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "implicit-caching",
+      "vision",
+      "structured-output"
+    ],
+    "regions": [
+      "us"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      },
+      {
+        "type": "effort",
+        "values": [
+          "none",
+          "high",
+          "max"
+        ]
+      }
+    ],
+    "pricing": {
+      "input": "0.0000003",
+      "output": "0.0000012",
+      "input_cache_read": "0.000000007",
+      "varies_by_provider": true,
+      "regional": {
+        "us": {
+          "input": "0.0000003",
+          "output": "0.0000012",
+          "input_cache_read": "0.000000007"
+        }
+      }
+    }
+  },
+  {
+    "id": "zai/glm-4.5",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1753660800,
+    "owned_by": "zai",
+    "name": "GLM 4.5",
+    "description": "GLM-4.5 and GLM-4.5-Air are our latest flagship models, purpose-built as foundational models for agent-oriented applications. Both leverage a Mixture-of-Experts (MoE) architecture. GLM-4.5 has a total parameter count of 355B with 32B active parameters per forward pass, while GLM-4.5-Air adopts a more streamlined design with 106B total parameters and 12B active parameters.",
+    "context_window": 128000,
+    "max_tokens": 96000,
+    "type": "language",
+    "zdr": "none",
+    "no_training": "none",
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "implicit-caching",
+      "structured-output"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      }
+    ],
+    "knowledge": "2025-07",
+    "interleaved": true,
+    "pricing": {
+      "input": "0.0000006",
+      "output": "0.0000022",
+      "input_cache_read": "0.00000011"
+    }
+  },
+  {
+    "id": "zai/glm-4.5-air",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1753660800,
+    "owned_by": "zai",
+    "name": "GLM 4.5 Air",
+    "description": "GLM-4.5 and GLM-4.5-Air are our latest flagship models, purpose-built as foundational models for agent-oriented applications. Both leverage a Mixture-of-Experts (MoE) architecture. GLM-4.5 has a total parameter count of 355B with 32B active parameters per forward pass, while GLM-4.5-Air adopts a more streamlined design with 106B total parameters and 12B active parameters.",
+    "context_window": 128000,
+    "max_tokens": 96000,
+    "type": "language",
+    "zdr": "none",
+    "no_training": "none",
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "implicit-caching",
+      "structured-output"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      }
+    ],
+    "knowledge": "2025-04",
+    "pricing": {
+      "input": "0.0000002",
+      "output": "0.0000011",
+      "input_cache_read": "0.00000003"
+    }
+  },
+  {
+    "id": "zai/glm-4.5v",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1754870400,
+    "owned_by": "zai",
+    "name": "GLM 4.5V",
+    "description": "Built on the GLM-4.5-Air base model, GLM-4.5V inherits proven techniques from GLM-4.1V-Thinking while achieving effective scaling through a powerful 106B-parameter MoE architecture.",
+    "context_window": 66000,
+    "max_tokens": 16000,
+    "type": "language",
+    "zdr": "none",
+    "no_training": "none",
+    "tags": [
+      "implicit-caching",
+      "reasoning",
+      "tool-use",
+      "vision",
+      "structured-output"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      }
+    ],
+    "knowledge": "2025-08",
+    "pricing": {
+      "input": "0.0000006",
+      "output": "0.0000018",
+      "input_cache_read": "0.00000011"
+    }
+  },
+  {
+    "id": "zai/glm-4.6",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1759190400,
+    "owned_by": "zai",
+    "name": "GLM 4.6",
+    "description": "As the latest iteration in the GLM series, GLM-4.6 achieves comprehensive enhancements across multiple domains, including real-world coding, long-context processing, reasoning, searching, writing, and agentic applications.",
+    "context_window": 200000,
+    "max_tokens": 96000,
+    "type": "language",
+    "zdr": "some",
+    "no_training": "some",
+    "tags": [
+      "implicit-caching",
+      "reasoning",
+      "tool-use",
+      "structured-output"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      }
+    ],
+    "knowledge": "2025-04",
+    "interleaved": true,
+    "pricing": {
+      "input": "0.0000006",
+      "output": "0.0000022",
+      "input_cache_read": "0.00000011",
+      "varies_by_provider": true
+    }
+  },
+  {
+    "id": "zai/glm-4.7",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1766361600,
+    "owned_by": "zai",
+    "name": "GLM 4.7",
+    "description": "GLM-4.7 is a powerful next-generation coding model that delivers major gains in multilingual agentic coding, terminal-based workflows, and tool use, with strong improvements across benchmarks like SWE-bench, Terminal Bench, and \u03c4\u00b2-Bench. It also features enhanced reasoning and math performance, plus significantly upgraded UI generation\u2014producing cleaner, more modern web pages and better-designed slides.",
+    "context_window": 200000,
+    "max_tokens": 120000,
+    "type": "language",
+    "zdr": "some",
+    "no_training": "some",
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "structured-output",
+      "implicit-caching"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      }
+    ],
+    "knowledge": "2025-04",
+    "interleaved": true,
+    "pricing": {
+      "input": "0.0000006",
+      "output": "0.0000022",
+      "varies_by_provider": true
+    }
+  },
+  {
+    "id": "zai/glm-4.7-flash",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1768780800,
+    "owned_by": "zai",
+    "name": "GLM 4.7 Flash",
+    "description": "GLM-4.7-Flash balances high performance with efficiency, making it the perfect lightweight deployment option. Beyond coding, it is also recommended for creative writing, translation, long-context tasks, and roleplay.",
+    "context_window": 200000,
+    "max_tokens": 131000,
+    "type": "language",
+    "zdr": "some",
+    "no_training": "some",
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "structured-output",
+      "implicit-caching"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      }
+    ],
+    "knowledge": "2025-04",
+    "pricing": {
+      "input": "0.00000007",
+      "output": "0.0000004"
+    }
+  },
+  {
+    "id": "zai/glm-4.7-flashx",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1768780800,
+    "owned_by": "zai",
+    "name": "GLM 4.7 FlashX",
+    "description": " GLM-4.7-Flash balances high performance with efficiency, making it the perfect lightweight deployment option. ",
+    "context_window": 200000,
+    "max_tokens": 128000,
+    "type": "language",
+    "zdr": "none",
+    "no_training": "none",
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "implicit-caching"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      }
+    ],
+    "knowledge": "2025-01",
+    "interleaved": true,
+    "pricing": {
+      "input": "0.00000006",
+      "output": "0.0000004",
+      "input_cache_read": "0.00000001"
+    }
+  },
+  {
+    "id": "zai/glm-5",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1770854400,
+    "owned_by": "zai",
+    "name": "GLM 5",
+    "description": "GLM 5 is a frontier-class, general-purpose large language model optimized for complex systems engineering and long-horizon agentic tasks. It builds on the GLM 4.5 agent-centric lineage and is designed to support multi-step reasoning, math (including AIME-style benchmarks), advanced coding, and tool-augmented workflows, with long context support suitable for sophisticated agents and enterprise applications. Typical uses include autonomous agents for software engineering, data and systems troubleshooting, operations copilots, and high-end chat assistants that must break down complex tasks, call tools reliably, and reason over long sequences of instructions or documents.",
+    "context_window": 202800,
+    "max_tokens": 131100,
+    "type": "language",
+    "zdr": "some",
+    "no_training": "some",
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "structured-output",
+      "implicit-caching"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      }
+    ],
+    "pricing": {
+      "input": "0.000001",
+      "output": "0.0000032"
+    }
+  },
+  {
+    "id": "zai/glm-5-turbo",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1773532800,
+    "owned_by": "zai",
+    "name": "GLM 5 Turbo",
+    "description": "GLM 5 Turbo is a foundation model deeply optimized for the OpenClaw scenario. It has been specifically optimized for the core requirements of OpenClaw tasks since the training phase, enhancing key capabilities such as tool invocation, command following, timed and persistent tasks, and long-chain execution.",
+    "context_window": 202800,
+    "max_tokens": 131100,
+    "type": "language",
+    "zdr": "none",
+    "no_training": "none",
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "implicit-caching"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      }
+    ],
+    "pricing": {
+      "input": "0.0000012",
+      "output": "0.000004",
+      "input_cache_read": "0.00000024"
+    }
+  },
+  {
+    "id": "zai/glm-5.1",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1775520000,
+    "owned_by": "zai",
+    "name": "GLM 5.1",
+    "description": "GLM-5.1 delivers a major leap in coding capability, with particularly significant gains in handling long-horizon tasks. Unlike previous models built around minute-level interactions, GLM-5.1 can work independently and continuously on a single task for more than 8 hours\u2014autonomously planning, executing, and improving itself throughout the process\u2014ultimately delivering complete, engineering-grade results.",
+    "context_window": 202800,
+    "max_tokens": 64000,
+    "type": "language",
+    "zdr": "some",
+    "no_training": "some",
+    "tags": [
+      "implicit-caching",
+      "reasoning",
+      "tool-use",
+      "structured-output"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      }
+    ],
+    "pricing": {
+      "input": "0.0000014",
+      "output": "0.0000044",
+      "input_cache_read": "0.00000026",
+      "varies_by_provider": true
+    }
+  },
+  {
+    "id": "zai/glm-5.2",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1781568000,
+    "owned_by": "zai",
+    "name": "GLM 5.2",
+    "description": "GLM-5.2 delivers powerful coding capabilities, usable 1M-context support, and continued strengths in long-horizon tasks.",
+    "context_window": 1000000,
+    "max_tokens": 128000,
+    "type": "language",
+    "zdr": "some",
+    "no_training": "some",
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "implicit-caching",
+      "structured-output"
+    ],
+    "regions": [
+      "us"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      },
+      {
+        "type": "effort",
+        "values": [
+          "none",
+          "high",
+          "max"
+        ]
+      }
+    ],
+    "pricing": {
+      "input": "0.0000008",
+      "output": "0.00000255",
+      "input_cache_read": "0.00000016",
+      "varies_by_provider": true,
+      "fast": {
+        "input": "0.0000028",
+        "output": "0.0000088",
+        "input_cache_read": "0.00000056"
+      },
+      "regional": {
+        "us": {
+          "input": "0.0000014",
+          "output": "0.0000044",
+          "input_cache_read": "0.00000014",
+          "fast": {
+            "input": "0.0000021",
+            "output": "0.0000066",
+            "input_cache_read": "0.00000021"
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "zai/glm-5.2-fast",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1782172800,
+    "owned_by": "zai",
+    "name": "GLM 5.2 Fast",
+    "description": "GLM-5.2-Fast-Preview is the high-speed variant of Zhipu AI&#39;s GLM-5.2, with 1M context and capabilities on par with the standard version. Inference-optimized to deliver 1.5\u20132\u00d7 the output TPS, it fits latency-sensitive use cases such as real-time chat, multi-turn agents, and streaming code generation.",
+    "context_window": 1000000,
+    "max_tokens": 128000,
+    "type": "language",
+    "zdr": "all",
+    "no_training": "all",
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "implicit-caching",
+      "structured-output"
+    ],
+    "regions": [
+      "us"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      },
+      {
+        "type": "effort",
+        "values": [
+          "none",
+          "low",
+          "medium",
+          "high"
+        ]
+      }
+    ],
+    "pricing": {
+      "input": "0.0000028",
+      "output": "0.0000088",
+      "input_cache_read": "0.00000056",
+      "varies_by_provider": true,
+      "regional": {
+        "us": {
+          "input": "0.0000021",
+          "output": "0.0000066",
+          "input_cache_read": "0.00000021"
+        }
+      }
+    }
+  },
+  {
+    "id": "zai/glm-5.3",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1787011200,
+    "owned_by": "zai",
+    "name": "GLM 5.3",
+    "description": "GLM 5.3 delivers comprehensive advancements in complex software engineering and agent capabilities. It uses the same base model as GLM-5.2, with all improvements driven by post-training.",
+    "context_window": 1000000,
+    "max_tokens": 1000000,
+    "type": "language",
+    "zdr": "some",
+    "no_training": "some",
+    "tags": [
+      "implicit-caching",
+      "reasoning",
+      "tool-use",
+      "structured-output"
+    ],
+    "regions": [
+      "us"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "effort",
+        "values": [
+          "low",
+          "high",
+          "max"
+        ]
+      }
+    ],
+    "pricing": {
+      "input": "0.0000014",
+      "output": "0.0000044",
+      "input_cache_read": "0.00000014",
+      "varies_by_provider": true,
+      "fast": {
+        "input": "0.0000021",
+        "output": "0.0000066",
+        "input_cache_read": "0.00000021"
+      },
+      "regional": {
+        "us": {
+          "input": "0.0000014",
+          "output": "0.0000044",
+          "input_cache_read": "0.00000014"
+        }
+      }
+    }
+  },
+  {
+    "id": "zai/glm-5.3-fast",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1788307200,
+    "owned_by": "zai",
+    "name": "GLM 5.3 Fast",
+    "description": "Speed-optimized version of Z.AI\u2019s GLM-5.3 agentic coding model, built for responsive, real-time workloads. It supports advanced coding, long-horizon task execution, testing, vulnerability discovery, and cybersecurity analysis, making it ideal for developer tools, coding agents, and complex multi-step engineering workflows.",
+    "context_window": 1048576,
+    "max_tokens": 262144,
+    "type": "language",
+    "zdr": "all",
+    "no_training": "all",
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "implicit-caching",
+      "structured-output"
+    ],
+    "regions": [
+      "us"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      },
+      {
+        "type": "effort",
+        "values": [
+          "none",
+          "low",
+          "medium",
+          "high"
+        ]
+      }
+    ],
+    "pricing": {
+      "input": "0.0000021",
+      "output": "0.0000066",
+      "input_cache_read": "0.00000021",
+      "varies_by_provider": true,
+      "regional": {
+        "us": {
+          "input": "0.0000021",
+          "output": "0.0000066",
+          "input_cache_read": "0.00000021"
+        }
+      }
+    }
+  },
+  {
+    "id": "zai/glm-5.3-flash",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1787702400,
+    "owned_by": "zai",
+    "name": "GLM 5.3 Flash",
+    "description": "GLM-5.3-Flash is Z.ai\u2019s native multimodal coding model, featuring 320B total parameters, 18B activated parameters, and a 1M-token context window. Its efficient hybrid attention architecture supports visual coding, tool use, and end-to-end professional workflows across code, browsers, documents, and graphical interfaces.",
+    "context_window": 1000000,
+    "max_tokens": 131000,
+    "type": "language",
+    "zdr": "some",
+    "no_training": "some",
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "implicit-caching",
+      "vision",
+      "structured-output"
+    ],
+    "regions": [
+      "us"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "effort",
+        "values": [
+          "low",
+          "high",
+          "max"
+        ]
+      }
+    ],
+    "pricing": {
+      "input": "0.00000015",
+      "output": "0.0000005",
+      "input_cache_read": "0.00000003",
+      "varies_by_provider": true,
+      "regional": {
+        "us": {
+          "input": "0.00000015",
+          "output": "0.0000005",
+          "input_cache_read": "0.00000003"
+        }
+      }
+    }
+  },
+  {
+    "id": "zai/glm-5.3-flashx",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1789689600,
+    "owned_by": "zai",
+    "name": "GLM 5.3 FlashX",
+    "description": "GLM-5.3-FlashX is the high-speed serving option for Z.ai\u2019s native multimodal coding model, featuring 320B total parameters, 18B activated parameters, and a 1M-token context window. Its efficient hybrid attention architecture supports visual coding, tool use, and end-to-end professional workflows across code, browsers, documents, and graphical interfaces.",
+    "context_window": 1000000,
+    "max_tokens": 131072,
+    "type": "language",
+    "zdr": "none",
+    "no_training": "none",
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "implicit-caching",
+      "vision",
+      "structured-output"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text",
+        "image"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "effort",
+        "values": [
+          "low",
+          "high",
+          "max"
+        ]
+      }
+    ],
+    "pricing": {
+      "input": "0.00000037",
+      "output": "0.00000125",
+      "input_cache_read": "0.000000075"
+    }
+  },
+  {
+    "id": "zai/glm-5v-turbo",
+    "object": "model",
+    "created": 1755815280,
+    "released": 1775001600,
+    "owned_by": "zai",
+    "name": "GLM 5V Turbo",
+    "description": "GLM-5V-Turbo is Z.AI\u2019s first multimodal coding foundation model, built for vision-based coding tasks. It can natively process multimodal inputs such as images, video, and text, while also excelling at long-horizon planning, complex coding, and action execution. Deeply optimized for agent workflows, it works seamlessly with agents such as Claude Code and OpenClaw to complete the full loop of \u201cunderstand the environment \u2192 plan actions \u2192 execute tasks\u201d.",
+    "context_window": 200000,
+    "max_tokens": 128000,
+    "type": "language",
+    "zdr": "none",
+    "no_training": "none",
+    "tags": [
+      "reasoning",
+      "tool-use",
+      "implicit-caching",
+      "vision",
+      "file-input",
+      "structured-output"
+    ],
+    "supported_specifications": [
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "modalities": {
+      "input": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "output": [
+        "text"
+      ]
+    },
+    "supported_parameters": [
+      "max_tokens",
+      "temperature",
+      "stop",
+      "tools",
+      "tool_choice",
+      "reasoning",
+      "include_reasoning",
+      "response_format",
+      "structured_outputs"
+    ],
+    "temperature": true,
+    "reasoning_options": [
+      {
+        "type": "toggle"
+      }
+    ],
+    "pricing": {
+      "input": "0.0000012",
+      "output": "0.000004",
+      "input_cache_read": "0.00000024"
+    }
+  }
+]

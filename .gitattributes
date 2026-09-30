@@ -1,0 +1,4 @@
+# Preserve captured evidence bytes without textual whitespace normalization.
+data/raw/** -diff -text
+data/research/** -diff -text
+*.sqlite binary
