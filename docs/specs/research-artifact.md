@@ -493,11 +493,15 @@ so they need not equal the frozen document-order ids (non-generated tuples
 are identical except for the documented row classes). `review_results.reason`
 for an accepted batch derives from the current decision record
 (`catalog-sources` differs from the frozen hardcoded text; quarantined
-batches keep the frozen default reason). The v2 decision records repoint the
-five phase-3-corrected batches: `evidence_reviews.review_path` for those 5
+batches keep the frozen default reason). The v3 decision records (superseding
+the v2 records, which still pinned the per-batch review documents after
+`review_path` moved) repoint the five phase-3-corrected batches:
+`evidence_reviews.review_path` for those 5
 batches moves from the frozen per-batch review documents to
 `data/reviews/phase3-provenance-2026-09-30.md`, and their `evidence_review_inputs`
-pins are repointed to the corrected findings files (10 input rows differ).
+pins are repointed to the corrected findings files (10 input rows differ:
+five findings.json pins move to the corrected hashes, five old review-doc
+pins are replaced by the provenance-document pin).
 The nine findings files corrected by the phase 3 review also change their `source_files` `sha256`, `bytes` and `observed_at` rows (observed_at = the correction event). Future changes append a
 `schema_version` bump plus a documented delta in this spec's changelog; the
 tool refuses to rebuild when `build.json.schema_version` differs from the DDL
