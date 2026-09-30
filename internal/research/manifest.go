@@ -23,8 +23,9 @@ const (
 	LockPath        = "data/.research-rebuild.lock"
 )
 
-// OutputNames are the three artifact paths in rename order (manifest, TSV,
-// DB: cheapest-to-regenerate first).
+// OutputNames are the three artifact paths in rename order, cheapest-to-
+// regenerate first: the TSV derives from inventory strings alone, the hash
+// manifest additionally hashes every input, the DB requires the full build.
 var OutputNames = []string{ArtifactManifest, ArtifactHashes, ArtifactDB}
 
 // BuildManifestTSV renders source-manifest.tsv bytes from the inventory

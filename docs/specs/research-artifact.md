@@ -474,12 +474,18 @@ the oracle, for these rows): `model_research` — 4 rows (`minimax/minimax-m2`,
 `moonshotai/kimi-k2`, `moonshotai/kimi-k2.5`, `moonshotai/kimi-k3`) whose
 frozen `benchmark_status='unresearched'` contradicted their recorded
 measurements and whose repaired findings carry `found` — and `source_access`
-— 140 rows whose `url` values change: 43 frozen log-pointer placeholders
-(e.g. `(see anthropic.log for recovered URL mapping)`) become the recovered
-URLs, and 97 http-to-http corrections apply the fetch-URL-over-page-URL rule.
-Disk findings are authoritative over frozen rows for both classes. Three
-structural delta classes follow from normative rules rather than repairs:
-and the frozen `claims`/`unlocated_claims` row split shifts by 8 rows
+— 69 rows: 68 URL changes (43 frozen log-pointer placeholders (e.g. `(see
+anthropic.log for recovered URL mapping)`), `saved source URL recovered
+from …` and `unknown` values becoming the recovered URLs, plus 25
+http-to-http corrections applying the fetch-URL-over-page-URL rule) and one
+EvalPlus `_evalplus_results.json` row whose URL is unchanged while `status`
+moves `not_found`→`retrieved` and `purpose` is rewritten (counts from a
+primary-key `(batch, url, path)` diff of frozen vs rebuilt; a plain join on
+`(batch, path)` overcounts because groups holding both page and fetch URLs
+multiply their unchanged siblings).
+Disk findings are authoritative over frozen rows for both classes. Further
+delta classes follow from normative rules rather than repairs: the frozen
+`claims`/`unlocated_claims` row split shifts by 8 rows
 (427/48 → 419/56) under the §2.4 URL rule; generated integer ids in
 `claims` (419 rows), `benchmark_measurements` (112) and
 `unresolved_measurements` (252) are reassigned by §4's sorted-insert rule,
@@ -487,7 +493,12 @@ so they need not equal the frozen document-order ids (non-generated tuples
 are identical except for the documented row classes). `review_results.reason`
 for an accepted batch derives from the current decision record
 (`catalog-sources` differs from the frozen hardcoded text; quarantined
-batches keep the frozen default reason). The nine findings files corrected by the phase 3 review also change their `source_files` `sha256`, `bytes` and `observed_at` rows (observed_at = the correction event). Future changes append a
+batches keep the frozen default reason). The v2 decision records repoint the
+five phase-3-corrected batches: `evidence_reviews.review_path` for those 5
+batches moves from the frozen per-batch review documents to
+`data/reviews/phase3-provenance-2026-09-30.md`, and their `evidence_review_inputs`
+pins are repointed to the corrected findings files (10 input rows differ).
+The nine findings files corrected by the phase 3 review also change their `source_files` `sha256`, `bytes` and `observed_at` rows (observed_at = the correction event). Future changes append a
 `schema_version` bump plus a documented delta in this spec's changelog; the
 tool refuses to rebuild when `build.json.schema_version` differs from the DDL
 it carries (exit 3). No production Postgres DDL may be derived from this
@@ -649,7 +660,8 @@ consistency verdicts.
   (`modernc.org/sqlite` v1.60.1, `go1.26`; placeholder values never mismatch);
   step-5 determinism realized as a full second staged build byte-compare;
   no-op rebuild semantics recorded (§3); §7 gains the two post-freeze delta
-  classes (4 `model_research` rows, 69 `source_access` URL rows); hash
+  classes (4 `model_research` rows, 69 `source_access` rows: 68 URL changes
+  plus one status/purpose-only EvalPlus row); hash
   manifest generation is 386 lines (341 evidence + 24 control + 19 decision
   records + DB + TSV) and grows as the decision ledger appends; §9 records
   the implemented verification posture (journal-boundary state construction);
@@ -659,8 +671,11 @@ consistency verdicts.
   findings reads (uninventoried `data/research/<batch>/findings.json` is now
   exit 1; previously the only evidence-read class with no inventory
   backstop, live-reproduced); §7 source_access delta corrected to verified
-  counts (140 URL changes: 43 placeholder recoveries + 97 fetch-URL
-  corrections; the earlier "69 placeholder rows" figure was wrong);
+  counts (69 changed rows: 68 URL changes = 43 placeholder recoveries + 25
+  fetch-URL corrections, plus 1 status/purpose-only EvalPlus row; derived
+  from a primary-key `(batch, url, path)` diff — the interim 140/97 figures
+  came from a `(batch, path)` join that multiplies unchanged sibling rows in
+  multi-URL groups);
   §7 enumerates the structural delta classes (generated-id reassignment,
   accepted-batch review reason derivation, the 8-row claims/unlocated split);
   §3 step 7 rename order corrected to TSV, hash manifest, DB
