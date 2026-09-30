@@ -17,7 +17,7 @@ check: test lint
 	$(TOOL) research backlog --check docs/research/backlog.md
 
 lint:
-	@test -z "$$(gofmt -l internal cmd)" || { echo 'Run gofmt -w on:'; gofmt -l internal cmd; exit 1; }
+	@test -z "$$(gofmt -l .)" || { echo 'Run gofmt -w on:'; gofmt -l .; exit 1; }
 	go vet ./...
 
 # Rebuild the research artifact set from durable inputs (staging, gates,
