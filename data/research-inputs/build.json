@@ -1,0 +1,43 @@
+{
+  "artifact_version": "0.1.2",
+  "schema_version": 3,
+  "phase": "research_only_not_routing_authority",
+  "publication_permission": "unknown",
+  "baseline_url": "https://ai-gateway.vercel.sh/v1/models",
+  "pricing_crossref_url": "https://models.dev/api.json",
+  "collection_date_utc": "2026-09-30",
+  "scope": {
+    "rule": "A catalog entry is in research scope when its output modality is text (language) or image generation/editing, per the catalog kind assignment frozen with the corpus; the rule yields expected_text_and_image_research_models.",
+    "excludes": "embedding, reranking, speech, transcription, realtime, video and tool-type entries remain catalog rows without model_research coverage."
+  },
+  "expected": {
+    "catalog_models": 395,
+    "exact_catalog_joins": 394,
+    "model_research": 302,
+    "price_facts": 31659,
+    "pricing_disagreements": 12
+  },
+  "publication_permission_vocabulary": ["unknown", "allowed", "denied"],
+  "driver": {
+    "sqlite_driver_module": "modernc.org/sqlite",
+    "sqlite_driver_version": "pinned at phase 4 toolchain setup",
+    "go_toolchain_minor": "pinned at phase 4 toolchain setup"
+  },
+  "batch_formats": {
+    "anthropic": "model_batch",
+    "benchmark-sources": "benchmark_source_inventory",
+    "catalog-sources": "catalog_sources",
+    "coverage-followup": "coverage_followup",
+    "deepseek-zai": "model_batch",
+    "google": "model_batch",
+    "images": "model_batch",
+    "mistral-meta": "model_batch",
+    "mixedbread": "model_batch",
+    "moonshot-minimax": "model_batch",
+    "openai": "model_batch",
+    "other-text": "model_batch",
+    "qwen": "model_batch",
+    "unresolved": "unresolved_only",
+    "xai": "model_batch"
+  }
+}

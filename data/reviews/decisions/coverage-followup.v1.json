@@ -1,0 +1,23 @@
+{
+  "batch": "coverage-followup",
+  "scope": "published_measurements",
+  "state": "source_validated",
+  "reason": "Source-accuracy validation of measurement rows as originally reviewed (frozen bytes; superseded by a later record where findings bytes were corrected in phase 3).",
+  "review_path": "data/reviews/source-evidence-corrections-2026-09-30.md",
+  "pins": [
+    {
+      "path": "data/research/coverage-followup/findings.json",
+      "sha256": "2f34df5a5df209f7d49f74cde90b171031aff09737160d4d2827eea12fd9b4f4"
+    },
+    {
+      "path": "data/research/coverage-followup/sources/geneval-readme.md",
+      "sha256": "468930e319ebba4b535f9c77cbac91bda6e3b2f6ad21f4c6c55b08161baca94a"
+    },
+    {
+      "path": "data/reviews/source-evidence-corrections-2026-09-30.md",
+      "sha256": "755eb29926c5ace7690f909430116659e2b524d80a25276e330d6ef89f696dbf"
+    }
+  ],
+  "decision_version": 1,
+  "decided_at": "2026-09-30T03:34:48Z"
+}

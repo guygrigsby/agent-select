@@ -185,91 +185,91 @@
   "benchmarks": [],
   "sources": [
     {
-      "url": "(see anthropic.log for recovered URL mapping)",
+      "url": "https://docs.anthropic.com/en/docs/models/haiku-4-5/overview",
       "file": "data/research/anthropic/sources/anthropic_docs_haiku4_5.html",
       "status": "retrieved",
       "purpose": "Checked for exact model identity, capabilities, and numeric benchmark tables.",
       "license": "unknown"
     },
     {
-      "url": "(see anthropic.log for recovered URL mapping)",
+      "url": "https://docs.anthropic.com/en/docs/models/fable-5-1/overview",
       "file": "data/research/anthropic/sources/anthropic_docs_fable5_1.html",
       "status": "retrieved",
       "purpose": "Checked for exact model identity, capabilities, and numeric benchmark tables.",
       "license": "unknown"
     },
     {
-      "url": "(see anthropic.log for recovered URL mapping)",
+      "url": "https://docs.anthropic.com/en/docs/about-claude/models",
       "file": "data/research/anthropic/sources/anthropic_docs_models.html",
       "status": "retrieved",
       "purpose": "Checked for exact model identity, capabilities, and numeric benchmark tables.",
       "license": "unknown"
     },
     {
-      "url": "(see anthropic.log for recovered URL mapping)",
+      "url": "https://www.anthropic.com/research",
       "file": "data/research/anthropic/sources/anthropic_research.html",
       "status": "retrieved",
       "purpose": "Checked for exact model identity, capabilities, and numeric benchmark tables.",
       "license": "unknown"
     },
     {
-      "url": "(see anthropic.log for recovered URL mapping)",
+      "url": "https://docs.anthropic.com/en/docs/models/opus-4/overview",
       "file": "data/research/anthropic/sources/anthropic_docs_opus4.html",
       "status": "retrieved",
       "purpose": "Checked for exact model identity, capabilities, and numeric benchmark tables.",
       "license": "unknown"
     },
     {
-      "url": "(see anthropic.log for recovered URL mapping)",
+      "url": "https://docs.anthropic.com/en/docs/models/sonnet-5-5/overview",
       "file": "data/research/anthropic/sources/anthropic_docs_sonnet5_5.html",
       "status": "retrieved",
       "purpose": "Checked for exact model identity, capabilities, and numeric benchmark tables.",
       "license": "unknown"
     },
     {
-      "url": "(see anthropic.log for recovered URL mapping)",
+      "url": "https://huggingface.co/api/models?search=claude&author=anthropic&sort=downloads&direction=-1&limit=20",
       "file": "data/research/anthropic/sources/hf_claude_models.json",
       "status": "retrieved",
       "purpose": "Checked for exact model identity, capabilities, and numeric benchmark tables.",
       "license": "unknown"
     },
     {
-      "url": "(see anthropic.log for recovered URL mapping)",
+      "url": "https://docs.anthropic.com/en/docs/about-claude/models",
       "file": "data/research/anthropic/sources/anthropic_models_page.html",
       "status": "retrieved",
       "purpose": "Checked for exact model identity, capabilities, and numeric benchmark tables.",
       "license": "unknown"
     },
     {
-      "url": "(see anthropic.log for recovered URL mapping)",
+      "url": "https://docs.anthropic.com/en/docs/models/sonnet-4/overview",
       "file": "data/research/anthropic/sources/anthropic_docs_sonnet4.html",
       "status": "retrieved",
       "purpose": "Checked for exact model identity, capabilities, and numeric benchmark tables.",
       "license": "unknown"
     },
     {
-      "url": "(see anthropic.log for recovered URL mapping)",
+      "url": "https://huggingface.co/api/models?search=anthropic&sort=downloads&direction=-1&limit=30",
       "file": "data/research/anthropic/sources/hf_anthropic_models.json",
       "status": "retrieved",
       "purpose": "Checked for exact model identity, capabilities, and numeric benchmark tables.",
       "license": "unknown"
     },
     {
-      "url": "(see anthropic.log for recovered URL mapping)",
+      "url": "https://www.anthropic.com/news",
       "file": "data/research/anthropic/sources/anthropic_news.html",
       "status": "retrieved",
       "purpose": "Checked for exact model identity, capabilities, and numeric benchmark tables.",
       "license": "unknown"
     },
     {
-      "url": "(see anthropic.log for recovered URL mapping)",
+      "url": "https://raw.githubusercontent.com/anthropics/anthropic-cookbook/main/README.md",
       "file": "data/research/anthropic/sources/anthropic_cookbook_readme.md",
       "status": "retrieved",
       "purpose": "Checked for exact model identity, capabilities, and numeric benchmark tables.",
       "license": "unknown"
     },
     {
-      "url": "(see anthropic.log for recovered URL mapping)",
+      "url": "https://docs.anthropic.com/en/docs/models/opus-5-5/overview",
       "file": "data/research/anthropic/sources/anthropic_docs_opus5_5.html",
       "status": "retrieved",
       "purpose": "Checked for exact model identity, capabilities, and numeric benchmark tables.",

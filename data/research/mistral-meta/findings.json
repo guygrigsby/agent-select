@@ -1352,7 +1352,7 @@
       "license": "Mistral Research License 0.1"
     },
     {
-      "url": "https://huggingface.co/mistralai/Mistral-Large-3-675B-Instruct-2512/raw/main/README.md",
+      "url": "https://huggingface.co/mistralai/Mistral-Large-3/raw/main/README.md",
       "file": "data/research/mistral-meta/sources/hf_mistral_large3.html",
       "status": "retrieved",
       "purpose": "Mistral Large 3 model card (benchmark sections empty)",

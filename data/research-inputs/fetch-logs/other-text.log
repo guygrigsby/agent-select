@@ -1,0 +1,300 @@
+# Durable redacted fetch-command record recovered from the other-text.log session transcript.
+# Verbatim agent-issued fetch commands (curl/python), deduplicated, in original order.
+# Credential scan clean at recovery time. Format: "### N" then the verbatim command.
+### 1
+cd /Users/guygrigsby/projects/agent-routing && mkdir -p data/research/other-text/sources && python3 << 'PYEOF'
+import urllib.request, urllib.error, json, time, os, sys
+from urllib.parse import urlparse
+
+sources_dir = "data/research/other-text/sources"
+
+def fetch(url, filename, purpose):
+    """Fetch a URL with retry handling"""
+    path = os.path.join(sources_dir, filename)
+    req = urllib.request.Request(url)
+    req.add_header('User-Agent', 'agent-routing-research/0.1')
+    try:
+        with urllib.request.urlopen(req, timeout=40) as resp:
+            content = resp.read()
+            with open(path, 'wb') as f:
+                f.write(content)
+            print(f"OK  {url} -> {filename} ({len(content)} bytes)")
+            return {"url": url, "file": f"data/research/other-text/sources/{filename}", "status": "retrieved", "purpose": purpose, "license": "unknown"}
+    except urllib.error.HTTPError as e:
+        print(f"ERR {url} -> HTTP {e.code}")
+        return {"url": url, "file": f"data/research/other-text/sources/{filename}", "status": "not_found" if e.code == 404 else "blocked", "purpose": purpose, "license": "unknown"}
+    except Exception as e:
+        print(f"ERR {url} -> {e}")
+        return {"url": url, "file": f"data/research/other-text/sources/{filename}", "status": "blocked", "purpose": purpose, "license": "unknown"}
+
+# Fetch concurrent sources for multiple providers
+urls = [
+    # NVIDIA Nemotron - Hugging Face model cards
+    ("https://huggingface.co/nvidia/Nemotron-3-Nano-30B-A3B/raw/main/README.md", "nvidia-nemotron-3-nano-readme.md", "NVIDIA Nemotron 3 Nano model card"),
+    ("https://huggingface.co/nvidia/Nemotron-3-Super-120B-A12B/raw/main/README.md", "nvidia-nemotron-3-super-readme.md", "NVIDIA Nemotron 3 Super model card"),
+    ("https://build.nvidia.com/nvidia/nemotron-3-super-120b-a12b/modelcard", "nvidia-nemotron-3-super-build.md", "NVIDIA Nemotron 3 Super build page"),
+    # Cohere Command-A
+    ("https://docs.cohere.com/docs/command-a", "cohere-command-a-docs.md", "Cohere Command-A documentation"),
+    # StepFun
+    ("https://huggingface.co/stepfun-ai/Step-3.5-Flash/raw/main/README.md", "stepfun-step-3.5-flash-readme.md", "StepFun Step 3.5 Flash model card"),
+    ("https://huggingface.co/stepfun-ai/Step-3.7-Flash/raw/main/README.md", "stepfun-step-3.7-flash-readme.md", "StepFun Step 3.7 Flash model card"),
+    ("https://huggingface.co/stepfun-ai/Step-5-Preview/raw/main/README.md", "stepfun-step-5-preview-readme.md", "StepFun Step 5 Preview model card"),
+    # Amazon Nova
+    ("https://docs.aws.amazon.com/nova/latest/userguide/what-is-nova.html", "amazon-nova-overview.md", "Amazon Nova overview"),
+    # Tencent Hunyuan
+    ("https://huggingface.co/Tencent/Hunyuan3-1-MoE-A3B/raw/main/README.md", "tencent-hunyuan3-readme.md", "Tencent Hunyuan3 MoE model card"),
+    # Inclusion AI
+    ("https://huggingface.co/inclusionai/Ling-3.0-Flash/raw/main/README.md", "inclusionai-ling-3.0-flash-readme.md", "InclusionAI Ling 3.0 Flash model card"),
+    # Xiaomi MiMo
+    ("https://huggingface.co/xiaomi-ai/MiMo-V2.5-Pro/raw/main/README.md", "xiaomi-mimo-v2.5-pro-readme.md", "Xiaomi MiMo V2.5 Pro model card"),
+    # Arcee AI
+    ("https://huggingface.co/arcee-ai/Trinity-Large-Thinking/raw/main/README.md", "arcee-trinity-large-thinking-readme.md", "Arcee AI Trinity Large Thinking model card"),
+]
+
+results = []
+for url, filename, purpose in urls:
+    results.append(fetch(url, filename, purpose))
+    time.sleep(1)
+
+print("\n--- Summary ---")
+for r in results:
+    print(f"{r['status']}: {r['url']}")
+PYEOF
+### 2
+cd /Users/guygrigsby/projects/agent-routing && python3 << 'PYEOF'
+import urllib.request, urllib.error, json, time, os
+
+sources_dir = "data/research/other-text/sources"
+
+def fetch(url, filename, purpose):
+    path = os.path.join(sources_dir, filename)
+    req = urllib.request.Request(url)
+    req.add_header('User-Agent', 'agent-routing-research/0.1')
+    try:
+        with urllib.request.urlopen(req, timeout=40) as resp:
+            content = resp.read()
+            with open(path, 'wb') as f:
+                f.write(content)
+            print(f"OK  {url} -> {filename} ({len(content)} bytes)")
+            return {"url": url, "file": f"data/research/other-text/sources/{filename}", "status": "retrieved", "purpose": purpose, "license": "unknown"}
+    except urllib.error.HTTPError as e:
+        print(f"ERR {url} -> HTTP {e.code}")
+        return {"url": url, "file": f"data/research/other-text/sources/{filename}", "status": "not_found" if e.code==404 else "blocked", "purpose": purpose, "license": "unknown"}
+    except Exception as ex:
+        print(f"ERR {url} -> {ex}")
+        return {"url": url, "file": f"data/research/other-text/sources/{filename}", "status": "blocked", "purpose": purpose, "license": "unknown"}
+
+# Try HF via huggingface.co model page (HTML) for models that blocked direct raw access
+urls = [
+    ("https://huggingface.co/nvidia/Nemotron-3-Nano-30B-A3B", "nvidia-nemotron-3-nano-hf.html", "NVIDIA Nemotron 3 Nano HF page"),
+    ("https://huggingface.co/nvidia/Nemotron-3-Super-120B-A12B", "nvidia-nemotron-3-super-hf.html", "NVIDIA Nemotron 3 Super HF page"),
+    ("https://huggingface.co/stepfun-ai/Step-5-Preview", "stepfun-step-5-preview-hf.html", "StepFun Step 5 Preview HF page"),
+    ("https://huggingface.co/Tencent/Hunyuan3-1-MoE-A3B", "tencent-hunyuan3-moe-hf.html", "Tencent Hunyuan3 MoE HF page"),
+    # NVIDIA Nemotron Ultra 550B / Nano 9B / 12B VL
+    ("https://huggingface.co/nvidia/Nemotron-3-Ultra-550B-A55B", "nvidia-nemotron-3-ultra-hf.html", "NVIDIA Nemotron 3 Ultra HF page"),
+    ("https://huggingface.co/nvidia/Nemotron-Nano-9B-v2", "nvidia-nemotron-nano-9b-v2-hf.html", "NVIDIA Nemotron Nano 9B v2 HF page"),
+    ("https://huggingface.co/nvidia/Nemotron-Nano-12B-v2-VL", "nvidia-nemotron-nano-12b-v2-vl-hf.html", "NVIDIA Nemotron Nano 12B V2 VL HF page"),
+    # StepFun Step 3.7 Flash - already have readme, also try page
+    ("https://huggingface.co/stepfun-ai/Step-3.7-Flash", "stepfun-step-3.7-flash-hf.html", "StepFun Step 3.7 Flash HF page"),
+    # Xiaomi MiMo models
+    ("https://huggingface.co/xiaomi-ai/MiMo-V2.5-Pro", "xiaomi-mimo-v2.5-pro-hf.html", "Xiaomi MiMo V2.5 Pro HF page"),
+    ("https://huggingface.co/xiaomi-ai/MiMo-V2.6-Pro", "xiaomi-mimo-v2.6-pro-hf.html", "Xiaomi MiMo V2.6 Pro HF page"),
+    ("https://huggingface.co/xiaomi-ai/MiMo-V2.6-Flash", "xiaomi-mimo-v2.6-flash-hf.html", "Xiaomi MiMo V2.6 Flash HF page"),
+    # Tencent Hy3, Hy4
+    ("https://huggingface.co/Tencent/Hunyuan3", "tencent-hunyuan3-hf.html", "Tencent Hunyuan3 HF page"),
+    # Poolside Laguna
+    ("https://huggingface.co/poolside-ai/Laguna-S-2.1", "poolside-laguna-s-2.1-hf.html", "Poolside Laguna S 2.1 HF page"),
+]
+
+for url, filename, purpose in urls:
+    results = fetch(url, filename, purpose)
+    time.sleep(1.5)
+
+print("\nDone second batch")
+PYEOF
+### 3
+cd /Users/guygrigsby/projects/agent-routing && python3 << 'PYEOF'
+import urllib.request, urllib.error, json, time, os
+
+sources_dir = "data/research/other-text/sources"
+
+def fetch(url, filename, purpose):
+    path = os.path.join(sources_dir, filename)
+    req = urllib.request.Request(url)
+    req.add_header('User-Agent', 'agent-routing-research/0.1')
+    try:
+        with urllib.request.urlopen(req, timeout=40) as resp:
+            content = resp.read()
+            with open(path, 'wb') as f:
+                f.write(content)
+            print(f"OK  {url} -> {filename} ({len(content)} bytes)")
+            return {"url": url, "file": f"data/research/other-text/sources/{filename}", "status": "retrieved", "purpose": purpose, "license": "unknown"}
+    except urllib.error.HTTPError as e:
+        print(f"ERR {url} -> HTTP {e.code}")
+        return {"url": url, "file": f"data/research/other-text/sources/{filename}", "status": "not_found" if e.code==404 else "blocked", "purpose": purpose, "license": "unknown"}
+    except Exception as ex:
+        print(f"ERR {url} -> {ex}")
+        return {"url": url, "file": f"data/research/other-text/sources/{filename}", "status": "blocked", "purpose": purpose, "license": "unknown"}
+
+# Third batch - GitHub, NVIDIA, misc sources
+urls = [
+    # NVIDIA Nemotron on GitHub
+    ("https://raw.githubusercontent.com/NVIDIA/Catalog/main/NVIDIA_Nemotron_3_Nano_30B_A3B.md", "nvidia-nemotron3-nano-github.md", "NVIDIA Nemotron 3 Nano GitHub catalog"),
+    ("https://raw.githubusercontent.com/NVIDIA/Catalog/main/NVIDIA_Nemotron_3_Super_120B_A12B.md", "nvidia-nemotron3-super-github.md", "NVIDIA Nemotron 3 Super GitHub catalog"),
+    ("https://github.com/NVIDIA/Catalog/raw/main/NVIDIA_Nemotron_3_Ultra_550B_A55B.md", "nvidia-nemotron3-ultra-github.md", "NVIDIA Nemotron 3 Ultra GitHub catalog"),
+    # NVIDIA developer blog
+    ("https://developer.nvidia.com/blog/nvidia-nemotron-3-super-advances-agentic-ai-reasoning/", "nvidia-nemotron3-super-blog.md", "NVIDIA Nemotron 3 Super blog"),
+    # Cohere blog on Command-A
+    ("https://cohere.com/blog/command-a", "cohere-command-a-blog.md", "Cohere Command-A blog"),
+    # Perplexity Sonar
+    ("https://docs.perplexity.ai/docs/model-cards", "perplexity-model-cards.md", "Perplexity model cards"),
+    # Fireworks Ember-1
+    ("https://fireworks.ai/blog/ember-1-reasoning-model", "fireworks-ember-1-blog.md", "Fireworks Ember-1 blog"),
+    # Inception Mercury
+    ("https://inceptionlabs.ai/blog/introducing-mercury", "inception-mercury-blog.md", "Inception Mercury blog"),
+    # InclusionAI
+    ("https://inclusion.ai/blog/ling-3-0-flash", "inclusionai-ling-3-0-flash-blog.md", "InclusionAI Ling 3.0 Flash blog"),
+    # StepFun GitHub
+    ("https://github.com/stepfun-ai/Step-3.5-Flash", "stepfun-step-3.5-flash-github.md", "StepFun Step 3.5 Flash GitHub"),
+    # Tencent Hunyuan on GitHub
+    ("https://github.com/Tencent/Hunyuan3-1-MoE-A3B", "tencent-hunyuan3-moe-github.md", "Tencent Hunyuan3 MoE GitHub"),
+    # ByteDance Seed
+    ("https://github.com/bytedance/seed-1.5", "bytedance-seed-1.5-github.md", "ByteDance Seed 1.5 GitHub"),
+    # Meituan LongCat
+    ("https://github.com/meituan/LongCat-2.5-Preview", "meituan-longcat-2.5-preview-github.md", "Meituan LongCat 2.5 Preview GitHub"),
+    # Xiaomi MiMo - look for GitHub
+    ("https://github.com/Xiaomi-AI/MiMo-V2.5-Pro", "xiaomi-mimo-v2.5-pro-github.md", "Xiaomi MiMo V2.5 Pro GitHub"),
+    # ThinkingMachines Inkling
+    ("https://thinkingmachines.ai/inkling", "thinkingmachines-inkling-page.md", "ThinkingMachines Inkling page"),
+    # Poolside Laguna S 2.1
+    ("https://poolside.ai/blog/laguna-s-2.1", "poolside-laguna-s-2.1-blog.md", "Poolside Laguna S 2.1 blog"),
+]
+
+for url, filename, purpose in urls:
+    time.sleep(1.2)
+    fetch(url, filename, purpose)
+
+print("\nDone third batch")
+PYEOF
+### 4
+cd /Users/guygrigsby/projects/agent-routing && python3 << 'PYEOF'
+import urllib.request, urllib.error, json, time, os
+
+sources_dir = "data/research/other-text/sources"
+
+def fetch(url, filename, purpose):
+    path = os.path.join(sources_dir, filename)
+    req = urllib.request.Request(url)
+    req.add_header('User-Agent', 'agent-routing-research/0.1')
+    try:
+        with urllib.request.urlopen(req, timeout=40) as resp:
+            content = resp.read()
+            with open(path, 'wb') as f:
+                f.write(content)
+            print(f"OK  {url} -> {filename} ({len(content)} bytes)")
+            return {"url": url, "file": f"data/research/other-text/sources/{filename}", "status": "retrieved", "purpose": purpose, "license": "unknown"}
+    except urllib.error.HTTPError as e:
+        print(f"ERR {url} -> HTTP {e.code}")
+        return {"url": url, "file": f"data/research/other-text/sources/{filename}", "status": "not_found" if e.code==404 else "blocked", "purpose": purpose, "license": "unknown"}
+    except Exception as ex:
+        print(f"ERR {url} -> {ex}")
+        return {"url": url, "file": f"data/research/other-text/sources/{filename}", "status": "blocked", "purpose": purpose, "license": "unknown"}
+
+# Fourth batch - more targeted sources
+urls = [
+    # NVIDIA official build pages
+    ("https://build.nvidia.com/nvidia/nemotron-3-nano-30b-a3b", "nvidia-nemotron-3-nano-build.html", "NVIDIA Nemotron 3 Nano build page"),
+    ("https://build.nvidia.com/nvidia/nemotron-3-ultra-550b-a55b", "nvidia-nemotron-3-ultra-build.html", "NVIDIA Nemotron 3 Ultra build page"),
+    ("https://build.nvidia.com/nvidia/nemotron-3-5-lightning-30b-a3b", "nvidia-nemotron-3.5-lightning-build.html", "NVIDIA Nemotron 3.5 Lightning build page"),
+    # NVIDIA Nemotron Nano models on build
+    ("https://build.nvidia.com/nvidia/nemotron-nano-9b-v2", "nvidia-nemotron-nano-9b-v2-build.html", "NVIDIA Nemotron Nano 9B v2 build page"),
+    ("https://build.nvidia.com/nvidia/nemotron-nano-12b-v2-vl", "nvidia-nemotron-nano-12b-v2-vl-build.html", "NVIDIA Nemotron Nano 12B V2 VL build page"),
+    # Perplexity docs
+    ("https://docs.perplexity.ai/home/models/sonar", "perplexity-sonar-docs.md", "Perplexity Sonar documentation"),
+    # Fireworks
+    ("https://fireworks.ai/models/fireworks/ember-1", "fireworks-ember-1-page.md", "Fireworks Ember-1 page"),
+    # StepFun Step 5 Preview
+    ("https://github.com/stepfun-ai/Step-5-Preview", "stepfun-step-5-preview-github.md", "StepFun Step 5 Preview GitHub"),
+    # Tencent Hy3/Hy4 GitHub
+    ("https://github.com/Tencent/Hunyuan3", "tencent-hunyuan3-github.md", "Tencent Hunyuan3 GitHub"),
+    ("https://github.com/Tencent/Hy4-Preview", "tencent-hy4-preview-github.md", "Tencent Hy4 Preview GitHub"),
+    # ByteDance Seed on HF (trying different path)
+    ("https://huggingface.co/bytedance-research/seed-1.5", "bytedance-seed-1.5-hf.md", "ByteDance Seed 1.5 HF page"),
+    # Inclusion AI Ling 3.1 Flash
+    ("https://huggingface.co/inclusionai/Ling-3.1-Flash", "inclusionai-ling-3.1-flash-hf.html", "InclusionAI Ling 3.1 Flash HF page"),
+    # Arcee AI Trinity
+    ("https://arcee.ai/blog/trinity-large-thinking", "arcee-trinity-large-thinking-blog.md", "Arcee AI Trinity Large Thinking blog"),
+    # Inception Mercury Coder
+    ("https://inceptionlabs.ai/mercury-coder", "inception-mercury-coder-page.md", "Inception Mercury Coder page"),
+    # Sakana AI
+    ("https://sakana.ai/fugu/", "sakana-fugu-page.md", "Sakana Fugu page"),
+    # Tencent MT2
+    ("https://huggingface.co/tencent/Tencent-Hy-MT2-Pro", "tencent-hy-mt2-pro-hf.html", "Tencent Hy-MT2-Pro HF page"),
+]
+
+for url, filename, purpose in urls:
+    time.sleep(1.2)
+    fetch(url, filename, purpose)
+
+print("\nDone fourth batch")
+PYEOF
+### 5
+cd /Users/guygrigsby/projects/agent-routing && python3 << 'PYEOF'
+import urllib.request, urllib.error, json, time, os, re
+
+sources_dir = "data/research/other-text/sources"
+
+def fetch(url, filename, purpose):
+    path = os.path.join(sources_dir, filename)
+    req = urllib.request.Request(url)
+    req.add_header('User-Agent', 'agent-routing-research/0.1')
+    try:
+        with urllib.request.urlopen(req, timeout=40) as resp:
+            content = resp.read()
+            with open(path, 'wb') as f:
+                f.write(content)
+            print(f"OK  {url} -> {filename} ({len(content)} bytes)")
+            return {"status": "retrieved"}
+    except urllib.error.HTTPError as e:
+        print(f"ERR {url} -> HTTP {e.code}")
+        return {"status": "not_found" if e.code==404 else "blocked"}
+    except Exception as ex:
+        print(f"ERR {url} -> {ex}")
+        return {"status": "blocked"}
+
+# More targeted fetches
+urls = [
+    # Perplexity Sonar
+    ("https://docs.perplexity.ai/guides/model-cards", "perplexity-model-cards-page.md", "Perplexity model cards guide"),
+    # Cohere Command-A blog 
+    ("https://cohere.com/blog/command-a", "cohere-command-a-blog.html", "Cohere Command-A blog post"),
+    # Fireworks Ember-1 model page
+    ("https://fireworks.ai/blog/ember-1", "fireworks-ember-1-page2.md", "Fireworks Ember-1 blog"),
+    # Inception Mercury coder
+    ("https://inceptionlabs.ai/mercury", "inception-mercury-page.md", "Inception Mercury page"),
+    # Inclusion AI blog
+    ("https://www.inclusion.ai/blog", "inclusionai-blog.html", "Inclusion AI blog index"),
+    # Meituan LongCat
+    ("https://www.meituan.com/en/longcat", "meituan-longcat-page.md", "Meituan LongCat page"),
+    # Morph
+    ("https://morph.so/blog", "morph-blog.html", "Morph blog"),
+    # Sakana Namazu
+    ("https://sakana.ai/namazu/", "sakana-namazu-page.md", "Sakana Namazu page"),
+    # ThinkingMachines Inkling
+    ("https://thinkingmachines.ai/blog/inkling", "thinkingmachines-inkling-blog.md", "ThinkingMachines Inkling blog"),
+    # StepFun Step 5 Preview
+    ("https://static.stepfun.com/blog/step-5-preview/", "stepfun-step-5-preview-blog.md", "StepFun Step 5 Preview blog"),
+    # Interfaze
+    ("https://interfaze.ai", "interfaze-page.md", "Interfaze homepage"),
+    # Amazon Nova 2
+    ("https://docs.aws.amazon.com/nova/latest/nova2-userguide/what-is-nova2.html", "amazon-nova2-overview.md", "Amazon Nova 2 overview"),
+    # Stealth Pixel Canary
+    ("https://stealth.ai/pixel-canary", "stealth-pixel-canary-page.md", "Stealth Pixel Canary page"),
+    # Inference.net Schematron
+    ("https://inference.net/schematron", "inference-net-schematron.md", "Inference.net Schematron page"),
+]
+
+for url, filename, purpose in urls:
+    time.sleep(1.2)
+    fetch(url, filename, purpose)
+PYEOF

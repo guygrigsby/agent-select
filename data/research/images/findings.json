@@ -951,8 +951,7 @@
       "notes": "Grok Imagine 2.0. Very new model. No benchmarks found."
     }
   ],
-  "benchmarks": [
-  ],
+  "benchmarks": [],
   "sources": [
     {
       "url": "https://blackforestlabs.ai/announcing-black-forest-labs/",
@@ -990,7 +989,7 @@
       "license": "unknown"
     },
     {
-      "url": "https://www.bytedance.com/en/articles/seedream-5",
+      "url": "https://www.bytedance.com/en/articles/seedream-5-pro",
       "file": "data/research/images/sources/bytedance_seedream_5.html",
       "status": "retrieved",
       "purpose": "ByteDance Seedream 5 announcement",

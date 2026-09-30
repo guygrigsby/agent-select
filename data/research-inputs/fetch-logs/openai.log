@@ -1,0 +1,75 @@
+# Durable redacted fetch-command record recovered from the openai.log session transcript.
+# Verbatim agent-issued fetch commands (curl/python), deduplicated, in original order.
+# Credential scan clean at recovery time. Format: "### N" then the verbatim command.
+### 1
+cd /Users/guygrigsby/projects/agent-routing && curl -s --max-time 40 -H "User-Agent: agent-routing-research/0.1" \
+  "https://platform.openai.com/docs/models" \
+  -o data/research/openai/sources/openai-docs-models.html 2>&1 && echo "RETURN_CODE: $?" || echo "FAILED"
+### 2
+cd /Users/guygrigsby/projects/agent-routing && sleep 2 && curl -s --max-time 40 -H "User-Agent: agent-routing-research/0.1" \
+  "https://openai.com/index/gpt-4-1/" \
+  -o data/research/openai/sources/openai-gpt41-blog.html 2>&1 && echo "RETURN_CODE: $?" || echo "FAILED"
+### 3
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -s --max-time 40 -H "User-Agent: agent-routing-research/0.1" \
+  "https://openai.com/index/gpt-4o-system-card/" \
+  -o data/research/openai/sources/openai-gpt4o-system-card.html 2>&1 && echo "RETURN_CODE: $?" || echo "FAILED"
+### 4
+cd /Users/guygrigsby/projects/agent-routing && sleep 3 && curl -s --max-time 40 -H "User-Agent: agent-routing-research/0.1" \
+  "https://openai.com/index/introducing-gpt-5/" \
+  -o data/research/openai/sources/openai-gpt5-blog.html 2>&1 && echo "RETURN_CODE: $?" || echo "FAILED"
+### 5
+cd /Users/guygrigsby/projects/agent-routing && sleep 2 && curl -s --max-time 40 -H "User-Agent: agent-routing-research/0.1" \
+  "https://openai.com/index/gpt-5-1/" \
+  -o data/research/openai/sources/openai-gpt51-blog.html 2>&1 && echo "RETURN_CODE: $?" || echo "FAILED"
+### 6
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -s --max-time 40 -H "User-Agent: agent-routing-research/0.1" \
+  "https://openai.com/index/gpt-5-2/" \
+  -o data/research/openai/sources/openai-gpt52-blog.html 2>&1 && echo "RETURN_CODE: $?" || echo "FAILED"
+### 7
+cd /Users/guygrigsby/projects/agent-routing && sleep 3 && curl -s --max-time 40 -H "User-Agent: agent-routing-research/0.1" \
+  "https://openai.com/index/gpt-5-3-codex/" \
+  -o data/research/openai/sources/openai-gpt53-codex-blog.html 2>&1 && echo "RETURN_CODE: $?" || echo "FAILED"
+### 8
+cd /Users/guygrigsby/projects/agent-routing && sleep 2 && curl -s --max-time 40 -H "User-Agent: agent-routing-research/0.1" \
+  "https://openai.com/index/gpt-5-4/" \
+  -o data/research/openai/sources/openai-gpt54-blog.html 2>&1 && echo "RETURN_CODE: $?" || echo "FAILED"
+### 9
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -s --max-time 40 -H "User-Agent: agent-routing-research/0.1" \
+  "https://openai.com/index/gpt-5-5/" \
+  -o data/research/openai/sources/openai-gpt55-blog.html 2>&1 && echo "RETURN_CODE: $?" || echo "FAILED"
+### 10
+cd /Users/guygrigsby/projects/agent-routing && sleep 3 && curl -s --max-time 40 -H "User-Agent: agent-routing-research/0.1" \
+  "https://openai.com/index/gpt-5-6/" \
+  -o data/research/openai/sources/openai-gpt56-blog.html 2>&1 && echo "RETURN_CODE: $?" || echo "FAILED"
+### 11
+cd /Users/guygrigsby/projects/agent-routing && sleep 2 && curl -s --max-time 40 -H "User-Agent: agent-routing-research/0.1" \
+  "https://api.openai.com/v1/models" \
+  -o data/research/openai/sources/openai-api-models.json 2>&1 && echo "RETURN_CODE: $?" || echo "FAILED"
+### 12
+cd /Users/guygrigsby/projects/agent-routing && sleep 2 && curl -s --max-time 40 -H "User-Agent: agent-routing-research/0.1" \
+  "https://developers.openai.com/api/docs/models" \
+  -o data/research/openai/sources/developers-openai-models.html 2>&1 && echo "RETURN_CODE: $?" || echo "FAILED"
+### 13
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -s --max-time 40 -H "User-Agent: agent-routing-research/0.1" \
+  "https://openai.com/index/hello-gpt-4o/" \
+  -o data/research/openai/sources/openai-hello-gpt4o.html 2>&1 && echo "RETURN_CODE: $?" || echo "FAILED"
+### 14
+cd /Users/guygrigsby/projects/agent-routing && sleep 2 && curl -s --max-time 40 -H "User-Agent: agent-routing-research/0.1" \
+  "https://huggingface.co/openai" \
+  -o data/research/openai/sources/huggingface-openai.html 2>&1 && echo "RETURN_CODE: $?" || echo "FAILED"
+### 15
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -s --max-time 40 -H "User-Agent: agent-routing-research/0.1" \
+  "https://github.com/openai/evaluation-results" \
+  -o data/research/openai/sources/github-openai-eval-results.html 2>&1 && echo "RETURN_CODE: $?" || echo "FAILED"
+### 16
+cd /Users/guygrigsby/projects/agent-routing && sleep 2 && curl -s --max-time 40 -H "User-Agent: agent-routing-research/0.1" \
+  "https://github.com/openai/simple-evals" \
+  -o data/research/openai/sources/github-openai-simple-evals.html 2>&1 && echo "RETURN_CODE: $?" || echo "FAILED"
+### 17
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -s --max-time 40 -H "User-Agent: agent-routing-research/0.1" \
+  "https://arxiv.org/abs/2303.08774" \
+  -o data/research/openai/sources/arxiv-gpt4-paper.html 2>&1 && echo "RETURN_CODE: $?" || echo "FAILED"
+### 18
+cd /Users/guygrigsby/projects/agent-routing && sleep 3 && curl -s --max-time 40 -H "User-Agent: agent-routing-research/0.1" \
+  "https://huggingface.co/openai/gpt-4o" \
+  -o data/research/openai/sources/huggingface-gpt4o-card.html 2>&1 && echo "RETURN_CODE: $?" || echo "FAILED"

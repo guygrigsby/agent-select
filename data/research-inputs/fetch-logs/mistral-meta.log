@@ -1,0 +1,123 @@
+# Durable redacted fetch-command record recovered from the mistral-meta.log session transcript.
+# Verbatim agent-issued fetch commands (curl/python), deduplicated, in original order.
+# Credential scan clean at recovery time. Format: "### N" then the verbatim command.
+### 1
+cd /Users/guygrigsby/projects/agent-routing && curl -s --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/llama3_1_blog.html \
+  "https://ai.meta.com/blog/meta-llama-3-1/" -w "HTTP %{http_code} size %{size_download}\n"
+### 2
+cd /Users/guygrigsby/projects/agent-routing && curl -s --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/llama3_3_blog.html \
+  "https://ai.meta.com/blog/llama-3-3-70b/" -w "HTTP %{http_code} size %{size_download}\n"
+### 3
+cd /Users/guygrigsby/projects/agent-routing && curl -s --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/llama4_blog.html \
+  "https://ai.meta.com/blog/llama-4-multimodal-intelligence/" -w "HTTP %{http_code} size %{size_download}\n"
+### 4
+cd /Users/guygrigsby/projects/agent-routing && curl -s --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/mistral_large3_blog.html \
+  "https://mistral.ai/news/mistral-large-3/" -w "HTTP %{http_code} size %{size_download}\n"
+### 5
+cd /Users/guygrigsby/projects/agent-routing && curl -s --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/mistral_medium35_blog.html \
+  "https://mistral.ai/news/mistral-medium-3-5/" -w "HTTP %{http_code} size %{size_download}\n"
+### 6
+cd /Users/guygrigsby/projects/agent-routing && curl -s --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/llama3_3_modelcard.html \
+  "https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct/raw/main/README.md" -w "HTTP %{http_code} size %{size_download}\n"
+### 7
+cd /Users/guygrigsby/projects/agent-routing && curl -s --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/mistral_large3_page.html \
+  "https://mistral.ai/news/mistral-large-2411/" -w "HTTP %{http_code} size %{size_download}\n"
+### 8
+cd /Users/guygrigsby/projects/agent-routing && curl -s --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/mistral_medium35_page.html \
+  "https://mistral.ai/news/mistral-medium-3-5-2604/" -w "HTTP %{http_code} size %{size_download}\n"
+### 9
+cd /Users/guygrigsby/projects/agent-routing && curl -s --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/mistral_codestral_page.html \
+  "https://mistral.ai/news/codestral/" -w "HTTP %{http_code} size %{size_download}\n"
+### 10
+cd /Users/guygrigsby/projects/agent-routing && curl -s --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/mistral_ministral_page.html \
+  "https://mistral.ai/news/ministral-3b-14b/" -w "HTTP %{http_code} size %{size_download}\n"
+### 11
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/mistral_large3.html \
+  "https://mistral.ai/news/mistral-large-2411/" -w "HTTP %{http_code} size %{size_download}\n"
+### 12
+cd /Users/guygrigsby/projects/agent-routing && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/mistral_medium35.html \
+  "https://mistral.ai/news/mistral-medium-3-5-2604/" -w "HTTP %{http_code} size %{size_download}\n"
+### 13
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/mistral_ministral.html \
+  "https://mistral.ai/news/ministral-3b-14b/" -w "HTTP %{http_code} size %{size_download}\n"
+### 14
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/mistral_nemo_page.html \
+  "https://mistral.ai/news/mistral-nemo/" -w "HTTP %{http_code} size %{size_download}\n"
+### 15
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/mistral_small_page.html \
+  "https://mistral.ai/news/mistral-small-3-2/" -w "HTTP %{http_code} size %{size_download}\n"
+### 16
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/mistral_large3_v2.html \
+  "https://mistral.ai/news/mistral-large-3-1/" -w "HTTP %{http_code} size %{size_download}\n"
+### 17
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/mistral_small4_page.html \
+  "https://mistral.ai/news/mistral-small-4/" -w "HTTP %{http_code} size %{size_download}\n"
+### 18
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/mistral_codestral_v2.html \
+  "https://mistral.ai/news/codestral-2501/" -w "HTTP %{http_code} size %{size_download}\n"
+### 19
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/mistral_medium3_page.html \
+  "https://mistral.ai/news/mistral-medium-3/" -w "HTTP %{http_code} size %{size_download}\n"
+### 20
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/mistral_large_2411.html \
+  "https://mistral.ai/news/mistral-large-2411/" -w "HTTP %{http_code} size %{size_download}\n"
+### 21
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/mistral_medium35_alt.html \
+  "https://mistral.ai/news/mistral-medium-3-5/" -w "HTTP %{http_code} size %{size_download}\n"
+### 22
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/mistral_ministral_alt.html \
+  "https://mistral.ai/news/ministral-3b-14b/" -w "HTTP %{http_code} size %{size_download}\n"
+### 23
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/mistral_codestral_2508.html \
+  "https://mistral.ai/news/codestral-2508/" -w "HTTP %{http_code} size %{size_download}\n"
+### 24
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/hf_mistral_large3.html \
+  "https://huggingface.co/mistralai/Mistral-Large-3/raw/main/README.md" -w "HTTP %{http_code} size %{size_download}\n"
+### 25
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/hf_mistral_nemo.html \
+  "https://huggingface.co/mistralai/Mistral-Nemo-Instruct-2407/raw/main/README.md" -w "HTTP %{http_code} size %{size_download}\n"
+### 26
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/hf_mistral_small3.html \
+  "https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/raw/main/README.md" -w "HTTP %{http_code} size %{size_download}\n"
+### 27
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/hf_mistral_codestral.html \
+  "https://huggingface.co/mistralai/Codestral-2501/raw/main/README.md" -w "HTTP %{http_code} size %{size_download}\n"
+### 28
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/hf_ministral_8b.html \
+  "https://huggingface.co/mistralai/Ministral-8B-Instruct-2410/raw/main/README.md" -w "HTTP %{http_code} size %{size_download}\n"
+### 29
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/hf_ministral_3b.html \
+  "https://huggingface.co/mistralai/Ministral-3B-Instruct-2410/raw/main/README.md" -w "HTTP %{http_code} size %{size_download}\n"
+### 30
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/hf_llama3_1_70b.html \
+  "https://huggingface.co/meta-llama/Llama-3.1-70B-Instruct/raw/main/README.md" -w "HTTP %{http_code} size %{size_download}\n"
+### 31
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/hf_llama3_1_8b.html \
+  "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct/raw/main/README.md" -w "HTTP %{http_code} size %{size_download}\n"
+### 32
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/hf_llama3_3_70b.html \
+  "https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct/raw/main/README.md" -w "HTTP %{http_code} size %{size_download}\n"
+### 33
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/hf_llama4_maverick.html \
+  "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct/raw/main/README.md" -w "HTTP %{http_code} size %{size_download}\n"
+### 34
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/hf_llama4_scout.html \
+  "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct/raw/main/README.md" -w "HTTP %{http_code} size %{size_download}\n"
+### 35
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/hf_llama3_1_modelcard_view.html \
+  "https://huggingface.co/meta-llama/Llama-3.1-70B-Instruct" -w "HTTP %{http_code} size %{size_download}\n"
+### 36
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/meta_llama_eval_github.html \
+  "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_1/MODEL_CARD.md" -w "HTTP %{http_code} size %{size_download}\n"
+### 37
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/meta_llama3_3_github.html \
+  "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_3/MODEL_CARD.md" -w "HTTP %{http_code} size %{size_download}\n"
+### 38
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/meta_llama4_github.html \
+  "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama4/MODEL_CARD.md" -w "HTTP %{http_code} size %{size_download}\n"
+### 39
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/mistral_github_eval.html \
+  "https://raw.githubusercontent.com/mistralai/mistral-eval/main/README.md" -w "HTTP %{http_code} size %{size_download}\n"
+### 40
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/mistral_codestral_blog.html \
+  "https://mistral.ai/news/codestral-2501/" -w "HTTP %{http_code} size %{size_download}\n"

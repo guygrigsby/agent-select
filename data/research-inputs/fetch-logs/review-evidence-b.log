@@ -1,0 +1,5 @@
+# Durable redacted fetch-command record recovered from the review-evidence-b.log session transcript.
+# Verbatim agent-issued fetch commands (curl/python), deduplicated, in original order.
+# Credential scan clean at recovery time. Format: "### N" then the verbatim command.
+### 1
+for b in openai anthropic qwen deepseek-zai xai images; do echo ==== $b; grep -E 'curl|wget|urllib|https?://' /tmp/agent-routing-research/$b.log | head -40; done

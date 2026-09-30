@@ -464,11 +464,11 @@
       "id": "openai/gpt-5.1-codex-max",
       "strengths": [
         {
-          "text": "GPT\u20115.1-Codex-Max is purpose-built for agentic coding.",
+          "text": "GPT‑5.1-Codex-Max is purpose-built for agentic coding.",
           "basis": "catalog_claim",
           "source_url": "https://vercel.com/ai/models",
           "source_file": "data/raw/models-dev.json",
-          "locator": "GPT\u20115.1-Codex-Max is purpose-built for agentic coding."
+          "locator": "GPT‑5.1-Codex-Max is purpose-built for agentic coding."
         }
       ],
       "weaknesses": [
@@ -602,11 +602,11 @@
       "id": "openai/gpt-5.2-codex",
       "strengths": [
         {
-          "text": "GPT\u20115.2-Codex is a version of GPT\u20115.2\u2060 further optimized for agentic coding in Codex, including improvements on long-horizon work through context compaction, stronger performance on large code changes like refactors and migrations, improved performance in Windows environments, and significantly stronger cybersecurity capabilities.",
+          "text": "GPT‑5.2-Codex is a version of GPT‑5.2⁠ further optimized for agentic coding in Codex, including improvements on long-horizon work through context compaction, stronger performance on large code changes like refactors and migrations, improved performance in Windows environments, and significantly stronger cybersecurity capabilities.",
           "basis": "catalog_claim",
           "source_url": "https://vercel.com/ai/models",
           "source_file": "data/raw/models-dev.json",
-          "locator": "GPT\u20115.2-Codex is a version of GPT\u20115.2\u2060 further optimized for agentic coding in Codex, including improvements on long-horizon work through context compaction, stronger performance on large code changes like refactors and migrations, improved performance in Windows environments, and significantly stronger cybersecurity capabilities."
+          "locator": "GPT‑5.2-Codex is a version of GPT‑5.2⁠ further optimized for agentic coding in Codex, including improvements on long-horizon work through context compaction, stronger performance on large code changes like refactors and migrations, improved performance in Windows environments, and significantly stronger cybersecurity capabilities."
         }
       ],
       "weaknesses": [
@@ -648,11 +648,11 @@
       "id": "openai/gpt-5.3-codex",
       "strengths": [
         {
-          "text": "GPT-5.3-Codex advances both the frontier coding performance of GPT\u20115.2-Codex and the reasoning and professional knowledge capabilities of GPT\u20115.2, together in one model, which is also 25% faster. This enables it to take on long-running tasks that involve research, tool use, and complex execution.",
+          "text": "GPT-5.3-Codex advances both the frontier coding performance of GPT‑5.2-Codex and the reasoning and professional knowledge capabilities of GPT‑5.2, together in one model, which is also 25% faster. This enables it to take on long-running tasks that involve research, tool use, and complex execution.",
           "basis": "catalog_claim",
           "source_url": "https://vercel.com/ai/models",
           "source_file": "data/raw/models-dev.json",
-          "locator": "GPT-5.3-Codex advances both the frontier coding performance of GPT\u20115.2-Codex and the reasoning and professional knowledge capabilities of GPT\u20115.2, together in one model, which is also 25% faster. This enables it to take on long-running tasks that involve research, tool use, and complex execution."
+          "locator": "GPT-5.3-Codex advances both the frontier coding performance of GPT‑5.2-Codex and the reasoning and professional knowledge capabilities of GPT‑5.2, together in one model, which is also 25% faster. This enables it to take on long-running tasks that involve research, tool use, and complex execution."
         }
       ],
       "weaknesses": [
@@ -671,11 +671,11 @@
       "id": "openai/gpt-5.3-codex-fast",
       "strengths": [
         {
-          "text": "GPT-5.3-Codex advances both the frontier coding performance of GPT\u20115.2-Codex and the reasoning and professional knowledge capabilities of GPT\u20115.2, together in one model, which is also 25% faster. This enables it to take on long-running tasks that involve research, tool use, and complex execution.",
+          "text": "GPT-5.3-Codex advances both the frontier coding performance of GPT‑5.2-Codex and the reasoning and professional knowledge capabilities of GPT‑5.2, together in one model, which is also 25% faster. This enables it to take on long-running tasks that involve research, tool use, and complex execution.",
           "basis": "catalog_claim",
           "source_url": "https://vercel.com/ai/models",
           "source_file": "data/raw/models-dev.json",
-          "locator": "GPT-5.3-Codex advances both the frontier coding performance of GPT\u20115.2-Codex and the reasoning and professional knowledge capabilities of GPT\u20115.2, together in one model, which is also 25% faster. This enables it to take on long-running tasks that involve research, tool use, and complex execution."
+          "locator": "GPT-5.3-Codex advances both the frontier coding performance of GPT‑5.2-Codex and the reasoning and professional knowledge capabilities of GPT‑5.2, together in one model, which is also 25% faster. This enables it to take on long-running tasks that involve research, tool use, and complex execution."
         }
       ],
       "weaknesses": [
@@ -832,11 +832,11 @@
       "id": "openai/gpt-5.5",
       "strengths": [
         {
-          "text": "GPT\u20115.5 understands what you\u2019re trying to do faster and can carry more of the work itself. It excels at writing and debugging code, researching online, analyzing data, creating documents and spreadsheets, operating software, and moving across tools until a task is finished. Instead of carefully managing every step, you can give GPT\u20115.5 a messy, multi-part task and trust it to plan, use tools, check its work, navigate through ambiguity, and keep going.",
+          "text": "GPT‑5.5 understands what you’re trying to do faster and can carry more of the work itself. It excels at writing and debugging code, researching online, analyzing data, creating documents and spreadsheets, operating software, and moving across tools until a task is finished. Instead of carefully managing every step, you can give GPT‑5.5 a messy, multi-part task and trust it to plan, use tools, check its work, navigate through ambiguity, and keep going.",
           "basis": "catalog_claim",
           "source_url": "https://vercel.com/ai/models",
           "source_file": "data/raw/models-dev.json",
-          "locator": "GPT\u20115.5 understands what you\u2019re trying to do faster and can carry more of the work itself. It excels at writing and debugging code, researching online, analyzing data, creating documents and spreadsheets, operating software, and moving across tools until a task is finished. Instead of carefully managing every step, you can give GPT\u20115.5 a messy, multi-part task and trust it to plan, use tools, check its work, navigate through ambiguity, and keep going."
+          "locator": "GPT‑5.5 understands what you’re trying to do faster and can carry more of the work itself. It excels at writing and debugging code, researching online, analyzing data, creating documents and spreadsheets, operating software, and moving across tools until a task is finished. Instead of carefully managing every step, you can give GPT‑5.5 a messy, multi-part task and trust it to plan, use tools, check its work, navigate through ambiguity, and keep going."
         }
       ],
       "weaknesses": [
@@ -855,11 +855,11 @@
       "id": "openai/gpt-5.5-fast",
       "strengths": [
         {
-          "text": "GPT\u20115.5 understands what you\u2019re trying to do faster and can carry more of the work itself. It excels at writing and debugging code, researching online, analyzing data, creating documents and spreadsheets, operating software, and moving across tools until a task is finished. Instead of carefully managing every step, you can give GPT\u20115.5 a messy, multi-part task and trust it to plan, use tools, check its work, navigate through ambiguity, and keep going.",
+          "text": "GPT‑5.5 understands what you’re trying to do faster and can carry more of the work itself. It excels at writing and debugging code, researching online, analyzing data, creating documents and spreadsheets, operating software, and moving across tools until a task is finished. Instead of carefully managing every step, you can give GPT‑5.5 a messy, multi-part task and trust it to plan, use tools, check its work, navigate through ambiguity, and keep going.",
           "basis": "catalog_claim",
           "source_url": "https://vercel.com/ai/models",
           "source_file": "data/raw/models-dev.json",
-          "locator": "GPT\u20115.5 understands what you\u2019re trying to do faster and can carry more of the work itself. It excels at writing and debugging code, researching online, analyzing data, creating documents and spreadsheets, operating software, and moving across tools until a task is finished. Instead of carefully managing every step, you can give GPT\u20115.5 a messy, multi-part task and trust it to plan, use tools, check its work, navigate through ambiguity, and keep going."
+          "locator": "GPT‑5.5 understands what you’re trying to do faster and can carry more of the work itself. It excels at writing and debugging code, researching online, analyzing data, creating documents and spreadsheets, operating software, and moving across tools until a task is finished. Instead of carefully managing every step, you can give GPT‑5.5 a messy, multi-part task and trust it to plan, use tools, check its work, navigate through ambiguity, and keep going."
         }
       ],
       "weaknesses": [
@@ -1261,11 +1261,11 @@
       "id": "openai/gpt-oss-safeguard-120b",
       "strengths": [
         {
-          "text": "GPT OSS Safeguard 120B is OpenAI\u2019s open-weight safety model for content moderation and guardrail enforcement. It helps teams evaluate content against custom safety policies and build scalable, adaptable protections for production AI applications.",
+          "text": "GPT OSS Safeguard 120B is OpenAI’s open-weight safety model for content moderation and guardrail enforcement. It helps teams evaluate content against custom safety policies and build scalable, adaptable protections for production AI applications.",
           "basis": "catalog_claim",
           "source_url": "https://vercel.com/ai/models",
           "source_file": "data/raw/models-dev.json",
-          "locator": "GPT OSS Safeguard 120B is OpenAI\u2019s open-weight safety model for content moderation and guardrail enforcement. It helps teams evaluate content against custom safety policies and build scalable, adaptable protections for production AI applications."
+          "locator": "GPT OSS Safeguard 120B is OpenAI’s open-weight safety model for content moderation and guardrail enforcement. It helps teams evaluate content against custom safety policies and build scalable, adaptable protections for production AI applications."
         }
       ],
       "weaknesses": [
@@ -1475,14 +1475,14 @@
       "license": "unknown"
     },
     {
-      "url": "https://huggingface.co/openai/gpt-oss-120b",
+      "url": "https://huggingface.co/openai/gpt-oss-120b/raw/main/README.md",
       "file": "data/research/openai/sources/hf-gpt-oss-120b-readme.md",
       "status": "retrieved",
       "purpose": "Open-weight GPT OSS 120B model card",
       "license": "unknown"
     },
     {
-      "url": "https://huggingface.co/openai/gpt-oss-20b",
+      "url": "https://huggingface.co/openai/gpt-oss-20b/raw/main/README.md",
       "file": "data/research/openai/sources/hf-gpt-oss-20b-readme.md",
       "status": "retrieved",
       "purpose": "Open-weight GPT OSS 20B model card",
@@ -1503,14 +1503,14 @@
       "license": "unknown"
     },
     {
-      "url": "https://github.com/openai/simple-evals",
+      "url": "https://raw.githubusercontent.com/openai/simple-evals/main/README.md",
       "file": "data/research/openai/sources/github-simple-evals-readme.md",
       "status": "retrieved",
       "purpose": "OpenAI simple-evals repository README; no exact assigned-model score extracted",
       "license": "unknown"
     },
     {
-      "url": "https://huggingface.co/openai/gpt-4o",
+      "url": "https://huggingface.co/api/models/openai/gpt-4o",
       "file": "data/research/openai/sources/huggingface-gpt4o-api.json",
       "status": "not_found",
       "purpose": "Specific model card request returned authentication error",

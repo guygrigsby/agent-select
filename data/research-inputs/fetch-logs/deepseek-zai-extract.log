@@ -1,0 +1,60 @@
+# Durable redacted fetch-command record recovered from the deepseek-zai-extract.log session transcript.
+# Verbatim agent-issued fetch commands (curl/python), deduplicated, in original order.
+# Credential scan clean at recovery time. Format: "### N" then the verbatim command.
+### 1
+cd /Users/guygrigsby/projects/agent-routing/data/research/deepseek-zai/saved_sources && \
+curl -s --max-time 40 -A 'agent-routing-research/0.1' -L 'https://api.github.com/repos/deepseek-ai/DeepSeek-V3/releases/latest' -o deepseek-v3-releases.json 2>&1 && echo "OK" || echo "FAIL: $?"
+### 2
+cd /Users/guygrigsby/projects/agent-routing/data/research/deepseek-zai/saved_sources && \
+curl -s --max-time 40 -A 'agent-routing-research/0.1' -L 'https://huggingface.co/api/models?search=deepseek-ai/DeepSeek-V3.1&limit=1' -o hf-deepseek-v31.json 2>&1 && echo "OK" || echo "FAIL: $?"
+### 3
+cd /Users/guygrigsby/projects/agent-routing/data/research/deepseek-zai/saved_sources && \
+curl -s --max-time 40 -A 'agent-routing-research/0.1' -L 'https://huggingface.co/api/models?search=deepseek-ai/DeepSeek-V4&limit=5' -o hf-deepseek-v4.json 2>&1 && echo "OK" || echo "FAIL: $?"
+### 4
+cd /Users/guygrigsby/projects/agent-routing/data/research/deepseek-zai/saved_sources && \
+curl -s --max-time 40 -A 'agent-routing-research/0.1' -L 'https://huggingface.co/api/models?search=THUDM/glm&limit=5' -o hf-glm.json 2>&1 && echo "OK" || echo "FAIL: $?"
+### 5
+cd /Users/guygrigsby/projects/agent-routing/data/research/deepseek-zai/saved_sources && sleep 1 && \
+curl -s --max-time 40 -A 'agent-routing-research/0.1' 'https://huggingface.co/deepseek-ai/DeepSeek-V3.1-Base/raw/main/README.md' -o hf-deepseek-v31-readme.md 2>&1 && echo "OK" || echo "FAIL: $?"
+### 6
+cd /Users/guygrigsby/projects/agent-routing/data/research/deepseek-zai/saved_sources && sleep 1 && \
+curl -s --max-time 40 -A 'agent-routing-research/0.1' 'https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash/raw/main/README.md' -o hf-deepseek-v4-flash-readme.md 2>&1 && echo "OK" || echo "FAIL: $?"
+### 7
+cd /Users/guygrigsby/projects/agent-routing/data/research/deepseek-zai/saved_sources && sleep 1 && \
+curl -s --max-time 40 -A 'agent-routing-research/0.1' 'https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/raw/main/README.md' -o hf-deepseek-v41-flash-readme.md 2>&1 && echo "OK" || echo "FAIL: $?"
+### 8
+cd /Users/guygrigsby/projects/agent-routing/data/research/deepseek-zai/saved_sources && sleep 1 && \
+curl -s --max-time 40 -A 'agent-routing-research/0.1' 'https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/raw/main/README.md' -o hf-deepseek-v4-pro-readme.md 2>&1 && echo "OK" || echo "FAIL: $?"
+### 9
+cd /Users/guygrigsby/projects/agent-routing/data/research/deepseek-zai/saved_sources && sleep 1 && \
+curl -s --max-time 40 -A 'agent-routing-research/0.1' 'https://huggingface.co/deepseek-ai/DeepSeek-V3.1-Base/raw/main/README.md' -o hf-deepseek-v31-readme.md 2>&1 && echo "OK" || echo "FAIL: $?" && \
+sleep 1 && \
+curl -s --max-time 40 -A 'agent-routing-research/0.1' -L 'https://api.github.com/search/repositories?q=DeepSeek-V3.1+org:deepseek-ai' -o deepseek-v31-github-search.json 2>&1 && echo "OK" || echo "FAIL: $?"
+### 10
+cd /Users/guygrigsby/projects/agent-routing/data/research/deepseek-zai/saved_sources && sleep 1 && \
+curl -s --max-time 40 -A 'agent-routing-research/0.1' -L 'https://huggingface.co/api/models?search=deepseek-ai/DeepSeek-V3.2&limit=1' -o hf-deepseek-v32.json 2>&1 && echo "OK" || echo "FAIL: $?" && \
+sleep 1 && \
+curl -s --max-time 40 -A 'agent-routing-research/0.1' -L 'https://huggingface.co/deepseek-ai/DeepSeek-V3.2/raw/main/README.md' -o hf-deepseek-v32-readme.md 2>&1 && echo "OK" || echo "FAIL: $?" && \
+sleep 1 && \
+curl -s --max-time 40 -A 'agent-routing-research/0.1' -L 'https://huggingface.co/THUDM/glm-4-9b-chat/raw/main/README.md' -o hf-glm-4-9b-chat-readme.md 2>&1 && echo "OK" || echo "FAIL: $?" && \
+sleep 1 && \
+curl -s --max-time 40 -A 'agent-routing-research/0.1' -L 'https://huggingface.co/api/models?search=THUDM/glm-4-9b&limit=3' -o hf-glm-models.json 2>&1 && echo "OK" || echo "FAIL: $?"
+### 11
+cd /Users/guygrigsby/projects/agent-routing/data/research/deepseek-zai/saved_sources && sleep 1 && \
+curl -s --max-time 40 -A 'agent-routing-research/0.1' -L 'https://huggingface.co/api/models/THUDM/glm-4-9b-chat' -o hf-glm-4-9b-chat.json 2>&1 && echo "OK" || echo "FAIL: $?" && \
+sleep 1 && \
+curl -s --max-time 40 -A 'agent-routing-research/0.1' -L 'https://huggingface.co/THUDM/glm-4-9b/raw/main/README.md' -o hf-glm-4-9b-readme.md 2>&1 && echo "OK" || echo "FAIL: $?"
+### 12
+cd /Users/guygrigsby/projects/agent-routing/data/research/deepseek-zai/saved_sources && sleep 1 && \
+curl -s --max-time 40 -A 'agent-routing-research/0.1' -L 'https://huggingface.co/api/models/THUDM/glm-4-9b-chat-hf/raw/main/README.md' -o hf-glm-4-9b-chat-hf-readme.md 2>&1 && echo "OK" || echo "FAIL: $?" && \
+sleep 1 && \
+curl -s --max-time 40 -A 'agent-routing-research/0.1' -L 'https://huggingface.co/THUDM/glm-4-9b-chat-hf/raw/main/README.md' -o hf-glm-4-9b-chat-hf-readme2.md 2>&1 && echo "OK" || echo "FAIL: $?" && \
+sleep 1 && \
+curl -s --max-time 40 -A 'agent-routing-research/0.1' -L 'https://huggingface.co/api/models/THUDM/GLM-4-9B-Chat-1M' -o hf-glm-4-9b-chat-1m.json 2>&1 && echo "OK" || echo "FAIL: $?" && \
+sleep 1 && \
+curl -s --max-time 40 -A 'agent-routing-research/0.1' -L 'https://huggingface.co/THUDM/GLM-4-9B-Chat-1M/raw/main/README.md' -o hf-glm-4-9b-chat-1m-readme.md 2>&1 && echo "OK" || echo "FAIL: $?"
+### 13
+cd /Users/guygrigsby/projects/agent-routing/data/research/deepseek-zai/saved_sources && sleep 1 && \
+curl -s --max-time 40 -A 'agent-routing-research/0.1' -L 'https://huggingface.co/api/models/THUDM/glm-5-9b' -o hf-glm-5-models.json 2>&1 && echo "OK" || echo "FAIL: $?" && \
+sleep 1 && \
+curl -s --max-time 40 -A 'agent-routing-research/0.1' -L 'https://huggingface.co/deepseek-ai/DeepSeek-V3.2/raw/main/assets/paper.pdf' -o deepseek-v32-paper.pdf 2>&1 && echo "OK" || echo "FAIL: $?"

@@ -12,8 +12,8 @@
         }
       ],
       "weaknesses": [],
-      "benchmark_status": "unresearched",
-      "notes": "Published evidence is provider/model-card material; benchmark results are not independent unless noted. Status correction: prior found status was inconsistent with the exported benchmarks array, which contains no numeric row for this exact ID; benchmark extraction is not complete. This does not establish that no published benchmark exists, and no adjacent revision result is assigned."
+      "benchmark_status": "found",
+      "notes": "Published measurements for this exact ID are exported from the provider README captures in this batch. Provider-reported, not independently reproduced; comparability and calibration remain unresolved."
     },
     {
       "id": "minimax/minimax-m2.1",
@@ -84,8 +84,8 @@
         }
       ],
       "weaknesses": [],
-      "benchmark_status": "unresearched",
-      "notes": "Published evidence is provider/model-card material; benchmark results are not independent unless noted. Status correction: prior found status was inconsistent with the exported benchmarks array, which contains no numeric row for this exact ID; benchmark extraction is not complete. This does not establish that no published benchmark exists, and no adjacent revision result is assigned."
+      "benchmark_status": "found",
+      "notes": "Published measurements for this exact ID are exported from the provider README captures in this batch. Provider-reported, not independently reproduced; comparability and calibration remain unresolved."
     },
     {
       "id": "moonshotai/kimi-k2-thinking",
@@ -106,8 +106,8 @@
         }
       ],
       "weaknesses": [],
-      "benchmark_status": "unresearched",
-      "notes": "Published evidence is provider/model-card material; benchmark results are not independent unless noted. Status correction: prior found status was inconsistent with the exported benchmarks array, which contains no numeric row for this exact ID; benchmark extraction is not complete. This does not establish that no published benchmark exists, and no adjacent revision result is assigned."
+      "benchmark_status": "found",
+      "notes": "Published measurements for this exact ID are exported from the provider README captures in this batch. Provider-reported, not independently reproduced; comparability and calibration remain unresolved."
     },
     {
       "id": "moonshotai/kimi-k2.6",
@@ -142,8 +142,8 @@
         }
       ],
       "weaknesses": [],
-      "benchmark_status": "unresearched",
-      "notes": "Published evidence is provider/model-card material; benchmark results are not independent unless noted. Status correction: prior found status was inconsistent with the exported benchmarks array, which contains no numeric row for this exact ID; benchmark extraction is not complete. This does not establish that no published benchmark exists, and no adjacent revision result is assigned."
+      "benchmark_status": "found",
+      "notes": "Published measurements for this exact ID are exported from the provider README captures in this batch. Provider-reported, not independently reproduced; comparability and calibration remain unresolved."
     },
     {
       "id": "moonshotai/kimi-k3-fast",
@@ -325,35 +325,35 @@
   ],
   "sources": [
     {
-      "url": "https://github.com/MiniMax-AI/MiniMax-M2",
+      "url": "https://raw.githubusercontent.com/MiniMax-AI/MiniMax-M2/main/README.md",
       "file": "data/research/moonshot-minimax/sources/github_minimax_m2_readme_full.md",
       "status": "retrieved",
       "purpose": "MiniMax M2 claims and benchmark tables",
       "license": "unknown"
     },
     {
-      "url": "https://github.com/MiniMax-AI/MiniMax-M3",
+      "url": "https://raw.githubusercontent.com/MiniMax-AI/MiniMax-M3/main/README.md",
       "file": "data/research/moonshot-minimax/sources/github_minimax_m3_readme.md",
       "status": "retrieved",
       "purpose": "MiniMax M3 capability claims",
       "license": "unknown"
     },
     {
-      "url": "https://huggingface.co/moonshotai/Kimi-K2-Instruct",
+      "url": "https://huggingface.co/moonshotai/Kimi-K2-Instruct/raw/main/README.md",
       "file": "data/research/moonshot-minimax/sources/kimi_k2_readme.md",
       "status": "retrieved",
       "purpose": "Kimi K2 evaluation table",
       "license": "modified MIT (verified in HF API)"
     },
     {
-      "url": "https://huggingface.co/moonshotai/Kimi-K2.5",
+      "url": "https://huggingface.co/moonshotai/Kimi-K2.5/raw/main/README.md",
       "file": "data/research/moonshot-minimax/sources/kimi_k25_readme.md",
       "status": "retrieved",
       "purpose": "Kimi K2.5 evaluation table",
       "license": "unknown"
     },
     {
-      "url": "https://huggingface.co/moonshotai/Kimi-K3",
+      "url": "https://huggingface.co/moonshotai/Kimi-K3/raw/main/README.md",
       "file": "data/research/moonshot-minimax/sources/kimi_k3_readme.md",
       "status": "retrieved",
       "purpose": "Kimi K3 evaluation table",

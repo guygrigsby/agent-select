@@ -1,0 +1,461 @@
+# Durable redacted fetch-command record recovered from the benchmark-sources.log session transcript.
+# Verbatim agent-issued fetch commands (curl/python), deduplicated, in original order.
+# Credential scan clean at recovery time. Format: "### N" then the verbatim command.
+### 1
+cd /Users/guygrigsby/projects/agent-routing/data/research/benchmark-sources
+
+# 1. Artificial Analysis API/docs
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  -H "Accept: text/html,application/json" \
+  "https://artificialanalysis.ai/api/endpoints" -o _artificial_analysis_api.json 2>&1 || echo "FAILED: artificial-analysis-api"
+
+# Check what we got
+ls -la _artificial_analysis_api.json 2>/dev/null
+head -c 500 _artificial_analysis_api.json 2>/dev/null || echo "empty"
+### 2
+cd /Users/guygrigsby/projects/agent-routing/data/research/benchmark-sources
+
+# 2. LMArena / Chatbot Arena leaderboard
+# Try the main leaderboard page and data sources
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://lmarena.ai/" -o _lmarena_main.html 2>&1 || echo "FAILED: lmarena"
+
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://huggingface.co/spaces/lmsys/chatbot-arena-leaderboard" -o _lmarena_hf.html 2>&1 || echo "FAILED: lmarena-hf"
+
+# Check the data files on HF
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://huggingface.co/datasets/lmsys/lmsys-arena-human-preference-55k" -o _lmarena_dataset.html 2>&1 || echo "FAILED: lmarena-dataset"
+
+# Also try the raw data export
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://raw.githubusercontent.com/lm-sys/FastChat/main/fastchat/serve/monitor/elo_results_latest.csv" -o _lmarena_elo.csv 2>&1 || echo "FAILED: lmarena-elo-csv"
+
+ls -la _lmarena_* 2>/dev/null
+head -c 300 _lmarena_elo.csv 2>/dev/null || echo "no elo csv"
+### 3
+cd /Users/guygrigsby/projects/agent-routing/data/research/benchmark-sources
+
+# 3. SWE-bench leaderboard - GitHub data
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://api.github.com/repos/princeton-nlp/SWE-bench" -o _swebench_github_repo.json 2>&1 || echo "FAILED: swebench-gh"
+
+# Try to get leaderboard data from their repo
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://raw.githubusercontent.com/princeton-nlp/SWE-bench/main/leaderboard/verified_results.json" -o _swebench_verified.json 2>&1 || echo "FAILED: swebench-verified"
+
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://raw.githubusercontent.com/princeton-nlp/SWE-bench/main/leaderboard/pro_results.json" -o _swebench_pro.json 2>&1 || echo "FAILED: swebench-pro"
+
+ls -la _swebench_* 2>/dev/null
+head -c 500 _swebench_verified.json 2>/dev/null || echo "empty"
+### 4
+cd /Users/guygrigsby/projects/agent-routing/data/research/benchmark-sources
+
+# SWE-bench - try different paths and GitHub API
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://github.com/princeton-nlp/SWE-bench/tree/main/leaderboard" -o _swebench_leaderboard_page.html 2>&1 || echo "FAILED: swebench-page"
+
+# Try the SWE-bench website
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://www.swebench.com/" -o _swebench_site.html 2>&1 || echo "FAILED: swebench-site"
+
+# Try accessing via GitHub API for contents
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://api.github.com/repos/princeton-nlp/SWE-bench/contents/leaderboard" -o _swebench_gh_contents.json 2>&1 || echo "FAILED: swebench-gh-contents"
+
+ls -la _swebench_*
+### 5
+cd /Users/guygrigsby/projects/agent-routing/data/research/benchmark-sources
+
+# 4. LiveCodeBench
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://livecodebench.github.io/" -o _livecodebench_site.html 2>&1 || echo "FAILED: lcb-site"
+
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://raw.githubusercontent.com/LiveCodeBench/LiveCodeBench/main/leaderboard/results_latest.json" -o _livecodebench_results.json 2>&1 || echo "FAILED: lcb-results"
+
+# Also try HF dataset
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://huggingface.co/datasets/livecodebench/leaderboard" -o _livecodebench_hf.html 2>&1 || echo "FAILED: lcb-hf"
+
+ls -la _livecodebench_*
+### 6
+cd /Users/guygrigsby/projects/agent-routing/data/research/benchmark-sources
+
+# Artificial Analysis - try docs and pricing pages
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://artificialanalysis.ai/docs" -o _aa_docs.html 2>&1 || echo "FAILED: aa-docs"
+
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://artificialanalysis.ai/pricing" -o _aa_pricing.html 2>&1 || echo "FAILED: aa-pricing"
+
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://artificialanalysis.ai/api" -o _aa_api_page.html 2>&1 || echo "FAILED: aa-api"
+
+ls -la _aa_*
+### 7
+cd /Users/guygrigsby/projects/agent-routing/data/research/benchmark-sources
+
+# Look at SWE-bench mainResults.js for data fetch URLs
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://www.swebench.com/js/mainResults.js" -o _swebench_mainResults.js 2>&1 || echo "FAILED"
+
+grep -i 'url\|fetch\|axios\|data\|json\|csv' _swebench_mainResults.js | head -20
+### 8
+cd /Users/guygrigsby/projects/agent-routing/data/research/benchmark-sources
+
+# LiveCodeBench - try to access the HF dataset leaderboard data directly
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://huggingface.co/spaces/livecodebench/leaderboard" -o _lcb_hf_spaces.html 2>&1 || echo "FAILED: lcb-hf-spaces"
+
+# Try the raw data from their GitHub repo (different path)
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://raw.githubusercontent.com/LiveCodeBench/LiveCodeBench/main/data/latest_leaderboard.json" -o _lcb_latest_leaderboard.json 2>&1 || echo "FAILED: lcb-latest"
+
+ls -la _lcb_*
+### 9
+cd /Users/guygrigsby/projects/agent-routing/data/research/benchmark-sources
+
+# LiveCodeBench - check the GitHub repo structure
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://api.github.com/repos/LiveCodeBench/LiveCodeBench/contents" -o _lcb_gh_contents.json 2>&1 || echo "FAILED: lcb-gh-contents"
+
+# Also check their HF dataset
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://huggingface.co/datasets/livecodebench/leaderboard/raw/main/results_latest.json" -o _lcb_hf_results.json 2>&1 || echo "FAILED: lcb-hf-results"
+
+cat _lcb_gh_contents.json | head -50
+### 10
+cd /Users/guygrigsby/projects/agent-routing/data/research/benchmark-sources
+
+# 5. HELM (Stanford)
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://crfm.stanford.edu/helm/latest/" -o _helm_latest.html 2>&1 || echo "FAILED: helm"
+
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://crfm.stanford.edu/helm/latest/api/leaderboard/data" -o _helm_api_leaderboard.json 2>&1 || echo "FAILED: helm-api"
+
+# 6. Hugging Face Open LLM Leaderboard
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard" -o _openllm_hf.html 2>&1 || echo "FAILED: openllm-hf"
+
+# Also try the old one
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard" -o _openllm_old_hf.html 2>&1 || echo "FAILED: openllm-old-hf"
+
+ls -la _helm_* _openllm_*
+### 11
+cd /Users/guygrigsby/projects/agent-routing/data/research/benchmark-sources
+
+# LiveCodeBench - check for data directory
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://api.github.com/repos/LiveCodeBench/LiveCodeBench/contents/data" -o _lcb_gh_data_dir.json 2>&1 || echo "FAILED"
+
+cat _lcb_gh_data_dir.json | head -50
+echo "==="
+# Also check the leaderboard subdir
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://api.github.com/repos/LiveCodeBench/LiveCodeBench/contents/leaderboard" -o _lcb_gh_leaderboard_dir.json 2>&1 || echo "FAILED"
+
+cat _lcb_gh_leaderboard_dir.json | head -50
+### 12
+cd /Users/guygrigsby/projects/agent-routing/data/research/benchmark-sources
+
+# HELM - try the correct leaderboard URL
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://crfm.stanford.edu/helm/latest/leaderboard/" -o _helm_leaderboard.html 2>&1 || echo "FAILED"
+
+# Try the classic HELM
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://crfm.stanford.edu/helm/classic/" -o _helm_classic.html 2>&1 || echo "FAILED"
+
+# Try the HELM data API  
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://crfm.stanford.edu/helm/latest/leaderboard/data/" -o _helm_data.html 2>&1 || echo "FAILED"
+
+ls -la _helm_*.html
+head -c 500 _helm_leaderboard.html
+### 13
+cd /Users/guygrigsby/projects/agent-routing/data/research/benchmark-sources
+
+# LiveCodeBench - try the HF dataset raw data
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://huggingface.co/datasets/livecodebench/leaderboard/resolve/main/results_latest.json" -o _lcb_hf_results_latest.json 2>&1 || echo "FAILED: lcb-hf-resolve"
+
+# Try different path
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://huggingface.co/datasets/livecodebench/leaderboard/raw/main/data/results_latest.json" -o _lcb_hf_results2.json 2>&1 || echo "FAILED: lcb-hf-raw2"
+
+ls -la _lcb_hf_*.json
+head -c 300 _lcb_hf_results_latest.json 2>/dev/null || echo "empty"
+echo "==="
+head -c 300 _lcb_hf_results2.json 2>/dev/null || echo "empty2"
+### 14
+cd /Users/guygrigsby/projects/agent-routing/data/research/benchmark-sources
+
+# HELM - check the classic page which may redirect
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  -o /dev/null -w "%{http_code} %{url_effective}" \
+  "https://crfm.stanford.edu/helm/classic/" 2>&1 || echo "FAILED"
+echo ""
+# Try the newer HELM site
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://crfm.stanford.edu/helm/" -o _helm_root.html 2>&1 || echo "FAILED"
+
+ls -la _helm_root.html
+head -c 500 _helm_root.html
+echo "==="
+# Check what's at the main site
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://crfm.stanford.edu/" -o _crfm_root.html 2>&1 || echo "FAILED"
+head -c 500 _crfm_root.html
+### 15
+cd /Users/guygrigsby/projects/agent-routing/data/research/benchmark-sources
+
+# LiveCodeBench - try the GitHub releases for data exports
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://api.github.com/repos/LiveCodeBench/LiveCodeBench/releases/latest" -o _lcb_gh_releases.json 2>&1 || echo "FAILED"
+cat _lcb_gh_releases.json | head -80
+echo "==="
+# Also check for a data branch or website data
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://raw.githubusercontent.com/LiveCodeBench/leaderboard/main/data.json" -o _lcb_leaderboard_data.json 2>&1 || echo "FAILED: lcb-other"
+head -c 300 _lcb_leaderboard_data.json 2>/dev/null || echo "empty"
+### 16
+cd /Users/guygrigsby/projects/agent-routing/data/research/benchmark-sources
+
+# 7. EvalPlus
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://evalplus.github.io/leaderboard.html" -o _evalplus_leaderboard.html 2>&1 || echo "FAILED: evalplus"
+
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://evalplus.github.io/data/leaderboard.json" -o _evalplus_data.json 2>&1 || echo "FAILED: evalplus-data"
+
+# 8. Aider
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://aider.chat/docs/leaderboards/" -o _aider_leaderboard.html 2>&1 || echo "FAILED: aider"
+sleep 1
+
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://aider.chat/data/leaderboard.json" -o _aider_data.json 2>&1 || echo "FAILED: aider-data"
+
+ls -la _evalplus_* _aider_*
+head -c 500 _evalplus_data.json 2>/dev/null || echo "evalplus data empty"
+echo "==="
+head -c 500 _aider_data.json 2>/dev/null || echo "aider data empty"
+### 17
+cd /Users/guygrigsby/projects/agent-routing/data/research/benchmark-sources
+
+# Fetch the full HELM classic SPA page to find data API
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://crfm.stanford.edu/helm/classic/" -o _helm_classic_full.html 2>&1 || echo "FAILED"
+
+# Also try HELM v1
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://crfm.stanford.edu/helm/v1/" -o _helm_v1.html 2>&1 || echo "FAILED: helm-v1"
+
+# Look for API endpoints in the pages
+grep -oP 'api|leaderboard|data|json|csv' _helm_classic_full.html 2>/dev/null | sort | uniq -c | sort -rn | head -20
+echo "==="
+# Check what JS files are loaded
+grep -o 'src="[^"]*"' _helm_classic_full.html | grep -i 'js\|api' | head -10
+### 18
+cd /Users/guygrigsby/projects/agent-routing/data/research/benchmark-sources
+
+# EvalPlus - fetch the actual results.json from leaderboard page
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://evalplus.github.io/results.json" -o _evalplus_results.json 2>&1 || echo "FAILED: evalplus-results"
+
+sleep 1
+
+# Also try data/results.json
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://evalplus.github.io/data/results.json" -o _evalplus_data_results.json 2>&1 || echo "FAILED: evalplus-data-results"
+
+ls -la _evalplus_results* _evalplus_data_results*
+echo "---"
+head -c 1000 _evalplus_results.json 2>/dev/null || echo "empty"
+echo "---"
+file _evalplus_results.json 2>/dev/null
+### 19
+cd /Users/guygrigsby/projects/agent-routing/data/research/benchmark-sources
+
+# HELM - find the data API by looking at their React app
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://crfm.stanford.edu/helm/classic/" -o _helm_classic_full.html 2>&1 || echo "FAILED"
+
+# Check for API endpoints in the page
+python3 -c "
+import re
+with open('_helm_classic_full.html') as f:
+    content = f.read()
+print('Length:', len(content))
+# Look for data URLs
+urls = re.findall(r'https?://[^\"\\\'\\s<>)]+', content)
+for u in urls:
+    if any(x in u.lower() for x in ['api', 'data', 'json', 'leaderboard', 'benchmark', 'result', 'csv']):
+        print(u)
+# Also look for fetch/ajax references
+refs = re.findall(r'(?:fetch|axios|\.get|\.post|url|api)[^;]{0,300}', content, re.I)
+for r in refs[:20]:
+    if 'leaderboard' in r.lower() or 'result' in r.lower() or 'benchmark' in r.lower() or 'data' in r.lower():
+        print('Ref:', r[:150])
+"
+### 20
+cd /Users/guygrigsby/projects/agent-routing/data/research/benchmark-sources
+
+# Aider - try the YAML data source referenced in the page
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://aider.chat/docs/leaderboards/data/polyglot_leaderboard.yml" -o _aider_polyglot.yml 2>&1 || echo "FAILED: aider-yml"
+
+# Also try a CSV export
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://aider.chat/docs/leaderboards/data/" -o _aider_data_dir.html 2>&1 || echo "FAILED: aider-data-dir"
+
+ls -la _aider_*.yml _aider_data_dir.html
+head -c 500 _aider_polyglot.yml 2>/dev/null || echo "empty"
+### 21
+cd /Users/guygrigsby/projects/agent-routing/data/research/benchmark-sources
+
+# 9. Image generation benchmarks - GenEval
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://geneval-benchmark.github.io/" -o _geneval_site.html 2>&1 || echo "FAILED: geneval"
+
+sleep 1
+
+# DPG (DALL-E Performance Guide)
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://dpg-benchmark.github.io/" -o _dpg_site.html 2>&1 || echo "FAILED: dpg"
+
+sleep 1
+
+# T2I benchmark (text-to-image)
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://t2i-benchmark.github.io/" -o _t2i_site.html 2>&1 || echo "FAILED: t2i"
+
+ls -la _geneval* _dpg* _t2i*
+### 22
+cd /Users/guygrigsby/projects/agent-routing/data/research/benchmark-sources
+
+# Try different HELM URLs
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  -o /dev/null -w "%{http_code} %{url_effective}\n" \
+  "https://crfm.stanford.edu/helm/latest/" 2>&1
+echo "==="
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  -o /dev/null -w "%{http_code} %{url_effective}\n" \
+  "https://crfm.stanford.edu/helm/" 2>&1
+### 23
+cd /Users/guygrigsby/projects/agent-routing/data/research/benchmark-sources
+
+# Image generation benchmarks - try alternative URLs
+# GenEval - the actual paper/data site
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://www.biorxiv.org/content/10.1101/2023.06.14.544951v1" -o _geneval_paper.html 2>&1 || echo "FAILED: geneval-paper"
+
+sleep 1
+
+# Try the GenEval GitHub repo
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://api.github.com/repos/djbielejeski/GenEval" -o _geneval_github.json 2>&1 || echo "FAILED: geneval-gh"
+
+sleep 1
+
+# MMMU benchmark
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://mmmu-benchmark.github.io/" -o _mmmu_site.html 2>&1 || echo "FAILED: mmmu"
+
+sleep 1
+
+# MathVista
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://mathvista.github.io/" -o _mathvista_site.html 2>&1 || echo "FAILED: mathvista"
+
+ls -la _geneval_* _mmmu_* _mathvista_*
+### 24
+cd /Users/guygrigsby/projects/agent-routing/data/research/benchmark-sources
+
+# HELM - follow the redirect to classic/latest
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://crfm.stanford.edu/helm/classic/latest/" -o _helm_classic_latest.html 2>&1 || echo "FAILED"
+
+head -c 2000 _helm_classic_latest.html
+echo "==="
+# Check what JS is loaded
+grep -o 'src="[^"]*"' _helm_classic_latest.html | head -20
+### 25
+cd /Users/guygrigsby/projects/agent-routing/data/research/benchmark-sources
+
+# Try to find GenEval repository correctly
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://api.github.com/search/repositories?q=GenEval+benchmark" -o _geneval_gh_search.json 2>&1 || echo "FAILED"
+
+sleep 1
+
+# Also try the correct GenEval paper/repo
+curl -s -L --max-time 40 \
+  -H "User-Agent: agent-routing-research/0.1" \
+  "https://api.github.com/repos/microsoft/GenEval" -o _geneval_ms_github.json 2>&1 || echo "FAILED: geneval-ms"
+
+cat _geneval_gh_search.json | python3 -c "import json,sys; d=json.load(sys.stdin); print('Total:', d.get('total_count','?')); items=d.get('items',[]); [print(i['full_name'],i['html_url']) for i in items[:5]]" 2>/dev/null || head -c 500 _geneval_gh_search.json

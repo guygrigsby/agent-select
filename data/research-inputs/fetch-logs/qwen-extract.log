@@ -1,0 +1,14 @@
+# Durable redacted fetch-command record recovered from the qwen-extract.log session transcript.
+# Verbatim agent-issued fetch commands (curl/python), deduplicated, in original order.
+# Credential scan clean at recovery time. Format: "### N" then the verbatim command.
+### 1
+cd /Users/guygrigsby/projects/agent-routing/data/research/qwen/sources && sleep 1 && curl -sS --max-time 40 -A "agent-routing-research/0.1" -o "qwen3_arxiv.html" -L "https://arxiv.org/abs/2505.03718" 2>&1 && echo "DONE" || echo "FAILED: $?"
+### 2
+cd /Users/guygrigsby/projects/agent-routing/data/research/qwen/sources && sleep 1 && curl -sS --max-time 40 -A "agent-routing-research/0.1" -L -o "qwen3_paper.pdf" "https://arxiv.org/pdf/2505.03718.pdf" 2>&1 && echo "DONE: $(wc -c < qwen3_paper.pdf) bytes" || echo "FAILED: $?"
+### 3
+cd /Users/guygrigsby/projects/agent-routing/data/research/qwen/sources && sleep 1 && curl -sS --max-time 40 -A "agent-routing-research/0.1" -L -o "qwen3_search.html" "https://arxiv.org/search/?searchtype=all&query=qwen3+language+model&start=0" 2>&1 | tail -3
+### 4
+# Let me try a different search - search for 'qwen3 technical report'
+cd /Users/guygrigsby/projects/agent-routing/data/research/qwen/sources && sleep 1 && curl -sS --max-time 40 -A "agent-routing-research/0.1" -L -o "qwen3_search2.html" "https://arxiv.org/search/?searchtype=all&query=qwen3+technical+report&start=0" 2>&1 | tail -3
+### 5
+sleep 1 && curl -sS --max-time 40 -A "agent-routing-research/0.1" -L -o "qwen3_readme.json" "https://api.github.com/repos/QwenLM/Qwen3/readme" 2>&1 | tail -3

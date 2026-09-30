@@ -1,0 +1,31 @@
+{
+  "batch": "unresolved",
+  "scope": "published_measurements",
+  "state": "source_validated",
+  "reason": "Source-accuracy validation of measurement rows as originally reviewed (frozen bytes; superseded by a later record where findings bytes were corrected in phase 3).",
+  "review_path": "data/reviews/source-evidence-2026-09-30.md",
+  "pins": [
+    {
+      "path": "data/research/deepseek-zai/saved_sources/deepseek-r1-paper.html",
+      "sha256": "c46e1593f0d86b67906f3514f73eb92b6726c194e8ae65044d07a1ce26d86217"
+    },
+    {
+      "path": "data/research/deepseek-zai/saved_sources/hf-deepseek-v31-readme.md",
+      "sha256": "8cfb790cabd0b2e9a208d657dcf7e7ea97a1601fe2d60bc386525df42079247d"
+    },
+    {
+      "path": "data/research/openai/sources/github-simple-evals-readme.md",
+      "sha256": "d9647c4a0e34cd9b2b528ff6986141734aac6f5f2f18a068eeadb2af0b29786f"
+    },
+    {
+      "path": "data/research/unresolved/findings.json",
+      "sha256": "e8a61f98b048d3ce3314b01c1b0ddd013a0723e7dad345ee46e9b7830c35d4be"
+    },
+    {
+      "path": "data/reviews/source-evidence-2026-09-30.md",
+      "sha256": "913f55d1f3a1cc4b25dd3d8a0c9927a66be363d1752b05828749985189c221f7"
+    }
+  ],
+  "decision_version": 1,
+  "decided_at": "2026-09-30T02:55:34Z"
+}

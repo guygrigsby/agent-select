@@ -1,0 +1,27 @@
+{
+  "batch": "google",
+  "scope": "published_measurements",
+  "state": "source_validated",
+  "reason": "Source-accuracy validation of measurement rows as originally reviewed (frozen bytes; superseded by a later record where findings bytes were corrected in phase 3).",
+  "review_path": "data/reviews/google-moonshot-source-validation.md",
+  "pins": [
+    {
+      "path": "data/research/google/findings.json",
+      "sha256": "d8b50c09cece25be3b133e8c2a2324c29b97768cc4270fe9f0c050d2d366ab59"
+    },
+    {
+      "path": "data/research/google/sources/hf-gemma-4-26b.html",
+      "sha256": "e09e8afaa6547cd05af3e1f0690067a496f7d55cae81a88c1cb8eaa846c8e0cb"
+    },
+    {
+      "path": "data/research/google/sources/hf-gemma-4-31b.html",
+      "sha256": "ed74c0f0ad50db83eae31cf6630f51d3dcdb762db22e91c193e04449a45ddbb7"
+    },
+    {
+      "path": "data/reviews/google-moonshot-source-validation.md",
+      "sha256": "c12c68721f1a4819ff7f357fbc455863835ac4c54d64dbc2a13b604d4f0243a2"
+    }
+  ],
+  "decision_version": 1,
+  "decided_at": "2026-09-30T03:34:48Z"
+}

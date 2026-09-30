@@ -1,0 +1,31 @@
+{
+  "batch": "catalog-sources",
+  "scope": "catalog_sources",
+  "state": "accepted",
+  "reason": "Catalog comparison passed actual-source review over the four pinned captures.",
+  "review_path": "data/reviews/source-evidence-2026-09-30.md",
+  "pins": [
+    {
+      "path": "data/research/catalog-sources/findings.json",
+      "sha256": "a29d5914860d49a2e9790abd885b36395b5f86ce42d9c14e4f439e6ed565daf6"
+    },
+    {
+      "path": "data/raw/vercel-models.json",
+      "sha256": "f9355018ab702213372743a19f6e0202abedbcaf0bac11a1141f1fa7219ce152"
+    },
+    {
+      "path": "data/raw/vercel.headers",
+      "sha256": "8e07a1066b5c4d1fd6b0109ba517c9b4c42fce0f8fe4f49f385396bdb12da1c7"
+    },
+    {
+      "path": "data/raw/models-dev.json",
+      "sha256": "a174062643509bd51dc6338a3e8bb26ae19d398cdd445af1762ca2d1186f1a50"
+    },
+    {
+      "path": "data/raw/models-dev.headers",
+      "sha256": "d4092bf6c2f75cf7afc2bc1dcf006c60a9ca663e05eaf10edd8520eec3e640ad"
+    }
+  ],
+  "decision_version": 1,
+  "decided_at": "2026-09-30T02:06:39Z"
+}

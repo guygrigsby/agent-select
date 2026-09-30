@@ -1,0 +1,439 @@
+# Durable redacted fetch-command record recovered from the images.log session transcript.
+# Verbatim agent-issued fetch commands (curl/python), deduplicated, in original order.
+# Credential scan clean at recovery time. Format: "### N" then the verbatim command.
+### 1
+cd /Users/guygrigsby/projects/agent-routing && python3 -c "
+import urllib.request, json, time, os
+
+headers = {'User-Agent': 'agent-routing-research/0.1'}
+sources = []
+
+# BFL - Black Forest Labs models
+urls = {
+    'bfl_flux2_announcement': 'https://blackforestlabs.ai/flux-2/',
+    'bfl_kontext': 'https://blackforestlabs.ai/flux-kontext/',
+    'bfl_github': 'https://github.com/black-forest-labs/flux',
+    'bfl_hf': 'https://huggingface.co/black-forest-labs',
+}
+
+for name, url in urls.items():
+    try:
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=40) as resp:
+            body = resp.read()
+            fname = f'data/research/images/sources/{name}.html'
+            with open(fname, 'wb') as f:
+                f.write(body)
+            sources.append({'url': url, 'file': fname, 'status': 'retrieved', 'size': len(body)})
+        time.sleep(1.1)
+    except urllib.error.HTTPError as e:
+        sources.append({'url': url, 'file': '', 'status': f'blocked_{e.code}', 'error': str(e)})
+    except Exception as e:
+        sources.append({'url': url, 'file': '', 'status': 'not_found', 'error': str(e)})
+        
+print(json.dumps(sources, indent=2))
+" 2>&1 | head -60
+### 2
+cd /Users/guygrigsby/projects/agent-routing && python3 -c "
+import urllib.request, json, time, os
+
+headers = {'User-Agent': 'agent-routing-research/0.1'}
+sources = []
+
+# OpenAI image generation models
+urls = {
+    'openai_gpt_image_1': 'https://platform.openai.com/docs/models/gpt-image-1',
+    'openai_gpt_image_1_5': 'https://openai.com/index/gpt-image-1-5/',
+    'openai_gpt_image_2': 'https://openai.com/index/gpt-image-2/',
+    'openai_image_generation_guide': 'https://platform.openai.com/docs/guides/images',
+}
+
+for name, url in urls.items():
+    try:
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=40) as resp:
+            body = resp.read()
+            fname = f'data/research/images/sources/{name}.html'
+            with open(fname, 'wb') as f:
+                f.write(body)
+            sources.append({'url': url, 'file': fname, 'status': 'retrieved', 'size': len(body)})
+        time.sleep(1.1)
+    except urllib.error.HTTPError as e:
+        sources.append({'url': url, 'file': '', 'status': f'blocked_{e.code}', 'error': str(e)})
+    except Exception as e:
+        sources.append({'url': url, 'file': '', 'status': 'not_found', 'error': str(e)})
+        
+print(json.dumps(sources, indent=2))
+" 2>&1
+### 3
+cd /Users/guygrigsby/projects/agent-routing && python3 -c "
+import urllib.request, json, time, os
+
+headers = {'User-Agent': 'agent-routing-research/0.1'}
+sources = []
+
+# Try BFL blog / announcement pages - alternative URLs
+urls = {
+    'bfl_blog': 'https://blackforestlabs.ai/news/',
+    'bfl_hf_flux2': 'https://huggingface.co/black-forest-labs/FLUX.2',
+    'bfl_hf_flux1_pro': 'https://huggingface.co/black-forest-labs/FLUX.1-pro',
+    'bfl_hf_flux11_pro': 'https://huggingface.co/black-forest-labs/FLUX.1.1-pro',
+}
+
+for name, url in urls.items():
+    try:
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=40) as resp:
+            body = resp.read()
+            fname = f'data/research/images/sources/{name}.html'
+            with open(fname, 'wb') as f:
+                f.write(body)
+            sources.append({'url': url, 'file': fname, 'status': 'retrieved', 'size': len(body)})
+        time.sleep(1.1)
+    except urllib.error.HTTPError as e:
+        sources.append({'url': url, 'file': '', 'status': f'blocked_{e.code}', 'error': str(e)})
+    except Exception as e:
+        sources.append({'url': url, 'file': '', 'status': 'not_found', 'error': str(e)})
+        
+print(json.dumps(sources, indent=2))
+" 2>&1
+### 4
+cd /Users/guygrigsby/projects/agent-routing && python3 -c "
+import urllib.request, json, time, os
+
+headers = {'User-Agent': 'agent-routing-research/0.1'}
+sources = []
+
+# ByteDance Seedream
+urls = {
+    'bytedance_seedream': 'https://www.bytedance.com/en/products/seedream',
+    'bytedance_seedream_4': 'https://huggingface.co/ByteDance/Seedream-4',
+    'bytedance_seedream_45': 'https://huggingface.co/ByteDance/Seedream-4.5',
+}
+
+for name, url in urls.items():
+    try:
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=40) as resp:
+            body = resp.read()
+            fname = f'data/research/images/sources/{name}.html'
+            with open(fname, 'wb') as f:
+                f.write(body)
+            sources.append({'url': url, 'file': fname, 'status': 'retrieved', 'size': len(body)})
+        time.sleep(1.1)
+    except urllib.error.HTTPError as e:
+        sources.append({'url': url, 'file': '', 'status': f'blocked_{e.code}', 'error': str(e)})
+    except Exception as e:
+        sources.append({'url': url, 'file': '', 'status': 'not_found', 'error': str(e)})
+        
+print(json.dumps(sources, indent=2))
+" 2>&1
+### 5
+cd /Users/guygrigsby/projects/agent-routing && python3 -c "
+import urllib.request, json, time, os
+
+headers = {'User-Agent': 'agent-routing-research/0.1'}
+sources = []
+
+# Google Gemini image models
+urls = {
+    'google_gemini_2_flash_image': 'https://ai.google.dev/gemini-api/docs/image-generation',
+    'google_gemini_models': 'https://ai.google.dev/gemini-api/docs/models',
+    'google_gemini_3_image': 'https://deepmind.google/technologies/gemini/gemini-3/',
+}
+
+for name, url in urls.items():
+    try:
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=40) as resp:
+            body = resp.read()
+            fname = f'data/research/images/sources/{name}.html'
+            with open(fname, 'wb') as f:
+                f.write(body)
+            sources.append({'url': url, 'file': fname, 'status': 'retrieved', 'size': len(body)})
+        time.sleep(1.1)
+    except urllib.error.HTTPError as e:
+        sources.append({'url': url, 'file': '', 'status': f'blocked_{e.code}', 'error': str(e)})
+    except Exception as e:
+        sources.append({'url': url, 'file': '', 'status': 'not_found', 'error': str(e)})
+        
+print(json.dumps(sources, indent=2))
+" 2>&1
+### 6
+cd /Users/guygrigsby/projects/agent-routing && python3 -c "
+import urllib.request, json, time, os
+
+headers = {'User-Agent': 'agent-routing-research/0.1'}
+sources = []
+
+# Benchmark sources and model cards
+urls = {
+    'geneval_bench': 'https://github.com/djghats/GenEval',
+    'dpg_bench': 'https://github.com/DPG-Bench/DPG-Bench',
+    't2i_compbench': 'https://github.com/Karine-Huang/T2I-CompBench',
+    'imagen_eval': 'https://imagen.research.google/',
+    'imagen3': 'https://deepmind.google/technologies/imagen-3/',
+    'artifactor_bench': 'https://huggingface.co/spaces/artifactor-bench/artifactor-bench-leaderboard',
+}
+
+for name, url in urls.items():
+    try:
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=40) as resp:
+            body = resp.read()
+            fname = f'data/research/images/sources/{name}.html'
+            with open(fname, 'wb') as f:
+                f.write(body)
+            sources.append({'url': url, 'file': fname, 'status': 'retrieved', 'size': len(body)})
+        time.sleep(1.2)
+    except urllib.error.HTTPError as e:
+        sources.append({'url': url, 'file': '', 'status': f'blocked_{e.code}', 'error': str(e)})
+    except Exception as e:
+        sources.append({'url': url, 'file': '', 'status': 'not_found', 'error': str(e)})
+        
+print(json.dumps(sources, indent=2))
+" 2>&1
+### 7
+cd /Users/guygrigsby/projects/agent-routing && python3 -c "
+import urllib.request, json, time, os
+
+headers = {'User-Agent': 'agent-routing-research/0.1'}
+sources = []
+
+urls = {
+    'recraft_v3_blog': 'https://www.recraft.ai/blog/recraft-v3',
+    'recraft_v4_blog': 'https://www.recraft.ai/blog/recraft-v4',
+    'recraft_v41_blog': 'https://www.recraft.ai/blog/recraft-v4-1',
+    'recraft_hf': 'https://huggingface.co/recraft-ai',
+    'quiverai_arrow': 'https://quiverai.com/',
+    'xai_imagine': 'https://docs.x.ai/docs/image-generation',
+    'xai_models': 'https://docs.x.ai/docs/models',
+    'meta_muse': 'https://meta.com/muse-image',
+}
+
+for name, url in urls.items():
+    try:
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=40) as resp:
+            body = resp.read()
+            fname = f'data/research/images/sources/{name}.html'
+            with open(fname, 'wb') as f:
+                f.write(body)
+            sources.append({'url': url, 'file': fname, 'status': 'retrieved', 'size': len(body)})
+        time.sleep(1.1)
+    except urllib.error.HTTPError as e:
+        sources.append({'url': url, 'file': '', 'status': f'blocked_{e.code}', 'error': str(e)})
+    except Exception as e:
+        sources.append({'url': url, 'file': '', 'status': 'not_found', 'error': str(e)})
+        
+print(json.dumps(sources, indent=2))
+" 2>&1
+### 8
+cd /Users/guygrigsby/projects/agent-routing && python3 -c "
+import urllib.request, json, time, os
+
+headers = {'User-Agent': 'agent-routing-research/0.1'}
+sources = []
+
+# Benchmark papers / sources
+urls = {
+    'geneval_official': 'https://github.com/google-research/gen_eval',
+    'imagen3_paper': 'https://arxiv.org/abs/2508.03476',
+    't2i_compbench_official': 'https://github.com/T2I-CompBench/T2I-CompBench',
+    'drawbench': 'https://huggingface.co/spaces/huggingface/drawbench',
+    'imagen_hub': 'https://github.com/ImagenHub/ImagenHub',
+    'image_reward': 'https://github.com/THUDM/ImageReward',
+}
+
+for name, url in urls.items():
+    try:
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=40) as resp:
+            body = resp.read()
+            fname = f'data/research/images/sources/{name}.html'
+            with open(fname, 'wb') as f:
+                f.write(body)
+            sources.append({'url': url, 'file': fname, 'status': 'retrieved', 'size': len(body)})
+        time.sleep(1.1)
+    except urllib.error.HTTPError as e:
+        sources.append({'url': url, 'file': '', 'status': f'blocked_{e.code}', 'error': str(e)})
+    except Exception as e:
+        sources.append({'url': url, 'file': '', 'status': 'not_found', 'error': str(e)})
+        
+print(json.dumps(sources, indent=2))
+" 2>&1
+### 9
+cd /Users/guygrigsby/projects/agent-routing && python3 -c "
+import urllib.request, json, time, os
+
+headers = {'User-Agent': 'agent-routing-research/0.1'}
+sources = []
+
+# Try different URLs
+urls = {
+    'recraft_main': 'https://www.recraft.ai/',
+    'recraft_docs_api': 'https://www.recraft.ai/docs',
+    'recraft_hf_page': 'https://huggingface.co/recraft-ai/Recraft-v3',
+    'bytedance_github': 'https://github.com/bytedance/seedream',
+    'seedream_paper': 'https://arxiv.org/abs/2504.04362',
+    'quiverai_arrow_github': 'https://github.com/quiverai',
+    'prodia': 'https://prodia.com/',
+    'openai_gpt_image_2_blog': 'https://openai.com/index/introducing-gpt-image-2/',
+}
+
+for name, url in urls.items():
+    try:
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=40) as resp:
+            body = resp.read()
+            fname = f'data/research/images/sources/{name}.html'
+            with open(fname, 'wb') as f:
+                f.write(body)
+            sources.append({'url': url, 'file': fname, 'status': 'retrieved', 'size': len(body)})
+        time.sleep(1.1)
+    except urllib.error.HTTPError as e:
+        sources.append({'url': url, 'file': '', 'status': f'blocked_{e.code}', 'error': str(e)})
+    except Exception as e:
+        sources.append({'url': url, 'file': '', 'status': 'not_found', 'error': str(e)})
+        
+print(json.dumps(sources, indent=2))
+" 2>&1
+### 10
+cd /Users/guygrigsby/projects/agent-routing && python3 -c "
+import urllib.request, json, time, os
+
+headers = {'User-Agent': 'agent-routing-research/0.1'}
+sources = []
+
+# More sources - try to find specific model benchmark data
+urls = {
+    'artifactor_leaderboard': 'https://artifactorbench.github.io/',
+    'bfl_blog_flux1': 'https://blackforestlabs.ai/announcing-black-forest-labs/',
+    'google_imagen3_blog': 'https://blog.google/technology/ai/imagen-3-experiment/',
+    'google_gemini_flash_image_blog': 'https://developers.googleblog.com/en/gemini-flash-image-experimentation/',
+    'xai_imagine_api': 'https://x.ai/blog/grok-image-generation',
+    'meta_ai_studies_muse': 'https://ai.meta.com/blog/muse-image-generation/',
+    'openai_gpt_image_1_5_blog': 'https://openai.com/index/gpt-image-1-5/',
+}
+
+for name, url in urls.items():
+    try:
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=40) as resp:
+            body = resp.read()
+            fname = f'data/research/images/sources/{name}.html'
+            with open(fname, 'wb') as f:
+                f.write(body)
+            sources.append({'url': url, 'file': fname, 'status': 'retrieved', 'size': len(body)})
+        time.sleep(1.1)
+    except urllib.error.HTTPError as e:
+        sources.append({'url': url, 'file': '', 'status': f'blocked_{e.code}', 'error': str(e)})
+    except Exception as e:
+        sources.append({'url': url, 'file': '', 'status': 'not_found', 'error': str(e)})
+        
+print(json.dumps(sources, indent=2))
+" 2>&1
+### 11
+cd /Users/guygrigsby/projects/agent-routing && python3 -c "
+import urllib.request, json, time, os
+
+headers = {'User-Agent': 'agent-routing-research/0.1'}
+sources = []
+
+# Try to get more sources
+urls = {
+    'artifactor_bench_space': 'https://huggingface.co/spaces/artifactor-bench',
+    'seedream_5_blog': 'https://www.bytedance.com/en/articles/seedream-5',
+    'quiverai_arrow_docs': 'https://docs.quiverai.com/',
+    'recraft_v2_announce': 'https://www.recraft.ai/recraft-v2',
+    'recraft_v3_announce': 'https://www.recraft.ai/recraft-v3',
+    'openai_gpt_image_1_blog': 'https://openai.com/index/introducing-gpt-image-1/',
+}
+
+for name, url in urls.items():
+    try:
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=40) as resp:
+            body = resp.read()
+            fname = f'data/research/images/sources/{name}.html'
+            with open(fname, 'wb') as f:
+                f.write(body)
+            sources.append({'url': url, 'file': fname, 'status': 'retrieved', 'size': len(body)})
+        time.sleep(1.1)
+    except urllib.error.HTTPError as e:
+        sources.append({'url': url, 'file': '', 'status': f'blocked_{e.code}', 'error': str(e)})
+    except Exception as e:
+        sources.append({'url': url, 'file': '', 'status': 'not_found', 'error': str(e)})
+        
+print(json.dumps(sources, indent=2))
+" 2>&1
+### 12
+cd /Users/guygrigsby/projects/agent-routing && python3 -c "
+import urllib.request, json, time, os, re
+
+headers = {'User-Agent': 'agent-routing-research/0.1'}
+sources = []
+
+# Try to get Seedream paper full text and Recraft v3/v4 info
+urls = {
+    'seedream_paper_pdf': 'https://arxiv.org/pdf/2504.04362',
+    'recraft_api_docs': 'https://recraft.ai/docs/models',
+    'quiverai_arrow_api': 'https://api.quiverai.com/docs',
+    'bytedance_seedream_5': 'https://www.bytedance.com/en/articles/seedream-5-pro',
+    'openai_platform_image': 'https://platform.openai.com/docs/guides/image-generation',
+}
+
+for name, url in urls.items():
+    try:
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=40) as resp:
+            body = resp.read()
+            fname = f'data/research/images/sources/{name}'
+            if url.endswith('.pdf'):
+                fname += '.pdf'
+            else:
+                fname += '.html'
+            with open(fname, 'wb') as f:
+                f.write(body)
+            sources.append({'url': url, 'file': fname, 'status': 'retrieved', 'size': len(body)})
+        time.sleep(1.1)
+    except urllib.error.HTTPError as e:
+        sources.append({'url': url, 'file': '', 'status': f'blocked_{e.code}', 'error': str(e)})
+    except Exception as e:
+        sources.append({'url': url, 'file': '', 'status': 'not_found', 'error': str(e)})
+        
+print(json.dumps(sources, indent=2))
+" 2>&1
+### 13
+cd /Users/guygrigsby/projects/agent-routing && python3 -c "
+import urllib.request, json, time, os, re
+
+headers = {'User-Agent': 'agent-routing-research/0.1'}
+sources = []
+
+urls = {
+    'artifactor_bench': 'https://artifactorbench.github.io/leaderboard/',
+    'wandb_artifactor': 'https://wandb.ai/artifactor-bench/artifactor-bench/reports/Artifactor-Bench-Leaderboard',
+    'bfl_hf_flux_schnell': 'https://huggingface.co/black-forest-labs/FLUX.1-schnell',
+    'recraft_v3_readme': 'https://raw.githubusercontent.com/recraft-ai/recraft/main/README.md',
+    'dead_code_imagen3': 'https://arxiv.org/html/2508.03476',
+    't2i_compbench_readme': 'https://raw.githubusercontent.com/Karine-Huang/T2I-CompBench/master/README.md',
+}
+
+for name, url in urls.items():
+    try:
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=40) as resp:
+            body = resp.read()
+            fname = f'data/research/images/sources/{name}.html'
+            with open(fname, 'wb') as f:
+                f.write(body)
+            sources.append({'url': url, 'file': fname, 'status': 'retrieved', 'size': len(body)})
+        time.sleep(1.1)
+    except urllib.error.HTTPError as e:
+        sources.append({'url': url, 'file': '', 'status': f'blocked_{e.code}', 'error': str(e)})
+    except Exception as e:
+        sources.append({'url': url, 'file': '', 'status': 'not_found', 'error': str(e)})
+        
+print(json.dumps(sources, indent=2))
+" 2>&1

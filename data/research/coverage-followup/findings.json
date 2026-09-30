@@ -633,21 +633,21 @@
   ],
   "sources": [
     {
-      "url": "https://github.com/THUDM/Geneval",
+      "url": "https://api.github.com/repos/djbielejeski/GenEval",
       "file": "data/research/benchmark-sources/_geneval_github.json",
       "status": "not_found",
       "purpose": "Probe for official GenEval repository table; saved response is GitHub API 404, not benchmark data.",
       "license": "unknown"
     },
     {
-      "url": "https://github.com/microsoft/GenEval",
+      "url": "https://api.github.com/repos/microsoft/GenEval",
       "file": "data/research/benchmark-sources/_geneval_ms_github.json",
       "status": "not_found",
       "purpose": "Probe for official GenEval repository table; saved response is GitHub API 404.",
       "license": "unknown"
     },
     {
-      "url": "https://github.com/LiveCodeBench/LiveCodeBench/contents",
+      "url": "https://api.github.com/repos/LiveCodeBench/LiveCodeBench/contents",
       "file": "data/research/benchmark-sources/_lcb_gh_contents.json",
       "status": "retrieved",
       "purpose": "Official GitHub Contents API listing; repository files exist but listing alone contains no scores.",
@@ -656,33 +656,33 @@
     {
       "url": "https://evalplus.github.io/results.json",
       "file": "data/research/benchmark-sources/_evalplus_results.json",
-      "status": "not_found",
-      "purpose": "Saved bytes are GitHub Pages 404 HTML, not JSON scores.",
+      "status": "retrieved",
+      "purpose": "Saved bytes are the EvalPlus results JSON scoreboard with 125 reported model labels; earlier capture note misidentified them as a 404 page.",
       "license": "unknown"
     },
     {
-      "url": "https://github.com/SWE-bench/SWE-bench/contents",
+      "url": "https://api.github.com/repos/princeton-nlp/SWE-bench/contents/leaderboard",
       "file": "data/research/benchmark-sources/_swebench_gh_contents.json",
       "status": "not_found",
       "purpose": "Saved GitHub API error; no usable contents listing.",
       "license": "unknown"
     },
     {
-      "url": "https://artificialanalysis.ai/api",
+      "url": "https://artificialanalysis.ai/api/endpoints",
       "file": "data/research/benchmark-sources/_artificial_analysis_api.json",
       "status": "deferred",
       "purpose": "Prior saved API artifact; documented entitlement/schema not verified here; no values asserted.",
       "license": "unknown"
     },
     {
-      "url": "https://lmarena.ai/",
+      "url": "https://raw.githubusercontent.com/lm-sys/FastChat/main/fastchat/serve/monitor/elo_results_latest.csv",
       "file": "data/research/benchmark-sources/_lmarena_elo.csv",
       "status": "blocked_non_score",
       "purpose": "Saved bytes are `404: Not Found`, not a CSV or arena measurements; non-score. Do not treat as retrieved arena evidence.",
       "license": "unknown"
     },
     {
-      "url": "https://geneval.us/",
+      "url": "https://geneval-benchmark.github.io/",
       "file": "data/research/benchmark-sources/_geneval_site.html",
       "status": "deferred",
       "purpose": "Saved site artifact; no complete verified image scoring table identified.",

@@ -53,7 +53,10 @@ Input files divide into evidence inputs and control files:
 - Evidence inputs project into `source_files`/`source-manifest.tsv` and must
   each have a capture-inventory row (§2.1).
 - Control files are `data/research-inputs/capture-inventory.tsv` itself,
-  `data/research-inputs/build.json`, and `data/reviews/decisions/*.json`. They
+  `data/research-inputs/build.json`, `data/research-inputs/fetch-logs/*.log`
+  (durable redacted fetch-command records backing `recovery_basis`
+  references; verbatim commands only, credential-scanned, no transcript
+  prose), and `data/reviews/decisions/*.json`. They
   do not project into `source_files` (the frozen manifest's 340 rows are
   unchanged by their introduction) and are exempt from inventory membership.
   An inventory row naming a control file is exit 1.
@@ -74,11 +77,12 @@ sorted by path. Columns:
 | `sha256` / `bytes` | Expected content identity. Rebuild fails exit 1 on mismatch. |
 | `observed_at` / `timestamp_basis` | Retained historical timestamp and its basis (e.g. `local_file_mtime_not_http_retrieval`). Never regenerated from current mtimes. |
 | `license` / `publication_permission` | Per-file rights facts. `unknown` is valid and common; the tool never upgrades them. |
-| `recovery_basis` | For provenance recovered after capture: short statement naming the evidence the URL/time was recovered from (e.g. `fetch-log:anthropic.log line 412 filename match`), or empty when the mapping is original. Every `captured_remote` row with empty `url` must carry a non-empty `recovery_basis` (§5 gate 5). |
+| `recovery_basis` | For provenance recovered after capture: short statement naming the evidence the URL/time was recovered from, or empty when the mapping is original and nothing extra corroborates it (a row whose url is inherited unchanged from the frozen manifest may still carry a basis, e.g. header corroboration for a capture with no retained fetch command). Fetch-log references use the exact grammar `fetch-log:<file> command <N> url+filename match` (`url+filename match` may read `filename match` when only the output filename ties them); every other basis is free text. Every `captured_remote` row with empty `url` must carry a non-empty `recovery_basis` (§5 gate 5). |
 
 Every evidence file the exporter reads must appear in the inventory (exit 1
 naming the unexpected path); every inventory row must exist on disk (exit 1).
-Generated outputs (§3) and `data/research-inputs/recovery/` reference copies
+Generated outputs (§3), `data/research-inputs/recovery/` reference copies
+and `data/research-inputs/fetch-logs/` control records
 must not appear.
 
 ### 2.2 Build config: `data/research-inputs/build.json`
@@ -269,10 +273,19 @@ benchmarks, `unresolved_only` and `coverage_followup` measurements):
    never depended on the findings URL). Phase 3 also repairs, through the same
 reviewed findings corrections: the four inverse-status `model_research` rows
 (gate 2 fires on `minimax/minimax-m2`, `moonshotai/kimi-k2`, `kimi-k2.5`,
-`kimi-k3`), the five `not_found` `source_access` rows over parseable captures
-(gate 3), and any note/wording corrections the review records; those exported
+`kimi-k3`), the one false `not_found` `source_access` row
+(`data/research/benchmark-sources/_evalplus_results.json`: parseable content
+JSON with 125 reported model labels, repaired to `retrieved`), the
+`sources[].url` byte-provenance repair (68 rows across nine batches, each set
+to the capture-inventory URL of the same file; pointer text, `unknown` and
+page-vs-raw disagreements all resolve to the URL the retained fetch command
+actually fetched), and any note/wording corrections the review records; those exported
 row changes belong to this delta list with counts pinned at the phase 3
-review. `source-hashes.sha256` also differs deliberately: the frozen file
+review. Four `not_found` rows over API-error-envelope JSON captures
+(GitHub/Hugging Face error bodies) keep their status as honest outcomes
+under the §8 gate-3 error-envelope exception; they are not repairs. The
+phase 3 review report itself (`data/reviews/phase3-provenance-2026-09-30.md`)
+joins the evidence inputs as manifest row 341. `source-hashes.sha256` also differs deliberately: the frozen file
 appends `data/research.sqlite` and `data/source-manifest.tsv` after the 340
 path-sorted evidence rows, while the rebuilt manifest is fully path-sorted
 and adds control-file lines — a documented artifact-level delta, not a row
@@ -401,8 +414,14 @@ output and on the published set under `check`:
    `blocked_non_score`, `blocked_redirect`, `not_found`,
    `redirect_or_not_found` — for path P contradicts bytes
    that parse as the success format implied by the file extension: `.json`
-   must parse as a JSON object or array; `.csv` must have a multi-column
-   header plus at least one data row. `retrieved` and `deferred` are not
+   must parse as a JSON object or array that is not an API error envelope;
+   `.csv` must have a multi-column
+   header plus at least one data row. An API error envelope is a JSON object
+   whose key set is a subset of `{message, documentation_url, status, error}`
+   carrying an HTTP error `status` value or a non-empty `error` string —
+   genuine API failure responses (GitHub `404` bodies, the Hugging Face
+   `"Invalid username or password."` body) are honest failure outcomes and
+   are not flagged. `retrieved` and `deferred` are not
    failure statuses (`deferred` defers retrieval, asserting nothing about the
    bytes). Literal failure bodies (`404: Not Found`
    text under a `.json` name) fail these parses and are not flagged. Bound:
@@ -424,7 +443,7 @@ output and on the published set under `check`:
 All input paths: repository-relative only; reject absolute paths, `..`
 segments, symlinks resolving outside the root, and any path not matching
 `^data/[A-Za-z0-9._/-]+$` (control files additionally
-`^data/(research-inputs/(capture-inventory\.tsv|build\.json)|reviews/decisions/[A-Za-z0-9._-]+\.json)$`).
+`^data/(research-inputs/(capture-inventory\.tsv|build\.json|fetch-logs/[A-Za-z0-9._-]+\.log)|reviews/decisions/[A-Za-z0-9._-]+\.json)$`).
 Batch directories live under `data/research/`. File size bounds: per-file
 64 MiB, total 2 GiB (current set ~40 MB); JSON nesting depth bound 64.
 Bound violations are exit 1 naming the path and bound. Fetched
@@ -437,8 +456,8 @@ Research schema lives in the Go research package as versioned DDL; it is not a
 production migration. Schema 3 is reconstructed exactly (all tables, views,
 indexes, checks from the recovered exporter) except the documented phase 3
 intentional corrections: the §2.4 URL rule (81 claim rows) and `source_files`
-URL recovery per §2.1 (227 frozen `unknown`/log-pointer values become
-recovered URLs or empty-with-`recovery_basis`). Future changes append a
+URL recovery per §2.1 (256 frozen `url` values change in total: 227
+`unknown`/log-pointer values become recovered URLs or empty-with-`recovery_basis` — 159 recovered, 32 `local_derived` files to empty, 36 pointer text — plus 29 page-vs-raw corrections where both values are real URLs and the retained fetch command backs the new one, e.g. repo page → raw README, leaderboard page → `api.github.com` contents, and one hostname case fix). The nine findings files corrected by the phase 3 review also change their `source_files` `sha256`, `bytes` and `observed_at` rows (observed_at = the correction event). Future changes append a
 `schema_version` bump plus a documented delta in this spec's changelog; the
 tool refuses to rebuild when `build.json.schema_version` differs from the DDL
 it carries (exit 3). No production Postgres DDL may be derived from this
@@ -588,3 +607,20 @@ scheduler.
   naming control files are exit 1; uninventoried pin paths are exit 1; step-8
   validation failure exits 3 leaving the journal; source-hashes ordering
   delta documented.
+- 2026-09-30 phase 3 inputs: `data/research-inputs/fetch-logs/*.log` added as
+  control records (durable redacted fetch-command provenance backing
+  `recovery_basis` references; §2 control list, §2.1 exclusion and the §6
+  control-path regex extended). Gate 3 gains the API-error-envelope
+  exception (error-envelope JSON bodies are honest failure outcomes); the
+  phase-3 gate-3 repair count is pinned at one row (EvalPlus results.json)
+  and the 68-row `sources[].url` byte-provenance repair is added to the
+  delta list. `build.json` seeds `driver` pins as placeholders that phase 4
+  replaces with the linked module/toolchain versions before the first Go
+  build; a placeholder value at load time is not a mismatch (there is
+  nothing to compare against yet).
+- 2026-09-30 phase 3 review (PASS + fixes applied): EvalPlus `purpose`
+  corrected alongside the status repair (stale 404 wording over the JSON
+  scoreboard); §7 URL-delta count corrected to 256 (227 unknown/pointer + 29
+  page-vs-raw) and the nine findings sha/bytes/observed_at deltas listed;
+  `recovery_basis` semantics and fetch-log reference grammar pinned; manifest
+  row 341 recorded.

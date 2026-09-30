@@ -1,0 +1,9 @@
+# Durable redacted fetch-command record recovered from the mistral-meta-extract.log session transcript.
+# Verbatim agent-issued fetch commands (curl/python), deduplicated, in original order.
+# Credential scan clean at recovery time. Format: "### N" then the verbatim command.
+### 1
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/hf_ministral_14b.html \
+  "https://huggingface.co/mistralai/Ministral-14B-Instruct-2410/raw/main/README.md" -w "HTTP %{http_code} size %{size_download}\n"
+### 2
+cd /Users/guygrigsby/projects/agent-routing && sleep 1 && curl -sL --max-time 40 -A 'agent-routing-research/0.1' -o data/research/mistral-meta/sources/hf_mistral_codestral_2501.html \
+  "https://huggingface.co/mistralai/Codestral-2501/raw/main/README.md" -w "HTTP %{http_code} size %{size_download}\n"

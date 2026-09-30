@@ -863,14 +863,14 @@
       "license": "unknown"
     },
     {
-      "url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+      "url": "https://huggingface.co/google/gemma-4-26b-a4b-it",
       "file": "data/research/google/sources/hf-gemma-4-26b.html",
       "status": "retrieved",
       "purpose": "Hugging Face model card for Gemma 4 26B A4B IT containing eval results JSON with benchmark scores",
       "license": "Apache 2.0 (model license, not source)"
     },
     {
-      "url": "https://huggingface.co/google/gemma-4-31B-it",
+      "url": "https://huggingface.co/google/gemma-4-31b-it",
       "file": "data/research/google/sources/hf-gemma-4-31b.html",
       "status": "retrieved",
       "purpose": "Hugging Face model card for Gemma 4 31B IT containing comprehensive benchmark comparison table",

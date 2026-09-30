@@ -1,0 +1,13 @@
+# Durable redacted fetch-command record recovered from the anthropic-extract.log session transcript.
+# Verbatim agent-issued fetch commands (curl/python), deduplicated, in original order.
+# Credential scan clean at recovery time. Format: "### N" then the verbatim command.
+### 1
+curl -sL --max-time 40 -H "User-Agent: agent-routing-research/0.1" "https://www.anthropic.com/news" -o /Users/guygrigsby/projects/agent-routing/data/research/anthropic/sources/anthropic_news.html 2>&1 && echo "SUCCESS" || echo "FAIL"
+### 2
+curl -sL --max-time 40 -H "User-Agent: agent-routing-research/0.1" "https://raw.githubusercontent.com/anthropics/anthropic-cookbook/main/README.md" -o /Users/guygrigsby/projects/agent-routing/data/research/anthropic/sources/anthropic_cookbook_readme.md 2>&1 && echo "SUCCESS" || echo "FAIL"
+### 3
+curl -sL --max-time 40 -H "User-Agent: agent-routing-research/0.1" "https://huggingface.co/api/models?search=claude&author=anthropic&sort=downloads&direction=-1&limit=20" -o /Users/guygrigsby/projects/agent-routing/data/research/anthropic/sources/hf_claude_models.json 2>&1 && echo "SUCCESS" || echo "FAIL"
+### 4
+curl -sL --max-time 40 -H "User-Agent: agent-routing-research/0.1" "https://www.anthropic.com/research" -o /Users/guygrigsby/projects/agent-routing/data/research/anthropic/sources/anthropic_research.html 2>&1 && echo "SUCCESS" || echo "FAIL"
+### 5
+curl -sL --max-time 40 -H "User-Agent: agent-routing-research/0.1" "https://docs.anthropic.com/en/docs/about-claude/models" -o /Users/guygrigsby/projects/agent-routing/data/research/anthropic/sources/anthropic_models_page.html 2>&1 && echo "SUCCESS" || echo "FAIL" && wc -c /Users/guygrigsby/projects/agent-routing/data/research/anthropic/sources/anthropic_models_page.html
