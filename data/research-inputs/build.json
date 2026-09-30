@@ -20,8 +20,8 @@
   "publication_permission_vocabulary": ["unknown", "allowed", "denied"],
   "driver": {
     "sqlite_driver_module": "modernc.org/sqlite",
-    "sqlite_driver_version": "pinned at phase 4 toolchain setup",
-    "go_toolchain_minor": "pinned at phase 4 toolchain setup"
+    "sqlite_driver_version": "v1.60.1",
+    "go_toolchain_minor": "go1.26"
   },
   "batch_formats": {
     "anthropic": "model_batch",

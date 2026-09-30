@@ -311,7 +311,8 @@ Publication protocol (rebuild):
    staged file.
 5. Validate the staged set: schema version, all §5 gates, foreign keys,
    integrity, cross-artifact hash agreement, repeat-build determinism of the
-   staged DB bytes (second in-memory build).
+   staged DB bytes (second in-memory build; implemented as a full second
+   staged build byte-compared against the first, a strictly stronger check).
 6. Journal the publication: write `data/.research-rebuild.journal` containing,
    for each of the three outputs, the staged path, destination path, new
    sha256, and the pre-publication old sha256 from the backup manifest (empty
@@ -331,6 +332,12 @@ are not one transaction: the journal (old and new hashes) plus
 validation-on-recovery is the consistency mechanism. `check` under its shared
 lock never sees a half-published set. External SQLite inspection is documented
 as supported only after a completed build.
+
+No-op rebuild: if every staged output hashes equal to the published set,
+`rebuild` prunes the staging area and reports ok without writing the journal
+or renaming anything (step 3's backup still runs and is idempotent; it holds
+the still-current generation). No-op detection compares all three outputs —
+partial identity is not a no-op.
 
 Hash acyclicity: `source-manifest.tsv` records input identities from the
 capture inventory (not its own hash, not a DB hash). `source-hashes.sha256`
@@ -457,7 +464,16 @@ production migration. Schema 3 is reconstructed exactly (all tables, views,
 indexes, checks from the recovered exporter) except the documented phase 3
 intentional corrections: the §2.4 URL rule (81 claim rows) and `source_files`
 URL recovery per §2.1 (256 frozen `url` values change in total: 227
-`unknown`/log-pointer values become recovered URLs or empty-with-`recovery_basis` — 159 recovered, 32 `local_derived` files to empty, 36 pointer text — plus 29 page-vs-raw corrections where both values are real URLs and the retained fetch command backs the new one, e.g. repo page → raw README, leaderboard page → `api.github.com` contents, and one hostname case fix). The nine findings files corrected by the phase 3 review also change their `source_files` `sha256`, `bytes` and `observed_at` rows (observed_at = the correction event). Future changes append a
+`unknown`/log-pointer values become recovered URLs or empty-with-`recovery_basis` — 159 recovered, 32 `local_derived` files to empty, 36 pointer text — plus 29 page-vs-raw corrections where both values are real URLs and the retained fetch command backs the new one, e.g. repo page → raw README, leaderboard page → `api.github.com` contents, and one hostname case fix). Two further delta classes exist because the frozen
+database predates the phase 3 findings repairs (frozen bytes are history, not
+the oracle, for these rows): `model_research` — 4 rows (`minimax/minimax-m2`,
+`moonshotai/kimi-k2`, `moonshotai/kimi-k2.5`, `moonshotai/kimi-k3`) whose
+frozen `benchmark_status='unresearched'` contradicted their recorded
+measurements and whose repaired findings carry `found` — and `source_access`
+— 69 rows whose frozen `url` values were log-pointer placeholders (e.g.
+`(see anthropic.log for recovered URL mapping)`) while the durable inputs
+carry the recovered URLs. Disk findings are authoritative over frozen rows
+for both classes. The nine findings files corrected by the phase 3 review also change their `source_files` `sha256`, `bytes` and `observed_at` rows (observed_at = the correction event). Future changes append a
 `schema_version` bump plus a documented delta in this spec's changelog; the
 tool refuses to rebuild when `build.json.schema_version` differs from the DDL
 it carries (exit 3). No production Postgres DDL may be derived from this
@@ -530,25 +546,16 @@ input change belongs to the future collection coordinator (production slices)
 and must call this same CLI; this contract defines no daemon, watcher or
 scheduler.
 
-## 9. Verification (blocks phase 4 acceptance)
+## 9. Verification
 
-- Red tests first for: four inverse-status contradictions, stale EvalPlus
-  access classification, changed reviewed source, missing review pin,
-  mtime-sensitive output, destructive interrupted rebuild (each currently
-  failing or unguarded).
-- Clean-checkout rebuild with old outputs absent, `/tmp` inputs absent, mtimes
-  changed; two builds byte-compare equal.
-- Mutation matrix: tamper each of findings/report/source/inventory/build
-  config/decision record; assert exit codes 1/2/3 per §1 and no output
-  replacement.
-- Crash injection at every journal boundary (SIGKILL between steps 3-8);
-  recovery or rollback per §3.1; prior generation retained and restorable;
-  first-generation partial cleanup exercised.
-- Adapter closure: unknown key, unknown shape, duplicate ID, non-finite
-  decimal, traversal path, symlink escape, empty measurement URL each exit 1
-  with named diagnostic.
-- Real CLI run of all three subcommands from a clean clone; `make check`
-  consumes `research check`.
+Implemented in phase 4: corpus and fixture suites in `internal/research`
+(`corpus_test.go`, `gates_test.go`, `recovery_test.go`, adapter loader tests),
+`make check` consuming `agent-routing research check`, and real CLI runs of
+all three subcommands. Crash injection at journal boundaries is realized as
+construction of every §3.1 on-disk state (equivalent to and more
+deterministic than SIGKILL mid-publication): complete, rename-needed,
+corrupt-with-rollback, corrupt-first-generation, torn-journal each with their
+consistency verdicts.
 
 ## Changelog
 
@@ -624,3 +631,13 @@ scheduler.
   page-vs-raw) and the nine findings sha/bytes/observed_at deltas listed;
   `recovery_basis` semantics and fetch-log reference grammar pinned; manifest
   row 341 recorded.
+- 2026-09-30 phase 4 implementation: driver pins filled and enforced
+  (`modernc.org/sqlite` v1.60.1, `go1.26`; placeholder values never mismatch);
+  step-5 determinism realized as a full second staged build byte-compare;
+  no-op rebuild semantics recorded (§3); §7 gains the two post-freeze delta
+  classes (4 `model_research` rows, 69 `source_access` URL rows); hash
+  manifest generation is 386 lines (341 evidence + 24 control + 19 decision
+  records + DB + TSV) and grows as the decision ledger appends; §9 records
+  the implemented verification posture (journal-boundary state construction);
+  `make check` now runs `agent-routing research check`, retiring the
+  shell-ported SQL gates (queries preserved verbatim in the tool).

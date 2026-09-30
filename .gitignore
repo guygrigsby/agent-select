@@ -3,3 +3,10 @@
 .dolt/
 *.db
 .beads-credential-key
+
+# Research rebuild runtime state (lock, staging, backup, journal)
+bin/
+data/.research-rebuild.lock
+data/.research-rebuild.journal
+data/.research-staging/
+data/.research-backup/
