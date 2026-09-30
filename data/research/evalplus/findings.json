@@ -4840,7 +4840,7 @@
    "configuration": "leaderboard results.json entry; prompted false; open-data Partial; size 7.0; submitter link https://huggingface.co/HuggingFaceH4/zephyr-7b-beta",
    "source_url": "https://evalplus.github.io/results.json",
    "source_file": "data/research/benchmark-sources/_evalplus_results.json",
-   "locator": "results.json byte 26753: entry \"Zephyr β-7B\" pass@1.humaneval: 30.0",
+   "locator": "results.json byte 26753: entry \"Zephyr \\u03b2-7B\" (escaped form in source) pass@1.humaneval: 30.0",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -4855,7 +4855,7 @@
    "configuration": "leaderboard results.json entry; prompted false; open-data Partial; size 7.0; submitter link https://huggingface.co/HuggingFaceH4/zephyr-7b-beta",
    "source_url": "https://evalplus.github.io/results.json",
    "source_file": "data/research/benchmark-sources/_evalplus_results.json",
-   "locator": "results.json byte 26778: entry \"Zephyr β-7B\" pass@1.humaneval+: 23.2",
+   "locator": "results.json byte 26778: entry \"Zephyr \\u03b2-7B\" (escaped form in source) pass@1.humaneval+: 23.2",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -4870,7 +4870,7 @@
    "configuration": "leaderboard results.json entry; prompted false; open-data Partial; size 7.0; submitter link https://huggingface.co/HuggingFaceH4/zephyr-7b-beta",
    "source_url": "https://evalplus.github.io/results.json",
    "source_file": "data/research/benchmark-sources/_evalplus_results.json",
-   "locator": "results.json byte 26804: entry \"Zephyr β-7B\" pass@1.mbpp: 42.1",
+   "locator": "results.json byte 26804: entry \"Zephyr \\u03b2-7B\" (escaped form in source) pass@1.mbpp: 42.1",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -4885,7 +4885,7 @@
    "configuration": "leaderboard results.json entry; prompted false; open-data Partial; size 7.0; submitter link https://huggingface.co/HuggingFaceH4/zephyr-7b-beta",
    "source_url": "https://evalplus.github.io/results.json",
    "source_file": "data/research/benchmark-sources/_evalplus_results.json",
-   "locator": "results.json byte 26824: entry \"Zephyr β-7B\" pass@1.mbpp+: 34.7",
+   "locator": "results.json byte 26824: entry \"Zephyr \\u03b2-7B\" (escaped form in source) pass@1.mbpp+: 34.7",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []

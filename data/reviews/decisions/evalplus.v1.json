@@ -8,7 +8,7 @@
  "pins": [
   {
    "path": "data/research/evalplus/findings.json",
-   "sha256": "73e4011fd8bdc6c700eda36273c53f5843f8e496910298d641df17c0672ff66f"
+   "sha256": "f95bcf9c3b8c3858a1b9de9914e5af11cce84f160f80c055e9827ac24a19f4f8"
   },
   {
    "path": "data/research/benchmark-sources/_evalplus_results.json",
