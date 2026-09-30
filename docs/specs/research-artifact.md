@@ -680,11 +680,15 @@ are documented extraction blockers in `gaps`, not silent skips.
 
 ### 11.3 Decisions
 
-Every batch whose findings change in phase 6 records a new
+Every batch whose measurement rows change in phase 6 records a new
 `published_measurements` decision pinning the findings file, the review
 document and every `source_path` the new rows cite; the rebuild gate set
-(§5) applies unchanged. Existing reviewed cells must survive every rebuild
-byte-identically or the change is rejected.
+(§5) applies unchanged. Gap-only findings changes (no measurement rows;
+bounded checked-sources outcomes) record a phase-6 review document instead
+of a decision, since a `published_measurements` decision on a batch with
+no rows has nothing to pin beyond the findings file. Existing reviewed
+cells must survive every rebuild byte-identically or the change is
+rejected.
 
 ## Changelog
 
@@ -692,6 +696,12 @@ byte-identically or the change is rejected.
   measurements-only batches (coverage-followup claimed by
   unresolved-historical); image equivalence gated on all rows; review
   round 1 findings addressed.
+- 2026-09-30 phase 6 review round 1: swebench inclusion filter corrected to
+  literal `checked=true` (131 rows; 192 non-true records excluded with the
+  166/18/8 breakdown recorded); evalplus locator offsets recomputed to
+  byte-verified absolute positions; aider locators disambiguated by run
+  date and format; §11.3 narrowed to measurement-row changes with gap-only
+  changes recorded as review documents (anthropic, xai).
 - 2026-09-30 phase 6: §11 extraction contract (row discipline,
   cross-model unresolved batches, per-batch decisions). §11.1 evidence-class
   vocabulary (data-meaning change): per-entry provider_reported /

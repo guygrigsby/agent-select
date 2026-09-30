@@ -15,7 +15,7 @@ Source: `data/research/benchmark-sources/_aider_leaderboard.html` (captured from
 
 - Row count: 69 model rows parsed with 7 cells each; 0 missing dates, 0 missing versions after detail pairing.
 - All 69 model labels byte-verified in the raw HTML; all percent cells verified as stripped-integer/decimal strings with `%` suffix in source.
-- Values are the exact table lexemes with the `%` suffix stripped (`88.0`, not `88`); the locator cites row label and column name.
+- Values are the exact table lexemes with the `%` suffix stripped (`88.0`, not `88`); the locator cites row label, run date, edit format and column name, so duplicate model labels across runs (e.g. `Qwen2.5-Coder-32B-Instruct` appears as both whole-format 2024-12-26 and diff-format 2024-12-22 runs) are unambiguous. (Locator disambiguation added after review round 1.)
 
 ## Gaps and limitations
 

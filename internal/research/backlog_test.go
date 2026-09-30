@@ -60,7 +60,7 @@ func TestBacklogCorpus(t *testing.T) {
 		"catalog models: 395 (in scope 302, out of scope 93)",
 		"image-output models: 41",
 		"unlocated claims: 56 total",
-		"975 unresolved measurements",
+		"949 unresolved measurements",
 		"no image-specific limit facts",
 		"host-registry-discovery",
 	} {

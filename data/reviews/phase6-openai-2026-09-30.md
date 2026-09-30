@@ -13,9 +13,9 @@ approve revision identity, comparability, calibration or routing use;
   openai/simple-evals README results table, matched to catalog models by
   dated snapshot labels in the table (111 rows).
 - `data/research/openai/sources/huggingface-gpt-oss-120b.html` — saved HF
-  model repo page; html-escaped `evalResults` metadata (41 rows).
+  model repo page; html-escaped `evalResults` metadata (21 rows).
 - `data/research/openai/sources/huggingface-gpt-oss-20b.html` — saved HF
-  model repo page; html-escaped `evalResults` metadata (40 rows).
+  model repo page; html-escaped `evalResults` metadata (20 rows).
 
 ## Rows
 

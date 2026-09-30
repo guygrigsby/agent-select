@@ -15,7 +15,7 @@ Generated from the assembled build tables and `data/research-inputs/backlog-task
   - images: 39
   - mistral-meta: 13
 - price leaves: 5108 numeric with 2198 carrying source_specific_unresolved units across catalog-joined offers; all provider offers carry 31659 numeric leaves with 3109 unresolved (unjoined offers are models.dev inventory beyond catalog scope)
-- alias/revision gaps: 975 unresolved measurements, 0 identity proposals recorded
+- alias/revision gaps: 949 unresolved measurements, 0 identity proposals recorded
 - image-accounting gaps: 41 of 41 image-output models have no image-specific limit facts (format, mask, alpha, dimensions, count accounting)
 - protocol metadata: cells missing evaluated-revision, harness or setting components stay unresolved rather than comparison-qualified; `accepted_benchmarks` remains empty
 - rights: 302 in-scope models have publication_permission unknown, 0 have a decided permission

@@ -2,12 +2,13 @@
  "batch": "aider",
  "scope": "published_measurements",
  "state": "source_validated",
- "reason": "Phase 6 cross-model extraction: 138 Aider leaderboard rows (69 models x percent correct and percent well-formed edits) with exact table lexemes; aider version, edit format, command and run date pinned per row. Source-accuracy validation only; runs are self-submitted model+format systems.",
+ "decision_version": 1,
+ "reason": "Phase 6 cross-model extraction: 138 Aider leaderboard rows (69 models x percent correct and percent well-formed edits) with exact table lexemes; aider version, edit format, command and run date pinned per row; locators disambiguate duplicate labels by run date and format. Source-accuracy validation only; runs are self-submitted model+format systems.",
  "review_path": "data/reviews/phase6-aider-2026-09-30.md",
  "pins": [
   {
    "path": "data/research/aider/findings.json",
-   "sha256": "07e42aab15ebe3b2f2d937a4e2b70f8cab03834f834cb3db0dddd307838881bd"
+   "sha256": "0096f536b9fe339aa8ca1eaa885acb0911fd0d8322c4c1fe2f7ecdcf5016d87b"
   },
   {
    "path": "data/research/benchmark-sources/_aider_leaderboard.html",
@@ -15,9 +16,8 @@
   },
   {
    "path": "data/reviews/phase6-aider-2026-09-30.md",
-   "sha256": "68692fbfa317df623ebc7921d543de336591d072d6c8b8b91ffe6b0392d75258"
+   "sha256": "b11a82821938c40b46830828dadcb64b6b916f552d633d314ed6a71456e117cd"
   }
  ],
- "decision_version": 1,
- "decided_at": "2026-09-30T12:00:00Z"
+ "decided_at": "2026-09-30T19:18:35Z"
 }

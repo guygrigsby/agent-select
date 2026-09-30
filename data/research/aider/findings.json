@@ -10,7 +10,7 @@
    "configuration": "aider 0.86.2.dev; edit format diff; command aider --model openai/gpt-5; run date 2025-08-23",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gpt-5 (high)\", column \"Percent correct\": 88.0%",
+   "locator": "leaderboard table, row \"gpt-5 (high)\" (run 2025-08-23, diff format), column \"percent correct\": 88.0%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -25,7 +25,7 @@
    "configuration": "aider 0.86.2.dev; edit format diff; command aider --model openai/gpt-5; run date 2025-08-23",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gpt-5 (high)\", column \"Percent well-formed edits\": 91.6%",
+   "locator": "leaderboard table, row \"gpt-5 (high)\" (run 2025-08-23, diff format), column \"percent well-formed edits\": 91.6%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -40,7 +40,7 @@
    "configuration": "aider 0.86.2.dev; edit format diff; command aider --model openai/gpt-5; run date 2025-08-25",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gpt-5 (medium)\", column \"Percent correct\": 86.7%",
+   "locator": "leaderboard table, row \"gpt-5 (medium)\" (run 2025-08-25, diff format), column \"percent correct\": 86.7%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -55,7 +55,7 @@
    "configuration": "aider 0.86.2.dev; edit format diff; command aider --model openai/gpt-5; run date 2025-08-25",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gpt-5 (medium)\", column \"Percent well-formed edits\": 88.4%",
+   "locator": "leaderboard table, row \"gpt-5 (medium)\" (run 2025-08-25, diff format), column \"percent well-formed edits\": 88.4%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -70,7 +70,7 @@
    "configuration": "aider 0.85.1.dev; edit format diff; command aider --model o3-pro; run date 2025-06-28",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"o3-pro (high)\", column \"Percent correct\": 84.9%",
+   "locator": "leaderboard table, row \"o3-pro (high)\" (run 2025-06-28, diff format), column \"percent correct\": 84.9%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -85,7 +85,7 @@
    "configuration": "aider 0.85.1.dev; edit format diff; command aider --model o3-pro; run date 2025-06-28",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"o3-pro (high)\", column \"Percent well-formed edits\": 97.8%",
+   "locator": "leaderboard table, row \"o3-pro (high)\" (run 2025-06-28, diff format), column \"percent well-formed edits\": 97.8%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -100,7 +100,7 @@
    "configuration": "aider 0.84.1.dev; edit format diff-fenced; command aider --model gemini/gemini-2.5-pro-preview-06-05 --thinking-tokens 32k; run date 2025-06-06",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gemini-2.5-pro-preview-06-05 (32k think)\", column \"Percent correct\": 83.1%",
+   "locator": "leaderboard table, row \"gemini-2.5-pro-preview-06-05 (32k think)\" (run 2025-06-06, diff-fenced format), column \"percent correct\": 83.1%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -115,7 +115,7 @@
    "configuration": "aider 0.84.1.dev; edit format diff-fenced; command aider --model gemini/gemini-2.5-pro-preview-06-05 --thinking-tokens 32k; run date 2025-06-06",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gemini-2.5-pro-preview-06-05 (32k think)\", column \"Percent well-formed edits\": 99.6%",
+   "locator": "leaderboard table, row \"gemini-2.5-pro-preview-06-05 (32k think)\" (run 2025-06-06, diff-fenced format), column \"percent well-formed edits\": 99.6%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -130,7 +130,7 @@
    "configuration": "aider 0.86.2.dev; edit format diff; command aider --model openai/gpt-5; run date 2025-08-25",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gpt-5 (low)\", column \"Percent correct\": 81.3%",
+   "locator": "leaderboard table, row \"gpt-5 (low)\" (run 2025-08-25, diff format), column \"percent correct\": 81.3%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -145,7 +145,7 @@
    "configuration": "aider 0.86.2.dev; edit format diff; command aider --model openai/gpt-5; run date 2025-08-25",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gpt-5 (low)\", column \"Percent well-formed edits\": 86.7%",
+   "locator": "leaderboard table, row \"gpt-5 (low)\" (run 2025-08-25, diff format), column \"percent well-formed edits\": 86.7%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -160,7 +160,7 @@
    "configuration": "aider 0.84.1.dev; edit format diff; command aider --model o3 --reasoning-effort high; run date 2025-06-25",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"o3 (high)\", column \"Percent correct\": 81.3%",
+   "locator": "leaderboard table, row \"o3 (high)\" (run 2025-06-25, diff format), column \"percent correct\": 81.3%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -175,7 +175,7 @@
    "configuration": "aider 0.84.1.dev; edit format diff; command aider --model o3 --reasoning-effort high; run date 2025-06-25",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"o3 (high)\", column \"Percent well-formed edits\": 94.7%",
+   "locator": "leaderboard table, row \"o3 (high)\" (run 2025-06-25, diff format), column \"percent well-formed edits\": 94.7%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -190,7 +190,7 @@
    "configuration": "aider 0.85.2.dev; edit format diff; command aider --model openrouter/x-ai/grok-4; run date 2025-07-11",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"grok-4 (high)\", column \"Percent correct\": 79.6%",
+   "locator": "leaderboard table, row \"grok-4 (high)\" (run 2025-07-11, diff format), column \"percent correct\": 79.6%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -205,7 +205,7 @@
    "configuration": "aider 0.85.2.dev; edit format diff; command aider --model openrouter/x-ai/grok-4; run date 2025-07-11",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"grok-4 (high)\", column \"Percent well-formed edits\": 97.3%",
+   "locator": "leaderboard table, row \"grok-4 (high)\" (run 2025-07-11, diff format), column \"percent well-formed edits\": 97.3%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -220,7 +220,7 @@
    "configuration": "aider 0.84.1.dev; edit format diff-fenced; command aider --model gemini/gemini-2.5-pro-preview-06-05; run date 2025-06-06",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gemini-2.5-pro-preview-06-05 (default think)\", column \"Percent correct\": 79.1%",
+   "locator": "leaderboard table, row \"gemini-2.5-pro-preview-06-05 (default think)\" (run 2025-06-06, diff-fenced format), column \"percent correct\": 79.1%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -235,7 +235,7 @@
    "configuration": "aider 0.84.1.dev; edit format diff-fenced; command aider --model gemini/gemini-2.5-pro-preview-06-05; run date 2025-06-06",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gemini-2.5-pro-preview-06-05 (default think)\", column \"Percent well-formed edits\": 100.0%",
+   "locator": "leaderboard table, row \"gemini-2.5-pro-preview-06-05 (default think)\" (run 2025-06-06, diff-fenced format), column \"percent well-formed edits\": 100.0%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -250,7 +250,7 @@
    "configuration": "aider 0.85.1.dev; edit format architect; command aider --model o3; run date 2025-06-27",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"o3 (high) + gpt-4.1\", column \"Percent correct\": 78.2%",
+   "locator": "leaderboard table, row \"o3 (high) + gpt-4.1\" (run 2025-06-27, architect format), column \"percent correct\": 78.2%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -265,7 +265,7 @@
    "configuration": "aider 0.85.1.dev; edit format architect; command aider --model o3; run date 2025-06-27",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"o3 (high) + gpt-4.1\", column \"Percent well-formed edits\": 100.0%",
+   "locator": "leaderboard table, row \"o3 (high) + gpt-4.1\" (run 2025-06-27, architect format), column \"percent well-formed edits\": 100.0%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -280,7 +280,7 @@
    "configuration": "aider 0.84.1.dev; edit format diff; command aider --model o3; run date 2025-06-25",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"o3\", column \"Percent correct\": 76.9%",
+   "locator": "leaderboard table, row \"o3\" (run 2025-06-25, diff format), column \"percent correct\": 76.9%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -295,7 +295,7 @@
    "configuration": "aider 0.84.1.dev; edit format diff; command aider --model o3; run date 2025-06-25",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"o3\", column \"Percent well-formed edits\": 93.8%",
+   "locator": "leaderboard table, row \"o3\" (run 2025-06-25, diff format), column \"percent well-formed edits\": 93.8%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -310,7 +310,7 @@
    "configuration": "aider 0.82.4.dev; edit format diff-fenced; command aider --model gemini/gemini-2.5-pro-preview-05-06; run date 2025-05-07",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Gemini 2.5 Pro Preview 05-06\", column \"Percent correct\": 76.9%",
+   "locator": "leaderboard table, row \"Gemini 2.5 Pro Preview 05-06\" (run 2025-05-07, diff-fenced format), column \"percent correct\": 76.9%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -325,7 +325,7 @@
    "configuration": "aider 0.82.4.dev; edit format diff-fenced; command aider --model gemini/gemini-2.5-pro-preview-05-06; run date 2025-05-07",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Gemini 2.5 Pro Preview 05-06\", column \"Percent well-formed edits\": 97.3%",
+   "locator": "leaderboard table, row \"Gemini 2.5 Pro Preview 05-06\" (run 2025-05-07, diff-fenced format), column \"percent well-formed edits\": 97.3%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -340,7 +340,7 @@
    "configuration": "aider 0.86.2.dev; edit format diff; command aider --model deepseek/deepseek-reasoner; run date 2025-10-03",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"DeepSeek-V3.2-Exp (Reasoner)\", column \"Percent correct\": 74.2%",
+   "locator": "leaderboard table, row \"DeepSeek-V3.2-Exp (Reasoner)\" (run 2025-10-03, diff format), column \"percent correct\": 74.2%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -355,7 +355,7 @@
    "configuration": "aider 0.86.2.dev; edit format diff; command aider --model deepseek/deepseek-reasoner; run date 2025-10-03",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"DeepSeek-V3.2-Exp (Reasoner)\", column \"Percent well-formed edits\": 97.3%",
+   "locator": "leaderboard table, row \"DeepSeek-V3.2-Exp (Reasoner)\" (run 2025-10-03, diff format), column \"percent well-formed edits\": 97.3%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -370,7 +370,7 @@
    "configuration": "aider 0.81.3.dev; edit format diff-fenced; command aider --model gemini/gemini-2.5-pro-preview-03-25; run date 2025-04-12",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Gemini 2.5 Pro Preview 03-25\", column \"Percent correct\": 72.9%",
+   "locator": "leaderboard table, row \"Gemini 2.5 Pro Preview 03-25\" (run 2025-04-12, diff-fenced format), column \"percent correct\": 72.9%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -385,7 +385,7 @@
    "configuration": "aider 0.81.3.dev; edit format diff-fenced; command aider --model gemini/gemini-2.5-pro-preview-03-25; run date 2025-04-12",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Gemini 2.5 Pro Preview 03-25\", column \"Percent well-formed edits\": 92.4%",
+   "locator": "leaderboard table, row \"Gemini 2.5 Pro Preview 03-25\" (run 2025-04-12, diff-fenced format), column \"percent well-formed edits\": 92.4%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -400,7 +400,7 @@
    "configuration": "aider 0.83.3.dev; edit format diff; command aider --model claude-opus-4-20250514; run date 2025-05-25",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"claude-opus-4-20250514 (32k thinking)\", column \"Percent correct\": 72.0%",
+   "locator": "leaderboard table, row \"claude-opus-4-20250514 (32k thinking)\" (run 2025-05-25, diff format), column \"percent correct\": 72.0%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -415,7 +415,7 @@
    "configuration": "aider 0.83.3.dev; edit format diff; command aider --model claude-opus-4-20250514; run date 2025-05-25",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"claude-opus-4-20250514 (32k thinking)\", column \"Percent well-formed edits\": 97.3%",
+   "locator": "leaderboard table, row \"claude-opus-4-20250514 (32k thinking)\" (run 2025-05-25, diff format), column \"percent well-formed edits\": 97.3%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -430,7 +430,7 @@
    "configuration": "aider 0.82.1.dev; edit format diff; command aider --model o4-mini; run date 2025-04-16",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"o4-mini (high)\", column \"Percent correct\": 72.0%",
+   "locator": "leaderboard table, row \"o4-mini (high)\" (run 2025-04-16, diff format), column \"percent correct\": 72.0%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -445,7 +445,7 @@
    "configuration": "aider 0.82.1.dev; edit format diff; command aider --model o4-mini; run date 2025-04-16",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"o4-mini (high)\", column \"Percent well-formed edits\": 90.7%",
+   "locator": "leaderboard table, row \"o4-mini (high)\" (run 2025-04-16, diff format), column \"percent well-formed edits\": 90.7%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -460,7 +460,7 @@
    "configuration": "aider 0.84.1.dev; edit format diff; command aider --model deepseek/deepseek-reasoner; run date 2025-06-06",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"DeepSeek R1 (0528)\", column \"Percent correct\": 71.4%",
+   "locator": "leaderboard table, row \"DeepSeek R1 (0528)\" (run 2025-06-06, diff format), column \"percent correct\": 71.4%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -475,7 +475,7 @@
    "configuration": "aider 0.84.1.dev; edit format diff; command aider --model deepseek/deepseek-reasoner; run date 2025-06-06",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"DeepSeek R1 (0528)\", column \"Percent well-formed edits\": 94.6%",
+   "locator": "leaderboard table, row \"DeepSeek R1 (0528)\" (run 2025-06-06, diff format), column \"percent well-formed edits\": 94.6%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -490,7 +490,7 @@
    "configuration": "aider 0.83.3.dev; edit format diff; command aider --model claude-opus-4-20250514; run date 2025-05-25",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"claude-opus-4-20250514 (no think)\", column \"Percent correct\": 70.7%",
+   "locator": "leaderboard table, row \"claude-opus-4-20250514 (no think)\" (run 2025-05-25, diff format), column \"percent correct\": 70.7%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -505,7 +505,7 @@
    "configuration": "aider 0.83.3.dev; edit format diff; command aider --model claude-opus-4-20250514; run date 2025-05-25",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"claude-opus-4-20250514 (no think)\", column \"Percent well-formed edits\": 98.7%",
+   "locator": "leaderboard table, row \"claude-opus-4-20250514 (no think)\" (run 2025-05-25, diff format), column \"percent well-formed edits\": 98.7%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -520,7 +520,7 @@
    "configuration": "aider 0.86.2.dev; edit format diff; command aider --model deepseek/deepseek-chat; run date 2025-10-03",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"DeepSeek-V3.2-Exp (Chat)\", column \"Percent correct\": 70.2%",
+   "locator": "leaderboard table, row \"DeepSeek-V3.2-Exp (Chat)\" (run 2025-10-03, diff format), column \"percent correct\": 70.2%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -535,7 +535,7 @@
    "configuration": "aider 0.86.2.dev; edit format diff; command aider --model deepseek/deepseek-chat; run date 2025-10-03",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"DeepSeek-V3.2-Exp (Chat)\", column \"Percent well-formed edits\": 98.2%",
+   "locator": "leaderboard table, row \"DeepSeek-V3.2-Exp (Chat)\" (run 2025-10-03, diff format), column \"percent well-formed edits\": 98.2%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -550,7 +550,7 @@
    "configuration": "aider 0.75.1.dev; edit format diff; command aider --model anthropic/claude-3-7-sonnet-20250219 --thinking-tokens 32k; run date 2025-02-24",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"claude-3-7-sonnet-20250219 (32k thinking tokens)\", column \"Percent correct\": 64.9%",
+   "locator": "leaderboard table, row \"claude-3-7-sonnet-20250219 (32k thinking tokens)\" (run 2025-02-24, diff format), column \"percent correct\": 64.9%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -565,7 +565,7 @@
    "configuration": "aider 0.75.1.dev; edit format diff; command aider --model anthropic/claude-3-7-sonnet-20250219 --thinking-tokens 32k; run date 2025-02-24",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"claude-3-7-sonnet-20250219 (32k thinking tokens)\", column \"Percent well-formed edits\": 97.8%",
+   "locator": "leaderboard table, row \"claude-3-7-sonnet-20250219 (32k thinking tokens)\" (run 2025-02-24, diff format), column \"percent well-formed edits\": 97.8%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -580,7 +580,7 @@
    "configuration": "aider 0.72.3.dev; edit format architect; command aider --architect --model r1 --editor-model sonnet; run date 2025-01-23",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"DeepSeek R1 + claude-3-5-sonnet-20241022\", column \"Percent correct\": 64.0%",
+   "locator": "leaderboard table, row \"DeepSeek R1 + claude-3-5-sonnet-20241022\" (run 2025-01-23, architect format), column \"percent correct\": 64.0%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -595,7 +595,7 @@
    "configuration": "aider 0.72.3.dev; edit format architect; command aider --architect --model r1 --editor-model sonnet; run date 2025-01-23",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"DeepSeek R1 + claude-3-5-sonnet-20241022\", column \"Percent well-formed edits\": 100.0%",
+   "locator": "leaderboard table, row \"DeepSeek R1 + claude-3-5-sonnet-20241022\" (run 2025-01-23, architect format), column \"percent well-formed edits\": 100.0%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -610,7 +610,7 @@
    "configuration": "aider 0.69.2.dev; edit format diff; command aider --model openrouter/openai/o1; run date 2024-12-21",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"o1-2024-12-17 (high)\", column \"Percent correct\": 61.7%",
+   "locator": "leaderboard table, row \"o1-2024-12-17 (high)\" (run 2024-12-21, diff format), column \"percent correct\": 61.7%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -625,7 +625,7 @@
    "configuration": "aider 0.69.2.dev; edit format diff; command aider --model openrouter/openai/o1; run date 2024-12-21",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"o1-2024-12-17 (high)\", column \"Percent well-formed edits\": 91.5%",
+   "locator": "leaderboard table, row \"o1-2024-12-17 (high)\" (run 2024-12-21, diff format), column \"percent well-formed edits\": 91.5%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -640,7 +640,7 @@
    "configuration": "aider 0.83.3.dev; edit format diff; command aider --model claude-sonnet-4-20250514; run date 2025-05-24",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"claude-sonnet-4-20250514 (32k thinking)\", column \"Percent correct\": 61.3%",
+   "locator": "leaderboard table, row \"claude-sonnet-4-20250514 (32k thinking)\" (run 2025-05-24, diff format), column \"percent correct\": 61.3%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -655,7 +655,7 @@
    "configuration": "aider 0.83.3.dev; edit format diff; command aider --model claude-sonnet-4-20250514; run date 2025-05-24",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"claude-sonnet-4-20250514 (32k thinking)\", column \"Percent well-formed edits\": 97.3%",
+   "locator": "leaderboard table, row \"claude-sonnet-4-20250514 (32k thinking)\" (run 2025-05-24, diff format), column \"percent well-formed edits\": 97.3%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -670,7 +670,7 @@
    "configuration": "aider 0.74.4.dev; edit format diff; command aider --model sonnet; run date 2025-02-24",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"claude-3-7-sonnet-20250219 (no thinking)\", column \"Percent correct\": 60.4%",
+   "locator": "leaderboard table, row \"claude-3-7-sonnet-20250219 (no thinking)\" (run 2025-02-24, diff format), column \"percent correct\": 60.4%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -685,7 +685,7 @@
    "configuration": "aider 0.74.4.dev; edit format diff; command aider --model sonnet; run date 2025-02-24",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"claude-3-7-sonnet-20250219 (no thinking)\", column \"Percent well-formed edits\": 93.3%",
+   "locator": "leaderboard table, row \"claude-3-7-sonnet-20250219 (no thinking)\" (run 2025-02-24, diff format), column \"percent well-formed edits\": 93.3%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -700,7 +700,7 @@
    "configuration": "aider 0.72.4.dev; edit format diff; command aider --model o3-mini --reasoning-effort high; run date 2025-01-31",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"o3-mini (high)\", column \"Percent correct\": 60.4%",
+   "locator": "leaderboard table, row \"o3-mini (high)\" (run 2025-01-31, diff format), column \"percent correct\": 60.4%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -715,7 +715,7 @@
    "configuration": "aider 0.72.4.dev; edit format diff; command aider --model o3-mini --reasoning-effort high; run date 2025-01-31",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"o3-mini (high)\", column \"Percent well-formed edits\": 93.3%",
+   "locator": "leaderboard table, row \"o3-mini (high)\" (run 2025-01-31, diff format), column \"percent well-formed edits\": 93.3%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -730,7 +730,7 @@
    "configuration": "aider 0.82.4.dev; edit format diff; command aider --model openai/qwen3-235b-a22b; run date 2025-05-09",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Qwen3 235B A22B diff, no think, Alibaba API\", column \"Percent correct\": 59.6%",
+   "locator": "leaderboard table, row \"Qwen3 235B A22B diff, no think, Alibaba API\" (run 2025-05-09, diff format), column \"percent correct\": 59.6%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -745,7 +745,7 @@
    "configuration": "aider 0.82.4.dev; edit format diff; command aider --model openai/qwen3-235b-a22b; run date 2025-05-09",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Qwen3 235B A22B diff, no think, Alibaba API\", column \"Percent well-formed edits\": 92.9%",
+   "locator": "leaderboard table, row \"Qwen3 235B A22B diff, no think, Alibaba API\" (run 2025-05-09, diff format), column \"percent well-formed edits\": 92.9%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -760,7 +760,7 @@
    "configuration": "aider 0.85.3.dev; edit format diff; command aider --model openrouter/moonshotai/kimi-k2; run date 2025-07-17",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Kimi K2\", column \"Percent correct\": 59.1%",
+   "locator": "leaderboard table, row \"Kimi K2\" (run 2025-07-17, diff format), column \"percent correct\": 59.1%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -775,7 +775,7 @@
    "configuration": "aider 0.85.3.dev; edit format diff; command aider --model openrouter/moonshotai/kimi-k2; run date 2025-07-17",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Kimi K2\", column \"Percent well-formed edits\": 92.9%",
+   "locator": "leaderboard table, row \"Kimi K2\" (run 2025-07-17, diff format), column \"percent well-formed edits\": 92.9%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -790,7 +790,7 @@
    "configuration": "aider 0.71.2.dev; edit format diff; command aider --model deepseek/deepseek-reasoner; run date 2025-01-20",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"DeepSeek R1\", column \"Percent correct\": 56.9%",
+   "locator": "leaderboard table, row \"DeepSeek R1\" (run 2025-01-20, diff format), column \"percent correct\": 56.9%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -805,7 +805,7 @@
    "configuration": "aider 0.71.2.dev; edit format diff; command aider --model deepseek/deepseek-reasoner; run date 2025-01-20",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"DeepSeek R1\", column \"Percent well-formed edits\": 96.9%",
+   "locator": "leaderboard table, row \"DeepSeek R1\" (run 2025-01-20, diff format), column \"percent well-formed edits\": 96.9%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -820,7 +820,7 @@
    "configuration": "aider 0.83.3.dev; edit format diff; command aider --model claude-sonnet-4-20250514; run date 2025-05-24",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"claude-sonnet-4-20250514 (no thinking)\", column \"Percent correct\": 56.4%",
+   "locator": "leaderboard table, row \"claude-sonnet-4-20250514 (no thinking)\" (run 2025-05-24, diff format), column \"percent correct\": 56.4%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -835,7 +835,7 @@
    "configuration": "aider 0.83.3.dev; edit format diff; command aider --model claude-sonnet-4-20250514; run date 2025-05-24",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"claude-sonnet-4-20250514 (no thinking)\", column \"Percent well-formed edits\": 98.2%",
+   "locator": "leaderboard table, row \"claude-sonnet-4-20250514 (no thinking)\" (run 2025-05-24, diff format), column \"percent well-formed edits\": 98.2%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -850,7 +850,7 @@
    "configuration": "aider 0.83.3.dev; edit format diff; command aider --model gemini/gemini-2.5-flash-preview-05-20; run date 2025-05-25",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gemini-2.5-flash-preview-05-20 (24k think)\", column \"Percent correct\": 55.1%",
+   "locator": "leaderboard table, row \"gemini-2.5-flash-preview-05-20 (24k think)\" (run 2025-05-25, diff format), column \"percent correct\": 55.1%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -865,7 +865,7 @@
    "configuration": "aider 0.83.3.dev; edit format diff; command aider --model gemini/gemini-2.5-flash-preview-05-20; run date 2025-05-25",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gemini-2.5-flash-preview-05-20 (24k think)\", column \"Percent well-formed edits\": 95.6%",
+   "locator": "leaderboard table, row \"gemini-2.5-flash-preview-05-20 (24k think)\" (run 2025-05-25, diff format), column \"percent well-formed edits\": 95.6%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -880,7 +880,7 @@
    "configuration": "aider 0.78.1.dev; edit format diff; command aider --model deepseek/deepseek-chat; run date 2025-03-24",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"DeepSeek V3 (0324)\", column \"Percent correct\": 55.1%",
+   "locator": "leaderboard table, row \"DeepSeek V3 (0324)\" (run 2025-03-24, diff format), column \"percent correct\": 55.1%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -895,7 +895,7 @@
    "configuration": "aider 0.78.1.dev; edit format diff; command aider --model deepseek/deepseek-chat; run date 2025-03-24",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"DeepSeek V3 (0324)\", column \"Percent well-formed edits\": 99.6%",
+   "locator": "leaderboard table, row \"DeepSeek V3 (0324)\" (run 2025-03-24, diff format), column \"percent well-formed edits\": 99.6%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -910,7 +910,7 @@
    "configuration": "aider 0.80.5.dev; edit format diff; command aider --model openrouter/openrouter/quasar-alpha; run date 2025-04-04",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Quasar Alpha\", column \"Percent correct\": 54.7%",
+   "locator": "leaderboard table, row \"Quasar Alpha\" (run 2025-04-04, diff format), column \"percent correct\": 54.7%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -925,7 +925,7 @@
    "configuration": "aider 0.80.5.dev; edit format diff; command aider --model openrouter/openrouter/quasar-alpha; run date 2025-04-04",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Quasar Alpha\", column \"Percent well-formed edits\": 98.2%",
+   "locator": "leaderboard table, row \"Quasar Alpha\" (run 2025-04-04, diff format), column \"percent well-formed edits\": 98.2%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -940,7 +940,7 @@
    "configuration": "aider 0.72.4.dev; edit format diff; command aider --model o3-mini; run date 2025-01-31",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"o3-mini (medium)\", column \"Percent correct\": 53.8%",
+   "locator": "leaderboard table, row \"o3-mini (medium)\" (run 2025-01-31, diff format), column \"percent correct\": 53.8%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -955,7 +955,7 @@
    "configuration": "aider 0.72.4.dev; edit format diff; command aider --model o3-mini; run date 2025-01-31",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"o3-mini (medium)\", column \"Percent well-formed edits\": 95.1%",
+   "locator": "leaderboard table, row \"o3-mini (medium)\" (run 2025-01-31, diff format), column \"percent well-formed edits\": 95.1%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -970,7 +970,7 @@
    "configuration": "aider 0.81.2.dev; edit format diff; command aider --model openrouter/x-ai/grok-3-beta; run date 2025-04-10",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Grok 3 Beta\", column \"Percent correct\": 53.3%",
+   "locator": "leaderboard table, row \"Grok 3 Beta\" (run 2025-04-10, diff format), column \"percent correct\": 53.3%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -985,7 +985,7 @@
    "configuration": "aider 0.81.2.dev; edit format diff; command aider --model openrouter/x-ai/grok-3-beta; run date 2025-04-10",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Grok 3 Beta\", column \"Percent well-formed edits\": 99.6%",
+   "locator": "leaderboard table, row \"Grok 3 Beta\" (run 2025-04-10, diff format), column \"percent well-formed edits\": 99.6%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1000,7 +1000,7 @@
    "configuration": "aider 0.81.2.dev; edit format diff; command aider --model openrouter/openrouter/optimus-alpha; run date 2025-04-10",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Optimus Alpha\", column \"Percent correct\": 52.9%",
+   "locator": "leaderboard table, row \"Optimus Alpha\" (run 2025-04-10, diff format), column \"percent correct\": 52.9%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1015,7 +1015,7 @@
    "configuration": "aider 0.81.2.dev; edit format diff; command aider --model openrouter/openrouter/optimus-alpha; run date 2025-04-10",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Optimus Alpha\", column \"Percent well-formed edits\": 97.3%",
+   "locator": "leaderboard table, row \"Optimus Alpha\" (run 2025-04-10, diff format), column \"percent well-formed edits\": 97.3%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1030,7 +1030,7 @@
    "configuration": "aider 0.81.4.dev; edit format diff; command aider --model gpt-4.1; run date 2025-04-14",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gpt-4.1\", column \"Percent correct\": 52.4%",
+   "locator": "leaderboard table, row \"gpt-4.1\" (run 2025-04-14, diff format), column \"percent correct\": 52.4%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1045,7 +1045,7 @@
    "configuration": "aider 0.81.4.dev; edit format diff; command aider --model gpt-4.1; run date 2025-04-14",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gpt-4.1\", column \"Percent well-formed edits\": 98.2%",
+   "locator": "leaderboard table, row \"gpt-4.1\" (run 2025-04-14, diff format), column \"percent well-formed edits\": 98.2%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1060,7 +1060,7 @@
    "configuration": "aider 0.71.2.dev; edit format diff; command aider --model claude-3-5-sonnet-20241022; run date 2025-01-17",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"claude-3-5-sonnet-20241022\", column \"Percent correct\": 51.6%",
+   "locator": "leaderboard table, row \"claude-3-5-sonnet-20241022\" (run 2025-01-17, diff format), column \"percent correct\": 51.6%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1075,7 +1075,7 @@
    "configuration": "aider 0.71.2.dev; edit format diff; command aider --model claude-3-5-sonnet-20241022; run date 2025-01-17",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"claude-3-5-sonnet-20241022\", column \"Percent well-formed edits\": 99.6%",
+   "locator": "leaderboard table, row \"claude-3-5-sonnet-20241022\" (run 2025-01-17, diff format), column \"percent well-formed edits\": 99.6%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1090,7 +1090,7 @@
    "configuration": "aider 0.81.3.dev; edit format whole; command aider --model xai/grok-3-mini-beta --reasoning-effort high; run date 2025-04-10",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Grok 3 Mini Beta (high)\", column \"Percent correct\": 49.3%",
+   "locator": "leaderboard table, row \"Grok 3 Mini Beta (high)\" (run 2025-04-10, whole format), column \"percent correct\": 49.3%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1105,7 +1105,7 @@
    "configuration": "aider 0.81.3.dev; edit format whole; command aider --model xai/grok-3-mini-beta --reasoning-effort high; run date 2025-04-10",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Grok 3 Mini Beta (high)\", column \"Percent well-formed edits\": 99.6%",
+   "locator": "leaderboard table, row \"Grok 3 Mini Beta (high)\" (run 2025-04-10, whole format), column \"percent well-formed edits\": 99.6%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1120,7 +1120,7 @@
    "configuration": "aider 0.69.2.dev; edit format diff; command aider --model deepseek/deepseek-chat; run date 2024-12-25",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"DeepSeek Chat V3 (prev)\", column \"Percent correct\": 48.4%",
+   "locator": "leaderboard table, row \"DeepSeek Chat V3 (prev)\" (run 2024-12-25, diff format), column \"percent correct\": 48.4%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1135,7 +1135,7 @@
    "configuration": "aider 0.69.2.dev; edit format diff; command aider --model deepseek/deepseek-chat; run date 2024-12-25",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"DeepSeek Chat V3 (prev)\", column \"Percent well-formed edits\": 98.7%",
+   "locator": "leaderboard table, row \"DeepSeek Chat V3 (prev)\" (run 2024-12-25, diff format), column \"percent well-formed edits\": 98.7%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1150,7 +1150,7 @@
    "configuration": "aider 0.82.3.dev; edit format diff; command aider --model gemini/gemini-2.5-flash-preview-04-17; run date 2025-04-20",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gemini-2.5-flash-preview-04-17 (default)\", column \"Percent correct\": 47.1%",
+   "locator": "leaderboard table, row \"gemini-2.5-flash-preview-04-17 (default)\" (run 2025-04-20, diff format), column \"percent correct\": 47.1%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1165,7 +1165,7 @@
    "configuration": "aider 0.82.3.dev; edit format diff; command aider --model gemini/gemini-2.5-flash-preview-04-17; run date 2025-04-20",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gemini-2.5-flash-preview-04-17 (default)\", column \"Percent well-formed edits\": 85.3%",
+   "locator": "leaderboard table, row \"gemini-2.5-flash-preview-04-17 (default)\" (run 2025-04-20, diff format), column \"percent well-formed edits\": 85.3%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1180,7 +1180,7 @@
    "configuration": "aider 0.79.3.dev; edit format diff; command aider --model chatgpt-4o-latest; run date 2025-03-29",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"chatgpt-4o-latest (2025-03-29)\", column \"Percent correct\": 45.3%",
+   "locator": "leaderboard table, row \"chatgpt-4o-latest (2025-03-29)\" (run 2025-03-29, diff format), column \"percent correct\": 45.3%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1195,7 +1195,7 @@
    "configuration": "aider 0.79.3.dev; edit format diff; command aider --model chatgpt-4o-latest; run date 2025-03-29",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"chatgpt-4o-latest (2025-03-29)\", column \"Percent well-formed edits\": 64.4%",
+   "locator": "leaderboard table, row \"chatgpt-4o-latest (2025-03-29)\" (run 2025-03-29, diff format), column \"percent well-formed edits\": 64.4%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1210,7 +1210,7 @@
    "configuration": "aider 0.75.2.dev; edit format diff; command aider --model openai/gpt-4.5-preview; run date 2025-02-27",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gpt-4.5-preview\", column \"Percent correct\": 44.9%",
+   "locator": "leaderboard table, row \"gpt-4.5-preview\" (run 2025-02-27, diff format), column \"percent correct\": 44.9%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1225,7 +1225,7 @@
    "configuration": "aider 0.75.2.dev; edit format diff; command aider --model openai/gpt-4.5-preview; run date 2025-02-27",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gpt-4.5-preview\", column \"Percent well-formed edits\": 97.3%",
+   "locator": "leaderboard table, row \"gpt-4.5-preview\" (run 2025-02-27, diff format), column \"percent well-formed edits\": 97.3%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1240,7 +1240,7 @@
    "configuration": "aider 0.83.3.dev; edit format diff; command aider --model gemini/gemini-2.5-flash-preview-05-20; run date 2025-05-26",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gemini-2.5-flash-preview-05-20 (no think)\", column \"Percent correct\": 44.0%",
+   "locator": "leaderboard table, row \"gemini-2.5-flash-preview-05-20 (no think)\" (run 2025-05-26, diff format), column \"percent correct\": 44.0%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1255,7 +1255,7 @@
    "configuration": "aider 0.83.3.dev; edit format diff; command aider --model gemini/gemini-2.5-flash-preview-05-20; run date 2025-05-26",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gemini-2.5-flash-preview-05-20 (no think)\", column \"Percent well-formed edits\": 93.8%",
+   "locator": "leaderboard table, row \"gemini-2.5-flash-preview-05-20 (no think)\" (run 2025-05-26, diff format), column \"percent well-formed edits\": 93.8%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1270,7 +1270,7 @@
    "configuration": "aider 0.85.3.dev; edit format diff; command aider --model openrouter/openai/gpt-oss-120b --reasoning-effort high; run date 2025-08-06",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gpt-oss-120b (high)\", column \"Percent correct\": 41.8%",
+   "locator": "leaderboard table, row \"gpt-oss-120b (high)\" (run 2025-08-06, diff format), column \"percent correct\": 41.8%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1285,7 +1285,7 @@
    "configuration": "aider 0.85.3.dev; edit format diff; command aider --model openrouter/openai/gpt-oss-120b --reasoning-effort high; run date 2025-08-06",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gpt-oss-120b (high)\", column \"Percent well-formed edits\": 79.1%",
+   "locator": "leaderboard table, row \"gpt-oss-120b (high)\" (run 2025-08-06, diff format), column \"percent well-formed edits\": 79.1%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1300,7 +1300,7 @@
    "configuration": "aider 0.82.4.dev; edit format diff; command aider --model openrouter/qwen/qwen3-32b; run date 2025-05-08",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Qwen3 32B\", column \"Percent correct\": 40.0%",
+   "locator": "leaderboard table, row \"Qwen3 32B\" (run 2025-05-08, diff format), column \"percent correct\": 40.0%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1315,7 +1315,7 @@
    "configuration": "aider 0.82.4.dev; edit format diff; command aider --model openrouter/qwen/qwen3-32b; run date 2025-05-08",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Qwen3 32B\", column \"Percent well-formed edits\": 83.6%",
+   "locator": "leaderboard table, row \"Qwen3 32B\" (run 2025-05-08, diff format), column \"percent well-formed edits\": 83.6%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1330,7 +1330,7 @@
    "configuration": "aider 0.69.2.dev; edit format whole; command aider --model gemini/gemini-exp-1206; run date 2024-12-22",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gemini-exp-1206\", column \"Percent correct\": 38.2%",
+   "locator": "leaderboard table, row \"gemini-exp-1206\" (run 2024-12-22, whole format), column \"percent correct\": 38.2%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1345,7 +1345,7 @@
    "configuration": "aider 0.69.2.dev; edit format whole; command aider --model gemini/gemini-exp-1206; run date 2024-12-22",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gemini-exp-1206\", column \"Percent well-formed edits\": 98.2%",
+   "locator": "leaderboard table, row \"gemini-exp-1206\" (run 2024-12-22, whole format), column \"percent well-formed edits\": 98.2%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1360,7 +1360,7 @@
    "configuration": "aider 0.75.2.dev; edit format whole; command aider --model gemini/gemini-2.0-pro-exp-02-05; run date 2025-02-25",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Gemini 2.0 Pro exp-02-05\", column \"Percent correct\": 35.6%",
+   "locator": "leaderboard table, row \"Gemini 2.0 Pro exp-02-05\" (run 2025-02-25, whole format), column \"percent correct\": 35.6%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1375,7 +1375,7 @@
    "configuration": "aider 0.75.2.dev; edit format whole; command aider --model gemini/gemini-2.0-pro-exp-02-05; run date 2025-02-25",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Gemini 2.0 Pro exp-02-05\", column \"Percent well-formed edits\": 100.0%",
+   "locator": "leaderboard table, row \"Gemini 2.0 Pro exp-02-05\" (run 2025-02-25, whole format), column \"percent well-formed edits\": 100.0%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1390,7 +1390,7 @@
    "configuration": "aider 0.81.2.dev; edit format whole; command aider --model openrouter/x-ai/grok-3-mini-beta; run date 2025-04-10",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Grok 3 Mini Beta (low)\", column \"Percent correct\": 34.7%",
+   "locator": "leaderboard table, row \"Grok 3 Mini Beta (low)\" (run 2025-04-10, whole format), column \"percent correct\": 34.7%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1405,7 +1405,7 @@
    "configuration": "aider 0.81.2.dev; edit format whole; command aider --model openrouter/x-ai/grok-3-mini-beta; run date 2025-04-10",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Grok 3 Mini Beta (low)\", column \"Percent well-formed edits\": 100.0%",
+   "locator": "leaderboard table, row \"Grok 3 Mini Beta (low)\" (run 2025-04-10, whole format), column \"percent well-formed edits\": 100.0%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1420,7 +1420,7 @@
    "configuration": "aider 0.69.2.dev; edit format whole; command aider --model o1-mini; run date 2024-12-22",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"o1-mini-2024-09-12\", column \"Percent correct\": 32.9%",
+   "locator": "leaderboard table, row \"o1-mini-2024-09-12\" (run 2024-12-22, whole format), column \"percent correct\": 32.9%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1435,7 +1435,7 @@
    "configuration": "aider 0.69.2.dev; edit format whole; command aider --model o1-mini; run date 2024-12-22",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"o1-mini-2024-09-12\", column \"Percent well-formed edits\": 96.9%",
+   "locator": "leaderboard table, row \"o1-mini-2024-09-12\" (run 2024-12-22, whole format), column \"percent well-formed edits\": 96.9%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1450,7 +1450,7 @@
    "configuration": "aider 0.81.4.dev; edit format diff; command aider --model gpt-4.1-mini; run date 2025-04-14",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gpt-4.1-mini\", column \"Percent correct\": 32.4%",
+   "locator": "leaderboard table, row \"gpt-4.1-mini\" (run 2025-04-14, diff format), column \"percent correct\": 32.4%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1465,7 +1465,7 @@
    "configuration": "aider 0.81.4.dev; edit format diff; command aider --model gpt-4.1-mini; run date 2025-04-14",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gpt-4.1-mini\", column \"Percent well-formed edits\": 92.4%",
+   "locator": "leaderboard table, row \"gpt-4.1-mini\" (run 2025-04-14, diff format), column \"percent well-formed edits\": 92.4%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1480,7 +1480,7 @@
    "configuration": "aider 0.69.2.dev; edit format diff; command aider --model claude-3-5-haiku-20241022; run date 2024-12-21",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"claude-3-5-haiku-20241022\", column \"Percent correct\": 28.0%",
+   "locator": "leaderboard table, row \"claude-3-5-haiku-20241022\" (run 2024-12-21, diff format), column \"percent correct\": 28.0%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1495,7 +1495,7 @@
    "configuration": "aider 0.69.2.dev; edit format diff; command aider --model claude-3-5-haiku-20241022; run date 2024-12-21",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"claude-3-5-haiku-20241022\", column \"Percent well-formed edits\": 91.1%",
+   "locator": "leaderboard table, row \"claude-3-5-haiku-20241022\" (run 2024-12-21, diff format), column \"percent well-formed edits\": 91.1%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1510,7 +1510,7 @@
    "configuration": "aider 0.74.3.dev; edit format diff; command aider --model chatgpt-4o-latest; run date 2025-02-15",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"chatgpt-4o-latest (2025-02-15)\", column \"Percent correct\": 27.1%",
+   "locator": "leaderboard table, row \"chatgpt-4o-latest (2025-02-15)\" (run 2025-02-15, diff format), column \"percent correct\": 27.1%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1525,7 +1525,7 @@
    "configuration": "aider 0.74.3.dev; edit format diff; command aider --model chatgpt-4o-latest; run date 2025-02-15",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"chatgpt-4o-latest (2025-02-15)\", column \"Percent well-formed edits\": 93.3%",
+   "locator": "leaderboard table, row \"chatgpt-4o-latest (2025-02-15)\" (run 2025-02-15, diff format), column \"percent well-formed edits\": 93.3%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1540,7 +1540,7 @@
    "configuration": "aider 0.75.3.dev; edit format architect; command aider --model fireworks_ai/accounts/fireworks/models/qwq-32b --architect; run date 2025-03-07",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"QwQ-32B + Qwen 2.5 Coder Instruct\", column \"Percent correct\": 26.2%",
+   "locator": "leaderboard table, row \"QwQ-32B + Qwen 2.5 Coder Instruct\" (run 2025-03-07, architect format), column \"percent correct\": 26.2%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1555,7 +1555,7 @@
    "configuration": "aider 0.75.3.dev; edit format architect; command aider --model fireworks_ai/accounts/fireworks/models/qwq-32b --architect; run date 2025-03-07",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"QwQ-32B + Qwen 2.5 Coder Instruct\", column \"Percent well-formed edits\": 100.0%",
+   "locator": "leaderboard table, row \"QwQ-32B + Qwen 2.5 Coder Instruct\" (run 2025-03-07, architect format), column \"percent well-formed edits\": 100.0%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1570,7 +1570,7 @@
    "configuration": "aider 0.70.1.dev; edit format diff; command aider --model gpt-4o-2024-08-06; run date 2024-12-30",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gpt-4o-2024-08-06\", column \"Percent correct\": 23.1%",
+   "locator": "leaderboard table, row \"gpt-4o-2024-08-06\" (run 2024-12-30, diff format), column \"percent correct\": 23.1%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1585,7 +1585,7 @@
    "configuration": "aider 0.70.1.dev; edit format diff; command aider --model gpt-4o-2024-08-06; run date 2024-12-30",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gpt-4o-2024-08-06\", column \"Percent well-formed edits\": 94.2%",
+   "locator": "leaderboard table, row \"gpt-4o-2024-08-06\" (run 2024-12-30, diff format), column \"percent well-formed edits\": 94.2%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1600,7 +1600,7 @@
    "configuration": "aider 0.69.2.dev; edit format whole; command aider --model gemini/gemini-2.0-flash-exp; run date 2024-12-22",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gemini-2.0-flash-exp\", column \"Percent correct\": 22.2%",
+   "locator": "leaderboard table, row \"gemini-2.0-flash-exp\" (run 2024-12-22, whole format), column \"percent correct\": 22.2%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1615,7 +1615,7 @@
    "configuration": "aider 0.69.2.dev; edit format whole; command aider --model gemini/gemini-2.0-flash-exp; run date 2024-12-22",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gemini-2.0-flash-exp\", column \"Percent well-formed edits\": 100.0%",
+   "locator": "leaderboard table, row \"gemini-2.0-flash-exp\" (run 2024-12-22, whole format), column \"percent well-formed edits\": 100.0%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1630,7 +1630,7 @@
    "configuration": "aider 0.72.4.dev; edit format diff; command OPENAI_API_BASE=https://dashscope-intl.aliyuncs.com/compatible-mode/v1 aider --model openai/qwen-max-2025-01-25; run date 2025-01-28",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"qwen-max-2025-01-25\", column \"Percent correct\": 21.8%",
+   "locator": "leaderboard table, row \"qwen-max-2025-01-25\" (run 2025-01-28, diff format), column \"percent correct\": 21.8%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1645,7 +1645,7 @@
    "configuration": "aider 0.72.4.dev; edit format diff; command OPENAI_API_BASE=https://dashscope-intl.aliyuncs.com/compatible-mode/v1 aider --model openai/qwen-max-2025-01-25; run date 2025-01-28",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"qwen-max-2025-01-25\", column \"Percent well-formed edits\": 90.2%",
+   "locator": "leaderboard table, row \"qwen-max-2025-01-25\" (run 2025-01-28, diff format), column \"percent well-formed edits\": 90.2%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1660,7 +1660,7 @@
    "configuration": "aider 0.75.3.dev; edit format diff; command aider --model fireworks_ai/accounts/fireworks/models/qwq-32b; run date 2025-03-06",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"QwQ-32B\", column \"Percent correct\": 20.9%",
+   "locator": "leaderboard table, row \"QwQ-32B\" (run 2025-03-06, diff format), column \"percent correct\": 20.9%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1675,7 +1675,7 @@
    "configuration": "aider 0.75.3.dev; edit format diff; command aider --model fireworks_ai/accounts/fireworks/models/qwq-32b; run date 2025-03-06",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"QwQ-32B\", column \"Percent well-formed edits\": 67.6%",
+   "locator": "leaderboard table, row \"QwQ-32B\" (run 2025-03-06, diff format), column \"percent well-formed edits\": 67.6%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1690,7 +1690,7 @@
    "configuration": "aider 0.72.2.dev; edit format diff; command aider --model gemini/gemini-2.0-flash-thinking-exp-01-21; run date 2025-01-21",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gemini-2.0-flash-thinking-exp-01-21\", column \"Percent correct\": 18.2%",
+   "locator": "leaderboard table, row \"gemini-2.0-flash-thinking-exp-01-21\" (run 2025-01-21, diff format), column \"percent correct\": 18.2%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1705,7 +1705,7 @@
    "configuration": "aider 0.72.2.dev; edit format diff; command aider --model gemini/gemini-2.0-flash-thinking-exp-01-21; run date 2025-01-21",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gemini-2.0-flash-thinking-exp-01-21\", column \"Percent well-formed edits\": 77.8%",
+   "locator": "leaderboard table, row \"gemini-2.0-flash-thinking-exp-01-21\" (run 2025-01-21, diff format), column \"percent well-formed edits\": 77.8%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1720,7 +1720,7 @@
    "configuration": "aider 0.70.1.dev; edit format diff; command aider --model gpt-4o-2024-11-20; run date 2024-12-30",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gpt-4o-2024-11-20\", column \"Percent correct\": 18.2%",
+   "locator": "leaderboard table, row \"gpt-4o-2024-11-20\" (run 2024-12-30, diff format), column \"percent correct\": 18.2%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1735,7 +1735,7 @@
    "configuration": "aider 0.70.1.dev; edit format diff; command aider --model gpt-4o-2024-11-20; run date 2024-12-30",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gpt-4o-2024-11-20\", column \"Percent well-formed edits\": 95.1%",
+   "locator": "leaderboard table, row \"gpt-4o-2024-11-20\" (run 2024-12-30, diff format), column \"percent well-formed edits\": 95.1%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1750,7 +1750,7 @@
    "configuration": "aider 0.69.2.dev; edit format diff; command aider --model deepseek/deepseek-chat; run date 2024-12-21",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"DeepSeek Chat V2.5\", column \"Percent correct\": 17.8%",
+   "locator": "leaderboard table, row \"DeepSeek Chat V2.5\" (run 2024-12-21, diff format), column \"percent correct\": 17.8%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1765,7 +1765,7 @@
    "configuration": "aider 0.69.2.dev; edit format diff; command aider --model deepseek/deepseek-chat; run date 2024-12-21",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"DeepSeek Chat V2.5\", column \"Percent well-formed edits\": 92.9%",
+   "locator": "leaderboard table, row \"DeepSeek Chat V2.5\" (run 2024-12-21, diff format), column \"percent well-formed edits\": 92.9%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1780,7 +1780,7 @@
    "configuration": "aider 0.69.2.dev; edit format whole; command aider --model openai/Qwen2.5-Coder-32B-Instruct; run date 2024-12-26",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Qwen2.5-Coder-32B-Instruct\", column \"Percent correct\": 16.4%",
+   "locator": "leaderboard table, row \"Qwen2.5-Coder-32B-Instruct\" (run 2024-12-26, whole format), column \"percent correct\": 16.4%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1795,7 +1795,7 @@
    "configuration": "aider 0.69.2.dev; edit format whole; command aider --model openai/Qwen2.5-Coder-32B-Instruct; run date 2024-12-26",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Qwen2.5-Coder-32B-Instruct\", column \"Percent well-formed edits\": 99.6%",
+   "locator": "leaderboard table, row \"Qwen2.5-Coder-32B-Instruct\" (run 2024-12-26, whole format), column \"percent well-formed edits\": 99.6%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1810,7 +1810,7 @@
    "configuration": "aider 0.81.2.dev; edit format whole; command aider --model nvidia_nim/meta/llama-4-maverick-17b-128e-instruct; run date 2025-04-06",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Llama 4 Maverick\", column \"Percent correct\": 15.6%",
+   "locator": "leaderboard table, row \"Llama 4 Maverick\" (run 2025-04-06, whole format), column \"percent correct\": 15.6%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1825,7 +1825,7 @@
    "configuration": "aider 0.81.2.dev; edit format whole; command aider --model nvidia_nim/meta/llama-4-maverick-17b-128e-instruct; run date 2025-04-06",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Llama 4 Maverick\", column \"Percent well-formed edits\": 99.1%",
+   "locator": "leaderboard table, row \"Llama 4 Maverick\" (run 2025-04-06, whole format), column \"percent well-formed edits\": 99.1%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1840,7 +1840,7 @@
    "configuration": "aider 0.69.2.dev; edit format whole; command aider --model openai/yi-lightning; run date 2024-12-23",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"yi-lightning\", column \"Percent correct\": 12.9%",
+   "locator": "leaderboard table, row \"yi-lightning\" (run 2024-12-23, whole format), column \"percent correct\": 12.9%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1855,7 +1855,7 @@
    "configuration": "aider 0.69.2.dev; edit format whole; command aider --model openai/yi-lightning; run date 2024-12-23",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"yi-lightning\", column \"Percent well-formed edits\": 92.9%",
+   "locator": "leaderboard table, row \"yi-lightning\" (run 2024-12-23, whole format), column \"percent well-formed edits\": 92.9%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1870,7 +1870,7 @@
    "configuration": "aider 0.77.1.dev; edit format whole; command OPENAI_API_BASE=https://api.cohere.ai/compatibility/v1 aider --model openai/command-a-03-2025-quality; run date 2025-03-14",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"command-a-03-2025-quality\", column \"Percent correct\": 12.0%",
+   "locator": "leaderboard table, row \"command-a-03-2025-quality\" (run 2025-03-14, whole format), column \"percent correct\": 12.0%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1885,7 +1885,7 @@
    "configuration": "aider 0.77.1.dev; edit format whole; command OPENAI_API_BASE=https://api.cohere.ai/compatibility/v1 aider --model openai/command-a-03-2025-quality; run date 2025-03-14",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"command-a-03-2025-quality\", column \"Percent well-formed edits\": 99.6%",
+   "locator": "leaderboard table, row \"command-a-03-2025-quality\" (run 2025-03-14, whole format), column \"percent well-formed edits\": 99.6%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1900,7 +1900,7 @@
    "configuration": "aider 0.71.2.dev; edit format whole; command aider --model mistral/codestral-latest; run date 2025-01-13",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Codestral 25.01\", column \"Percent correct\": 11.1%",
+   "locator": "leaderboard table, row \"Codestral 25.01\" (run 2025-01-13, whole format), column \"percent correct\": 11.1%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1915,7 +1915,7 @@
    "configuration": "aider 0.71.2.dev; edit format whole; command aider --model mistral/codestral-latest; run date 2025-01-13",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Codestral 25.01\", column \"Percent well-formed edits\": 100.0%",
+   "locator": "leaderboard table, row \"Codestral 25.01\" (run 2025-01-13, whole format), column \"percent well-formed edits\": 100.0%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1930,7 +1930,7 @@
    "configuration": "aider 0.82.2.dev; edit format whole; command aider --model openrouter/all-hands/openhands-lm-32b-v0.1; run date 2025-04-19",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"openhands-lm-32b-v0.1\", column \"Percent correct\": 10.2%",
+   "locator": "leaderboard table, row \"openhands-lm-32b-v0.1\" (run 2025-04-19, whole format), column \"percent correct\": 10.2%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1945,7 +1945,7 @@
    "configuration": "aider 0.82.2.dev; edit format whole; command aider --model openrouter/all-hands/openhands-lm-32b-v0.1; run date 2025-04-19",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"openhands-lm-32b-v0.1\", column \"Percent well-formed edits\": 95.1%",
+   "locator": "leaderboard table, row \"openhands-lm-32b-v0.1\" (run 2025-04-19, whole format), column \"percent well-formed edits\": 95.1%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1960,7 +1960,7 @@
    "configuration": "aider 0.81.4.dev; edit format whole; command aider --model gpt-4.1-nano; run date 2025-04-14",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gpt-4.1-nano\", column \"Percent correct\": 8.9%",
+   "locator": "leaderboard table, row \"gpt-4.1-nano\" (run 2025-04-14, whole format), column \"percent correct\": 8.9%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1975,7 +1975,7 @@
    "configuration": "aider 0.81.4.dev; edit format whole; command aider --model gpt-4.1-nano; run date 2025-04-14",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gpt-4.1-nano\", column \"Percent well-formed edits\": 94.2%",
+   "locator": "leaderboard table, row \"gpt-4.1-nano\" (run 2025-04-14, whole format), column \"percent well-formed edits\": 94.2%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -1990,7 +1990,7 @@
    "configuration": "aider 0.69.2.dev; edit format diff; command aider --model openai/Qwen/Qwen2.5-Coder-32B-Instruct # via hyperbolic; run date 2024-12-22",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Qwen2.5-Coder-32B-Instruct\", column \"Percent correct\": 8.0%",
+   "locator": "leaderboard table, row \"Qwen2.5-Coder-32B-Instruct\" (run 2024-12-22, diff format), column \"percent correct\": 8.0%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -2005,7 +2005,7 @@
    "configuration": "aider 0.69.2.dev; edit format diff; command aider --model openai/Qwen/Qwen2.5-Coder-32B-Instruct # via hyperbolic; run date 2024-12-22",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"Qwen2.5-Coder-32B-Instruct\", column \"Percent well-formed edits\": 71.6%",
+   "locator": "leaderboard table, row \"Qwen2.5-Coder-32B-Instruct\" (run 2024-12-22, diff format), column \"percent well-formed edits\": 71.6%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -2020,7 +2020,7 @@
    "configuration": "aider 0.77.1.dev; edit format whole; command aider --model openrouter/google/gemma-3-27b-it; run date 2025-03-15",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gemma-3-27b-it\", column \"Percent correct\": 4.9%",
+   "locator": "leaderboard table, row \"gemma-3-27b-it\" (run 2025-03-15, whole format), column \"percent correct\": 4.9%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -2035,7 +2035,7 @@
    "configuration": "aider 0.77.1.dev; edit format whole; command aider --model openrouter/google/gemma-3-27b-it; run date 2025-03-15",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gemma-3-27b-it\", column \"Percent well-formed edits\": 100.0%",
+   "locator": "leaderboard table, row \"gemma-3-27b-it\" (run 2025-03-15, whole format), column \"percent well-formed edits\": 100.0%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -2050,7 +2050,7 @@
    "configuration": "aider 0.69.2.dev; edit format whole; command aider --model gpt-4o-mini-2024-07-18; run date 2024-12-21",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gpt-4o-mini-2024-07-18\", column \"Percent correct\": 3.6%",
+   "locator": "leaderboard table, row \"gpt-4o-mini-2024-07-18\" (run 2024-12-21, whole format), column \"percent correct\": 3.6%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []
@@ -2065,7 +2065,7 @@
    "configuration": "aider 0.69.2.dev; edit format whole; command aider --model gpt-4o-mini-2024-07-18; run date 2024-12-21",
    "source_url": "https://aider.chat/docs/leaderboards/",
    "source_file": "data/research/benchmark-sources/_aider_leaderboard.html",
-   "locator": "leaderboard table, row \"gpt-4o-mini-2024-07-18\", column \"Percent well-formed edits\": 100.0%",
+   "locator": "leaderboard table, row \"gpt-4o-mini-2024-07-18\" (run 2024-12-21, whole format), column \"percent well-formed edits\": 100.0%",
    "evidence_class": "third_party_reported",
    "identity_status": "unresolved",
    "proposed_offer_ids": []

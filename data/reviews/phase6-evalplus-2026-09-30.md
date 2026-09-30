@@ -15,7 +15,7 @@ Source: `data/research/benchmark-sources/_evalplus_results.json` (34,305 bytes, 
 ## Verification performed
 
 - Row count: 428 = 125 humaneval + 125 humaneval+ + 89 mbpp + 89 mbpp+ non-null cells; recomputed independently from a fresh parse.
-- Every value string was re-located in the raw source bytes at the recorded byte offset (locator records the offset of the `"key": lexeme` pair inside the label object).
+- Every value string was verified against the raw source bytes: the locator records the absolute byte offset of the `"key": value` pair, and the exact value lexeme was confirmed to start at offset + len(prefix) for all 428 rows. (Review round 1 found the first emission double-added the label offset into the recorded number; all 428 offsets were recomputed and byte-verified.)
 - Null cells: 36 labels with null MBPP/MBPP+ confirmed by direct count over the parsed file.
 - No label lacks a humaneval cell (checked; the earlier reconnaissance note of 124 float + 1 int humaneval cells is consistent: 125 total).
 
