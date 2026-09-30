@@ -2,7 +2,10 @@ module github.com/guygrigsby/agent-routing
 
 go 1.26.2
 
-require modernc.org/sqlite v1.60.1
+require (
+	github.com/cyberphone/json-canonicalization v0.0.0-20241213102144-19d51d7fe467
+	modernc.org/sqlite v1.60.1
+)
 
 require (
 	github.com/dustin/go-humanize v1.0.1 // indirect
