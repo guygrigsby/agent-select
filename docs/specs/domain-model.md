@@ -1,6 +1,6 @@
 # Routing knowledge model
 
-Draft, pass 1. Boundaries and policy values are proposed unless explicitly requested in `CLAUDE.md`.
+Draft, pass 1. Boundaries and policy values are proposed unless explicitly requested in `CLAUDE.md`. Superseded for the implemented slice by [educated routing](educated-routing.md) (routing value objects and enumerations) and [delivery storage](delivery-storage.md) (observation/assertion tokens, evidence classes, job stages and the event/DDL surface); the `validate` stage token and `body_locator`/evidence-class vocabulary below are historical. Where enumerations conflict, the delivery specs govern. Retained as the Knowledge entity draft.
 
 ## Context map and language
 

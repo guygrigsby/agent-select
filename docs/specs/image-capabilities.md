@@ -1,6 +1,6 @@
 # Image capability contract
 
-Proposed contract. Owns the image and numeric-limit payload variants and child tables referenced by `contracts.md`. No implementation or complete model coverage is claimed. Every field below is required unless represented by absence of a separate fact row. Missing evidence is unknown, not unsupported or unlimited.
+Proposed contract overall, but the relational subset referenced by `contracts.md` and the delivery DDL (capability, format, semantic, requirement and limit assertion child tables) is normative for this delivery under ADR 0003. Owns the image and numeric-limit payload variants and child tables referenced by `contracts.md`. No implementation or complete model coverage is claimed. Every field below is required unless represented by absence of a separate fact row. Missing evidence is unknown, not unsupported or unlimited.
 
 ## Facts and admission
 
@@ -38,7 +38,7 @@ Check references and masks separately from outputs. The request supplies each im
 
 All columns are NOT NULL. All child tables are owned by Assertion and have `assertion_id TEXT PRIMARY KEY REFERENCES assertions(id)` with restrictive FK. That PK supports assertion lookup. Exactly one payload subtype per assertion is enforced by a deferred subtype-completeness constraint and publication validation. All rows are append-only; retraction uses the common assertion-retraction fact.
 
-- `capability_assertions` is defined authoritatively in [contracts](contracts.md#data-layer); this contract owns its legal modality/tool direction combinations and names the capability-admission index `(operation,direction,capability,support)` there. It remains one of the four payload subtypes; no separate image capability table exists.
+- `capability_assertions` is defined authoritatively in [contracts](contracts.md#data-layer); this contract owns its legal modality/tool direction combinations and names the capability-admission index `(operation,direction,capability,support)` there. It remains one of the five payload subtypes (capability, format, semantic, requirement, limit); no separate image capability table exists.
 - `image_format_assertions`: common PK plus `operation TEXT`, `role TEXT`, `format TEXT`. CHECK legal image operation/role and a validated advertised format name. Index `(operation,role,format)` for accepted-format membership.
 - `image_semantic_assertions`: common PK plus `operation TEXT`, `role TEXT`, `semantic TEXT`. CHECK operation=image_editing, role=mask and the declared semantic enum. Index `(operation,role,semantic)` for mask interpretation.
 - `image_requirement_assertions`: common PK plus `operation TEXT`, `role TEXT`, `requirement TEXT`. CHECK role reference/mask, requirement enum and legal operation/role. Index `(operation,role,requirement)` for reference/mask admission.

@@ -51,7 +51,15 @@ All mutations use Collector worker/Coordinator service identity with evidence-va
 - `supersede_binding(old_id,replacement_id,evidence_id,effective_at,authority_version,freshness_version)`: evidence validator invokes ProviderOffer.SupersedeBinding and emits IdentityBindingSuperseded. IdentityResolution owns cross-reference/evidence rules; this mutates one offer aggregate only.
 - `resolve_identity(offer_id,e,t,authority_version,freshness_version)`: Host adapter or snapshot Publisher, read-only local authority; invokes IdentityResolution.Resolve and returns the complete resolution above. Pure/idempotent for pinned inputs; no domain event or new table.
 
-Each binding event is internal, emitted by ProviderOffer on its named fact transition, with offer/binding/fact IDs, evidence/observation IDs, effective and recorded times and policy versions; supersession adds old/replacement IDs, ending adds kind. Transactional outbox gives at-least-once delivery and per-offer order. EvidenceProjection consumes and recomputes successor identity inputs under IdentityResolution; consumers deduplicate event ID. Snapshot identity entries retain status, both cutoffs, policy versions and evidence IDs. Ambiguous/unknown identity cannot supply revision-derived quality or traits.
+Each binding event is internal, emitted by ProviderOffer on its named fact transition, written through the shared transactional outbox whose full `event_name` CHECK includes these names (see [delivery storage](delivery-storage.md#authority-tables)). Closed payload schemas, canonical-v1 encoded:
+
+- `IdentityBindingEstablished`: `binding_id`, `offer_id`, `revision_id`, `evidence_id`, `effective_at` (Unix seconds), `authority_version`, `freshness_version`, `recorded_at` (Unix seconds).
+- `IdentityBindingConfirmed`: `binding_id`, `observation_id`, `recorded_at` (Unix seconds).
+- `IdentityBindingEnded`: `binding_id`, `kind`, `evidence_id`, `effective_at` (Unix seconds), `authority_version`, `freshness_version`, `recorded_at` (Unix seconds).
+- `IdentityBindingSuperseded`: `binding_id`, `replacement_binding_id`, `evidence_id`, `effective_at` (Unix seconds), `authority_version`, `freshness_version`, `recorded_at` (Unix seconds).
+- `IdentityPolicyAvailable`: `kind`, `version`, `content_hash` (hex string), `recorded_at` (Unix seconds).
+
+Transactional outbox gives at-least-once delivery and per-offer order. EvidenceProjection consumes and recomputes successor identity inputs under IdentityResolution; consumers deduplicate event ID. Snapshot identity entries retain status, both cutoffs, policy versions and evidence IDs. Ambiguous/unknown identity cannot supply revision-derived quality or traits.
 
 ## Verification cases
 

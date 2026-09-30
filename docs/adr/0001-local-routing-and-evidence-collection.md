@@ -1,6 +1,6 @@
 # 1. Separate local routing from evidence collection
 
-Status: Proposed
+Status: Superseded by ADR 0002 for the language decision and by ADR 0003 for the routing surface. The separation decision itself stands.
 
 ## Context
 

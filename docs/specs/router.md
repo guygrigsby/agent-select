@@ -1,6 +1,6 @@
 # Local subagent router
 
-Draft contract, pass 1. Go is the requested implementation language, not a measured speed advantage over another language. No implementation exists. Proposed performance bar: warm embedded route p99 under 1 ms for 10,000 offers and 100 candidates, measured on the target Mac with explanations enabled. Report cold load, reload time, allocations and memory separately. No network, database reads or inference on the route path.
+Draft contract, pass 1. Superseded for the implemented slice by [educated routing](educated-routing.md) under ADR 0003; retained as the future calibrated-lane draft. Go is the requested implementation language, not a measured speed advantage over another language. No implementation exists. Proposed performance bar: warm embedded route p99 under 1 ms for 10,000 offers and 100 candidates, measured on the target Mac with explanations enabled. Report cold load, reload time, allocations and memory separately. No network, database reads or inference on the route path.
 
 ## Routing boundary
 
