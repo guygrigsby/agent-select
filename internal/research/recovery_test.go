@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
+	"time"
 )
 
 // Recovery tests construct every journal boundary state §3.1 defines and
@@ -232,5 +233,51 @@ func TestCheckReadOnlyUnderJournal(t *testing.T) {
 	}
 	if _, err := Check(root); err != nil {
 		t.Fatalf("check after recovery: %v", err)
+	}
+}
+
+// TestRecoverBackupVerificationFailure covers the §3.1 unrecoverable path:
+// backup bytes failing verification is exit 3, never a publish on top of a
+// mixed generation.
+func TestRecoverBackupVerificationFailure(t *testing.T) {
+	root := t.TempDir()
+	var backup backupManifest
+	for _, name := range OutputNames {
+		_, h := mkFile(t, root, name, "old-"+name)
+		mkFile(t, root, BackupDir+"/"+filepath.Base(name), "old-"+name)
+		backup.Files = append(backup.Files, backupManifestEntry{Path: name, SHA256: h})
+	}
+	raw, _ := json.Marshal(backup)
+	mkFile(t, root, BackupManifest, string(raw))
+	// corrupt one backup copy so verification fails
+	mkFile(t, root, BackupDir+"/"+filepath.Base(OutputNames[0]), "corrupted-backup")
+	// force the corrupt-generation path: journal names hashes nothing matches
+	writeJournal(t, root, journalFor(t, []journalEntry{{
+		Staged: BuildStagingDir + "/gone", Dest: ArtifactDB,
+		NewSHA256: strings.Repeat("c", 64), OldSHA256: strings.Repeat("0", 64),
+	}}))
+	_, err := recoverPublication(root)
+	ce, ok := err.(*Error)
+	if !ok || ce.Code != ExitInconsist {
+		t.Fatalf("backup verification failure must exit 3, got %v", err)
+	}
+	if _, serr := os.Stat(filepath.Join(root, JournalPath)); serr != nil {
+		t.Fatal("journal must survive an unrecoverable rollback for forensics")
+	}
+}
+
+// TestLockTimeoutExit4 pins the exit-4 lock contract.
+func TestLockTimeoutExit4(t *testing.T) {
+	root := t.TempDir()
+	os.MkdirAll(filepath.Join(root, "data"), 0o755)
+	held, err := acquireLock(root, true, time.Second)
+	if err != nil {
+		t.Fatalf("hold lock: %v", err)
+	}
+	defer held.Release()
+	_, err = acquireLock(root, false, 150*time.Millisecond)
+	ce, ok := err.(*Error)
+	if !ok || ce.Code != ExitIO {
+		t.Fatalf("lock timeout must exit 4, got %v", err)
 	}
 }

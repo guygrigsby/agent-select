@@ -71,6 +71,12 @@ func loadInputs(root string) (*Config, *Inventory, *Ledger, *BuildResult, []*tab
 		if adapterOf[batch] == "" {
 			return nil, nil, nil, nil, nil, invalidf("build.json: batch directory data/research/%s has no batch_formats mapping", batch)
 		}
+		// Gate 5: the findings file is a read evidence path and must be
+		// inventoried like every other read path.
+		fp := "data/research/" + batch + "/findings.json"
+		if inv.Get(fp) == nil {
+			return nil, nil, nil, nil, nil, invalidf("%s: batch findings file is not in the capture inventory (gate 5)", fp)
+		}
 		b, err := LoadBatch(root, batch, adapterOf[batch])
 		if err != nil {
 			return nil, nil, nil, nil, nil, err

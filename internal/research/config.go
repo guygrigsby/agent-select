@@ -37,10 +37,15 @@ type DriverPin struct {
 
 // IsPlaceholder reports whether a driver pin has not been filled in yet
 // (phase 4 replaces the seeded placeholders). A placeholder is never a
-// mismatch because there is nothing to compare against.
+// mismatch because there is nothing to compare against. The phase-3 seed
+// literal is recognized alongside "placeholder" so pre-fill configs keep
+// loading after toolchain setup.
 func (d DriverPin) IsPlaceholder() bool {
+	const seed = "pinned at phase 4 toolchain setup"
 	return d.SQLiteVersion == "" || stringsContains(d.SQLiteVersion, "placeholder") ||
-		stringsContains(d.GoToolchain, "placeholder") || d.GoToolchain == ""
+		stringsContains(d.SQLiteVersion, seed) ||
+		stringsContains(d.GoToolchain, "placeholder") ||
+		stringsContains(d.GoToolchain, seed) || d.GoToolchain == ""
 }
 
 // ScopeRule records which catalog kinds are in research scope.

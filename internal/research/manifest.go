@@ -75,11 +75,11 @@ func ControlFiles(root string) ([]string, error) {
 	}
 	for _, e := range entries {
 		if e.IsDir() {
-			continue
+			return nil, invalidf("%s: subdirectories are not valid control files", "data/research-inputs/fetch-logs/"+e.Name())
 		}
 		p := "data/research-inputs/fetch-logs/" + e.Name()
 		if !ValidControlPath(p) {
-			continue
+			return nil, invalidf("%s: fetch log name violates control path rules", p)
 		}
 		out = append(out, p)
 	}
@@ -90,7 +90,7 @@ func ControlFiles(root string) ([]string, error) {
 	}
 	for _, e := range entries {
 		if e.IsDir() {
-			continue
+			return nil, invalidf("%s: subdirectories are not valid control files", "data/reviews/decisions/"+e.Name())
 		}
 		p := "data/reviews/decisions/" + e.Name()
 		if !ValidControlPath(p) {

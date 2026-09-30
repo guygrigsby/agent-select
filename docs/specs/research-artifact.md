@@ -317,8 +317,10 @@ Publication protocol (rebuild):
    for each of the three outputs, the staged path, destination path, new
    sha256, and the pre-publication old sha256 from the backup manifest (empty
    for first generation). Fsync the journal.
-7. `rename()` each staged file into place, in manifest, TSV, DB order
-   (cheapest-to-regenerate first).
+7. `rename()` each staged file into place, in TSV, hash manifest, DB order
+   (cheapest-to-regenerate first: the TSV derives from inventory strings
+   alone, the hash manifest additionally hashes every input, the DB requires
+   the full build).
 8. Validate in place: hash the three published files; all must match the
    journal's new hashes; a mismatch exits 3 leaving the journal in place for
    §3.1 recovery (the run never rolls back renames — a successor, once
@@ -425,7 +427,9 @@ output and on the published set under `check`:
    `.csv` must have a multi-column
    header plus at least one data row. An API error envelope is a JSON object
    whose key set is a subset of `{message, documentation_url, status, error}`
-   carrying an HTTP error `status` value or a non-empty `error` string —
+   carrying an HTTP error `status` value, a non-empty `error` string, or a
+   `message` naming a known API authentication failure (`Invalid username or
+   password.`) —
    genuine API failure responses (GitHub `404` bodies, the Hugging Face
    `"Invalid username or password."` body) are honest failure outcomes and
    are not flagged. `retrieved` and `deferred` are not
@@ -470,10 +474,20 @@ the oracle, for these rows): `model_research` — 4 rows (`minimax/minimax-m2`,
 `moonshotai/kimi-k2`, `moonshotai/kimi-k2.5`, `moonshotai/kimi-k3`) whose
 frozen `benchmark_status='unresearched'` contradicted their recorded
 measurements and whose repaired findings carry `found` — and `source_access`
-— 69 rows whose frozen `url` values were log-pointer placeholders (e.g.
-`(see anthropic.log for recovered URL mapping)`) while the durable inputs
-carry the recovered URLs. Disk findings are authoritative over frozen rows
-for both classes. The nine findings files corrected by the phase 3 review also change their `source_files` `sha256`, `bytes` and `observed_at` rows (observed_at = the correction event). Future changes append a
+— 140 rows whose `url` values change: 43 frozen log-pointer placeholders
+(e.g. `(see anthropic.log for recovered URL mapping)`) become the recovered
+URLs, and 97 http-to-http corrections apply the fetch-URL-over-page-URL rule.
+Disk findings are authoritative over frozen rows for both classes. Three
+structural delta classes follow from normative rules rather than repairs:
+and the frozen `claims`/`unlocated_claims` row split shifts by 8 rows
+(427/48 → 419/56) under the §2.4 URL rule; generated integer ids in
+`claims` (419 rows), `benchmark_measurements` (112) and
+`unresolved_measurements` (252) are reassigned by §4's sorted-insert rule,
+so they need not equal the frozen document-order ids (non-generated tuples
+are identical except for the documented row classes). `review_results.reason`
+for an accepted batch derives from the current decision record
+(`catalog-sources` differs from the frozen hardcoded text; quarantined
+batches keep the frozen default reason). The nine findings files corrected by the phase 3 review also change their `source_files` `sha256`, `bytes` and `observed_at` rows (observed_at = the correction event). Future changes append a
 `schema_version` bump plus a documented delta in this spec's changelog; the
 tool refuses to rebuild when `build.json.schema_version` differs from the DDL
 it carries (exit 3). No production Postgres DDL may be derived from this
@@ -641,3 +655,20 @@ consistency verdicts.
   the implemented verification posture (journal-boundary state construction);
   `make check` now runs `agent-routing research check`, retiring the
   shell-ported SQL gates (queries preserved verbatim in the tool).
+- 2026-09-30 phase 4 review (fixes applied): gate 5 closed for batch
+  findings reads (uninventoried `data/research/<batch>/findings.json` is now
+  exit 1; previously the only evidence-read class with no inventory
+  backstop, live-reproduced); §7 source_access delta corrected to verified
+  counts (140 URL changes: 43 placeholder recoveries + 97 fetch-URL
+  corrections; the earlier "69 placeholder rows" figure was wrong);
+  §7 enumerates the structural delta classes (generated-id reassignment,
+  accepted-batch review reason derivation, the 8-row claims/unlocated split);
+  §3 step 7 rename order corrected to TSV, hash manifest, DB
+  (cheapest-to-regenerate first, matching the parenthetical rationale);
+  gate 3 envelope definition gains the authentication-failure `message` case
+  the code implements; the phase-3 seed literal is a recognized placeholder;
+  control directories reject non-conforming names and subdirectories
+  symmetrically; the 2 GiB total input bound is enforced in inventory
+  verification; tests cover the findings-inventory gate, the
+  measurement-without-decision hard gate, backup-verification failure and
+  lock-timeout exit 4.

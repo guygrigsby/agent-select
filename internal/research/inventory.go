@@ -157,7 +157,11 @@ func (inv *Inventory) Hash(path string) string {
 
 // VerifyDisk compares every inventory row's sha256/bytes against the file on
 // disk (§5 load-time disk-vs-inventory, exit 1; runs before pin gates).
+// totalInputBound is the §6 bound on summed evidence input bytes.
+const totalInputBound = 2 << 30 // 2 GiB
+
 func (inv *Inventory) VerifyDisk(root string) error {
+	var total int64
 	for _, r := range inv.Rows {
 		p := filepath.Join(root, filepath.FromSlash(r.Path))
 		fi, err := os.Lstat(p)
@@ -189,6 +193,10 @@ func (inv *Inventory) VerifyDisk(root string) error {
 		if fi.Mode()&os.ModeSymlink != 0 {
 			return invalidf("inventory path %s: symlinks are rejected", r.Path)
 		}
+		total += fi.Size()
+	}
+	if total > totalInputBound {
+		return invalidf("total evidence input size %d bytes exceeds the 2 GiB bound", total)
 	}
 	return nil
 }

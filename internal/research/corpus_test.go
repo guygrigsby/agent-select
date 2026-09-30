@@ -352,3 +352,87 @@ func TestMutationMatrix(t *testing.T) {
 		})
 	}
 }
+
+// TestFindingsMustBeInventoried is the regression for the review's gate-5
+// fail-open: a batch findings.json missing from the capture inventory must
+// exit 1, not silently drop the file from the hash manifest.
+func TestFindingsMustBeInventoried(t *testing.T) {
+	root := copyCorpus(t)
+	if _, err := Rebuild(root); err != nil {
+		t.Fatalf("baseline rebuild: %v", err)
+	}
+	invPath := filepath.Join(root, "data", "research-inputs", "capture-inventory.tsv")
+	inv, _ := os.ReadFile(invPath)
+	var out []string
+	for _, ln := range strings.Split(string(inv), "\n") {
+		if strings.HasPrefix(ln, "data/research/images/findings.json\t") {
+			continue
+		}
+		out = append(out, ln)
+	}
+	os.WriteFile(invPath, []byte(strings.Join(out, "\n")), 0o644)
+	_, err := Rebuild(root)
+	ce, ok := err.(*Error)
+	if !ok || ce.Code != ExitInvalid {
+		t.Fatalf("uninventoried findings read must exit 1, got %v", err)
+	}
+	if !strings.Contains(ce.Msg, "gate 5") {
+		t.Fatalf("diagnostic should name gate 5: %v", err)
+	}
+	// check must fail the same way, read-only
+	_, err = Check(root)
+	if ce, ok := err.(*Error); !ok || ce.Code != ExitInvalid {
+		t.Fatalf("check must also exit 1, got %v", err)
+	}
+}
+
+// TestMeasurementWithoutCurrentDecision exercises the §2.3.1 hard gate:
+// removing the measurement-scope decision for a measurement-bearing batch
+// must exit 3 with the batch named.
+func TestMeasurementWithoutCurrentDecision(t *testing.T) {
+	root := copyCorpus(t)
+	if _, err := Rebuild(root); err != nil {
+		t.Fatalf("baseline rebuild: %v", err)
+	}
+	// google carries benchmark measurements and a published_measurements
+	// decision chain v1..v3; delete every google record
+	decDir := filepath.Join(root, "data", "reviews", "decisions")
+	entries, _ := os.ReadDir(decDir)
+	for _, e := range entries {
+		if strings.HasPrefix(e.Name(), "google.") {
+			os.Remove(filepath.Join(decDir, e.Name()))
+		}
+	}
+	_, err := Rebuild(root)
+	ce, ok := err.(*Error)
+	if !ok || ce.Code != ExitInconsist {
+		t.Fatalf("measurements without a current decision must exit 3, got %v", err)
+	}
+	if !strings.Contains(ce.Msg, "google") {
+		t.Fatalf("diagnostic should name the batch: %v", err)
+	}
+}
+
+// TestControlFilesRejectsUnexpectedNames pins the symmetric control-dir
+// rule: a fetch log or decision with a non-conforming name is exit 1, and
+// subdirectories are rejected in both control areas.
+func TestControlFilesRejectsUnexpectedNames(t *testing.T) {
+	root := t.TempDir()
+	os.MkdirAll(filepath.Join(root, "data", "research-inputs", "fetch-logs"), 0o755)
+	os.MkdirAll(filepath.Join(root, "data", "reviews", "decisions"), 0o755)
+	os.WriteFile(filepath.Join(root, "data", "research-inputs", "capture-inventory.tsv"), []byte("path\torigin\n"), 0o644)
+	os.WriteFile(filepath.Join(root, "data", "research-inputs", "build.json"), []byte("{}"), 0o644)
+	os.WriteFile(filepath.Join(root, "data", "research-inputs", "fetch-logs", "bad name.log"), []byte("x"), 0o644)
+	if _, err := ControlFiles(root); err == nil {
+		t.Fatal("fetch log with a space in the name must be rejected")
+	}
+	os.Remove(filepath.Join(root, "data", "research-inputs", "fetch-logs", "bad name.log"))
+	os.WriteFile(filepath.Join(root, "data", "research-inputs", "fetch-logs", "ok.log"), []byte("x"), 0o644)
+	if _, err := ControlFiles(root); err != nil {
+		t.Fatalf("conforming fetch log must pass: %v", err)
+	}
+	os.MkdirAll(filepath.Join(root, "data", "reviews", "decisions", "sub"), 0o755)
+	if _, err := ControlFiles(root); err == nil {
+		t.Fatal("subdirectory under decisions must be rejected")
+	}
+}
