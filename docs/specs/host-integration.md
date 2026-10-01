@@ -1,6 +1,6 @@
 # Host integration contract
 
-Version 1. Normative for this delivery under ADR 0003. Owns the host adapter boundary: live registry discovery, request construction, routing invocation, spawn handoff, outcome capture and snapshot adoption. The routing domain API, request validation and selection algorithm are owned by [educated routing](educated-routing.md). Storage ports for receipts are owned by [delivery storage](delivery-storage.md). Research export contracts are unchanged.
+Version 2. Pre-implementation normalization (ar-9r1): runtime generation redefined over the full sorted runtime projection (mutable registry metadata now changes the generation), the native registry read and spawn-handoff wire schemas are closed below, and the CLI adapter contract now exists in [CLI adapter](cli-adapter.md). Normative for this delivery under ADR 0003. Owns the host adapter boundary: live registry discovery, request construction, routing invocation, spawn handoff, outcome capture and snapshot adoption. The routing domain API, request validation and selection algorithm are owned by [educated routing](educated-routing.md). Storage ports for receipts are owned by [delivery storage](delivery-storage.md). Research export contracts are unchanged.
 
 ## Registry discovery
 
@@ -9,7 +9,21 @@ The host adapter reads the host process's live model registry through its native
 - Runtime IDs are `Provider + "/" + UpstreamID` with internal upstream slashes retained, exactly as [educated routing](educated-routing.md) requires. The adapter never synthesizes IDs from display names.
 - `Eligible` is true only for entries the host can currently execute: credentials present, account entitled, no host-side disable. Catalog listing is not eligibility.
 - Empty capability, limit or price lists mean unknown, never empty support. Host-supplied facts override the same provider/upstream snapshot components only; another provider's quote is never borrowed.
-- One registry read produces one `RuntimeGeneration` string, derived deterministically from the sorted runtime IDs. Two requests with the same generation string saw the same registry. The adapter recomputes the generation per read and never mutates it.
+- One registry read produces one `RuntimeGeneration` string: the `canonical_hash` (64 lowercase hex characters) of the canonical-v1 encoding of an array with one member per runtime entry, each member the closed object `{id, provider, upstream_id, revision, eligible, capabilities, unsupported_capabilities, limits, prices, region, privacy}` mirroring `RuntimeOfferData` exactly (limits as `{resource, maximum}` sorted by resource, prices as `{component, usd_per_million}` sorted by component, capability lists deduplicated and sorted). Entries sort by `(provider, upstream_id)` bytewise ascending; this hashing order is an encoding detail of the generation string only and is independent of the domain's stable-ID iteration order. Same generation string means identical registry content — not merely identical IDs — so any change to a runtime offer's metadata changes the generation. The adapter recomputes the generation per read and never mutates it.
+
+### Native registry read wire boundary
+
+The adapter consumes only this closed projection of each host registry entry and maps it one-to-one onto `RuntimeOfferData`; fields the native API does not expose map to their unknown sentinels, never to invented values:
+
+- `provider`, `upstream_id`: nonempty identity strings from the host's own naming; the adapter derives `id` as `provider + "/" + upstream_id` and never from a display name. Display names and marketing labels are not consumed for identity, ranking or generation.
+- `revision`: host revision assertion string, empty when the host exposes none.
+- `eligible`: boolean the adapter computes from host state (credentials present, account entitled, not disabled), not from catalog listing.
+- `capabilities`, `unsupported_capabilities`: string lists over the closed capability vocabulary. Unknown host capability tokens map to neither list — an unrecognized capability is not a negative fact — and the adapter records nothing about it.
+- `limits`: list of `{resource, maximum}` over the closed resource vocabulary; a resource absent from the list is unknown.
+- `prices`: list of `{component, usd_per_million}` over the closed component vocabulary; absent components are unknown and an empty list never means free.
+- `region`, `privacy`: bounded strings, empty means the host asserts nothing.
+
+Anything else in the native registry entry (pricing metadata outside the vocabulary, rate limits, distillation notices, icon URLs) is outside the boundary: not read, not hashed, not routed on.
 - The adapter holds no credentials inside routing data and passes none into the domain. Credential handling stays in the host's provider clients.
 
 ## Request construction
@@ -29,6 +43,10 @@ The adapter calls `NewRequest` then `Engine.Route`. The call is local, pure and 
 ## Spawn handoff
 
 The host owns spawning, tools, retries, cancellation and evaluation. On a selected decision the adapter resolves the decision's `Provider` and `UpstreamID` back to the live registry entry and hands the caller the host's own provider client and configuration. The adapter adds no retry policy and no fallback spawn. If the registry entry vanished between generation read and spawn, the host reports a cancelled outcome and may re-route with a fresh generation. Parallel selections use host-owned admission reservations; routing never starts a device or GPU job itself.
+
+### Spawn-handoff wire boundary
+
+The handoff to the host spawner is one closed object: `request_id` (correlation with the decision), `provider`, `upstream_id` (must resolve to a registry entry present in the same generation read that produced the decision; a vanished entry is the cancelled-and-re-route path above, never an automatic alternate target), `task_family` (the request task, for host-side telemetry only — never used to pick a different model), `deadline_unix_ms` (derived: `effective_at` plus `deadline_millis` as UTC epoch milliseconds — the domain deadline is a latency bound, so the handoff converts it to the absolute instant it implies; 0 when `deadline_millis` is 0, and the host owns what it does with it) and `model_ref` (the host's own client configuration key when it differs from `upstream_id`, empty otherwise; it names configuration, never another model). The spawner receives no snapshot bytes, no runtime generation and no ranking data. Provider credentials stay inside the host's provider clients; the handoff carries no secret material.
 
 ## Outcome capture
 
@@ -53,8 +71,8 @@ The host adapter owns local artifact reads. It polls or watches the configured l
 - Host assertions (registry, eligibility, offer-specific prices and limits) are trusted local facts inside the owning process. They never become public research approval and never alter source review or permissions.
 - Source text and model cards cannot alter routing policy; adapters sanitize content crossing into any extraction lane, per [collection pipeline](collection-pipeline.md#source-rights-and-operating-limits).
 - Error details crossing the boundary contain no source bytes, credentials or task content.
-- The CLI is a thin testing and early integration adapter that imports the same public routing API and performs no ranking, policy or storage logic. Its commands, flags and wire schemas are specified when that slice is implemented, not before.
+- The CLI is a thin testing and early integration adapter that imports the same public routing API and performs no ranking, policy or storage logic. Its commands, flags, strict wire schemas, errors and exit codes are specified in [CLI adapter](cli-adapter.md) and precede its implementation.
 
 ## Verification cases
 
-Before the host integration slice is accepted: drive the real host registry and spawn path, not a synthetic ranked list; exercise text-only, vision-input, generation and edit requests; verify nil-selection propagation with reasons on `no_admissible_offer`; verify receipt idempotency under duplicate submission and conflict on same ID with different bytes; verify an `unvalidated_completion` cannot be stored as validated; verify adoption retains the prior generation on corrupted or oversized artifacts; verify two requests sharing a runtime generation produce identical candidate sets; and verify no network access occurs during `Route`.
+Before the host integration slice is accepted: drive the real host registry and spawn path, not a synthetic ranked list; exercise text-only, vision-input, generation and edit requests; verify nil-selection propagation with reasons on `no_admissible_offer`; verify receipt idempotency under duplicate submission and conflict on same ID with different bytes; verify an `unvalidated_completion` cannot be stored as validated; verify adoption retains the prior generation on corrupted or oversized artifacts; verify two requests sharing a runtime generation produce identical candidate sets; verify a registry metadata change (price, limit, eligibility flip) with unchanged IDs produces a different runtime generation; and verify no network access occurs during `Route`.
