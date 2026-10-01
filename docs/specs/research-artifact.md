@@ -293,6 +293,66 @@ and adds control-file lines — a documented artifact-level delta, not a row
 divergence. The delta is a documented intentional
    correction, listed in the phase 3 review.
 
+## 2.5 Source policies: `data/research-inputs/policies/<batch>.json`
+
+Phase 8 records one current access-policy decision per captured source URL,
+mirroring the production [source access](source-access.md) contract at the
+research layer. One JSON file per batch named in `source_access`; each file is
+a JSON array of records with the closed key set `url`, `source_kind`,
+`terms_url`, `research`, `extraction`, `redistribution`, `license_name`,
+`license_text`, `evidence` (`path`, `retrieved_at`, `outcome`), `notes`, sorted
+by `url`. No extra keys; no missing keys.
+
+- `url` is an `https://` URL appearing in `source_access` for that batch;
+  the union of policy URLs over all files equals the set of distinct
+  `source_access` URLs (every captured URL has exactly one current decision —
+  research-layer history is Git, not rows).
+- `source_kind` ∈ `provider_docs`, `huggingface_model`, `github_repo`,
+  `arxiv_paper`, `benchmark_site`, `other`.
+- Permissions ∈ `allowed`, `denied`, `unknown`, judged independently for
+  research (local analysis of retained bytes), extraction (deriving
+  structured facts) and redistribution (republishing retained or derived
+  material). Silence in the terms is `unknown`, never `allowed`. A model or
+code license never establishes rights over benchmark data or page content.
+- `terms_url` is the `https://` URL of the governing terms/license material.
+  Qualifying evidence binds `evidence.path`'s inventory URL to `terms_url`
+  byte-exactly, mirroring the production rule that the observation's
+  `resource_url` equals the policy's `terms_url`.
+- `evidence.path` is a repository-relative inventoried path (a terms capture
+  under `data/research/terms/…` or corpus bytes that already contain the
+terms material); `evidence.outcome` ∈ `success`, `http_error`,
+  `source_blocked`.
+- A permission may be `allowed` only with qualifying evidence: outcome
+  `success`, or outcome `http_error`/`source_blocked` with an operator
+  attestation carried in `license_text` (not the literal `unknown`, at least
+  20 characters).
+- `redistribution` may be `allowed` only under an express redistribution
+  grant: `license_name` (lowercased, trimmed) ∈ `mit`, `modified-mit`,
+  `kimi-k3`, `apache-2.0`, `0bsd`,
+  `bsd-2-clause`, `bsd-3-clause`, `cc-by-4.0`, `cc-by-sa-4.0`,
+  `cdla-permissive-1.0`, `cdla-permissive-2.0`, `openmdw-1.1`. `modified-mit` (Moonshot
+  Kimi K2/K2.5), `kimi-k3` and `openmdw-1.1` (Arcee Trinity) are admitted
+  as reviewed facts: the retained
+  license bytes expressly grant "publish, distribute, sublicense"
+  (Moonshot) or dealing "without restriction, including ...
+  distribute" (OpenMDW); their
+  conditions (attribution display above 100M MAU; separate agreement
+  above 20M USD MaaS revenue; OpenMDW notice retention) restrict scale
+  of use, not the grant.
+- Timestamps: `evidence.retrieved_at` matches
+  `^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$`. The projection derives
+  `checked_at = effective_at = evidence.retrieved_at` and `expires_at =
+  checked_at + 90 days` (the research-layer recheck cadence); records carry
+  no separate timestamp fields.
+- `license_text` is a verbatim excerpt of at most 65 536 UTF-8 bytes or the
+  literal `unknown`.
+
+Load-time violations (shape, enums, sorting, timestamp order, unknown batch
+names) are exit 1 naming file and record. The semantic rules above that need
+assembled tables run as gate 6. Terms captures are ordinary inventory rows
+(`captured_remote`, real retrieval time, `timestamp_basis` stating the fetch)
+and join `source_files` like any evidence.
+
 ## 3. Outputs and publication
 
 Outputs: `data/research.sqlite`, `data/source-manifest.tsv`,
@@ -449,13 +509,20 @@ output and on the published set under `check`:
    inventoried; every inventoried path exists; every `captured_remote` or
    `header_snapshot` row has
    a URL or a non-empty `recovery_basis`.
+6. Source-policy gate (exit 3): the §2.5 semantic rules that need assembled
+   tables — URL coverage exactly equals the distinct `source_access` URLs
+   with no duplicates across files; every `evidence.path` is inventoried and
+   its inventory URL equals `terms_url`; `allowed` permissions carry
+   qualifying evidence; `redistribution='allowed'` carries an allowlisted
+   `license_name`; every `source_access` batch has a policies file and no
+   policies file names a batch absent from `source_access`.
 
 ## 6. Path and resource safety
 
 All input paths: repository-relative only; reject absolute paths, `..`
 segments, symlinks resolving outside the root, and any path not matching
 `^data/[A-Za-z0-9._/-]+$` (control files additionally
-`^data/(research-inputs/(capture-inventory\.tsv|build\.json|fetch-logs/[A-Za-z0-9._-]+\.log)|reviews/decisions/[A-Za-z0-9._-]+\.json)$`).
+`^data/(research-inputs/(capture-inventory\.tsv|build\.json|policies/[A-Za-z0-9._-]+\.json|fetch-logs/[A-Za-z0-9._-]+\.log)|reviews/decisions/[A-Za-z0-9._-]+\.json)$`).
 Batch directories live under `data/research/`. File size bounds: per-file
 64 MiB, total 2 GiB (current set ~40 MB); JSON nesting depth bound 64.
 Bound violations are exit 1 naming the path and bound. Fetched
@@ -465,7 +532,19 @@ Failure names path and row, never file contents.
 ## 7. Schema and version policy
 
 Research schema lives in the Go research package as versioned DDL; it is not a
-production migration. Schema 3 is reconstructed exactly (all tables, views,
+production migration. Schema 4 extends schema 3 with exactly one table:
+`source_policies` (§2.5) — `url TEXT PRIMARY KEY`, `batch`, `source_kind`
+(CHECK enum), `terms_url` (CHECK `https://` prefix), `research`/`extraction`/`redistribution`
+(CHECK permission enums), `license_name`, `license_text`, `evidence_path`
+FK `source_files(path)`, `evidence_retrieved_at`, `evidence_outcome` (CHECK
+enum), `checked_at`, `effective_at`, `expires_at` (derived per §2.5:
+`checked_at = effective_at = evidence_retrieved_at`, `expires_at = +90 days`),
+`notes`, plus index
+`(batch)`. All schema 3 objects are otherwise reconstructed byte-faithfully
+as stated below. `source_policies` holds the current decision per URL (one
+row per `source_access` URL); research-layer policy history is Git history,
+not rows — the production `(source_id,config_hash)` history in
+[contracts](contracts.md) remains authoritative for the collector. Schema 3 is reconstructed exactly (all tables, views,
 indexes, checks from the recovered exporter) except the documented phase 3
 intentional corrections: the §2.4 URL rule (81 claim rows) and `source_files`
 URL recovery per §2.1 (256 frozen `url` values change in total: 227
@@ -691,6 +770,14 @@ cells must survive every rebuild byte-identically or the change is
 rejected.
 
 ## Changelog
+
+- 2026-09-30 phase 8: §2.5 source policies input, §5 gate 6, schema 4
+  `source_policies` table (§7 delta), control-path regex admits
+  `policies/*.json`. Decisions mirror the accepted source-access contract;
+  unknown stays the default posture and redistribution requires an express
+  grant. Review round 1 amended the enumerated allowlist to include
+  `openmdw-1.1` alongside `modified-mit` and `kimi-k3` (byte-verified
+  express grants in retained terms captures).
 
 - 2026-09-30 phase 5 review fix: task completeness covers
   measurements-only batches (coverage-followup claimed by

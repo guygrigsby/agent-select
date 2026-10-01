@@ -1,0 +1,18 @@
+[
+ {
+  "url": "https://ai-gateway.vercel.sh/v1/models",
+  "source_kind": "provider_docs",
+  "terms_url": "https://vercel.com/legal/terms",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "unknown",
+  "license_name": "proprietary",
+  "license_text": "16.2. Company Ownership Vercel shall own and retain all right, title and interest in and to (a) the Services, all improvements, enhancements or modifications thereto and (b) all intellectual property rights related to any of the foregoing.",
+  "evidence": {
+   "path": "data/research/terms/mixedbread/vercel-terms-of-service.html",
+   "retrieved_at": "2026-09-30T23:21:33.760Z",
+   "outcome": "success"
+  },
+  "notes": "Vercel Terms of Service (last updated June 1 2026) are a broad proprietary service agreement with no express scraping or automated-access prohibition, so capture of the public model-catalog endpoint and internal fact extraction stand under the provider-ToS rule, while section 16.2 reserves all rights in the Services and grants no redistribution."
+ }
+]

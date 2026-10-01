@@ -233,7 +233,7 @@ func TestPinGate(t *testing.T) {
 
 func TestConfigLoad(t *testing.T) {
 	cfg := `{
-  "artifact_version": "0.1.2", "schema_version": 3,
+  "artifact_version": "0.2.0", "schema_version": 4,
   "phase": "research_only_not_routing_authority", "publication_permission": "unknown",
   "baseline_url": "u", "pricing_crossref_url": "p", "collection_date_utc": "2026-09-30",
   "publication_permission_vocabulary": ["unknown","allowed","denied"],
@@ -261,7 +261,7 @@ func TestConfigLoad(t *testing.T) {
 	}
 
 	// schema mismatch -> exit 3
-	bad2 := strings.Replace(cfg, `"schema_version": 3`, `"schema_version": 4`, 1)
+	bad2 := strings.Replace(cfg, `"schema_version": 4`, `"schema_version": 3`, 1)
 	root = writeRepo(t, map[string]string{"data/research-inputs/build.json": bad2})
 	_, err = LoadConfig(root)
 	if err == nil || err.(*Error).Code != ExitInconsist {

@@ -1,0 +1,146 @@
+[
+ {
+  "url": "https://arxiv.org/abs/2303.08774",
+  "source_kind": "arxiv_paper",
+  "terms_url": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "unknown",
+  "license_name": "nonexclusive-distrib-1.0",
+  "license_text": "I grant arXiv.org a perpetual, non-exclusive license to distribute this article.",
+  "evidence": {
+   "path": "data/research/terms/deepseek-zai/arxiv-nonexclusive-distrib-1.0.html",
+   "retrieved_at": "2026-09-30T23:16:42.121Z",
+   "outcome": "success"
+  },
+  "notes": "Abs page links the nonexclusive-distrib 1.0 license whose grant runs to arXiv.org only, so local research and extraction of retained bytes are allowed while third-party redistribution stays unknown."
+ },
+ {
+  "url": "https://developers.openai.com/api/docs/models",
+  "source_kind": "provider_docs",
+  "terms_url": "https://openai.com/policies/terms-of-use/",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/terms/openai/openai-terms-of-use-blocked.html",
+   "retrieved_at": "2026-09-30T23:31:33.814Z",
+   "outcome": "source_blocked"
+  },
+  "notes": "Docs page itself is captured in the corpus, but the governing OpenAI terms of use returned HTTP 403 with a Cloudflare managed-challenge shell containing no terms text, so no use has retained permission evidence."
+ },
+ {
+  "url": "https://huggingface.co/api/models/openai/gpt-4o",
+  "source_kind": "other",
+  "terms_url": "https://huggingface.co/api/models/openai/gpt-4o",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/openai/sources/huggingface-gpt4o-api.json",
+   "retrieved_at": "2026-09-30T01:39:48.633Z",
+   "outcome": "http_error"
+  },
+  "notes": "API capture returned an auth-failure error JSON (not_found status) instead of model metadata, so no license material was retained and all uses stay unknown."
+ },
+ {
+  "url": "https://huggingface.co/openai/gpt-oss-120b",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://huggingface.co/openai/gpt-oss-120b",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "apache-2.0",
+  "license_text": "license:apache-2.0",
+  "evidence": {
+   "path": "data/research/openai/sources/huggingface-gpt-oss-120b.html",
+   "retrieved_at": "2026-09-30T01:40:21.653Z",
+   "outcome": "success"
+  },
+  "notes": "Model card carries the apache-2.0 license tag with a LICENSE file in the repo, an express redistribution grant under the Apache-2.0 license."
+ },
+ {
+  "url": "https://huggingface.co/openai/gpt-oss-120b/raw/main/README.md",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://huggingface.co/openai/gpt-oss-120b/raw/main/README.md",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "apache-2.0",
+  "license_text": "license: apache-2.0",
+  "evidence": {
+   "path": "data/research/openai/sources/hf-gpt-oss-120b-readme.md",
+   "retrieved_at": "2026-09-30T01:41:02.680Z",
+   "outcome": "success"
+  },
+  "notes": "README front matter declares apache-2.0 and the card states the permissive Apache 2.0 license invites commercial deployment, an express redistribution grant."
+ },
+ {
+  "url": "https://huggingface.co/openai/gpt-oss-20b",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://huggingface.co/openai/gpt-oss-20b",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "apache-2.0",
+  "license_text": "license:apache-2.0",
+  "evidence": {
+   "path": "data/research/openai/sources/huggingface-gpt-oss-20b.html",
+   "retrieved_at": "2026-09-30T01:40:22.605Z",
+   "outcome": "success"
+  },
+  "notes": "Model card carries the apache-2.0 license tag with a LICENSE file in the repo, an express redistribution grant under the Apache-2.0 license."
+ },
+ {
+  "url": "https://huggingface.co/openai/gpt-oss-20b/raw/main/README.md",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://huggingface.co/openai/gpt-oss-20b/raw/main/README.md",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "apache-2.0",
+  "license_text": "license: apache-2.0",
+  "evidence": {
+   "path": "data/research/openai/sources/hf-gpt-oss-20b-readme.md",
+   "retrieved_at": "2026-09-30T01:41:02.674Z",
+   "outcome": "success"
+  },
+  "notes": "README front matter declares apache-2.0 and the card states the permissive Apache 2.0 license invites commercial deployment, an express redistribution grant."
+ },
+ {
+  "url": "https://openai.com/index/introducing-gpt-5/",
+  "source_kind": "other",
+  "terms_url": "https://openai.com/index/introducing-gpt-5/",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/openai/sources/openai-gpt5-blog.html",
+   "retrieved_at": "2026-09-30T01:36:35.295Z",
+   "outcome": "source_blocked"
+  },
+  "notes": "Capture was blocked and the saved bytes are a 9.8 KB Cloudflare managed-challenge shell with no article content, so no terms or content material was retained and all uses stay unknown."
+ },
+ {
+  "url": "https://raw.githubusercontent.com/openai/simple-evals/main/README.md",
+  "source_kind": "github_repo",
+  "terms_url": "https://github.com/openai/simple-evals/blob/main/LICENSE",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "MIT",
+  "license_text": "[MIT License](https://github.com/openai/simple-evals/blob/main/LICENSE)",
+  "evidence": {
+   "path": "data/research/terms/_shared/simple-evals-license.html",
+   "retrieved_at": "2026-10-01T00:11:27.604Z",
+   "outcome": "success"
+  },
+  "notes": "README repeatedly links the repo's own LICENSE as MIT and the saved repo page shows the MIT license badge, an express redistribution grant."
+ }
+]

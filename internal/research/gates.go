@@ -245,5 +245,41 @@ func RunGatesDB(root string, db *sql.DB) error {
 	if err := RunGate2(db); err != nil {
 		return err
 	}
-	return RunGate3(root, db)
+	if err := RunGate3(root, db); err != nil {
+		return err
+	}
+	return RunGate6(db)
+}
+
+// RunGate6 is the §5 source-policy gate: policy URL coverage equals the
+// distinct source_access URLs, every source_access batch has a policies
+// file, evidence binds to terms_url through the inventory URL, allowed
+// permissions carry qualifying evidence and redistribution=allowed carries
+// an allowlisted license_name.
+func RunGate6(db *sql.DB) error {
+	type q struct {
+		sql  string
+		name string
+	}
+	qs := []q{
+		{`SELECT a.url FROM (SELECT DISTINCT url FROM source_access) a LEFT JOIN source_policies p ON p.url=a.url WHERE p.url IS NULL LIMIT 1`, "captured url without a policy record"},
+		{`SELECT p.url FROM source_policies p WHERE NOT EXISTS(SELECT 1 FROM source_access a WHERE a.url=p.url) LIMIT 1`, "policy record for a url absent from source_access"},
+		{`SELECT DISTINCT a.batch FROM source_access a WHERE NOT EXISTS(SELECT 1 FROM source_policies p WHERE p.batch=a.batch) LIMIT 1`, "source_access batch without a policies file"},
+		{`SELECT DISTINCT p.batch FROM source_policies p WHERE NOT EXISTS(SELECT 1 FROM source_access a WHERE a.batch=p.batch) LIMIT 1`, "policies file naming a batch absent from source_access"},
+		{`SELECT p.url FROM source_policies p JOIN source_files f ON f.path=p.evidence_path WHERE f.url<>p.terms_url LIMIT 1`, "evidence path whose inventory url does not equal terms_url"},
+		{`SELECT p.url FROM source_policies p WHERE (p.research='allowed' OR p.extraction='allowed' OR p.redistribution='allowed') AND p.evidence_outcome<>'success' AND (p.license_text='unknown' OR length(p.license_text)<20) LIMIT 1`, "allowed permission without qualifying evidence"},
+		{`SELECT p.url FROM source_policies p WHERE p.redistribution='allowed' AND lower(trim(p.license_name)) NOT IN ('mit','modified-mit','kimi-k3','openmdw-1.1','apache-2.0','0bsd','bsd-2-clause','bsd-3-clause','cc-by-4.0','cc-by-sa-4.0','cdla-permissive-1.0','cdla-permissive-2.0') LIMIT 1`, "redistribution=allowed with license_name outside the express-grant allowlist"},
+	}
+	for _, one := range qs {
+		var v string
+		err := db.QueryRow(one.sql).Scan(&v)
+		if err == sql.ErrNoRows {
+			continue
+		}
+		if err != nil {
+			return inconsf("source-policy gate (%s): %v", one.name, err)
+		}
+		return inconsf("source-policy gate (%s): %s", one.name, v)
+	}
+	return nil
 }

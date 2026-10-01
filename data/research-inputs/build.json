@@ -1,6 +1,6 @@
 {
- "artifact_version": "0.1.2",
- "schema_version": 3,
+ "artifact_version": "0.2.0",
+ "schema_version": 4,
  "phase": "research_only_not_routing_authority",
  "publication_permission": "unknown",
  "baseline_url": "https://ai-gateway.vercel.sh/v1/models",

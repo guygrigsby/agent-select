@@ -1,0 +1,418 @@
+[
+ {
+  "url": "https://arcee.ai/blog/trinity-large-thinking",
+  "source_kind": "provider_docs",
+  "terms_url": "https://arcee.ai/terms-and-conditions",
+  "research": "denied",
+  "extraction": "denied",
+  "redistribution": "unknown",
+  "license_name": "proprietary",
+  "license_text": "(D) use any deep linking, robot, spider, scraper or other automated means to access the Services and collect content for any purpose without Arcee AI’s express written permission",
+  "evidence": {
+   "path": "data/research/terms/other-text/arcee-terms.html",
+   "retrieved_at": "2026-09-30T23:16:11.382Z",
+   "outcome": "success"
+  },
+  "notes": "Arcee site ToS expressly prohibits automated collection of site content; no express grant to republish page text, so redistribution unknown."
+ },
+ {
+  "url": "https://build.nvidia.com/nvidia/nemotron-3-5-lightning-30b-a3b",
+  "source_kind": "provider_docs",
+  "terms_url": "https://developer.nvidia.com/legal/terms",
+  "research": "denied",
+  "extraction": "denied",
+  "redistribution": "denied",
+  "license_name": "proprietary",
+  "license_text": "does not use any data scraping or extraction tool such as a robot, spider, or other similar mechanism with NVIDIA servers... not modify, create derivative works of, rent, lease, loan, timeshare, sell, distribute, offer as a service, publicly display, publish, assign or transfer the Technology",
+  "evidence": {
+   "path": "data/research/terms/other-text/nvidia-terms.html",
+   "retrieved_at": "2026-09-30T23:16:12.761Z",
+   "outcome": "success"
+  },
+  "notes": "build.nvidia.com pages carry a footer Terms of Use link (developer.nvidia.com/legal/terms); the retained NVIDIA Developer Terms of Use ban data scraping/extraction tools against NVIDIA servers and, absent a Product Agreement, derivative works and distribution of the Technology, so page-content uses are denied. The retained page shell names no license."
+ },
+ {
+  "url": "https://build.nvidia.com/nvidia/nemotron-3-nano-30b-a3b",
+  "source_kind": "provider_docs",
+  "terms_url": "https://developer.nvidia.com/legal/terms",
+  "research": "denied",
+  "extraction": "denied",
+  "redistribution": "denied",
+  "license_name": "proprietary",
+  "license_text": "does not use any data scraping or extraction tool such as a robot, spider, or other similar mechanism with NVIDIA servers... not modify, create derivative works of, rent, lease, loan, timeshare, sell, distribute, offer as a service, publicly display, publish, assign or transfer the Technology",
+  "evidence": {
+   "path": "data/research/terms/other-text/nvidia-terms.html",
+   "retrieved_at": "2026-09-30T23:16:12.761Z",
+   "outcome": "success"
+  },
+  "notes": "build.nvidia.com pages carry a footer Terms of Use link (developer.nvidia.com/legal/terms); the retained NVIDIA Developer Terms of Use ban data scraping/extraction tools against NVIDIA servers and, absent a Product Agreement, derivative works and distribution of the Technology, so page-content uses are denied. The model card names NVIDIA Nemotron Open Model License for the weights, which never covers page content."
+ },
+ {
+  "url": "https://build.nvidia.com/nvidia/nemotron-3-super-120b-a12b/modelcard",
+  "source_kind": "provider_docs",
+  "terms_url": "https://developer.nvidia.com/legal/terms",
+  "research": "denied",
+  "extraction": "denied",
+  "redistribution": "denied",
+  "license_name": "proprietary",
+  "license_text": "does not use any data scraping or extraction tool such as a robot, spider, or other similar mechanism with NVIDIA servers... not modify, create derivative works of, rent, lease, loan, timeshare, sell, distribute, offer as a service, publicly display, publish, assign or transfer the Technology",
+  "evidence": {
+   "path": "data/research/terms/other-text/nvidia-terms.html",
+   "retrieved_at": "2026-09-30T23:16:12.761Z",
+   "outcome": "success"
+  },
+  "notes": "build.nvidia.com pages carry a footer Terms of Use link (developer.nvidia.com/legal/terms); the retained NVIDIA Developer Terms of Use ban data scraping/extraction tools against NVIDIA servers and, absent a Product Agreement, derivative works and distribution of the Technology, so page-content uses are denied. The model card names NVIDIA Nemotron Open Model License for the weights, which never covers page content."
+ },
+ {
+  "url": "https://build.nvidia.com/nvidia/nemotron-3-ultra-550b-a55b",
+  "source_kind": "provider_docs",
+  "terms_url": "https://developer.nvidia.com/legal/terms",
+  "research": "denied",
+  "extraction": "denied",
+  "redistribution": "denied",
+  "license_name": "proprietary",
+  "license_text": "does not use any data scraping or extraction tool such as a robot, spider, or other similar mechanism with NVIDIA servers... not modify, create derivative works of, rent, lease, loan, timeshare, sell, distribute, offer as a service, publicly display, publish, assign or transfer the Technology",
+  "evidence": {
+   "path": "data/research/terms/other-text/nvidia-terms.html",
+   "retrieved_at": "2026-09-30T23:16:12.761Z",
+   "outcome": "success"
+  },
+  "notes": "build.nvidia.com pages carry a footer Terms of Use link (developer.nvidia.com/legal/terms); the retained NVIDIA Developer Terms of Use ban data scraping/extraction tools against NVIDIA servers and, absent a Product Agreement, derivative works and distribution of the Technology, so page-content uses are denied. The model card names OpenMDW-1.1 for the weights, which never covers page content."
+ },
+ {
+  "url": "https://build.nvidia.com/nvidia/nemotron-nano-12b-v2-vl",
+  "source_kind": "provider_docs",
+  "terms_url": "https://developer.nvidia.com/legal/terms",
+  "research": "denied",
+  "extraction": "denied",
+  "redistribution": "denied",
+  "license_name": "proprietary",
+  "license_text": "does not use any data scraping or extraction tool such as a robot, spider, or other similar mechanism with NVIDIA servers... not modify, create derivative works of, rent, lease, loan, timeshare, sell, distribute, offer as a service, publicly display, publish, assign or transfer the Technology",
+  "evidence": {
+   "path": "data/research/terms/other-text/nvidia-terms.html",
+   "retrieved_at": "2026-09-30T23:16:12.761Z",
+   "outcome": "success"
+  },
+  "notes": "build.nvidia.com pages carry a footer Terms of Use link (developer.nvidia.com/legal/terms); the retained NVIDIA Developer Terms of Use ban data scraping/extraction tools against NVIDIA servers and, absent a Product Agreement, derivative works and distribution of the Technology, so page-content uses are denied. The model card names NVIDIA Open Model License (the same page's API spec separately lists the Llama 4 License) for the weights, which never covers page content."
+ },
+ {
+  "url": "https://build.nvidia.com/nvidia/nemotron-nano-9b-v2",
+  "source_kind": "provider_docs",
+  "terms_url": "https://developer.nvidia.com/legal/terms",
+  "research": "denied",
+  "extraction": "denied",
+  "redistribution": "denied",
+  "license_name": "proprietary",
+  "license_text": "does not use any data scraping or extraction tool such as a robot, spider, or other similar mechanism with NVIDIA servers... not modify, create derivative works of, rent, lease, loan, timeshare, sell, distribute, offer as a service, publicly display, publish, assign or transfer the Technology",
+  "evidence": {
+   "path": "data/research/terms/other-text/nvidia-terms.html",
+   "retrieved_at": "2026-09-30T23:16:12.761Z",
+   "outcome": "success"
+  },
+  "notes": "build.nvidia.com pages carry a footer Terms of Use link (developer.nvidia.com/legal/terms); the retained NVIDIA Developer Terms of Use ban data scraping/extraction tools against NVIDIA servers and, absent a Product Agreement, derivative works and distribution of the Technology, so page-content uses are denied. The retained page shell names no license."
+ },
+ {
+  "url": "https://cohere.com/blog/command-a",
+  "source_kind": "provider_docs",
+  "terms_url": "https://cohere.com/terms-of-use",
+  "research": "denied",
+  "extraction": "denied",
+  "redistribution": "denied",
+  "license_name": "proprietary",
+  "license_text": "use any data mining, robots, or similar data gathering or extraction methods, or copy, modify, reverse engineer, reverse assemble, disassemble, or decompile the Cohere Solution or any part thereof... publish, market, advertise or in any way distribute the Content",
+  "evidence": {
+   "path": "data/research/terms/other-text/cohere-terms-of-use.html",
+   "retrieved_at": "2026-09-30T23:16:13.988Z",
+   "outcome": "success"
+  },
+  "notes": "Cohere ToS expressly bans data-gathering methods and copying/storing/distributing Content; URL appears twice in the input list and one record covers both rows."
+ },
+ {
+  "url": "https://docs.aws.amazon.com/nova/latest/nova2-userguide/what-is-nova2.html",
+  "source_kind": "provider_docs",
+  "terms_url": "https://aws.amazon.com/terms/",
+  "research": "denied",
+  "extraction": "denied",
+  "redistribution": "denied",
+  "license_name": "proprietary",
+  "license_text": "AWS grants you a limited license to access and make personal use of the AWS Site and not to download (other than page caching) or modify it, or any portion of it, except with express written consent of AWS. This license does not include any resale or commercial use of the AWS Site or its contents; any derivative use of the AWS Site or its contents; ... or any use of data mining, robots, or similar data gathering and extraction tools.",
+  "evidence": {
+   "path": "data/research/terms/other-text/aws-site-terms.html",
+   "retrieved_at": "2026-09-30T23:16:15.250Z",
+   "outcome": "success"
+  },
+  "notes": "AWS Site Terms govern docs.aws.amazon.com content and expressly restrict use to personal use, barring derivative use, copying and data-gathering tools."
+ },
+ {
+  "url": "https://docs.aws.amazon.com/nova/latest/userguide/what-is-nova.html",
+  "source_kind": "provider_docs",
+  "terms_url": "https://aws.amazon.com/terms/",
+  "research": "denied",
+  "extraction": "denied",
+  "redistribution": "denied",
+  "license_name": "proprietary",
+  "license_text": "AWS grants you a limited license to access and make personal use of the AWS Site and not to download (other than page caching) or modify it, or any portion of it, except with express written consent of AWS. This license does not include any resale or commercial use of the AWS Site or its contents; any derivative use of the AWS Site or its contents; ... or any use of data mining, robots, or similar data gathering and extraction tools.",
+  "evidence": {
+   "path": "data/research/terms/other-text/aws-site-terms.html",
+   "retrieved_at": "2026-09-30T23:16:15.250Z",
+   "outcome": "success"
+  },
+  "notes": "AWS Site Terms govern docs.aws.amazon.com content and expressly restrict use to personal use, barring derivative use, copying and data-gathering tools."
+ },
+ {
+  "url": "https://docs.cohere.com/docs/command-a",
+  "source_kind": "provider_docs",
+  "terms_url": "https://cohere.com/terms-of-use",
+  "research": "denied",
+  "extraction": "denied",
+  "redistribution": "denied",
+  "license_name": "proprietary",
+  "license_text": "You are prohibited from modifying, copying, reproducing, publishing, posting, transmitting, distributing, creating derivative works from, decompiling, transferring or selling any of the Cohere Solution, the Software or other materials provided by us hereunder",
+  "evidence": {
+   "path": "data/research/terms/other-text/cohere-terms-of-use.html",
+   "retrieved_at": "2026-09-30T23:16:13.988Z",
+   "outcome": "success"
+  },
+  "notes": "Same Cohere ToS governs the docs subdomain (one terms fetch per provider); copying/distributing Cohere materials is expressly prohibited."
+ },
+ {
+  "url": "https://docs.perplexity.ai/guides/model-cards",
+  "source_kind": "provider_docs",
+  "terms_url": "https://www.perplexity.ai/hub/legal/terms-of-service",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/terms/other-text/perplexity-terms.html",
+   "retrieved_at": "2026-09-30T23:17:26.660Z",
+   "outcome": "source_blocked"
+  },
+  "notes": "Perplexity ToS fetch blocked: www.perplexity.ai returned 403 and a Cloudflare challenge page (challenge stub retained as evidence); no terms bytes retained, so all permissions unknown. No retries beyond the second attempt per posture."
+ },
+ {
+  "url": "https://fireworks.ai/blog/ember-1",
+  "source_kind": "provider_docs",
+  "terms_url": "https://fireworks.ai/terms-of-service",
+  "research": "allowed",
+  "extraction": "denied",
+  "redistribution": "denied",
+  "license_name": "proprietary",
+  "license_text": "copy, rent, lease, sell, loan, transfer, assign, license or purport to sublicense, resell, distribute, modify, alter, or create derivative works of any part of the Service or any of our Intellectual Property (as defined below), including, without limitation by any automated or non-automated “scraping”",
+  "evidence": {
+   "path": "data/research/terms/other-text/fireworks-terms-of-service.txt",
+   "retrieved_at": "2026-09-30T23:19:54.613Z",
+   "outcome": "success"
+  },
+  "notes": "Fireworks ToS (served as a PDF; bytes retained as .pdf, text extracted to .txt with pdftotext) defines the website as part of the Service and bans derivative works/distribution incl. scraping; its automated-access clause is load-scoped so single retrieval for analysis is permitted."
+ },
+ {
+  "url": "https://fireworks.ai/models/fireworks/ember-1",
+  "source_kind": "provider_docs",
+  "terms_url": "https://fireworks.ai/terms-of-service",
+  "research": "allowed",
+  "extraction": "denied",
+  "redistribution": "denied",
+  "license_name": "proprietary",
+  "license_text": "copy, rent, lease, sell, loan, transfer, assign, license or purport to sublicense, resell, distribute, modify, alter, or create derivative works of any part of the Service or any of our Intellectual Property (as defined below), including, without limitation by any automated or non-automated “scraping”",
+  "evidence": {
+   "path": "data/research/terms/other-text/fireworks-terms-of-service.txt",
+   "retrieved_at": "2026-09-30T23:19:54.613Z",
+   "outcome": "success"
+  },
+  "notes": "Fireworks ToS (served as a PDF; bytes retained as .pdf, text extracted to .txt with pdftotext) defines the website as part of the Service and bans derivative works/distribution incl. scraping; its automated-access clause is load-scoped so single retrieval for analysis is permitted."
+ },
+ {
+  "url": "https://github.com/stepfun-ai/Step-3.5-Flash",
+  "source_kind": "github_repo",
+  "terms_url": "https://github.com/stepfun-ai/Step-3.5-Flash",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "apache-2.0",
+  "license_text": "This project is open-sourced under the Apache 2.0 License.",
+  "evidence": {
+   "path": "data/research/other-text/sources/stepfun-step-3.5-flash-github.md",
+   "retrieved_at": "2026-09-30T01:37:30.744Z",
+   "outcome": "success"
+  },
+  "notes": "Saved repo page contains the License section and the Apache-2.0 license badge; Apache-2.0 grants express redistribution rights."
+ },
+ {
+  "url": "https://huggingface.co/arcee-ai/Trinity-Large-Thinking/raw/main/README.md",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://huggingface.co/arcee-ai/Trinity-Large-Thinking/raw/main/LICENSE",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "openmdw-1.1",
+  "license_text": "permission is hereby granted, free of charge, to deal in the Model Materials without restriction, including under all copyright, patent, database, and trade secret rights included or embodied therein. If you distribute any portion of the Model Materials, you shall retain in your distribution (1) a copy of this agreement, and (2) all copyright notices and other notices of origin included in the Model Materials",
+  "evidence": {
+   "path": "data/research/terms/other-text/arcee-trinity-LICENSE.txt",
+   "retrieved_at": "2026-09-30T23:16:22.526Z",
+   "outcome": "success"
+  },
+  "notes": "Model card tag is license: other with license_name openmdw-1.1; fetched the linked LICENSE, whose OpenMDW-1.1 text grants unrestricted dealing including distribution with notice-retention conditions."
+ },
+ {
+  "url": "https://huggingface.co/inclusionai/Ling-3.0-Flash/raw/main/README.md",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://huggingface.co/inclusionai/Ling-3.0-Flash/raw/main/README.md",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "mit",
+  "license_text": "license: mit",
+  "evidence": {
+   "path": "data/research/other-text/sources/inclusionai-ling-3.0-flash-readme.md",
+   "retrieved_at": "2026-09-30T01:36:28.968Z",
+   "outcome": "success"
+  },
+  "notes": "Saved model card front matter carries the license: mit tag; MIT is an enumerated express redistribution grant (full license body not present in the card)."
+ },
+ {
+  "url": "https://huggingface.co/stepfun-ai/Step-3.5-Flash/raw/main/README.md",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://huggingface.co/stepfun-ai/Step-3.5-Flash/raw/main/README.md",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "apache-2.0",
+  "license_text": "This project is open-sourced under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0).",
+  "evidence": {
+   "path": "data/research/other-text/sources/stepfun-step-3.5-flash-readme.md",
+   "retrieved_at": "2026-09-30T01:36:23.388Z",
+   "outcome": "success"
+  },
+  "notes": "Saved raw README states the project is open-sourced under Apache 2.0 with license: apache-2.0 tag; express redistribution grant."
+ },
+ {
+  "url": "https://huggingface.co/stepfun-ai/Step-3.7-Flash",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://huggingface.co/stepfun-ai/Step-3.7-Flash",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "apache-2.0",
+  "license_text": "\"cardData\":{\"license\":\"apache-2.0\",\"library_name\":\"transformers\"",
+  "evidence": {
+   "path": "data/research/other-text/sources/stepfun-step-3.7-flash-hf.html",
+   "retrieved_at": "2026-09-30T01:36:53.994Z",
+   "outcome": "success"
+  },
+  "notes": "Saved model page embeds cardData license apache-2.0 and the license:apache-2.0 tag; express redistribution grant under Apache-2.0."
+ },
+ {
+  "url": "https://huggingface.co/stepfun-ai/Step-3.7-Flash/raw/main/README.md",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://huggingface.co/stepfun-ai/Step-3.7-Flash/raw/main/README.md",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "apache-2.0",
+  "license_text": "This project is open-sourced under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0).",
+  "evidence": {
+   "path": "data/research/other-text/sources/stepfun-step-3.7-flash-readme.md",
+   "retrieved_at": "2026-09-30T01:36:24.471Z",
+   "outcome": "success"
+  },
+  "notes": "Saved raw README carries the license: apache-2.0 tag and an Apache 2.0 License section; express redistribution grant."
+ },
+ {
+  "url": "https://inceptionlabs.ai/blog/introducing-mercury",
+  "source_kind": "provider_docs",
+  "terms_url": "https://inceptionlabs.ai/docs/terms-of-use",
+  "research": "denied",
+  "extraction": "denied",
+  "redistribution": "denied",
+  "license_name": "proprietary",
+  "license_text": "“crawls,” “scrapes,” or “spiders” any page, data, or portion of or relating to the Services or Content (through use of manual or automated means); copies or stores any significant portion of the Content",
+  "evidence": {
+   "path": "data/research/terms/other-text/inception-terms.html",
+   "retrieved_at": "2026-09-30T23:16:18.994Z",
+   "outcome": "success"
+  },
+  "notes": "Inception Terms of Use (linked from the blog footer) expressly ban crawling/scraping any page, storing significant portions, and reproduction or derivative exploitation."
+ },
+ {
+  "url": "https://interfaze.ai",
+  "source_kind": "provider_docs",
+  "terms_url": "https://interfaze.ai/legal/terms",
+  "research": "allowed",
+  "extraction": "denied",
+  "redistribution": "denied",
+  "license_name": "proprietary",
+  "license_text": "Resell, redistribute, or create derivative works based on the Services without our express written consent.",
+  "evidence": {
+   "path": "data/research/terms/other-text/interfaze-terms.html",
+   "retrieved_at": "2026-09-30T23:16:20.179Z",
+   "outcome": "success"
+  },
+  "notes": "Interfaze ToS defines Services to include its websites, text, images and all other data, and expressly bans redistribution and derivative works of the Services; no automated-access ban found, so research is allowed."
+ },
+ {
+  "url": "https://morph.so/blog",
+  "source_kind": "provider_docs",
+  "terms_url": "https://cloud.morph.so/web/legal/terms-of-service",
+  "research": "denied",
+  "extraction": "denied",
+  "redistribution": "unknown",
+  "license_name": "proprietary",
+  "license_text": "Scrape outside documented APIs or exceed rate limits; overload our systems.",
+  "evidence": {
+   "path": "data/research/terms/other-text/morph-terms.html",
+   "retrieved_at": "2026-09-30T23:17:29.199Z",
+   "outcome": "success"
+  },
+  "notes": "Morph ToS Acceptable Use Policy restricts scraping to documented APIs, which blog page retrieval is not, so research denied; systematic extraction of page content is scraping outside documented APIs, so extraction denied; no express content redistribution grant, so redistribution unknown."
+ },
+ {
+  "url": "https://sakana.ai/fugu/",
+  "source_kind": "provider_docs",
+  "terms_url": "https://console.sakana.ai/terms-of-service",
+  "research": "allowed",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "proprietary",
+  "license_text": "the use of, or license to use, the Service and the Service Configuration does not mean You have, or that You have been granted, any rights",
+  "evidence": {
+   "path": "data/research/terms/other-text/sakana-terms.html",
+   "retrieved_at": "2026-09-30T23:17:27.930Z",
+   "outcome": "success"
+  },
+  "notes": "Sakana API Platform ToS (explicitly covering Sakana Fugu) grants no content rights and has no site automated-access ban, so research allowed and extraction/redistribution unknown; sakana.ai/terms 404ed once before the console URL succeeded."
+ },
+ {
+  "url": "https://sakana.ai/namazu/",
+  "source_kind": "provider_docs",
+  "terms_url": "https://console.sakana.ai/terms-of-service",
+  "research": "allowed",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "proprietary",
+  "license_text": "the use of, or license to use, the Service and the Service Configuration does not mean You have, or that You have been granted, any rights",
+  "evidence": {
+   "path": "data/research/terms/other-text/sakana-terms.html",
+   "retrieved_at": "2026-09-30T23:17:27.930Z",
+   "outcome": "success"
+  },
+  "notes": "Sakana API Platform ToS (explicitly covering Sakana Fugu) grants no content rights and has no site automated-access ban, so research allowed and extraction/redistribution unknown; sakana.ai/terms 404ed once before the console URL succeeded."
+ },
+ {
+  "url": "https://thinkingmachines.ai/inkling",
+  "source_kind": "provider_docs",
+  "terms_url": "https://thinkingmachines.ai/legal/terms/",
+  "research": "allowed",
+  "extraction": "denied",
+  "redistribution": "denied",
+  "license_name": "proprietary",
+  "license_text": "sublicense, resell, distribute, modify, alter, or create derivative works of any part of the Services or any of our intellectual property, including, without limitation by any automated or non-automated “scraping;”",
+  "evidence": {
+   "path": "data/research/terms/other-text/tml-terms.html",
+   "retrieved_at": "2026-09-30T23:16:21.360Z",
+   "outcome": "success"
+  },
+  "notes": "Thinking Machines Service Terms ban distribution and derivative works of the Services/IP including via scraping; the robot/spider clause is load-scoped, so single retrieval for analysis is permitted."
+ }
+]

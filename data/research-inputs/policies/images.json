@@ -1,0 +1,498 @@
+[
+ {
+  "url": "https://ai.google.dev/gemini-api/docs/image-generation",
+  "source_kind": "provider_docs",
+  "terms_url": "https://ai.google.dev/gemini-api/terms",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "CC-BY-4.0",
+  "license_text": "Except as otherwise noted, the content of this page is licensed under the <a href=\"https://creativecommons.org/licenses/by/4.0/\">Creative Commons Attribution 4.0 License</a>, and code samples are licensed under the <a href=\"https://www.apache.org/licenses/LICENSE-2.0\">Apache 2.0 License</a>.",
+  "evidence": {
+   "path": "data/research/terms/_shared/gemini-api-terms.html",
+   "retrieved_at": "2026-10-01T00:11:24.241Z",
+   "outcome": "success"
+  },
+  "notes": "Devsite footer grants CC-BY 4.0 for page content and Apache 2.0 for code samples, verbatim in the saved corpus capture, so research, extraction and attribution-based redistribution are allowed."
+ },
+ {
+  "url": "https://arxiv.org/abs/2504.04362",
+  "source_kind": "arxiv_paper",
+  "terms_url": "https://creativecommons.org/licenses/by/4.0/",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "CC-BY-4.0",
+  "license_text": "<a href=\"http://creativecommons.org/licenses/by/4.0/\" title=\"Rights to this article\" class=\"has_license\">",
+  "evidence": {
+   "path": "data/research/terms/_shared/cc-by-4.0.html",
+   "retrieved_at": "2026-10-01T00:11:25.713Z",
+   "outcome": "success"
+  },
+  "notes": "Saved abs page declares the article CC-BY 4.0 via the abs-license link, permitting analysis, extraction and attribution-based redistribution; the captured article is Data-Driven Reachability Analysis for Piecewise Affine Systems (Xie, Betz, Raimondo), not an image-model report, so this arXiv id is a topic collision for the batch."
+ },
+ {
+  "url": "https://arxiv.org/pdf/2504.04362",
+  "source_kind": "arxiv_paper",
+  "terms_url": "https://creativecommons.org/licenses/by/4.0/",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "CC-BY-4.0",
+  "license_text": "<a href=\"http://creativecommons.org/licenses/by/4.0/\" title=\"Rights to this article\" class=\"has_license\">",
+  "evidence": {
+   "path": "data/research/terms/_shared/cc-by-4.0.html",
+   "retrieved_at": "2026-10-01T00:11:25.713Z",
+   "outcome": "success"
+  },
+  "notes": "Retained PDF is the same CC-BY 4.0 article declared on its abs page (license link verbatim there), allowing research, extraction and attribution-based redistribution; content is the reachability-analysis paper, not an image-model report (arXiv id collision)."
+ },
+ {
+  "url": "https://blackforestlabs.ai/announcing-black-forest-labs/",
+  "source_kind": "other",
+  "terms_url": "https://bfl.ai/legal/terms-of-service",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "unknown",
+  "license_name": "proprietary",
+  "license_text": "and our family of generative AI and foundation models with the prefix “FLUX” (&quot;<strong>Flux models</strong>&quot;), including Beta Offerings (defined below) offered to you",
+  "evidence": {
+   "path": "data/research/terms/images/bfl-terms-of-service.html",
+   "retrieved_at": "2026-09-30T23:53:27.620Z",
+   "outcome": "success"
+  },
+  "notes": "Source 308-redirects to bfl.ai and the saved capture is the Announcing Black Forest Labs post (canonical bfl.ai/blog/24-08-01-bfl); the fetched BFL Terms define Services as the Playground and FLUX models and bar automated extraction only from the Services, so the public marketing post may be analyzed and extracted while no redistribution grant exists."
+ },
+ {
+  "url": "https://deepmind.google/technologies/imagen-3/",
+  "source_kind": "other",
+  "terms_url": "https://policies.google.com/terms",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "denied",
+  "license_name": "proprietary",
+  "license_text": "You may not copy, modify, distribute, sell, or lease any part of our services or software.",
+  "evidence": {
+   "path": "data/research/terms/_shared/google-terms.html",
+   "retrieved_at": "2026-10-01T00:11:37.496Z",
+   "outcome": "success"
+  },
+  "notes": "Saved capture now renders the Gemini Image (Nano Banana) DeepMind page; Google Terms of Service state no automated-access prohibition but expressly bar copying, modifying or distributing service content, so republication is denied while internal research and extraction remain permitted."
+ },
+ {
+  "url": "https://docs.x.ai/docs/image-generation",
+  "source_kind": "provider_docs",
+  "terms_url": "https://x.ai/legal",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/terms/images/docs-xai-image-generation-dev.html",
+   "retrieved_at": "2026-09-30T23:54:11.283Z",
+   "outcome": "http_error"
+  },
+  "notes": "Source URL 308-redirects to docs.x.ai/developers/image-generation, which returns HTTP 404 (saved shell), so no source material or terms evidence exists; the governing x.ai/legal is itself a Cloudflare 403 challenge shell saved by a prior batch."
+ },
+ {
+  "url": "https://docs.x.ai/docs/models",
+  "source_kind": "provider_docs",
+  "terms_url": "https://x.ai/legal",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/terms/xai/xai-legal.html",
+   "retrieved_at": "2026-09-30T23:40:01.877Z",
+   "outcome": "source_blocked"
+  },
+  "notes": "Saved capture is genuine public provider documentation (Grok models and pricing), but the governing terms at x.ai/legal return a byte-exact Cloudflare 403 challenge page, so no use permission has retained evidence."
+ },
+ {
+  "url": "https://github.com/Karine-Huang/T2I-CompBench",
+  "source_kind": "github_repo",
+  "terms_url": "https://github.com/Karine-Huang/T2I-CompBench",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "MIT",
+  "license_text": "\"license\":{\"spdxId\":\"MIT\",\"name\":\"MIT License\"}",
+  "evidence": {
+   "path": "data/research/images/sources/t2i_compbench.html",
+   "retrieved_at": "2026-09-30T01:37:21.761Z",
+   "outcome": "success"
+  },
+  "notes": "Repository page license badge reads MIT (spdxId MIT verbatim in the saved capture) with a License.txt in the tree, so research, extraction and redistribution under MIT are allowed."
+ },
+ {
+  "url": "https://github.com/THUDM/ImageReward",
+  "source_kind": "github_repo",
+  "terms_url": "https://github.com/zai-org/ImageReward/blob/main/LICENSE",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "Apache-2.0",
+  "license_text": "\"license\":{\"spdxId\":\"Apache-2.0\",\"name\":\"Apache License 2.0\"}",
+  "evidence": {
+   "path": "data/research/terms/_shared/imagereward-license.html",
+   "retrieved_at": "2026-10-01T00:11:29.459Z",
+   "outcome": "success"
+  },
+  "notes": "Repository has moved to zai-org/ImageReward (THUDM redirects) and the saved capture of the renamed repo shows the Apache-2.0 license badge verbatim, allowing research, extraction and redistribution under Apache-2.0."
+ },
+ {
+  "url": "https://github.com/black-forest-labs/flux",
+  "source_kind": "github_repo",
+  "terms_url": "https://github.com/black-forest-labs/flux",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "Apache-2.0",
+  "license_text": "\"license\":{\"spdxId\":\"Apache-2.0\",\"name\":\"Apache License 2.0\"}",
+  "evidence": {
+   "path": "data/research/images/sources/bfl_github.html",
+   "retrieved_at": "2026-09-30T01:36:37.726Z",
+   "outcome": "success"
+  },
+  "notes": "Repository license badge reads Apache-2.0 (spdxId verbatim in the saved capture) covering the repo code and README, so research, extraction and redistribution are allowed; per-model weight licenses under model_licenses/ are separate materials not judged here."
+ },
+ {
+  "url": "https://github.com/quiverai",
+  "source_kind": "other",
+  "terms_url": "https://docs.github.com/en/site-policy/github-terms-of-service",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "unknown",
+  "license_name": "proprietary",
+  "license_text": "Unless specifically set forth herein, these Terms do not restrict lawful access to or use of the contents of public repositories by third parties, or by GitHub or its Affiliates.",
+  "evidence": {
+   "path": "data/research/terms/xai/github-terms-of-service.txt",
+   "retrieved_at": "2026-09-30T23:17:35.799Z",
+   "outcome": "success"
+  },
+  "notes": "Organization listing page (not a single repository) governed by the GitHub Terms of Service, whose Section D.8 leaves lawful third-party access to public repository contents unrestricted, so research and extraction are allowed while redistribution stays unknown."
+ },
+ {
+  "url": "https://huggingface.co/ByteDance/Seedream-4.5",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://huggingface.co/ByteDance/Seedream-4.5",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/terms/images/hf-seedream-4.5-blocked.html",
+   "retrieved_at": "2026-09-30T23:53:15.422Z",
+   "outcome": "source_blocked"
+  },
+  "notes": "Single fetch returned HTTP 401 with a Hugging Face 404-styled shell, so no model card, license tag or terms material was retained and no use is decided."
+ },
+ {
+  "url": "https://huggingface.co/black-forest-labs",
+  "source_kind": "other",
+  "terms_url": "https://huggingface.co/terms-of-service",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "unknown",
+  "license_name": "proprietary",
+  "license_text": "perpetual, irrevocable, worldwide, royalty-free, non-exclusive license to use, display, publish, reproduce, distribute, and make derivative works of your Content through our Services and functionalities",
+  "evidence": {
+   "path": "data/research/terms/xai/hf-terms-of-service.html",
+   "retrieved_at": "2026-09-30T23:40:25.959Z",
+   "outcome": "success"
+  },
+  "notes": "Organization page on the Hugging Face Hub governed by the HF Terms of Service, whose public-repository grant of use and derivative-works rights is scoped to HF services, so research and extraction are allowed while redistribution of the org page material stays unknown."
+ },
+ {
+  "url": "https://huggingface.co/black-forest-labs/FLUX.1-schnell",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://huggingface.co/black-forest-labs/FLUX.1-schnell",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "apache-2.0",
+  "license_text": "cardData&quot;:{&quot;language&quot;:[&quot;en&quot;],&quot;license&quot;:&quot;apache-2.0&quot;,&quot;tags&quot;:[&quot;text-to-image",
+  "evidence": {
+   "path": "data/research/images/sources/bfl_hf_flux_schnell.html",
+   "retrieved_at": "2026-09-30T01:38:19.027Z",
+   "outcome": "success"
+  },
+  "notes": "Saved model card carries the apache-2.0 license tag verbatim in its embedded cardData, and Apache-2.0 expressly grants reproduction, distribution and derivative works, so research, extraction and redistribution are allowed."
+ },
+ {
+  "url": "https://huggingface.co/black-forest-labs/FLUX.2",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://huggingface.co/black-forest-labs/FLUX.2",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/terms/images/hf-flux2-blocked.html",
+   "retrieved_at": "2026-09-30T23:53:16.540Z",
+   "outcome": "source_blocked"
+  },
+  "notes": "Single fetch returned HTTP 401 with a Hugging Face 404-styled shell, so no model card, license tag or terms material was retained and no use is decided."
+ },
+ {
+  "url": "https://imagen.research.google/",
+  "source_kind": "other",
+  "terms_url": "https://policies.google.com/terms",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "denied",
+  "license_name": "proprietary",
+  "license_text": "You may not copy, modify, distribute, sell, or lease any part of our services or software.",
+  "evidence": {
+   "path": "data/research/terms/_shared/google-terms.html",
+   "retrieved_at": "2026-10-01T00:11:37.496Z",
+   "outcome": "success"
+  },
+  "notes": "Saved capture is a gzip of the 2022 Imagen project page (gweb-research-imagen.web.app), public under the Google Terms of Service, which states no automated-access prohibition but bars copying or distributing service content, so research and extraction are allowed and redistribution denied."
+ },
+ {
+  "url": "https://openai.com/index/gpt-image-1-5/",
+  "source_kind": "other",
+  "terms_url": "https://openai.com/policies/terms-of-use/",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/terms/images/openai-gpt-image-1-5-404.html",
+   "retrieved_at": "2026-09-30T23:53:18.798Z",
+   "outcome": "source_blocked"
+  },
+  "notes": "Single fetch returned HTTP 403 with an OpenAI block shell, and the governing openai.com/policies/terms-of-use is likewise Cloudflare-blocked (stub saved by a prior batch), so no article or terms evidence exists."
+ },
+ {
+  "url": "https://openai.com/index/introducing-gpt-image-2/",
+  "source_kind": "other",
+  "terms_url": "https://openai.com/policies/terms-of-use/",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/terms/images/openai-gpt-image-2-blocked.html",
+   "retrieved_at": "2026-09-30T23:53:19.918Z",
+   "outcome": "source_blocked"
+  },
+  "notes": "Single fetch returned HTTP 403 with an OpenAI block shell consistent with the blocked_redirect input status, and the governing openai.com/policies/terms-of-use is likewise Cloudflare-blocked, so no article or terms evidence exists."
+ },
+ {
+  "url": "https://platform.openai.com/docs/guides/image-generation",
+  "source_kind": "provider_docs",
+  "terms_url": "https://openai.com/policies/terms-of-use/",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/terms/openai/openai-terms-of-use-blocked.html",
+   "retrieved_at": "2026-09-30T23:31:33.814Z",
+   "outcome": "source_blocked"
+  },
+  "notes": "Docs page itself is captured in the corpus (developers.openai.com/api/docs/guides/image-generation after redirect), but the governing OpenAI terms of use returned a Cloudflare block shell, so no use has retained permission evidence."
+ },
+ {
+  "url": "https://platform.openai.com/docs/guides/images",
+  "source_kind": "provider_docs",
+  "terms_url": "https://openai.com/policies/terms-of-use/",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/terms/openai/openai-terms-of-use-blocked.html",
+   "retrieved_at": "2026-09-30T23:31:33.814Z",
+   "outcome": "source_blocked"
+  },
+  "notes": "Docs page itself is captured in the corpus (developers.openai.com/api/docs/guides/images-vision after redirect), but the governing OpenAI terms of use returned a Cloudflare block shell, so no use has retained permission evidence."
+ },
+ {
+  "url": "https://platform.openai.com/docs/models/gpt-image-1",
+  "source_kind": "provider_docs",
+  "terms_url": "https://openai.com/policies/terms-of-use/",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/terms/openai/openai-terms-of-use-blocked.html",
+   "retrieved_at": "2026-09-30T23:31:33.814Z",
+   "outcome": "source_blocked"
+  },
+  "notes": "Docs page itself is captured in the corpus (developers.openai.com/api/docs/models/gpt-image-1 after redirect), but the governing OpenAI terms of use returned a Cloudflare block shell, so no use has retained permission evidence."
+ },
+ {
+  "url": "https://prodia.com/",
+  "source_kind": "other",
+  "terms_url": "https://prodia.com/",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/images/sources/prodia.html",
+   "retrieved_at": "2026-09-30T01:37:45.292Z",
+   "outcome": "success"
+  },
+  "notes": "Saved capture is a public marketing page for the Prodia inference platform but contains no terms-of-service link and no provider terms material was retained, so no use can be decided on evidence."
+ },
+ {
+  "url": "https://quiverai.com/",
+  "source_kind": "other",
+  "terms_url": "https://quiverai.com/",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/images/sources/quiverai_arrow.html",
+   "retrieved_at": "2026-09-30T01:37:23.469Z",
+   "outcome": "success"
+  },
+  "notes": "Saved capture is a bare coming-soon stub (We are under construction) with no content, license or terms material, so no use can be decided on evidence."
+ },
+ {
+  "url": "https://www.bytedance.com/en/articles/seedream-5-pro",
+  "source_kind": "other",
+  "terms_url": "https://www.bytedance.com/en/articles/seedream-5-pro",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/terms/_shared/bytedance-seedream-5-pro.html",
+   "retrieved_at": "2026-10-01T00:11:41.067Z",
+   "outcome": "http_error"
+  },
+  "notes": "Saved bytes are a ByteDance We-couldnt-find-that-page 404 shell despite the retrieved input status, so no article or terms material was retained and no use is decided."
+ },
+ {
+  "url": "https://www.bytedance.com/en/products/seedream",
+  "source_kind": "other",
+  "terms_url": "https://www.bytedance.com/en/products/seedream",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/images/sources/bytedance_seedream.html",
+   "retrieved_at": "2026-09-30T01:37:05.328Z",
+   "outcome": "http_error"
+  },
+  "notes": "Saved bytes are a ByteDance We-couldnt-find-that-page 404 shell despite the retrieved input status, so no product page or terms material was retained and no use is decided."
+ },
+ {
+  "url": "https://www.recraft.ai/",
+  "source_kind": "other",
+  "terms_url": "https://www.recraft.ai/terms",
+  "research": "denied",
+  "extraction": "denied",
+  "redistribution": "denied",
+  "license_name": "proprietary",
+  "license_text": "(vii) use any automated or programmatic method to access the Services, generate Assets, or extract data from the Services, including scraping, web harvesting, or web data extraction; or (viii) reproduce, duplicate, copy, sell, resell, or exploit any portion of the Site or Services, use of the Site or Services, or access to the Site or Services, or any contact on the Site or Services, without Recraft’s express written permission",
+  "evidence": {
+   "path": "data/research/terms/images/recraft-terms.html",
+   "retrieved_at": "2026-09-30T23:54:10.114Z",
+   "outcome": "success"
+  },
+  "notes": "Fetched Recraft Terms of Service expressly ban automated or programmatic access, scraping and web data extraction (vii) and reproduction or copying of any portion of the Site without express written permission (viii), so research, extraction and redistribution of the marketing site are all denied."
+ },
+ {
+  "url": "https://www.recraft.ai/blog/recraft-v3",
+  "source_kind": "other",
+  "terms_url": "https://www.recraft.ai/blog/recraft-v3",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/terms/images/recraft-blog-recraft-v3-404.html",
+   "retrieved_at": "2026-09-30T23:53:21.621Z",
+   "outcome": "http_error"
+  },
+  "notes": "Single fetch returned HTTP 404, so no blog post or terms material was retained and no use is decided."
+ },
+ {
+  "url": "https://www.recraft.ai/blog/recraft-v4",
+  "source_kind": "other",
+  "terms_url": "https://www.recraft.ai/blog/recraft-v4",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/terms/images/recraft-blog-recraft-v4-404.html",
+   "retrieved_at": "2026-09-30T23:53:23.470Z",
+   "outcome": "http_error"
+  },
+  "notes": "Single fetch returned HTTP 404, so no blog post or terms material was retained and no use is decided."
+ },
+ {
+  "url": "https://www.recraft.ai/blog/recraft-v4-1",
+  "source_kind": "other",
+  "terms_url": "https://www.recraft.ai/blog/recraft-v4-1",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/terms/images/recraft-blog-recraft-v4-1-404.html",
+   "retrieved_at": "2026-09-30T23:53:25.082Z",
+   "outcome": "http_error"
+  },
+  "notes": "Single fetch returned HTTP 404, so no blog post or terms material was retained and no use is decided."
+ },
+ {
+  "url": "https://www.recraft.ai/docs",
+  "source_kind": "provider_docs",
+  "terms_url": "https://www.recraft.ai/terms",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "denied",
+  "license_name": "proprietary",
+  "license_text": "(vii) use any automated or programmatic method to access the Services, generate Assets, or extract data from the Services, including scraping, web harvesting, or web data extraction; or (viii) reproduce, duplicate, copy, sell, resell, or exploit any portion of the Site or Services, use of the Site or Services, or access to the Site or Services, or any contact on the Site or Services, without Recraft’s express written permission",
+  "evidence": {
+   "path": "data/research/terms/images/recraft-terms.html",
+   "retrieved_at": "2026-09-30T23:54:10.114Z",
+   "outcome": "success"
+  },
+  "notes": "Saved docs page invites programmatic consumption (fetch the complete documentation index at /docs/llms.txt), which carves retained-bytes research and internal extraction out of the Terms (vii) automated-access ban, but clause (viii) still bars copying Site content without express written permission, so redistribution stays denied."
+ },
+ {
+  "url": "https://www.recraft.ai/recraft-v3",
+  "source_kind": "other",
+  "terms_url": "https://www.recraft.ai/recraft-v3",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/terms/images/recraft-recraft-v3-404.html",
+   "retrieved_at": "2026-09-30T23:53:26.247Z",
+   "outcome": "http_error"
+  },
+  "notes": "Single fetch returned HTTP 404, so no product page or terms material was retained and no use is decided."
+ }
+]

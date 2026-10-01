@@ -10,7 +10,7 @@ import (
 var evidencePathRe = regexp.MustCompile(`^data/[A-Za-z0-9._/-]+$`)
 
 var controlPathRe = regexp.MustCompile(
-	`^data/(research-inputs/(capture-inventory\.tsv|build\.json|fetch-logs/[A-Za-z0-9._-]+\.log)|reviews/decisions/[A-Za-z0-9._-]+\.json)$`)
+	`^data/(research-inputs/(capture-inventory\.tsv|build\.json|policies/[A-Za-z0-9._-]+\.json|fetch-logs/[A-Za-z0-9._-]+\.log)|reviews/decisions/[A-Za-z0-9._-]+\.json)$`)
 
 // ValidEvidencePath reports whether p is a well-formed evidence input path.
 func ValidEvidencePath(p string) bool {

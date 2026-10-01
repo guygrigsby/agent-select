@@ -7,6 +7,7 @@ import (
 	"path/filepath"
 	"sort"
 	"strings"
+	"time"
 )
 
 // Frozen reason literals (byte-exact). The default quarantined reason lives
@@ -118,7 +119,7 @@ func newTable(name, ddlName string, genID bool, kinds string) *tableRows {
 }
 
 // assemble builds every table's rows from the durable inputs.
-func assemble(root string, cfg *Config, inv *Inventory, led *Ledger) (*BuildResult, []*tableRows, error) {
+func assemble(root string, cfg *Config, inv *Inventory, led *Ledger, pol *Policies) (*BuildResult, []*tableRows, error) {
 	res := &BuildResult{}
 
 	// schema order (§4)
@@ -392,11 +393,31 @@ func assemble(root string, cfg *Config, inv *Inventory, led *Ledger) (*BuildResu
 		tMetadata.add(kv[0], kv[1])
 	}
 
+	// 7. source policies (§2.5): current decision per captured URL; the
+	// derived timestamps follow the spec recipe (checked_at = effective_at =
+	// evidence.retrieved_at, expires_at = +90 days). Files load in name
+	// order; rows within a file are pre-sorted by url, so insertion order is
+	// deterministic.
+	tSourcePolicies := newTable("source_policies", "source_policies", false, "SSSSSSSSSSSSSSSS")
+	for _, batch := range pol.Batches() {
+		for _, r := range pol.ByBatch[batch] {
+			tt, err := time.Parse("2006-01-02T15:04:05.000Z", r.Evidence.RetrievedAt)
+			if err != nil {
+				return nil, nil, invalidf("policies/%s.json: evidence.retrieved_at %q unparseable", batch, r.Evidence.RetrievedAt)
+			}
+			expires := tt.AddDate(0, 0, 90).UTC().Format("2006-01-02T15:04:05.000Z")
+			tSourcePolicies.add(r.URL, batch, r.SourceKind, r.TermsURL, r.Research, r.Extraction,
+				r.Redistribution, r.LicenseName, r.LicenseText, r.Evidence.Path,
+				r.Evidence.RetrievedAt, r.Evidence.Outcome, r.Evidence.RetrievedAt,
+				r.Evidence.RetrievedAt, expires, r.Notes)
+		}
+	}
+
 	all := []*tableRows{tSourceFiles, tCatalogModels, tCatalogModalities, tCatalogLimits,
 		tCatalogParams, tCatalogTags, tProviderOffers, tCanonicalLabels, tExactJoins,
 		tPriceFacts, tDisagreements, tReviewResults, tModelResearch, tClaims, tUnlocated,
 		tBenchmarks, tUnresolved, tProposals, tSourceAccess, tGaps, tEvidenceReviews,
-		tEvidenceInputs, tMetadata}
+		tEvidenceInputs, tMetadata, tSourcePolicies}
 	return res, all, nil
 }
 
@@ -475,7 +496,7 @@ func listBatchDirs(root string) ([]string, error) {
 	}
 	var out []string
 	for _, e := range entries {
-		if e.IsDir() {
+		if e.IsDir() && e.Name() != "terms" { // terms/ is the §2.5 evidence area, not a batch
 			out = append(out, e.Name())
 		}
 	}

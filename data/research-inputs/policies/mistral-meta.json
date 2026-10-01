@@ -1,0 +1,306 @@
+[
+ {
+  "url": "https://ai.meta.com/blog/llama-3-3-70b/",
+  "source_kind": "provider_docs",
+  "terms_url": "https://www.facebook.com/legal/terms",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "unknown",
+  "license_name": "proprietary",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/terms/mistral-meta/meta-terms-of-service.html",
+   "retrieved_at": "2026-09-30T23:34:16.728Z",
+   "outcome": "success"
+  },
+  "notes": "Public Meta AI blog page; governing terms are Meta's proprietary Terms of Service, whose saved body is JS-rendered (title-only server-side), so no express content license or scraping clause is verifiable: public-page analysis and fact extraction allowed per provider-docs rule, redistribution unknown."
+ },
+ {
+  "url": "https://ai.meta.com/blog/llama-4-multimodal-intelligence/",
+  "source_kind": "provider_docs",
+  "terms_url": "https://www.facebook.com/legal/terms",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "unknown",
+  "license_name": "proprietary",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/terms/mistral-meta/meta-terms-of-service.html",
+   "retrieved_at": "2026-09-30T23:34:16.728Z",
+   "outcome": "success"
+  },
+  "notes": "Public Meta AI blog page; governing terms are Meta's proprietary Terms of Service, whose saved body is JS-rendered (title-only server-side), so no express content license or scraping clause is verifiable: public-page analysis and fact extraction allowed per provider-docs rule, redistribution unknown."
+ },
+ {
+  "url": "https://ai.meta.com/blog/meta-llama-3-1/",
+  "source_kind": "provider_docs",
+  "terms_url": "https://www.facebook.com/legal/terms",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "unknown",
+  "license_name": "proprietary",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/terms/mistral-meta/meta-terms-of-service.html",
+   "retrieved_at": "2026-09-30T23:34:16.728Z",
+   "outcome": "success"
+  },
+  "notes": "Public Meta AI blog page; governing terms are Meta's proprietary Terms of Service, whose saved body is JS-rendered (title-only server-side), so no express content license or scraping clause is verifiable: public-page analysis and fact extraction allowed per provider-docs rule, redistribution unknown."
+ },
+ {
+  "url": "https://huggingface.co/meta-llama/Llama-3.1-70B-Instruct",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://huggingface.co/meta-llama/Llama-3.1-70B-Instruct",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "denied",
+  "license_name": "llama3.1",
+  "license_text": "You are granted a non-exclusive, worldwide, non-transferable and royalty-free limited license under Meta’s intellectual property or other rights owned by Meta embodied in the Llama Materials to use, reproduce, distribute, copy, create derivative works of, and make modifications to the Llama Materials.\\nb. Redistribution and Use.\\ni. If you distribute or make available the Llama Materials (or any derivative works ther\n\nIf, on the Llama 3.1 version release date, the monthly active users of the products or services made available by or for Licensee, or Licensee’s affiliates, is greater than 700 million monthly active users in the preceding calendar month, you must request a license from Meta, which Meta may grant to you in its sole discretion, and you are not authorized to exercise any of the rights under this Agreement unless or until Meta otherwise expressly grants you such rights.\\n3. Disc",
+  "evidence": {
+   "path": "data/research/mistral-meta/sources/hf_llama3_1_modelcard_view.html",
+   "retrieved_at": "2026-09-30T01:37:25.248Z",
+   "outcome": "success"
+  },
+  "notes": "Gated model page was captured with the full Llama 3.1 Community License embedded and license:llama3.1 tag; custom community license carries the explicit 700M-MAU additional-terms restriction and incorporated AUP, so redistribution is denied despite the distribution grant."
+ },
+ {
+  "url": "https://huggingface.co/meta-llama/Llama-3.1-70B-Instruct/raw/main/README.md",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://huggingface.co/meta-llama/Llama-3.1-70B-Instruct/raw/main/README.md",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/mistral-meta/sources/hf_llama3_1_70b.html",
+   "retrieved_at": "2026-09-30T01:37:15.201Z",
+   "outcome": "source_blocked"
+  },
+  "notes": "Raw README fetch was access-restricted (saved bytes: 'Access to model meta-llama/Llama-3.1-70B-Instruct is restricted'), so no license bytes exist for this URL; the gated model page (sibling URL) was captured separately."
+ },
+ {
+  "url": "https://huggingface.co/mistralai/Codestral-2501/raw/main/README.md",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://huggingface.co/mistralai/Codestral-2501/raw/main/README.md",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/mistral-meta/sources/hf_mistral_codestral_2501.html",
+   "retrieved_at": "2026-09-30T01:40:20.351Z",
+   "outcome": "source_blocked"
+  },
+  "notes": "Raw README fetch returned 'Invalid username or password' (gated model); no license bytes retained, permissions unknown and no license invented."
+ },
+ {
+  "url": "https://huggingface.co/mistralai/Ministral-14B-Instruct-2410/raw/main/README.md",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://huggingface.co/mistralai/Ministral-14B-Instruct-2410/raw/main/README.md",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/mistral-meta/sources/hf_ministral_14b.html",
+   "retrieved_at": "2026-09-30T01:40:20.348Z",
+   "outcome": "source_blocked"
+  },
+  "notes": "Raw README fetch returned 'Invalid username or password' (gated model); no license bytes retained for this URL, so no MRL decision is transferred from the retrieved Ministral-8B sibling."
+ },
+ {
+  "url": "https://huggingface.co/mistralai/Ministral-8B-Instruct-2410/raw/main/README.md",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://mistral.ai/licenses/MRL-0.1.md",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "denied",
+  "license_name": "mrl",
+  "license_text": "**2.1. Grant of rights**.  Subject to Section 3 below, Mistral AI hereby\n  grants You a non-exclusive, royalty-free, worldwide, non-sublicensable,\n  non-transferable, limited license to use, copy, modify, and Distribute under\n  the conditions provided in Section 2.2 below, the Mistral Model and any\n  Derivatives made by or for Mistral AI and to create Derivatives of the Mistral\n  Model.\n\n  **2.2.\n\n**3.2. Usage Limitation.** You shall only use the Mistral Models, Derivatives\n  (whether or not created by Mistral AI) and Outputs for Research Purposes.\n\n  ## 4. Intellectual Property\n\n  **4.1. Trademarks.** No trademar",
+  "evidence": {
+   "path": "data/research/terms/_shared/mrl-0.1.html",
+   "retrieved_at": "2026-10-01T00:11:34.235Z",
+   "outcome": "success"
+  },
+  "notes": "Saved README carries the full Mistral AI Research License (license: other, license_name: mrl); MRL grants use/copy/modify/distribute but Section 3.2 restricts all use to non-commercial Research Purposes and bars commercial-entity distribution even free of charge, so redistribution is denied."
+ },
+ {
+  "url": "https://huggingface.co/mistralai/Mistral-Large-3/raw/main/README.md",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "apache-2.0",
+  "license_text": "## License\n\nThis model is licensed under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0.txt).\n\n*You must not use this model in a manner that infringes, misappropriates, or otherw",
+  "evidence": {
+   "path": "data/research/terms/_shared/apache-2.0.txt",
+   "retrieved_at": "2026-10-01T00:11:38.818Z",
+   "outcome": "success"
+  },
+  "notes": "Saved README states license: apache-2.0 and links the Apache 2.0 text; express permissive grant supports all three uses."
+ },
+ {
+  "url": "https://huggingface.co/mistralai/Mistral-Nemo-Instruct-2407/raw/main/README.md",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "apache-2.0",
+  "license_text": "- Released under the **Apache 2 License**\n- Pre-trained and instructed versions\n- Trained with a **128k context window**",
+  "evidence": {
+   "path": "data/research/terms/_shared/apache-2.0.txt",
+   "retrieved_at": "2026-10-01T00:11:38.818Z",
+   "outcome": "success"
+  },
+  "notes": "Saved README states license: apache-2.0 and 'Released under the Apache 2 License'; express permissive grant supports all three uses."
+ },
+ {
+  "url": "https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/raw/main/README.md",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "apache-2.0",
+  "license_text": "- **Apache 2.0 License:** Open license allowing usage and modification for both commercial and non-commercial purposes.\n- **Context Window:** A 128k context window.\n- **System Prompt:** Maintains stro",
+  "evidence": {
+   "path": "data/research/terms/_shared/apache-2.0.txt",
+   "retrieved_at": "2026-10-01T00:11:38.818Z",
+   "outcome": "success"
+  },
+  "notes": "Saved README states license: apache-2.0 with an explicit Apache 2.0 open-license clause; express permissive grant supports all three uses."
+ },
+ {
+  "url": "https://mistral.ai/news/codestral-2501/",
+  "source_kind": "provider_docs",
+  "terms_url": "https://mistral.ai/terms/",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "unknown",
+  "license_name": "proprietary",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/terms/mistral-meta/mistral-terms.html",
+   "retrieved_at": "2026-09-30T23:31:32.494Z",
+   "outcome": "success"
+  },
+  "notes": "Public Mistral AI news page; governing terms are the Mistral Legal Center terms hub (an index of proprietary ToS documents with no automated-access prohibition or content license in its bytes), so public-page analysis and fact extraction are allowed while redistribution stays unknown."
+ },
+ {
+  "url": "https://mistral.ai/news/ministral-3b-14b/",
+  "source_kind": "provider_docs",
+  "terms_url": "https://mistral.ai/terms/",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/terms/_shared/mistral-terms.html",
+   "retrieved_at": "2026-10-01T00:11:36.012Z",
+   "outcome": "http_error"
+  },
+  "notes": "Saved bytes are the mistral.ai 404 shell (canonical link https://mistral.ai/404/), so the news page was dead at capture; no terms evidence retained and nothing inferred from the sibling Ministral pages."
+ },
+ {
+  "url": "https://mistral.ai/news/mistral-large-2411/",
+  "source_kind": "provider_docs",
+  "terms_url": "https://mistral.ai/terms/",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/terms/_shared/mistral-terms.html",
+   "retrieved_at": "2026-10-01T00:11:36.012Z",
+   "outcome": "http_error"
+  },
+  "notes": "Saved bytes are the mistral.ai 404 shell (canonical link https://mistral.ai/404/), so the news page was dead at capture and no terms evidence exists."
+ },
+ {
+  "url": "https://mistral.ai/news/mistral-nemo/",
+  "source_kind": "provider_docs",
+  "terms_url": "https://mistral.ai/terms/",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "unknown",
+  "license_name": "proprietary",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/terms/mistral-meta/mistral-terms.html",
+   "retrieved_at": "2026-09-30T23:31:32.494Z",
+   "outcome": "success"
+  },
+  "notes": "Public Mistral AI news page; governing terms are the Mistral Legal Center terms hub (an index of proprietary ToS documents with no automated-access prohibition or content license in its bytes), so public-page analysis and fact extraction are allowed while redistribution stays unknown."
+ },
+ {
+  "url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_1/MODEL_CARD.md",
+  "source_kind": "github_repo",
+  "terms_url": "https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/LICENSE",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "denied",
+  "license_name": "Llama 3.1 Community License",
+  "license_text": "a. Grant of Rights. You are granted a non-exclusive, worldwide, non-transferable and royalty-free limited license under Meta’s intellectual property or other rights owned by Meta embodied in the Llama Materials to use, reproduce, distribute, copy, create derivative works of, and make modifications to the Llama Materials.  \n\n    b. Redistribution and Use.  \n\n          i. If you\n\nAdditional Commercial Terms. If, on the Llama 3.1 version release date, the monthly active users of the products or services made available by or for Licensee, or Licensee’s affiliates, is greater than 700 million monthly active users in the preceding calendar month, you must request a license from Meta, which Meta may grant to you in its sole discretion, and you are not authorized to exercise any of the rights under this Agreement unless or until Meta otherwise expressly grants you such rights.",
+  "evidence": {
+   "path": "data/research/terms/mistral-meta/llama3_1-LICENSE.txt",
+   "retrieved_at": "2026-09-30T23:31:33.552Z",
+   "outcome": "success"
+  },
+  "notes": "Retrieved model card declares the Llama 3.1 Community License; the raw LICENSE was fetched and grants use/reproduction/distribution but its Additional Commercial Terms bar exercise of rights above 700M MAU without separate Meta grant and incorporate the AUP, so redistribution is denied per the gated-license rule."
+ },
+ {
+  "url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_3/MODEL_CARD.md",
+  "source_kind": "github_repo",
+  "terms_url": "https://github.com/meta-llama/llama-models/blob/main/models/llama3_3/LICENSE",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "denied",
+  "license_name": "Llama 3.3 Community License",
+  "license_text": "a. Grant of Rights. You are granted a non-exclusive, worldwide, non-transferable and royalty-free limited license under Meta’s intellectual property or other rights owned by Meta embodied in the Llama Materials to use, reproduce, distribute, copy, create derivative works of, and make modifications to the Llama Materials.  \n\nb. Redistribution and Use.  \n\ni. If you distribute or\n\nAdditional Commercial Terms**. If, on the Llama 3.3 version release date, the monthly active users of the products or services made available by or for Licensee, or Licensee’s affiliates, is greater than 700 million monthly active users in the preceding calendar month, you must request a license from Meta, which Meta may grant to you in its sole discretion, and you are not authorized to exercise any of the rights under this Agreement unless or until Meta otherwise expressly grants you such rights.\n\n3**. Disclaimer",
+  "evidence": {
+   "path": "data/research/terms/mistral-meta/llama3_3-LICENSE.txt",
+   "retrieved_at": "2026-09-30T23:31:34.599Z",
+   "outcome": "success"
+  },
+  "notes": "Retrieved model card declares the Llama 3.3 Community License; the raw LICENSE carries the same gated structure (distribution grant conditioned on attribution, AUP and the 700M-MAU additional-terms restriction), so redistribution is denied."
+ },
+ {
+  "url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama4/MODEL_CARD.md",
+  "source_kind": "github_repo",
+  "terms_url": "https://github.com/meta-llama/llama-models/blob/main/models/llama4/LICENSE",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "denied",
+  "license_name": "Llama 4 Community License",
+  "license_text": "a. Grant of Rights. You are granted a non-exclusive, worldwide, non-transferable and royalty-free limited license under Meta’s intellectual property or other rights owned by Meta embodied in the Llama Materials to use, reproduce, distribute, copy, create derivative works of, and make modifications to the Llama Materials.  \n\n\nb. Redistribution and Use.  \n\n\ni. If you distribute o\n\nAdditional Commercial Terms. If, on the Llama 4 version release date, the monthly active users of the products or services made available by or for Licensee, or Licensee’s affiliates, is greater than 700 million monthly active users in the preceding calendar month, you must request a license from Meta, which Meta may grant to you in its sole discretion, and you are not authorized to exercise any of the rights under this Agreement unless or until Meta otherwise expressly grants you such rights.",
+  "evidence": {
+   "path": "data/research/terms/mistral-meta/llama4-LICENSE.txt",
+   "retrieved_at": "2026-09-30T23:31:35.652Z",
+   "outcome": "success"
+  },
+  "notes": "Retrieved model card declares the Llama 4 Community License; the fetched raw LICENSE grants distribution with attribution/AUP conditions and the 700M-MAU additional-terms restriction (no EU multimodal clause in the saved text), so redistribution is denied."
+ },
+ {
+  "url": "https://raw.githubusercontent.com/mistralai/mistral-eval/main/README.md",
+  "source_kind": "github_repo",
+  "terms_url": "https://raw.githubusercontent.com/mistralai/mistral-eval/main/README.md",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/mistral-meta/sources/mistral_github_eval.html",
+   "retrieved_at": "2026-09-30T01:37:25.218Z",
+   "outcome": "http_error"
+  },
+  "notes": "Saved bytes are a '404: Not Found' body, so the repo file did not exist at capture and no license evidence can be retained."
+ }
+]

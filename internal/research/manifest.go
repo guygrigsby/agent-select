@@ -69,6 +69,20 @@ func ControlFiles(root string) ([]string, error) {
 		}
 		out = append(out, p)
 	}
+	polDir := filepath.Join(root, "data", "research-inputs", "policies")
+	pents, err := os.ReadDir(polDir)
+	if err != nil {
+		if !os.IsNotExist(err) {
+			return nil, iof("read %s: %v", polDir, err)
+		}
+		pents = nil
+	}
+	for _, e := range pents {
+		if e.IsDir() || !strings.HasSuffix(e.Name(), ".json") {
+			return nil, iof("unexpected entry in policies dir: %s", e.Name())
+		}
+		out = append(out, "data/research-inputs/policies/"+e.Name())
+	}
 	logDir := filepath.Join(root, "data", "research-inputs", "fetch-logs")
 	entries, err := os.ReadDir(logDir)
 	if err != nil {

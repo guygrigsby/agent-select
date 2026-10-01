@@ -1,0 +1,593 @@
+<!DOCTYPE html><html lang="en" data-mantine-color-scheme="light"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="image" href="/web/logo.png"/><link rel="shortcut icon" href="/web/logo.png" type="image/png"/><link rel="icon" href="/web/logo.png" type="image/png"/><link rel="apple-touch-icon" href="/web/logo.png"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/><link rel="modulepreload" href="/web/assets/entry.client-BzfbxZ2P.js"/><link rel="modulepreload" href="/web/assets/jsx-runtime-Bq1fMrfD.js"/><link rel="modulepreload" href="/web/assets/chunk-BV7QT456-PZER0hZA.js"/><link rel="modulepreload" href="/web/assets/index-DtDjxaiz.js"/><link rel="modulepreload" href="/web/assets/root-TZQ099Up.js"/><link rel="modulepreload" href="/web/assets/templatesEntry-6fGkGV_M.js"/><link rel="modulepreload" href="/web/assets/InstanceSnapshotContext-CgQjjyh6.js"/><link rel="modulepreload" href="/web/assets/factory-35vKKP3C.js"/><link rel="modulepreload" href="/web/assets/BackendOrganizationProvider-DeWHPAi5.js"/><link rel="modulepreload" href="/web/assets/devboxesClaimRedirect-ChbXebl0.js"/><link rel="modulepreload" href="/web/assets/devboxesAuthRedirect-CDXCHbA4.js"/><link rel="modulepreload" href="/web/assets/devboxesWorkflowLaunch-CPtnnHJ1.js"/><link rel="modulepreload" href="/web/assets/promoOnboarding-_h2rdai2.js"/><link rel="modulepreload" href="/web/assets/chunk-3EQWAEPK-Bvq2GMcc.js"/><link rel="modulepreload" href="/web/assets/get-contrast-color-Bmdce98R.js"/><link rel="modulepreload" href="/web/assets/use-isomorphic-effect-DirpxmnC.js"/><link rel="modulepreload" href="/web/assets/CloseButton-DiyaGNFw.js"/><link rel="modulepreload" href="/web/assets/Loader-DOmAvAHC.js"/><link rel="modulepreload" href="/web/assets/use-reduced-motion-BKE-d6Yh.js"/><link rel="modulepreload" href="/web/assets/objectWithoutPropertiesLoose-zPjwsi3p.js"/><link rel="modulepreload" href="/web/assets/OptionalPortal-d7xyKesO.js"/><link rel="modulepreload" href="/web/assets/Combination-GQMbGqby.js"/><link rel="modulepreload" href="/web/assets/index-DRgq4caK.js"/><link rel="modulepreload" href="/web/assets/env-DgERBwag.js"/><link rel="modulepreload" href="/web/assets/polymorphic-factory-B7QOYIln.js"/><link rel="modulepreload" href="/web/assets/legal.terms-of-service-CDKH7M5F.js"/><script data-mantine-script="true">try {
+  var _colorScheme = window.localStorage.getItem("mantine-color-scheme-value");
+  var colorScheme = _colorScheme === "light" || _colorScheme === "dark" || _colorScheme === "auto" ? _colorScheme : "dark";
+  var computedColorScheme = colorScheme !== "auto" ? colorScheme : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  document.documentElement.setAttribute("data-mantine-color-scheme", computedColorScheme);
+} catch (e) {}
+</script><link rel="stylesheet" href="/web/assets/root-Bth_0xoO.css"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&amp;display=swap"/></head><body><style data-mantine-styles="true">:root{--mantine-font-family: NK57, Source Code Pro, monospace;--mantine-font-family-monospace: NK57, Source Code Pro, monospace;--mantine-font-family-headings: NK57, Source Code Pro, monospace;--mantine-primary-color-filled: var(--mantine-color-red-filled);--mantine-primary-color-filled-hover: var(--mantine-color-red-filled-hover);--mantine-primary-color-light: var(--mantine-color-red-light);--mantine-primary-color-light-hover: var(--mantine-color-red-light-hover);--mantine-primary-color-light-color: var(--mantine-color-red-light-color);--mantine-primary-color-0: var(--mantine-color-red-0);--mantine-primary-color-1: var(--mantine-color-red-1);--mantine-primary-color-2: var(--mantine-color-red-2);--mantine-primary-color-3: var(--mantine-color-red-3);--mantine-primary-color-4: var(--mantine-color-red-4);--mantine-primary-color-5: var(--mantine-color-red-5);--mantine-primary-color-6: var(--mantine-color-red-6);--mantine-primary-color-7: var(--mantine-color-red-7);--mantine-primary-color-8: var(--mantine-color-red-8);--mantine-primary-color-9: var(--mantine-color-red-9);--mantine-color-red-0: #ceff1a;--mantine-color-red-1: #ceff1a;--mantine-color-red-2: #ceff1a;--mantine-color-red-3: #ceff1a;--mantine-color-red-4: #ceff1a;--mantine-color-red-5: #ceff1a;--mantine-color-red-6: #ceff1a;--mantine-color-red-7: #ceff1a;--mantine-color-red-8: #ceff1a;--mantine-color-red-9: #ceff1a;--mantine-color-error-0: #ffd4d5;--mantine-color-error-1: #ffb5b6;--mantine-color-error-2: #ff9698;--mantine-color-error-3: #ff7779;--mantine-color-error-4: #ff585a;--mantine-color-error-5: #f23f42;--mantine-color-error-6: #d4353a;--mantine-color-error-7: #b52c31;--mantine-color-error-8: #972429;--mantine-color-error-9: #781c20;}:root[data-mantine-color-scheme="dark"]{--mantine-color-anchor: var(--mantine-color-red-4);--mantine-color-red-light: rgba(206, 255, 26, 0.15);--mantine-color-red-light-hover: rgba(206, 255, 26, 0.2);--mantine-color-red-outline-hover: rgba(206, 255, 26, 0.05);--mantine-color-error-text: var(--mantine-color-error-4);--mantine-color-error-filled: var(--mantine-color-error-8);--mantine-color-error-filled-hover: var(--mantine-color-error-9);--mantine-color-error-light: rgba(212, 53, 58, 0.15);--mantine-color-error-light-hover: rgba(212, 53, 58, 0.2);--mantine-color-error-light-color: var(--mantine-color-error-3);--mantine-color-error-outline: var(--mantine-color-error-4);--mantine-color-error-outline-hover: rgba(255, 88, 90, 0.05);}:root[data-mantine-color-scheme="light"]{--mantine-color-anchor: var(--mantine-color-red-6);--mantine-color-red-light: rgba(206, 255, 26, 0.1);--mantine-color-red-light-hover: rgba(206, 255, 26, 0.12);--mantine-color-red-outline-hover: rgba(206, 255, 26, 0.05);--mantine-color-error-text: var(--mantine-color-error-filled);--mantine-color-error-filled: var(--mantine-color-error-6);--mantine-color-error-filled-hover: var(--mantine-color-error-7);--mantine-color-error-light: rgba(212, 53, 58, 0.1);--mantine-color-error-light-hover: rgba(212, 53, 58, 0.12);--mantine-color-error-light-color: var(--mantine-color-error-6);--mantine-color-error-outline: var(--mantine-color-error-6);--mantine-color-error-outline-hover: rgba(212, 53, 58, 0.05);}</style><style data-mantine-styles="classes">@media (max-width: 35.99375em) {.mantine-visible-from-xs {display: none !important;}}@media (min-width: 36em) {.mantine-hidden-from-xs {display: none !important;}}@media (max-width: 47.99375em) {.mantine-visible-from-sm {display: none !important;}}@media (min-width: 48em) {.mantine-hidden-from-sm {display: none !important;}}@media (max-width: 61.99375em) {.mantine-visible-from-md {display: none !important;}}@media (min-width: 62em) {.mantine-hidden-from-md {display: none !important;}}@media (max-width: 74.99375em) {.mantine-visible-from-lg {display: none !important;}}@media (min-width: 75em) {.mantine-hidden-from-lg {display: none !important;}}@media (max-width: 87.99375em) {.mantine-visible-from-xl {display: none !important;}}@media (min-width: 88em) {.mantine-hidden-from-xl {display: none !important;}}</style><div data-rht-toaster="" style="position:fixed;z-index:2147483647;top:16px;left:16px;right:16px;bottom:16px;pointer-events:none" class=""></div><div class="min-h-screen" style="background-color:#2d2d2d"><header class="fixed top-0 z-10 w-screen bg-impact-grey"><nav class="container mx-auto flex h-18 items-center justify-center px-8 py-0 sm:px-6 lg:px-8"><a href="/"><img src="/web/logo.png" alt="Morph Logo" class="h-18 w-auto min-w-17"/></a></nav></header><main class="container mx-auto px-8 py-28 sm:px-10 lg:px-12 text-gray-200"><div class="max-w-3xl mx-auto"><article class="bg-impact-grey/60 rounded-lg p-6 border border-white/10 leading-7 m-terms"><h1 class="text-3xl md:text-4xl font-semibold mt-8 mb-4"><strong>Terms of Service</strong></h1>
+
+<p class="my-3">
+<strong>Last Revised:</strong> October 23, 2025
+</p>
+
+<p class="my-3">
+These Terms of Service (“<strong>Terms</strong>”) govern your use of our services including <strong>Morph Cloud</strong> and <strong>Infinibranch</strong>, our cloud platform (the “<strong>Services</strong>”).
+</p>
+
+<p class="my-3">
+By using our Services, you agree to these Terms. If you’re using the Services for an organization, you’re agreeing to these Terms on behalf of that organization.
+</p>
+
+<p class="my-3">
+<strong>ARBITRATION NOTICE:</strong> EXCEPT FOR LIMITED TYPES OF DISPUTES DESCRIBED BELOW, DISPUTES BETWEEN YOU AND MORPH WILL BE RESOLVED BY BINDING, INDIVIDUAL ARBITRATION, AND YOU WAIVE YOUR RIGHT TO A JURY TRIAL AND TO PARTICIPATE IN A CLASS ACTION. YOU CAN OPT OUT OF ARBITRATION AS DESCRIBED IN “ARBITRATION AND CLASS ACTION WAIVER.”
+</p>
+
+<hr class="my-6 border-white/10"/>
+
+<h2 class="text-2xl md:text-3xl font-semibold mt-6 mb-3"><strong>Who may use the services</strong></h2>
+
+<p class="my-3">
+You must be at least <strong>18 years old</strong> and have the legal capacity to enter into these Terms. The Services are not available in countries subject to U.S. trade restrictions. By using the Services, you represent and warrant that you meet these requirements.
+</p>
+
+<hr class="my-6 border-white/10"/>
+
+<h2 class="text-2xl md:text-3xl font-semibold mt-6 mb-3"><strong>Rights we grant you</strong></h2>
+
+<p class="my-3">
+We grant you a limited right to access and use the Services for lawful business purposes, including:
+</p>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li>Development and testing</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li>CI / CD workflows</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li>Data-science workloads</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li>Production applications</li>
+</ul>
+
+<p class="my-3">
+This right is <strong>non-exclusive</strong>, <strong>non-transferable</strong>, <strong>non-sublicensable</strong>, and subject to these Terms and our <strong>Acceptable Use Policy</strong> (Exhibit A).
+</p>
+
+<p class="my-3">
+You may interact with the Services via our APIs / SDKs / CLI. You may create VM <strong>Snapshots</strong> and branch new running environments (“<strong>Instances</strong>”) from them as well as consume related services provided through <strong>Morph Cloud</strong>.
+</p>
+
+<p class="my-3">
+We may improve or change features. During any committed billing term, we will not <strong>materially reduce core functionality</strong> without either an equivalent workaround or your right to terminate the affected feature with a <strong>pro-rata refund</strong> of prepaid, unused fees.
+</p>
+
+<hr class="my-6 border-white/10"/>
+
+<h2 class="text-2xl md:text-3xl font-semibold mt-6 mb-3"><strong>Restrictions on your use of the services</strong></h2>
+
+<p class="my-3">
+Use the Services responsibly. You agree not to:
+</p>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>Break the law</strong> or violate others’ rights.</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>Access</strong> accounts/systems you’re not authorized to access; <strong>bypass</strong> or <strong>interfere</strong> with security or access controls.</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>Upload regulated/sensitive data</strong> (for example, PHI, children’s data, cardholder data, export-controlled technical data) <strong>without a signed addendum</strong> that permits it.</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>Spam</strong>, <strong>phish</strong>, or distribute <strong>malware</strong>.</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>Scrape</strong> outside documented APIs or exceed rate limits; <strong>overload</strong> our systems.</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>Reverse engineer</strong> the Services (except where this restriction is prohibited by law).</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li>Use <strong>Non-Public Information</strong> to build a <strong>directly competitive snapshot / branching cloud</strong>; Morph may seek <strong>injunctive relief</strong>.</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>Publish public benchmarks</strong> without our prior written consent (internal testing is fine).</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>Misrepresent</strong> machine-generated output as “human-generated.”</li>
+</ul>
+
+<p class="my-3">
+We may monitor <strong>control-plane</strong> usage for trust and safety and may suspend or terminate access to protect customers, the platform, or to comply with law. We do <strong>not</strong> monitor the <strong>contents</strong> of your Instances.
+</p>
+
+<hr class="my-6 border-white/10"/>
+
+<h2 class="text-2xl md:text-3xl font-semibold mt-6 mb-3"><strong>Ownership and content</strong></h2>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>Our platform.</strong> We and our licensors own the Services, including the <strong>Infinibranch</strong> snapshot / branch engine, schedulers, orchestration, and related software and documentation.</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>Usage data.</strong> We may collect telemetry about use and performance (for example, API calls, resource consumption, errors). We may use and share aggregated / de-identified analytics, but not in a way that identifies you or reveals your trade secrets, and not to compete with your products.</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>How we operate the platform.</strong> The Services run primarily at the <strong>control-plane</strong> level. In the ordinary course, we act on orchestration signals and service health metrics and do <strong>not</strong> inspect the contents of your running environments.  </li>
+</ul>
+<p class="my-3">
+  <strong>Limited exceptions.</strong> We may access or inspect <strong>Customer Runtime Data</strong> (as defined in Exhibit B) <strong>only</strong>:  
+</p>
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li>when <strong>you expressly request support</strong> and enable a <strong>time-bound</strong> access path,</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li>to <strong>investigate, mitigate, or confirm a suspected security incident</strong> affecting the Services or your Instances, or</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>when required by law</strong> or valid process.</li>
+</ul>
+
+<p class="my-3">
+Any such access is performed by authorized personnel under confidentiality, is <strong>logged</strong>, <strong>limited to the minimum necessary</strong>, and does <strong>not</strong> use persistent access paths. Any artifacts generated for diagnosis (for example, traces or dumps) are <strong>encrypted</strong>, retained <strong>only as long as needed</strong> for the stated purpose, and then <strong>deleted</strong> per our retention schedule.
+</p>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>Runtime data stays in your environments.</strong> Disk, memory, and application payloads within your Instances (“<strong>Customer Runtime Data</strong>,” defined in Exhibit B) are <strong>not</strong> accessed or viewed by Morph personnel except (a) when you expressly request help and grant time-bound access, or (b) when required by law. Any such access is logged and limited to the minimum necessary.</li>
+</ul>
+
+<hr class="my-6 border-white/10"/>
+
+<h2 class="text-2xl md:text-3xl font-semibold mt-6 mb-3"><strong>Fees and payment</strong></h2>
+
+<p class="my-3">
+<strong>How fees work.</strong> Fees are based on your usage as shown in your dashboard or Order. Typical components may include but are not limited to compute, snapshot storage, and egress. <strong>Paused instances</strong> incur only storage charges. Unless your Order says otherwise, <strong>fees are non-refundable</strong>.
+</p>
+
+<p class="my-3">
+<strong>Price changes.</strong> We may update prices with <strong>30 days’ notice</strong> by email to <strong>Admin Contacts</strong> and a dashboard banner. If cumulative increases exceed <strong>15%</strong> in a rolling 12-month period, we will give <strong>60 days’ notice</strong>. If a change <strong>materially affects you</strong>, you may terminate impacted Services before it takes effect for a <strong>pro-rata refund</strong> of prepaid, unused fees. If a third-party provider imposes a surcharge or regulatory fee outside our control, we may adjust affected charges with as much advance notice as practicable.
+</p>
+
+<p class="my-3">
+<strong>Admin Contacts (designation).</strong> “<strong>Admin Contacts</strong>” means the notification email(s) designated in your account’s <strong>Billing</strong> settings. Notices sent to those associated with your Admin Contacts addresses are deemed received.
+</p>
+
+<p class="my-3">
+<strong>Taxes.</strong> Prices exclude taxes; you are responsible for applicable taxes other than our income taxes.
+</p>
+
+<hr class="my-6 border-white/10"/>
+
+<h2 class="text-2xl md:text-3xl font-semibold mt-6 mb-3"><strong>Data processing and security</strong></h2>
+
+<p class="my-3">
+<strong>Security commitments.</strong> We <strong>implement and maintain</strong> industry-standard administrative, technical, and physical safeguards appropriate to the risk, including: encryption in transit / at rest; multi-factor authentication for production access; least-privilege access; network segmentation and protective monitoring; secrets management; vulnerability management and timely patching; audit logging / monitoring; and incident response. We will notify you <strong>without undue delay</strong> after becoming aware of a personal-data breach affecting your data, with updates as information becomes available. Upon request, we’ll provide available third-party security attestations (e.g., SOC reports) under appropriate confidentiality.
+</p>
+
+<p class="my-3">
+<strong>Content-agnostic operations.</strong> Our standard monitoring uses control-plane and network service telemetry (for example, API success rates and resource saturation). We do <strong>not</strong> scan your file systems or memory, perform deep packet inspection, or otherwise analyze <strong>Customer Runtime Data</strong>. Snapshots you create are encrypted at rest and are not browsed by staff.
+</p>
+
+<p class="my-3">
+<strong>Support access.</strong> If you ask us to assist <strong>inside</strong> an Instance, we’ll use a <strong>break-glass</strong> path you enable, time-box access, and record the session. You can revoke access at any time.
+</p>
+
+<p class="my-3">
+Questions about data handling or security? Email <strong>support@morph.so</strong>.
+</p>
+
+<hr class="my-6 border-white/10"/>
+
+<h2 class="text-2xl md:text-3xl font-semibold mt-6 mb-3"><strong>Term and termination</strong></h2>
+
+<p class="my-3">
+These Terms start when you first access the Services and continue until ended.
+</p>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>Convenience (monthly):</strong> Either party may end a month-to-month plan effective the next billing cycle.</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>Breach:</strong> Either party may end these Terms for material breach if not cured within <strong>30 days</strong> after notice.</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>Insolvency:</strong> Either party may end if the other ceases operations or enters insolvency not dismissed within <strong>60 days</strong>.</li>
+</ul>
+
+<p class="my-3">
+We may <strong>suspend</strong> or limit access immediately if your use poses a security risk, harms the platform or others, creates legal risk, violates our AUP, is fraudulent, or for non-payment. We will notify you and work to restore access once resolved. If the suspension is <strong>not</strong> caused by your breach, we will <strong>equitably adjust or credit fees</strong> for the impacted period.
+</p>
+
+<p class="my-3">
+When the Services end, you must stop using them. Sections that by nature should survive (e.g., fees due, ownership, confidentiality, privacy/security links, disclaimers, limits, dispute resolution) will continue to apply.
+</p>
+
+<hr class="my-6 border-white/10"/>
+
+<p class="my-3">
+<strong>Warranty and support</strong>
+</p>
+
+<p class="my-3">
+<strong>Authority.</strong> Each party represents and warrants that it has the authority to enter into these Terms and will comply with applicable law.
+</p>
+
+<p class="my-3">
+<strong>Service warranty.</strong> When used by Customer in accordance with these Terms and the Documentation, the Services will perform, in all material respects, as described in the Documentation during the Term. <strong>Beta/preview</strong> features are provided <strong>AS IS</strong> and are excluded from this warranty.
+</p>
+
+<p class="my-3">
+<strong>Exclusive remedy.</strong> Customer’s <strong>sole and exclusive remedy</strong> for any breach of the foregoing warranty (or for any service shortfall) is, at Morph’s option:
+</p>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>correction or re-performance</strong> of the non-conforming portion of the Services within a reasonable time; or</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>issuance of a service credit</strong> (if credits are specified in Customer’s Order or any applicable SLA).</li>
+</ul>
+
+<p class="my-3">
+No other remedies (including refunds or damages) apply to warranty or availability issues.
+</p>
+
+<p class="my-3">
+<strong>Disclaimer.</strong> EXCEPT FOR THE LIMITED WARRANTY ABOVE, THE SERVICES (AND ANY RELATED MATERIALS OR THIRD-PARTY COMPONENTS) ARE PROVIDED <strong>“AS IS”</strong> AND <strong>“AS AVAILABLE,”</strong> WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING <strong>MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,</strong> AND <strong>NON-INFRINGEMENT.</strong> MORPH DOES NOT WARRANT THAT THE SERVICES WILL BE <strong>UNINTERRUPTED</strong> OR <strong>ERROR-FREE</strong> OR THAT THEY WILL OPERATE IN COMBINATION WITH NON-MORPH SYSTEMS EXCEPT AS EXPRESSLY DESCRIBED IN THE DOCUMENTATION.
+</p>
+
+<p class="my-3">
+<strong>Support.</strong> Support levels and response targets (if any) are as set forth in Customer’s Order or the Documentation. If a separate SLA is attached to the Order, that SLA controls with respect to any service-credit mechanics.
+</p>
+
+<hr class="my-6 border-white/10"/>
+
+<h2 class="text-2xl md:text-3xl font-semibold mt-6 mb-3"><strong>Disclaimers, limitations of liability and indemnification</strong></h2>
+
+<p class="my-3">
+<strong>Disclaimers.</strong> EXCEPT AS EXPRESSLY STATED IN THESE TERMS OR AN APPLICABLE ORDER OR SLA, THE SERVICES (INCLUDING THIRD-PARTY SERVICES AND OUTPUTS) ARE PROVIDED “AS IS” AND “AS AVAILABLE,” WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. WE DO NOT WARRANT UNINTERRUPTED OR ERROR-FREE SERVICE OR THE ACCURACY/COMPLETENESS OF MATERIALS/OUTPUTS. WE MAY CHANGE THE SERVICES AT ANY TIME.
+</p>
+
+<p class="my-3">
+<strong>Limitations of liability.</strong> WE AND YOU WILL NOT BE LIABLE FOR INDIRECT, SPECIAL, INCIDENTAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES (INCLUDING LOST PROFITS, LOST DATA, OR BUSINESS INTERRUPTION), EVEN IF ADVISED. EXCEPT FOR:
+</p>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li>IP indemnity obligations;</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li>breach of confidentiality or data-security obligations;</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li>fees you owe; or</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li>willful misconduct or gross negligence;  </li>
+</ul>
+<p class="my-3">
+  EACH PARTY’S TOTAL LIABILITY IS CAPPED AT THE AMOUNTS <strong>PAID OR PAYABLE BY YOU TO MORPH IN THE 12 MONTHS</strong> BEFORE THE EVENT GIVING RISE TO LIABILITY. THESE LIMITS ARE A FUNDAMENTAL BASIS OF OUR BARGAIN AND APPLY TO THE MAXIMUM EXTENT PERMITTED BY LAW.
+</p>
+
+<p class="my-3">
+<strong>Indemnification.</strong>
+</p>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>By you.</strong> You will defend and indemnify us against third-party claims and related losses arising from your breach of these Terms or the AUP, your use of the Services (including your code / data / outputs), your content, your violation of law, or your gross negligence or willful misconduct.</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>By us (IP).</strong> We will defend and indemnify you against third-party claims that the Services as we provide them infringe a patent, copyright, or trade secret, and will pay final damages and reasonable attorneys’ fees. This does <strong>not</strong> apply to claims arising from your content/code, combinations / modifications we did not provide, your use contrary to documentation, or Third-Party Models unless your Order <strong>expressly</strong> passes through a provider’s indemnity. We may procure rights, modify, or replace the impacted functionality; if none is commercially reasonable, we may terminate the affected feature and refund prepaid, unused fees.</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>Process.</strong> The indemnified party must promptly notify the other, reasonably cooperate, and allow control of the defense and settlement (no settlement imposing non-monetary obligations or admissions without written consent).</li>
+</ul>
+
+<hr class="my-6 border-white/10"/>
+
+<h2 class="text-2xl md:text-3xl font-semibold mt-6 mb-3"><strong>Arbitration and class action waiver</strong></h2>
+
+<p class="my-3">
+<strong>Arbitration.</strong> Except for small-claims disputes and claims for injunctive relief (for example, misuse of confidential or Non-Public Information), disputes will be resolved by confidential, binding arbitration administered by <strong>JAMS</strong> in <strong>San Francisco, California</strong>, before one arbitrator, under its commercial rules. California law governs these Terms, without regard to conflict-of-law rules. Judgment may be entered in any court with jurisdiction.
+</p>
+
+<p class="my-3">
+<strong>Opt-out right.</strong> You may opt out of arbitration by emailing <strong>ops@morph.so</strong> within <strong>30 days</strong> of first using the Services. Include your name, the email for your account, and a clear statement that you opt out of arbitration. Opting out does not affect your ability to use the Services.
+</p>
+
+<p class="my-3">
+<strong>Class action waiver.</strong> TO THE FULLEST EXTENT PERMITTED BY LAW, YOU AND MORPH AGREE THAT EACH MAY BRING CLAIMS AGAINST THE OTHER ONLY IN YOUR OR ITS INDIVIDUAL CAPACITY AND <strong>NOT</strong> AS A PLAINTIFF OR CLASS MEMBER IN ANY PURPORTED CLASS OR REPRESENTATIVE PROCEEDING. CLASS ARBITRATIONS AND CLASS ACTIONS ARE NOT ALLOWED.
+</p>
+
+<hr class="my-6 border-white/10"/>
+
+<h2 class="text-2xl md:text-3xl font-semibold mt-6 mb-3"><strong>General provisions</strong></h2>
+
+<p class="my-3">
+<strong>Confidentiality.</strong> Each party may receive confidential information of the other. The receiving party will protect it using at least the same degree of care it uses for its own similar information (not less than reasonable care), use it only to provide or receive the Services, and disclose it only to personnel/contractors under confidentiality and with a need to know. Exceptions apply for information that is already known without obligation, independently developed, lawfully received from a third party, or public through no fault. On request, return or delete confidential information (standard backup/legal-hold exceptions apply). Unauthorized use of <strong>Non-Public Information</strong> or <strong>Customer Runtime Data</strong> for competing services may cause irreparable harm; Morph may seek <strong>injunctive relief</strong>.
+</p>
+
+<p class="my-3">
+<strong>Publicity.</strong> Customer hereby authorizes <strong>Morph Labs, Inc.</strong> (“Morph”) to identify Customer as a Morph customer and to use Customer’s name, mark, and / or logo on Morph’s website and in Morph’s marketing materials in connection with such identification. In addition, Customer agrees to participate in reasonable publicity activities, such as a case study, customer quote, and joint press release, as further described in the applicable Order or Service Description.
+</p>
+
+<p class="my-3">
+<strong>Acceptable Use.</strong> See Exhibit A.
+</p>
+
+<p class="my-3">
+<strong>Technical Terms.</strong> Definitions (for example, <strong>Non-Public Information</strong>, <strong>Customer Runtime Data</strong>), Snapshot / Instance specs, per-second billing detail, and API limits are in <strong>Exhibit B</strong>.
+</p>
+
+<p class="my-3">
+<strong>Changes to these Terms.</strong> We may update these Terms. We will update the “Last Revised” date and provide <strong>reasonable notice</strong> of material changes—email to your <strong>Admin Contacts</strong> and a dashboard banner at least <strong>15 days</strong> before the effective date (not including urgent security or legal fixes). If a change materially harms you, you may terminate impacted Services within 30 days for a pro-rata refund of prepaid, unused fees.
+</p>
+
+<p class="my-3">
+<strong>Assignment.</strong> You may not assign these Terms without our consent, except to an affiliate or as part of a merger, acquisition, or sale of substantially all assets; assignments to a direct competitor of the non-assigning party require prior written consent not unreasonably withheld.
+</p>
+
+<p class="my-3">
+<strong>Relationship; entire agreement; severability; waiver.</strong> We are independent contractors. These Terms (plus any Order and Exhibits) are the entire agreement and supersede prior discussions. If a provision is unenforceable, we will modify it to achieve its intent as much as the law allows; the rest remains in effect. Waivers must be in writing.
+</p>
+
+<p class="my-3">
+<strong>Trade controls (AI-specific).</strong> You will comply with export, re-export, and sanctions laws (for example, OFAC, EAR). You will not export / re-export the Services, Snapshots, Instance artifacts, encryption keys, or technical documentation to prohibited destinations, end-users, or end-uses (including military end-use restrictions) without authorization, and you will not use the Services for prohibited AI end-uses (for example, development of WMDs or unlawful mass surveillance targeting protected classes). You represent you are not a restricted party and not 50%+ owned/controlled by such party.
+</p>
+
+<p class="my-3">
+<strong>California residents.</strong> Under California Civil Code § 1789.3, you may contact the Complaint Assistance Unit of the Division of Consumer Services of the California Department of Consumer Affairs in writing at 1625 North Market Blvd., Suite N-112, Sacramento, CA 95834, or by telephone at (800) 952-5210.
+</p>
+
+<hr class="my-6 border-white/10"/>
+
+<h2 class="text-2xl md:text-3xl font-semibold mt-6 mb-3"><strong>How to contact us</strong></h2>
+
+<p class="my-3">
+Questions about these Terms or the Services?  
+<br/>
+<strong>Email</strong>: Ops@morph.so  
+<br/>
+<strong>Address:</strong> Morph Labs, Inc., 2565 3rd Street, San Francisco, CA 94107, USA
+</p>
+
+<hr class="my-6 border-white/10"/>
+
+<h1 class="text-3xl md:text-4xl font-semibold mt-8 mb-4"><strong>Exhibit A — Acceptable Use Policy (AUP)</strong></h1>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>Don’t</strong> use the Services for illegal purposes or to violate others’ rights.</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>Don’t</strong> upload regulated/sensitive data without a signed addendum.</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>Don’t</strong> spam, phish, or distribute malware.</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>Don’t</strong> scrape outside documented APIs or exceed rate limits; don’t overload our systems.</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>Don’t</strong> reverse engineer the Services (except where this restriction is prohibited by law).</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>Don’t</strong> use <strong>Non-Public Information</strong> to build a directly competitive ; we may seek injunctive relief.</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>Don’t</strong> publish public benchmarks without our prior written consent (internal testing is fine).</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>Don’t</strong> send us secrets in support tickets unless strictly necessary; redact where possible.</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>Don’t</strong> grant persistent administrative access; when support access is needed, use the time-bound path we provide and revoke when done.</li>
+</ul>
+
+<p class="my-3">
+We may investigate suspected violations and may suspend or terminate access for AUP breaches.
+</p>
+
+<hr class="my-6 border-white/10"/>
+
+<h1 class="text-3xl md:text-4xl font-semibold mt-8 mb-4"><strong>Exhibit B — Technical Terms</strong></h1>
+
+<p class="my-3">
+<strong>Non-Public Information.</strong> Confidential and other non-public performance, architectural, scheduler, or snapshot / instance lineage metadata, API traces, or implementation details of the Services not generally known outside Morph.
+</p>
+
+<p class="my-3">
+<strong>Customer Runtime Data.</strong> Data at rest or in memory within your running Instances (including file systems, process memory, and application payloads), as distinct from control-plane metadata and service telemetry.
+</p>
+
+<p class="my-3">
+<strong>Snapshot / Instance specs.</strong>
+</p>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>Snapshot:</strong> full-state VM checkpoint (RAM / CPU / FS / kernel).</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li><strong>Instance:</strong> running environment derived from a Snapshot; near-instant resume under documented conditions.</li>
+</ul>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li>Snapshots you create are encrypted and stored without Morph staff browsing of contents. Instance operations rely on lineage metadata; routine operations don’t require viewing in-VM data.</li>
+</ul>
+
+<p class="my-3">
+<strong>Billing detail.</strong>
+</p>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li>Per-second compute; per-operation Snapshot / Instance charges; snapshot / lineage storage (GB-hour); egress. Paused instances incur only snapshot / storage charges. Pass-through costs may apply if third-party surcharges or regulatory fees are imposed.</li>
+</ul>
+
+<p class="my-3">
+<strong>API limits.</strong>
+</p>
+
+<ul class="list-disc pl-6 my-3 space-y-1">
+<li>Auth, rate limits, concurrency, and region availability per documentation. Abuse or overages may trigger throttling or suspension.</li>
+</ul>
+
+</article></div></main></div><script>((storageKey2, restoreKey) => {
+    if (!window.history.state || !window.history.state.key) {
+      let key = Math.random().toString(32).slice(2);
+      window.history.replaceState({ key }, "");
+    }
+    try {
+      let positions = JSON.parse(sessionStorage.getItem(storageKey2) || "{}");
+      let storedY = positions[restoreKey || window.history.state.key];
+      if (typeof storedY === "number") {
+        window.scrollTo(0, storedY);
+      }
+    } catch (error) {
+      console.error(error);
+      sessionStorage.removeItem(storageKey2);
+    }
+  })("react-router-scroll-positions", null)</script><script>window.__reactRouterContext = {"basename":"/web","future":{"unstable_optimizeDeps":false,"v8_passThroughRequests":false,"v8_trailingSlashAwareDataRequests":false,"unstable_previewServerPrerendering":false,"v8_middleware":false,"v8_splitRouteModules":false,"v8_viteEnvironmentApi":false},"routeDiscovery":{"mode":"lazy","manifestPath":"/__manifest"},"ssr":true,"isSpaMode":false};window.__reactRouterContext.stream = new ReadableStream({start(controller){window.__reactRouterContext.streamController = controller;}}).pipeThrough(new TextEncoderStream());</script><script type="module" async="">;
+import * as route0 from "/web/assets/root-TZQ099Up.js";
+import * as route1 from "/web/assets/legal.terms-of-service-CDKH7M5F.js";
+  window.__reactRouterManifest = {
+  "entry": {
+    "module": "/web/assets/entry.client-BzfbxZ2P.js",
+    "imports": [
+      "/web/assets/jsx-runtime-Bq1fMrfD.js",
+      "/web/assets/chunk-BV7QT456-PZER0hZA.js",
+      "/web/assets/index-DtDjxaiz.js"
+    ],
+    "css": []
+  },
+  "routes": {
+    "root": {
+      "id": "root",
+      "path": "",
+      "hasAction": false,
+      "hasLoader": true,
+      "hasClientAction": false,
+      "hasClientLoader": false,
+      "hasClientMiddleware": false,
+      "hasDefaultExport": true,
+      "hasErrorBoundary": true,
+      "module": "/web/assets/root-TZQ099Up.js",
+      "imports": [
+        "/web/assets/jsx-runtime-Bq1fMrfD.js",
+        "/web/assets/chunk-BV7QT456-PZER0hZA.js",
+        "/web/assets/index-DtDjxaiz.js",
+        "/web/assets/templatesEntry-6fGkGV_M.js",
+        "/web/assets/InstanceSnapshotContext-CgQjjyh6.js",
+        "/web/assets/factory-35vKKP3C.js",
+        "/web/assets/BackendOrganizationProvider-DeWHPAi5.js",
+        "/web/assets/devboxesClaimRedirect-ChbXebl0.js",
+        "/web/assets/devboxesAuthRedirect-CDXCHbA4.js",
+        "/web/assets/devboxesWorkflowLaunch-CPtnnHJ1.js",
+        "/web/assets/promoOnboarding-_h2rdai2.js",
+        "/web/assets/chunk-3EQWAEPK-Bvq2GMcc.js",
+        "/web/assets/get-contrast-color-Bmdce98R.js",
+        "/web/assets/use-isomorphic-effect-DirpxmnC.js",
+        "/web/assets/CloseButton-DiyaGNFw.js",
+        "/web/assets/Loader-DOmAvAHC.js",
+        "/web/assets/use-reduced-motion-BKE-d6Yh.js",
+        "/web/assets/objectWithoutPropertiesLoose-zPjwsi3p.js",
+        "/web/assets/OptionalPortal-d7xyKesO.js",
+        "/web/assets/Combination-GQMbGqby.js",
+        "/web/assets/index-DRgq4caK.js",
+        "/web/assets/env-DgERBwag.js",
+        "/web/assets/polymorphic-factory-B7QOYIln.js"
+      ],
+      "css": [
+        "/web/assets/root-Bth_0xoO.css"
+      ]
+    },
+    "routes/legal.terms-of-service": {
+      "id": "routes/legal.terms-of-service",
+      "parentId": "root",
+      "path": "legal/terms-of-service",
+      "hasAction": false,
+      "hasLoader": true,
+      "hasClientAction": false,
+      "hasClientLoader": false,
+      "hasClientMiddleware": false,
+      "hasDefaultExport": true,
+      "hasErrorBoundary": false,
+      "module": "/web/assets/legal.terms-of-service-CDKH7M5F.js",
+      "imports": [
+        "/web/assets/chunk-BV7QT456-PZER0hZA.js",
+        "/web/assets/jsx-runtime-Bq1fMrfD.js"
+      ],
+      "css": []
+    },
+    "routes/_index": {
+      "id": "routes/_index",
+      "parentId": "root",
+      "index": true,
+      "hasAction": false,
+      "hasLoader": false,
+      "hasClientAction": false,
+      "hasClientLoader": false,
+      "hasClientMiddleware": false,
+      "hasDefaultExport": true,
+      "hasErrorBoundary": false,
+      "module": "/web/assets/_index-DquRIoZU.js",
+      "imports": [
+        "/web/assets/chunk-BV7QT456-PZER0hZA.js",
+        "/web/assets/jsx-runtime-Bq1fMrfD.js",
+        "/web/assets/index-CvR8OW91.js",
+        "/web/assets/index-DRgq4caK.js",
+        "/web/assets/chunk-3EQWAEPK-Bvq2GMcc.js",
+        "/web/assets/index-DtDjxaiz.js",
+        "/web/assets/useHydrationSafeReducedMotion-eCZ7rwL8.js",
+        "/web/assets/PixelCard-DyihJ-RJ.js",
+        "/web/assets/proxy-DEP3NPBx.js",
+        "/web/assets/env-DgERBwag.js",
+        "/web/assets/MorphLogo-CX5VYf1z.js",
+        "/web/assets/Group-DTPWHYHp.js",
+        "/web/assets/factory-35vKKP3C.js",
+        "/web/assets/polymorphic-factory-B7QOYIln.js",
+        "/web/assets/DecryptedText-DTvjzA0F.js",
+        "/web/assets/devboxesClaimRedirect-ChbXebl0.js",
+        "/web/assets/devboxesAuthRedirect-CDXCHbA4.js",
+        "/web/assets/templatesEntry-6fGkGV_M.js",
+        "/web/assets/devboxesWorkflowLaunch-CPtnnHJ1.js",
+        "/web/assets/promoOnboarding-_h2rdai2.js"
+      ],
+      "css": []
+    }
+  },
+  "url": "/web/assets/manifest-14e50534.js",
+  "version": "14e50534"
+};
+  window.__reactRouterRouteModules = {"root":route0,"routes/legal.terms-of-service":route1};
+
+import("/web/assets/entry.client-BzfbxZ2P.js");</script><!--$--><script>window.__reactRouterContext.streamController.enqueue("[{\"_1\":2,\"_3\":-5,\"_4\":-5},\"loaderData\",{\"_5\":6,\"_7\":8},\"actionData\",\"errors\",\"root\",{\"_11\":12},\"routes/legal.terms-of-service\",{\"_9\":10},\"content\",\"# **Terms of Service**\\n\\n**Last Revised:** October 23, 2025\\n\\nThese Terms of Service (“**Terms**”) govern your use of our services including **Morph Cloud** and **Infinibranch**, our cloud platform (the “**Services**”).\\n\\nBy using our Services, you agree to these Terms. If you’re using the Services for an organization, you’re agreeing to these Terms on behalf of that organization.\\n\\n**ARBITRATION NOTICE:** EXCEPT FOR LIMITED TYPES OF DISPUTES DESCRIBED BELOW, DISPUTES BETWEEN YOU AND MORPH WILL BE RESOLVED BY BINDING, INDIVIDUAL ARBITRATION, AND YOU WAIVE YOUR RIGHT TO A JURY TRIAL AND TO PARTICIPATE IN A CLASS ACTION. YOU CAN OPT OUT OF ARBITRATION AS DESCRIBED IN “ARBITRATION AND CLASS ACTION WAIVER.”\\n\\n---\\n\\n## **Who may use the services**\\n\\nYou must be at least **18 years old** and have the legal capacity to enter into these Terms. The Services are not available in countries subject to U.S. trade restrictions. By using the Services, you represent and warrant that you meet these requirements.\\n\\n---\\n\\n## **Rights we grant you**\\n\\nWe grant you a limited right to access and use the Services for lawful business purposes, including:\\n\\n* Development and testing\\n\\n* CI / CD workflows\\n\\n* Data-science workloads\\n\\n* Production applications\\n\\nThis right is **non-exclusive**, **non-transferable**, **non-sublicensable**, and subject to these Terms and our **Acceptable Use Policy** (Exhibit A).\\n\\nYou may interact with the Services via our APIs / SDKs / CLI. You may create VM **Snapshots** and branch new running environments (“**Instances**”) from them as well as consume related services provided through **Morph Cloud**.\\n\\nWe may improve or change features. During any committed billing term, we will not **materially reduce core functionality** without either an equivalent workaround or your right to terminate the affected feature with a **pro-rata refund** of prepaid, unused fees.\\n\\n---\\n\\n## **Restrictions on your use of the services**\\n\\nUse the Services responsibly. You agree not to:\\n\\n* **Break the law** or violate others’ rights.\\n\\n* **Access** accounts/systems you’re not authorized to access; **bypass** or **interfere** with security or access controls.\\n\\n* **Upload regulated/sensitive data** (for example, PHI, children’s data, cardholder data, export-controlled technical data) **without a signed addendum** that permits it.\\n\\n* **Spam**, **phish**, or distribute **malware**.\\n\\n* **Scrape** outside documented APIs or exceed rate limits; **overload** our systems.\\n\\n* **Reverse engineer** the Services (except where this restriction is prohibited by law).\\n\\n* Use **Non-Public Information** to build a **directly competitive snapshot / branching cloud**; Morph may seek **injunctive relief**.\\n\\n* **Publish public benchmarks** without our prior written consent (internal testing is fine).\\n\\n* **Misrepresent** machine-generated output as “human-generated.”\\n\\nWe may monitor **control-plane** usage for trust and safety and may suspend or terminate access to protect customers, the platform, or to comply with law. We do **not** monitor the **contents** of your Instances.\\n\\n---\\n\\n## **Ownership and content**\\n\\n* **Our platform.** We and our licensors own the Services, including the **Infinibranch** snapshot / branch engine, schedulers, orchestration, and related software and documentation.\\n\\n* **Usage data.** We may collect telemetry about use and performance (for example, API calls, resource consumption, errors). We may use and share aggregated / de-identified analytics, but not in a way that identifies you or reveals your trade secrets, and not to compete with your products.\\n\\n*  **How we operate the platform.** The Services run primarily at the **control-plane** level. In the ordinary course, we act on orchestration signals and service health metrics and do **not** inspect the contents of your running environments.  \\n  **Limited exceptions.** We may access or inspect **Customer Runtime Data** (as defined in Exhibit B) **only**:  \\n* when **you expressly request support** and enable a **time-bound** access path,\\n\\n* to **investigate, mitigate, or confirm a suspected security incident** affecting the Services or your Instances, or\\n\\n* **when required by law** or valid process.\\n\\nAny such access is performed by authorized personnel under confidentiality, is **logged**, **limited to the minimum necessary**, and does **not** use persistent access paths. Any artifacts generated for diagnosis (for example, traces or dumps) are **encrypted**, retained **only as long as needed** for the stated purpose, and then **deleted** per our retention schedule.\\n\\n* **Runtime data stays in your environments.** Disk, memory, and application payloads within your Instances (“**Customer Runtime Data**,” defined in Exhibit B) are **not** accessed or viewed by Morph personnel except (a) when you expressly request help and grant time-bound access, or (b) when required by law. Any such access is logged and limited to the minimum necessary.\\n\\n---\\n\\n## **Fees and payment**\\n\\n**How fees work.** Fees are based on your usage as shown in your dashboard or Order. Typical components may include but are not limited to compute, snapshot storage, and egress. **Paused instances** incur only storage charges. Unless your Order says otherwise, **fees are non-refundable**.\\n\\n**Price changes.** We may update prices with **30 days’ notice** by email to **Admin Contacts** and a dashboard banner. If cumulative increases exceed **15%** in a rolling 12-month period, we will give **60 days’ notice**. If a change **materially affects you**, you may terminate impacted Services before it takes effect for a **pro-rata refund** of prepaid, unused fees. If a third-party provider imposes a surcharge or regulatory fee outside our control, we may adjust affected charges with as much advance notice as practicable.\\n\\n**Admin Contacts (designation).** “**Admin Contacts**” means the notification email(s) designated in your account’s **Billing** settings. Notices sent to those associated with your Admin Contacts addresses are deemed received.\\n\\n**Taxes.** Prices exclude taxes; you are responsible for applicable taxes other than our income taxes.\\n\\n---\\n\\n## **Data processing and security**\\n\\n**Security commitments.** We **implement and maintain** industry-standard administrative, technical, and physical safeguards appropriate to the risk, including: encryption in transit / at rest; multi-factor authentication for production access; least-privilege access; network segmentation and protective monitoring; secrets management; vulnerability management and timely patching; audit logging / monitoring; and incident response. We will notify you **without undue delay** after becoming aware of a personal-data breach affecting your data, with updates as information becomes available. Upon request, we’ll provide available third-party security attestations (e.g., SOC reports) under appropriate confidentiality.\\n\\n**Content-agnostic operations.** Our standard monitoring uses control-plane and network service telemetry (for example, API success rates and resource saturation). We do **not** scan your file systems or memory, perform deep packet inspection, or otherwise analyze **Customer Runtime Data**. Snapshots you create are encrypted at rest and are not browsed by staff.\\n\\n**Support access.** If you ask us to assist **inside** an Instance, we’ll use a **break-glass** path you enable, time-box access, and record the session. You can revoke access at any time.\\n\\nQuestions about data handling or security? Email **support@morph.so**.\\n\\n---\\n\\n## **Term and termination**\\n\\nThese Terms start when you first access the Services and continue until ended.\\n\\n* **Convenience (monthly):** Either party may end a month-to-month plan effective the next billing cycle.\\n\\n* **Breach:** Either party may end these Terms for material breach if not cured within **30 days** after notice.\\n\\n* **Insolvency:** Either party may end if the other ceases operations or enters insolvency not dismissed within **60 days**.\\n\\nWe may **suspend** or limit access immediately if your use poses a security risk, harms the platform or others, creates legal risk, violates our AUP, is fraudulent, or for non-payment. We will notify you and work to restore access once resolved. If the suspension is **not** caused by your breach, we will **equitably adjust or credit fees** for the impacted period.\\n\\nWhen the Services end, you must stop using them. Sections that by nature should survive (e.g., fees due, ownership, confidentiality, privacy/security links, disclaimers, limits, dispute resolution) will continue to apply.\\n\\n---\\n\\n**Warranty and support**\\n\\n**Authority.** Each party represents and warrants that it has the authority to enter into these Terms and will comply with applicable law.\\n\\n**Service warranty.** When used by Customer in accordance with these Terms and the Documentation, the Services will perform, in all material respects, as described in the Documentation during the Term. **Beta/preview** features are provided **AS IS** and are excluded from this warranty.\\n\\n**Exclusive remedy.** Customer’s **sole and exclusive remedy** for any breach of the foregoing warranty (or for any service shortfall) is, at Morph’s option:\\n\\n* **correction or re-performance** of the non-conforming portion of the Services within a reasonable time; or\\n\\n* **issuance of a service credit** (if credits are specified in Customer’s Order or any applicable SLA).\\n\\nNo other remedies (including refunds or damages) apply to warranty or availability issues.\\n\\n**Disclaimer.** EXCEPT FOR THE LIMITED WARRANTY ABOVE, THE SERVICES (AND ANY RELATED MATERIALS OR THIRD-PARTY COMPONENTS) ARE PROVIDED **“AS IS”** AND **“AS AVAILABLE,”** WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING **MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,** AND **NON-INFRINGEMENT.** MORPH DOES NOT WARRANT THAT THE SERVICES WILL BE **UNINTERRUPTED** OR **ERROR-FREE** OR THAT THEY WILL OPERATE IN COMBINATION WITH NON-MORPH SYSTEMS EXCEPT AS EXPRESSLY DESCRIBED IN THE DOCUMENTATION.\\n\\n**Support.** Support levels and response targets (if any) are as set forth in Customer’s Order or the Documentation. If a separate SLA is attached to the Order, that SLA controls with respect to any service-credit mechanics.\\n\\n---\\n\\n## **Disclaimers, limitations of liability and indemnification**\\n\\n**Disclaimers.** EXCEPT AS EXPRESSLY STATED IN THESE TERMS OR AN APPLICABLE ORDER OR SLA, THE SERVICES (INCLUDING THIRD-PARTY SERVICES AND OUTPUTS) ARE PROVIDED “AS IS” AND “AS AVAILABLE,” WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. WE DO NOT WARRANT UNINTERRUPTED OR ERROR-FREE SERVICE OR THE ACCURACY/COMPLETENESS OF MATERIALS/OUTPUTS. WE MAY CHANGE THE SERVICES AT ANY TIME.\\n\\n**Limitations of liability.** WE AND YOU WILL NOT BE LIABLE FOR INDIRECT, SPECIAL, INCIDENTAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES (INCLUDING LOST PROFITS, LOST DATA, OR BUSINESS INTERRUPTION), EVEN IF ADVISED. EXCEPT FOR:\\n\\n* IP indemnity obligations;\\n\\n* breach of confidentiality or data-security obligations;\\n\\n* fees you owe; or\\n\\n* willful misconduct or gross negligence;  \\n  EACH PARTY’S TOTAL LIABILITY IS CAPPED AT THE AMOUNTS **PAID OR PAYABLE BY YOU TO MORPH IN THE 12 MONTHS** BEFORE THE EVENT GIVING RISE TO LIABILITY. THESE LIMITS ARE A FUNDAMENTAL BASIS OF OUR BARGAIN AND APPLY TO THE MAXIMUM EXTENT PERMITTED BY LAW.\\n\\n**Indemnification.**\\n\\n* **By you.** You will defend and indemnify us against third-party claims and related losses arising from your breach of these Terms or the AUP, your use of the Services (including your code / data / outputs), your content, your violation of law, or your gross negligence or willful misconduct.\\n\\n* **By us (IP).** We will defend and indemnify you against third-party claims that the Services as we provide them infringe a patent, copyright, or trade secret, and will pay final damages and reasonable attorneys’ fees. This does **not** apply to claims arising from your content/code, combinations / modifications we did not provide, your use contrary to documentation, or Third-Party Models unless your Order **expressly** passes through a provider’s indemnity. We may procure rights, modify, or replace the impacted functionality; if none is commercially reasonable, we may terminate the affected feature and refund prepaid, unused fees.\\n\\n* **Process.** The indemnified party must promptly notify the other, reasonably cooperate, and allow control of the defense and settlement (no settlement imposing non-monetary obligations or admissions without written consent).\\n\\n---\\n\\n## **Arbitration and class action waiver**\\n\\n**Arbitration.** Except for small-claims disputes and claims for injunctive relief (for example, misuse of confidential or Non-Public Information), disputes will be resolved by confidential, binding arbitration administered by **JAMS** in **San Francisco, California**, before one arbitrator, under its commercial rules. California law governs these Terms, without regard to conflict-of-law rules. Judgment may be entered in any court with jurisdiction.\\n\\n**Opt-out right.** You may opt out of arbitration by emailing **ops@morph.so** within **30 days** of first using the Services. Include your name, the email for your account, and a clear statement that you opt out of arbitration. Opting out does not affect your ability to use the Services.\\n\\n**Class action waiver.** TO THE FULLEST EXTENT PERMITTED BY LAW, YOU AND MORPH AGREE THAT EACH MAY BRING CLAIMS AGAINST THE OTHER ONLY IN YOUR OR ITS INDIVIDUAL CAPACITY AND **NOT** AS A PLAINTIFF OR CLASS MEMBER IN ANY PURPORTED CLASS OR REPRESENTATIVE PROCEEDING. CLASS ARBITRATIONS AND CLASS ACTIONS ARE NOT ALLOWED.\\n\\n---\\n\\n## **General provisions**\\n\\n**Confidentiality.** Each party may receive confidential information of the other. The receiving party will protect it using at least the same degree of care it uses for its own similar information (not less than reasonable care), use it only to provide or receive the Services, and disclose it only to personnel/contractors under confidentiality and with a need to know. Exceptions apply for information that is already known without obligation, independently developed, lawfully received from a third party, or public through no fault. On request, return or delete confidential information (standard backup/legal-hold exceptions apply). Unauthorized use of **Non-Public Information** or **Customer Runtime Data** for competing services may cause irreparable harm; Morph may seek **injunctive relief**.\\n\\n**Publicity.** Customer hereby authorizes **Morph Labs, Inc.** (“Morph”) to identify Customer as a Morph customer and to use Customer’s name, mark, and / or logo on Morph’s website and in Morph’s marketing materials in connection with such identification. In addition, Customer agrees to participate in reasonable publicity activities, such as a case study, customer quote, and joint press release, as further described in the applicable Order or Service Description.\\n\\n**Acceptable Use.** See Exhibit A.\\n\\n**Technical Terms.** Definitions (for example, **Non-Public Information**, **Customer Runtime Data**), Snapshot / Instance specs, per-second billing detail, and API limits are in **Exhibit B**.\\n\\n**Changes to these Terms.** We may update these Terms. We will update the “Last Revised” date and provide **reasonable notice** of material changes—email to your **Admin Contacts** and a dashboard banner at least **15 days** before the effective date (not including urgent security or legal fixes). If a change materially harms you, you may terminate impacted Services within 30 days for a pro-rata refund of prepaid, unused fees.\\n\\n**Assignment.** You may not assign these Terms without our consent, except to an affiliate or as part of a merger, acquisition, or sale of substantially all assets; assignments to a direct competitor of the non-assigning party require prior written consent not unreasonably withheld.\\n\\n**Relationship; entire agreement; severability; waiver.** We are independent contractors. These Terms (plus any Order and Exhibits) are the entire agreement and supersede prior discussions. If a provision is unenforceable, we will modify it to achieve its intent as much as the law allows; the rest remains in effect. Waivers must be in writing.\\n\\n**Trade controls (AI-specific).** You will comply with export, re-export, and sanctions laws (for example, OFAC, EAR). You will not export / re-export the Services, Snapshots, Instance artifacts, encryption keys, or technical documentation to prohibited destinations, end-users, or end-uses (including military end-use restrictions) without authorization, and you will not use the Services for prohibited AI end-uses (for example, development of WMDs or unlawful mass surveillance targeting protected classes). You represent you are not a restricted party and not 50%+ owned/controlled by such party.\\n\\n**California residents.** Under California Civil Code § 1789.3, you may contact the Complaint Assistance Unit of the Division of Consumer Services of the California Department of Consumer Affairs in writing at 1625 North Market Blvd., Suite N-112, Sacramento, CA 95834, or by telephone at (800) 952-5210.\\n\\n---\\n\\n## **How to contact us**\\n\\nQuestions about these Terms or the Services?  \\n**Email**: Ops@morph.so  \\n**Address:** Morph Labs, Inc., 2565 3rd Street, San Francisco, CA 94107, USA\\n\\n---\\n\\n# **Exhibit A — Acceptable Use Policy (AUP)**\\n\\n* **Don’t** use the Services for illegal purposes or to violate others’ rights.\\n\\n* **Don’t** upload regulated/sensitive data without a signed addendum.\\n\\n* **Don’t** spam, phish, or distribute malware.\\n\\n* **Don’t** scrape outside documented APIs or exceed rate limits; don’t overload our systems.\\n\\n* **Don’t** reverse engineer the Services (except where this restriction is prohibited by law).\\n\\n* **Don’t** use **Non-Public Information** to build a directly competitive ; we may seek injunctive relief.\\n\\n* **Don’t** publish public benchmarks without our prior written consent (internal testing is fine).\\n\\n* **Don’t** send us secrets in support tickets unless strictly necessary; redact where possible.\\n\\n* **Don’t** grant persistent administrative access; when support access is needed, use the time-bound path we provide and revoke when done.\\n\\nWe may investigate suspected violations and may suspend or terminate access for AUP breaches.\\n\\n---\\n\\n# **Exhibit B — Technical Terms**\\n\\n**Non-Public Information.** Confidential and other non-public performance, architectural, scheduler, or snapshot / instance lineage metadata, API traces, or implementation details of the Services not generally known outside Morph.\\n\\n**Customer Runtime Data.** Data at rest or in memory within your running Instances (including file systems, process memory, and application payloads), as distinct from control-plane metadata and service telemetry.\\n\\n**Snapshot / Instance specs.**\\n\\n* **Snapshot:** full-state VM checkpoint (RAM / CPU / FS / kernel).\\n\\n* **Instance:** running environment derived from a Snapshot; near-instant resume under documented conditions.\\n\\n* Snapshots you create are encrypted and stored without Morph staff browsing of contents. Instance operations rely on lineage metadata; routine operations don’t require viewing in-VM data.\\n\\n**Billing detail.**\\n\\n* Per-second compute; per-operation Snapshot / Instance charges; snapshot / lineage storage (GB-hour); egress. Paused instances incur only snapshot / storage charges. Pass-through costs may apply if third-party surcharges or regulatory fees are imposed.\\n\\n**API limits.**\\n\\n* Auth, rate limits, concurrency, and region availability per documentation. Abuse or overages may trigger throttling or suspension.\\n\\n\",\"clerkState\",{\"_13\":14},\"__internal_clerk_state\",{\"_15\":16,\"_17\":18,\"_19\":20,\"_21\":20,\"_22\":23,\"_24\":20,\"_25\":20,\"_26\":20,\"_27\":20,\"_28\":29,\"_30\":23,\"_31\":23},\"__clerk_ssr_state\",{\"_41\":42,\"_43\":-5,\"_44\":-5,\"_45\":-5,\"_46\":-5,\"_47\":-5,\"_48\":-5,\"_49\":-5,\"_50\":-5,\"_51\":-5,\"_52\":-5,\"_33\":23},\"__publishableKey\",\"pk_live_Y2xlcmsuY2xvdWQubW9ycGguc28k\",\"__proxyUrl\",\"\",\"__domain\",\"__isSatellite\",false,\"__signInUrl\",\"__signUpUrl\",\"__afterSignInUrl\",\"__afterSignUpUrl\",\"__clerk_debug\",{\"_32\":23,\"_33\":23,\"_34\":20,\"_35\":36,\"_37\":20,\"_38\":18,\"_39\":23,\"_40\":20},\"__telemetryDisabled\",\"__telemetryDebug\",\"isSignedIn\",\"isAuthenticated\",\"proxyUrl\",\"reason\",\"session-token-and-uat-missing\",\"message\",\"publishableKey\",\"isSatellite\",\"domain\",\"tokenType\",\"session_token\",\"sessionClaims\",\"sessionId\",\"sessionStatus\",\"userId\",\"actor\",\"orgId\",\"orgRole\",\"orgSlug\",\"orgPermissions\",\"factorVerificationAge\"]\n");</script><!--$--><script>window.__reactRouterContext.streamController.close();</script><!--/$--><!--/$--></body></html>

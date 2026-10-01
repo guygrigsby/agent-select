@@ -1,0 +1,178 @@
+[
+ {
+  "url": "https://api.github.com/repos/LiveCodeBench/LiveCodeBench/contents",
+  "source_kind": "github_repo",
+  "terms_url": "https://raw.githubusercontent.com/LiveCodeBench/LiveCodeBench/main/LICENSE",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "mit",
+  "license_text": "Permission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.",
+  "evidence": {
+   "path": "data/research/terms/coverage-followup/livecodebench-license.txt",
+   "retrieved_at": "2026-09-30T23:11:46.931Z",
+   "outcome": "success"
+  },
+  "notes": "Repository MIT License (Copyright (c) 2024 LiveCodeBench) fetched from main, which the saved GitHub Contents listing confirms exists at repo root; MIT expressly grants use, copy and redistribution of repo content including the API file listing."
+ },
+ {
+  "url": "https://api.github.com/repos/djbielejeski/GenEval",
+  "source_kind": "github_repo",
+  "terms_url": "https://api.github.com/repos/djbielejeski/GenEval",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/benchmark-sources/_geneval_github.json",
+   "retrieved_at": "2026-09-30T01:38:46.120Z",
+   "outcome": "http_error"
+  },
+  "notes": "Saved response is GitHub API 404 (repository does not exist); no material and no governing terms could be retained, so no use is permitted on evidence."
+ },
+ {
+  "url": "https://api.github.com/repos/microsoft/GenEval",
+  "source_kind": "github_repo",
+  "terms_url": "https://api.github.com/repos/microsoft/GenEval",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/benchmark-sources/_geneval_ms_github.json",
+   "retrieved_at": "2026-09-30T01:39:02.093Z",
+   "outcome": "http_error"
+  },
+  "notes": "Saved response is GitHub API 404 (repository does not exist); no material and no governing terms could be retained, so no use is permitted on evidence."
+ },
+ {
+  "url": "https://api.github.com/repos/princeton-nlp/SWE-bench/contents/leaderboard",
+  "source_kind": "github_repo",
+  "terms_url": "https://api.github.com/repos/princeton-nlp/SWE-bench/contents/leaderboard",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/benchmark-sources/_swebench_gh_contents.json",
+   "retrieved_at": "2026-09-30T01:36:26.431Z",
+   "outcome": "http_error"
+  },
+  "notes": "Saved response is GitHub API 404 for the leaderboard contents path; no material was captured at this URL, so no use is permitted on evidence."
+ },
+ {
+  "url": "https://artificialanalysis.ai/api/endpoints",
+  "source_kind": "provider_docs",
+  "terms_url": "https://artificialanalysis.ai/terms-of-use",
+  "research": "denied",
+  "extraction": "denied",
+  "redistribution": "denied",
+  "license_name": "proprietary",
+  "license_text": "Subject to these Terms, Company grants you a non-transferable, non-exclusive, revocable, limited license to use and access the Site solely for your own personal, noncommercial use. ... use software or automated agents or scripts to produce multiple accounts on the Site, or to generate automated searches, requests, or queries to (or to strip, scrape, or mine data from) the Site",
+  "evidence": {
+   "path": "data/research/terms/coverage-followup/artificialanalysis-terms-of-use.html",
+   "retrieved_at": "2026-09-30T23:11:45.813Z",
+   "outcome": "success"
+  },
+  "notes": "Site Terms of Use (last revised September 15 2026) grant only a personal, noncommercial, revocable license and the Acceptable Use Policy expressly prohibits automated agents generating automated requests or stripping, scraping, or mining data from the Site, which bars research capture, systematic extraction and redistribution of site content."
+ },
+ {
+  "url": "https://evalplus.github.io/results.json",
+  "source_kind": "benchmark_site",
+  "terms_url": "https://evalplus.github.io/results.json",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/benchmark-sources/_evalplus_results.json",
+   "retrieved_at": "2026-09-30T01:38:13.829Z",
+   "outcome": "success"
+  },
+  "notes": "Saved bytes are the public EvalPlus results scoreboard JSON with no license or terms stated on the page, so local analysis and fact extraction from the public page are allowed while redistribution stays unknown (silence, and no express data grant; any repo code license would not cover benchmark data)."
+ },
+ {
+  "url": "https://geneval-benchmark.github.io/",
+  "source_kind": "benchmark_site",
+  "terms_url": "https://geneval-benchmark.github.io/",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/benchmark-sources/_geneval_site.html",
+   "retrieved_at": "2026-09-30T01:38:28.542Z",
+   "outcome": "http_error"
+  },
+  "notes": "Saved bytes are a GitHub Pages 'Site not found' error page, not the GenEval site; no site material or terms were retained, so no use is permitted on evidence."
+ },
+ {
+  "url": "https://raw.githubusercontent.com/TencentQQGYLab/ELLA/main/README.md",
+  "source_kind": "github_repo",
+  "terms_url": "https://raw.githubusercontent.com/TencentQQGYLab/ELLA/main/LICENSE",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "apache-2.0",
+  "license_text": "      this License, each Contributor hereby grants to You a perpetual,\n      worldwide, non-exclusive, no-charge, royalty-free, irrevocable\n      copyright license to reproduce, prepare Derivative Works of,\n      publicly display, publicly perform, sublicense, and distribute the\n      Work and such Derivative Works in Source or Object form.\n\n   3. Grant of Patent License. Subject to the terms and conditions of\n      this License, each Contributor hereby grants to You a perpetual,\n      worldwide, non-exclusive, no-charge, royalty-free, irrevocable\n      (except as stated in this section) patent license to make, have made,\n      use,",
+  "evidence": {
+   "path": "data/research/terms/coverage-followup/ella-license.txt",
+   "retrieved_at": "2026-09-30T23:11:48.075Z",
+   "outcome": "success"
+  },
+  "notes": "Saved README contains no license section, so the repo LICENSE was fetched and is Apache-2.0, which expressly grants reproduction, derivative works and distribution of repo content including the README; image-based figures in the README were not transcribed."
+ },
+ {
+  "url": "https://raw.githubusercontent.com/djghosh13/geneval/main/LICENSE",
+  "source_kind": "github_repo",
+  "terms_url": "https://raw.githubusercontent.com/djghosh13/geneval/main/LICENSE",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "mit",
+  "license_text": "Permission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.",
+  "evidence": {
+   "path": "data/research/coverage-followup/sources/geneval-license",
+   "retrieved_at": "2026-09-30T02:33:00.051Z",
+   "outcome": "success"
+  },
+  "notes": "The URL itself is the repository MIT License text (Copyright (c) 2023 Dhruba Ghosh) already saved in the corpus, which expressly grants use, copying, distribution and sale."
+ },
+ {
+  "url": "https://raw.githubusercontent.com/djghosh13/geneval/main/README.md",
+  "source_kind": "github_repo",
+  "terms_url": "https://raw.githubusercontent.com/djghosh13/geneval/main/LICENSE",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "mit",
+  "license_text": "Permission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.",
+  "evidence": {
+   "path": "data/research/coverage-followup/sources/geneval-license",
+   "retrieved_at": "2026-09-30T02:33:00.051Z",
+   "outcome": "success"
+  },
+  "notes": "Saved README has no license section and is repo content governed by the repo MIT License already saved in the corpus, which expressly grants redistribution of that content; the MIT grant does not extend to benchmark data or model outputs."
+ },
+ {
+  "url": "https://raw.githubusercontent.com/lm-sys/FastChat/main/fastchat/serve/monitor/elo_results_latest.csv",
+  "source_kind": "github_repo",
+  "terms_url": "https://raw.githubusercontent.com/lm-sys/FastChat/main/fastchat/serve/monitor/elo_results_latest.csv",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "unknown",
+  "evidence": {
+   "path": "data/research/benchmark-sources/_lmarena_elo.csv",
+   "retrieved_at": "2026-09-30T01:36:14.101Z",
+   "outcome": "http_error"
+  },
+  "notes": "Saved bytes are '404: Not Found', not the elo CSV; no material was captured at this URL, so no use is permitted on evidence and the bytes are non-score."
+ }
+]

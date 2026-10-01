@@ -1,0 +1,162 @@
+[
+ {
+  "url": "https://api.github.com/repos/deepseek-ai/DeepSeek-R1",
+  "source_kind": "github_repo",
+  "terms_url": "https://raw.githubusercontent.com/deepseek-ai/DeepSeek-R1/main/LICENSE",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "mit",
+  "license_text": "Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:",
+  "evidence": {
+   "path": "data/research/terms/deepseek-zai/deepseek-r1-license.txt",
+   "retrieved_at": "2026-09-30T23:16:39.729Z",
+   "outcome": "success"
+  },
+  "notes": "Repo LICENSE file grants use, copying, modification and redistribution under MIT; saved GitHub API repo JSON also reports spdx_id MIT."
+ },
+ {
+  "url": "https://api.github.com/repos/deepseek-ai/DeepSeek-V3",
+  "source_kind": "github_repo",
+  "terms_url": "https://api.github.com/repos/deepseek-ai/DeepSeek-V3/license",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "mit",
+  "license_text": "Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:",
+  "evidence": {
+   "path": "data/research/terms/deepseek-zai/deepseek-v3-license.json",
+   "retrieved_at": "2026-09-30T23:16:53.064Z",
+   "outcome": "success"
+  },
+  "notes": "LICENSE-CODE (MIT) retrieved via the GitHub license API after the raw LICENSE path returned 404 with one retry; saved GitHub API repo JSON also reports spdx_id MIT."
+ },
+ {
+  "url": "https://arxiv.org/abs/2412.19437",
+  "source_kind": "arxiv_paper",
+  "terms_url": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "unknown",
+  "license_name": "arXiv non-exclusive-distrib 1.0",
+  "license_text": "I grant arXiv.org a perpetual, non-exclusive license to distribute this article. I certify that I have the right to grant this license.",
+  "evidence": {
+   "path": "data/research/terms/deepseek-zai/arxiv-nonexclusive-distrib-1.0.html",
+   "retrieved_at": "2026-09-30T23:16:42.121Z",
+   "outcome": "success"
+  },
+  "notes": "Saved corpus abs page for 2412.19437 links the arXiv non-exclusive-distrib 1.0 license, which grants distribution rights to arXiv.org only and is silent on third-party reuse, so redistribution stays unknown."
+ },
+ {
+  "url": "https://arxiv.org/abs/2501.12948",
+  "source_kind": "arxiv_paper",
+  "terms_url": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "unknown",
+  "license_name": "arXiv non-exclusive-distrib 1.0",
+  "license_text": "I grant arXiv.org a perpetual, non-exclusive license to distribute this article. I certify that I have the right to grant this license.",
+  "evidence": {
+   "path": "data/research/terms/deepseek-zai/arxiv-nonexclusive-distrib-1.0.html",
+   "retrieved_at": "2026-09-30T23:16:42.121Z",
+   "outcome": "success"
+  },
+  "notes": "Saved corpus abs page for 2501.12948 links the arXiv non-exclusive-distrib 1.0 license, which grants distribution rights to arXiv.org only and is silent on third-party reuse, so redistribution stays unknown."
+ },
+ {
+  "url": "https://arxiv.org/html/2412.19437v1",
+  "source_kind": "arxiv_paper",
+  "terms_url": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "unknown",
+  "license_name": "arXiv non-exclusive-distrib 1.0",
+  "license_text": "I grant arXiv.org a perpetual, non-exclusive license to distribute this article. I certify that I have the right to grant this license.",
+  "evidence": {
+   "path": "data/research/terms/deepseek-zai/arxiv-nonexclusive-distrib-1.0.html",
+   "retrieved_at": "2026-09-30T23:16:42.121Z",
+   "outcome": "success"
+  },
+  "notes": "Saved corpus HTML fulltext for 2412.19437v1 links the arXiv non-exclusive-distrib 1.0 license, which grants distribution rights to arXiv.org only and is silent on third-party reuse, so redistribution stays unknown."
+ },
+ {
+  "url": "https://arxiv.org/html/2501.12948v1",
+  "source_kind": "arxiv_paper",
+  "terms_url": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "unknown",
+  "license_name": "arXiv non-exclusive-distrib 1.0",
+  "license_text": "I grant arXiv.org a perpetual, non-exclusive license to distribute this article. I certify that I have the right to grant this license.",
+  "evidence": {
+   "path": "data/research/terms/deepseek-zai/arxiv-nonexclusive-distrib-1.0.html",
+   "retrieved_at": "2026-09-30T23:16:42.121Z",
+   "outcome": "success"
+  },
+  "notes": "Saved corpus HTML fulltext for 2501.12948v1 links the arXiv non-exclusive-distrib 1.0 license, which grants distribution rights to arXiv.org only and is silent on third-party reuse, so redistribution stays unknown."
+ },
+ {
+  "url": "https://huggingface.co/deepseek-ai/DeepSeek-V3.1",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://huggingface.co/deepseek-ai/DeepSeek-V3.1-Base/raw/main/README.md",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "mit",
+  "license_text": "This repository and the model weights are licensed under the [MIT License](LICENSE).",
+  "evidence": {
+   "path": "data/research/deepseek-zai/saved_sources/hf-deepseek-v31-readme.md",
+   "retrieved_at": "2026-09-30T01:40:25.577Z",
+   "outcome": "success"
+  },
+  "notes": "Saved model card carries the license:mit tag and an explicit grant that the repository and model weights are under the MIT License."
+ },
+ {
+  "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash/raw/main/README.md",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "mit",
+  "license_text": "This repository and the model weights are licensed under the [MIT License](LICENSE).",
+  "evidence": {
+   "path": "data/research/deepseek-zai/saved_sources/hf-deepseek-v4-flash-readme.md",
+   "retrieved_at": "2026-09-30T01:40:18.361Z",
+   "outcome": "success"
+  },
+  "notes": "Saved model card carries the license:mit tag and an explicit grant that the repository and model weights are under the MIT License."
+ },
+ {
+  "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://huggingface.co/api/models?search=deepseek-ai/DeepSeek-V4&limit=5",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "mit",
+  "license_text": "license:mit",
+  "evidence": {
+   "path": "data/research/deepseek-zai/saved_sources/hf-deepseek-v4.json",
+   "retrieved_at": "2026-09-30T01:40:05.979Z",
+   "outcome": "success"
+  },
+  "notes": "Saved HF search JSON tags DeepSeek-V4-Pro license:mit; the saved V4-Pro readme is a byte-identical duplicate of the V4-Flash card, so the tag listing is the only Pro-specific evidence and no verbatim grant sentence exists in the corpus."
+ },
+ {
+  "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/raw/main/README.md",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "mit",
+  "license_text": "This repository and the model weights are licensed under the [MIT License](LICENSE).",
+  "evidence": {
+   "path": "data/research/deepseek-zai/saved_sources/hf-deepseek-v41-flash-readme.md",
+   "retrieved_at": "2026-09-30T01:40:18.379Z",
+   "outcome": "success"
+  },
+  "notes": "Saved model card carries the license:mit tag and an explicit grant that the repository and model weights are under the MIT License."
+ }
+]
