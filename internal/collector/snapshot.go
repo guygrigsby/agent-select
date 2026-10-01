@@ -5,6 +5,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"math"
 	"sort"
 	"strconv"
 	"strings"
@@ -247,6 +248,28 @@ func (p *Ports) CompileSnapshot(ctx context.Context, params CompileSnapshotParam
 		artifactHash, params.Distribution, params.ProjectionPolicyVersion,
 		params.CreatedAt, params.KnowledgeCutoff, artifactBytes,
 		manifestHash, coverageDigest); err != nil {
+		var pgErr *pgconn.PgError
+		if errors.As(err, &pgErr) && pgErr.Code == "23505" {
+			// Artifact hash collision: identical bytes already staged. A
+			// concurrent identical compile replays the stored row; a different
+			// parameter set producing identical bytes is a permanent condition.
+			var existHash, existCoverage []byte
+			if err2 := tx.QueryRow(ctx, `
+				SELECT artifact_hash, coverage_digest FROM snapshots
+				WHERE input_manifest_hash = $1 AND distribution = $2
+				  AND projection_policy_version = $3 AND created_at = $4
+				  AND knowledge_cutoff = $5`,
+				manifestHash, params.Distribution, params.ProjectionPolicyVersion,
+				params.CreatedAt, params.KnowledgeCutoff).Scan(&existHash, &existCoverage); err2 == nil {
+				return CompileSnapshotResult{
+					ArtifactHash:    existHash,
+					ArtifactLocator: artifactLocator(existHash),
+					CoverageDigest:  existCoverage,
+				}, nil
+			}
+			return CompileSnapshotResult{}, errf(CodeConflict,
+				"a different parameter set produced identical artifact bytes (hash %s)", hexHash(artifactHash))
+		}
 		return CompileSnapshotResult{}, storageErr(err)
 	}
 	for ordinal, in := range routingInputs {
@@ -256,11 +279,14 @@ func (p *Ports) CompileSnapshot(ctx context.Context, params CompileSnapshotParam
 			return CompileSnapshotResult{}, storageErr(err)
 		}
 	}
-	for _, src := range sources {
-		gp, ok := governing[src]
-		if !ok {
-			continue
-		}
+	// Rights audits cover contributing sources only: a source whose inputs
+	// were all excluded (pinned-version mismatch) gets no row and no inputs.
+	auditSources := map[string]bool{}
+	for _, in := range contributing {
+		auditSources[in.SourceID] = true
+	}
+	for src := range auditSources {
+		gp := governing[src]
 		if _, err := tx.Exec(ctx, `
 			INSERT INTO snapshot_rights_audits (artifact_hash,source_id,config_hash,
 			  research,extraction,redistribution,decision,decided_at)
@@ -650,27 +676,29 @@ func projectLimits(ctx context.Context, tx pgx.Tx, obsIDs []string, upstreamID s
 		if bd.conflict {
 			continue // conflicting exacts: unknown
 		}
-		maxima := make([]int64, 0, 2)
-		if bd.hasMax {
-			maxima = append(maxima, bd.max)
-		}
-		maxima = append(maxima, bd.exacts...)
-		if len(maxima) == 0 {
-			continue
-		}
-		maximum := maxima[0]
-		for _, m := range maxima[1:] {
-			if m < maximum {
-				maximum = m
+		// An exact bound contributes its value to both ends of the interval.
+		upper, hasUpper := bd.max, bd.hasMax
+		for _, e := range bd.exacts {
+			if !hasUpper || e < upper {
+				upper, hasUpper = e, true
 			}
 		}
-		if bd.hasMin && bd.min > maximum {
-			continue // empty intersection: unknown
+		if !hasUpper {
+			continue
 		}
-		if maximum <= 0 {
+		lower, hasLower := bd.min, bd.hasMin
+		for _, e := range bd.exacts {
+			if !hasLower || e > lower {
+				lower, hasLower = e, true
+			}
+		}
+		if hasLower && lower > upper {
+			continue // empty intersection: unknown, never a fabricated one
+		}
+		if upper <= 0 {
 			continue // zero cannot be expressed; the DTO zero means absent
 		}
-		out = append(out, routing.LimitData{Resource: res, Maximum: maximum})
+		out = append(out, routing.LimitData{Resource: res, Maximum: upper})
 	}
 	sort.Slice(out, func(i, j int) bool { return out[i].Resource < out[j].Resource })
 	return out, nil
@@ -700,7 +728,7 @@ func projectPrices(ctx context.Context, tx pgx.Tx, offerID string) ([]routing.Pr
 		if !routingPriceComponents[category] {
 			continue
 		}
-		lex := strings.TrimRight(strings.TrimRight(amount, "0"), ".")
+		lex := trimDecimalZeros(amount)
 		q := qs[category]
 		if q == nil {
 			q = &quote{exactLexemes: map[string]bool{}}
@@ -730,6 +758,21 @@ func projectPrices(ctx context.Context, tx pgx.Tx, offerID string) ([]routing.Pr
 		out = append(out, routing.PriceData{Component: c, USDPerMillion: q.best})
 	}
 	return out, nil
+}
+
+// trimDecimalZeros removes trailing fractional zeros from an exact decimal
+// lexeme ("3.50" -> "3.5"), leaving integral lexemes untouched ("100" stays
+// "100"; "0" stays "0").
+func trimDecimalZeros(s string) string {
+	if !strings.Contains(s, ".") {
+		return s
+	}
+	t := strings.TrimRight(s, "0")
+	t = strings.TrimRight(t, ".")
+	if t == "" || t == "-" {
+		return s
+	}
+	return t
 }
 
 // decimalLess compares nonnegative decimal lexemes without float math.
@@ -772,8 +815,9 @@ func splitDecimal(s string) (string, string) {
 func projectSignals(ctx context.Context, tx pgx.Tx, offerID, revision string,
 	cutoff time.Time, policy projectionPolicyDoc) ([]routing.SignalData, error) {
 	rows, err := tx.Query(ctx, `
-		SELECT m.assertion_id, m.benchmark_label, m.raw_value::text, m.unit
+		SELECT m.assertion_id, m.benchmark_label, m.raw_value::text, m.unit, a.evidence_class
 		FROM benchmark_measurements m
+		JOIN assertions a ON a.id = m.assertion_id
 		JOIN measurement_revision_facts f ON f.assertion_id = m.assertion_id
 		JOIN identity_bindings b ON b.revision_id = f.revision_id
 		WHERE b.offer_id = $1 AND b.effective_at <= $2
@@ -783,15 +827,15 @@ func projectSignals(ctx context.Context, tx pgx.Tx, offerID, revision string,
 		  AND NOT EXISTS (
 		    SELECT 1 FROM binding_supersessions s
 		    WHERE s.old_binding_id = b.id AND s.effective_at <= $2)
-		GROUP BY m.assertion_id, m.benchmark_label, m.raw_value, m.unit`, offerID, cutoff)
+		GROUP BY m.assertion_id, m.benchmark_label, m.raw_value, m.unit, a.evidence_class`, offerID, cutoff)
 	if err != nil {
 		return nil, storageErr(err)
 	}
 	defer rows.Close()
 	var out []routing.SignalData
 	for rows.Next() {
-		var assertionID, label, raw, unit string
-		if err := rows.Scan(&assertionID, &label, &raw, &unit); err != nil {
+		var assertionID, label, raw, unit, evidenceClass string
+		if err := rows.Scan(&assertionID, &label, &raw, &unit, &evidenceClass); err != nil {
 			return nil, storageErr(err)
 		}
 		task, ok := policy.TaskMap[label]
@@ -807,7 +851,7 @@ func projectSignals(ctx context.Context, tx pgx.Tx, offerID, revision string,
 			continue
 		}
 		basis := "published"
-		if b, ok := policy.BasisRules[label]; ok {
+		if b, ok := policy.BasisRules[evidenceClass]; ok {
 			basis = b
 		}
 		out = append(out, routing.SignalData{
@@ -831,16 +875,23 @@ func projectSignals(ctx context.Context, tx pgx.Tx, offerID, revision string,
 // percentage values scale to basis points. Half rounds away from zero.
 func signalValue(raw, unit string) (int, bool) {
 	f, err := strconv.ParseFloat(raw, 64)
-	if err != nil || f < 0 {
+	if err != nil {
+		return 0, false
+	}
+	if math.IsNaN(f) || math.IsInf(f, 0) || f < 0 {
 		return 0, false
 	}
 	if unit == "%" {
 		f *= 100
 	}
-	if f > 10000.5 {
-		return 0, false
+	if f > 1e15 {
+		return 0, false // conversion would overflow the int range
 	}
-	return int(f + 0.5), true
+	v := int(f + 0.5)
+	if v < 0 || v > 10000 {
+		return 0, false // rounded outside the 0..10000 signal range: skipped
+	}
+	return v, true
 }
 
 // ValidateSnapshotParams mirrors validate_snapshot.
@@ -852,7 +903,16 @@ type ValidateSnapshotParams struct {
 // ValidateSnapshotResult carries the outcome and safe findings.
 type ValidateSnapshotResult struct {
 	Outcome  string
-	Findings []string
+	Findings []ValidationFinding
+}
+
+// ValidationFinding is one member of the closed findings array pinned by the
+// snapshot_validations contract: `code`, `offer_id` (omitted for
+// artifact-global findings) and `detail`.
+type ValidationFinding struct {
+	Code    string `json:"code"`
+	OfferID string `json:"offer_id,omitempty"`
+	Detail  string `json:"detail"`
 }
 
 // ValidateSnapshot implements validate_snapshot: artifact bytes re-validated
@@ -878,7 +938,7 @@ func (p *Ports) ValidateSnapshot(ctx context.Context, params ValidateSnapshotPar
 		WHERE artifact_hash = $1 AND validator_version = $2`,
 		params.ArtifactHash, params.ValidatorVersion).Scan(&storedOutcome, &storedFindings)
 	if err == nil {
-		var findings []string
+		var findings []ValidationFinding
 		if err := strictDecode(storedFindings, &findings); err == nil {
 			return ValidateSnapshotResult{Outcome: storedOutcome, Findings: findings}, nil
 		}
@@ -899,15 +959,17 @@ func (p *Ports) ValidateSnapshot(ctx context.Context, params ValidateSnapshotPar
 		return ValidateSnapshotResult{}, storageErr(err)
 	}
 
-	findings := []string{}
+	findings := []ValidationFinding{}
 	accepted := true
 	if !bytes.Equal(canonicalHash(artifactBytes), params.ArtifactHash) {
 		accepted = false
-		findings = append(findings, "artifact hash does not pin the staged bytes")
+		findings = append(findings, ValidationFinding{
+			Code: "artifact_hash_mismatch", Detail: "artifact hash does not pin the staged bytes"})
 	}
 	if _, err := routing.DecodeSnapshot(artifactBytes); err != nil {
 		accepted = false
-		findings = append(findings, "artifact bytes fail the routing decode contract")
+		findings = append(findings, ValidationFinding{
+			Code: "decode_contract_failed", Detail: "artifact bytes fail the routing decode contract"})
 	}
 	// Pinned rights audit must cover every contributing input's source.
 	var auditCount, inputCount int
@@ -921,7 +983,9 @@ func (p *Ports) ValidateSnapshot(ctx context.Context, params ValidateSnapshotPar
 	}
 	if auditCount != inputCount {
 		accepted = false
-		findings = append(findings, fmt.Sprintf("rights audit covers %d of %d contributing sources", auditCount, inputCount))
+		findings = append(findings, ValidationFinding{
+			Code:   "rights_audit_mismatch",
+			Detail: fmt.Sprintf("rights audit covers %d of %d contributing sources", auditCount, inputCount)})
 	}
 	outcome := "rejected"
 	if accepted {
