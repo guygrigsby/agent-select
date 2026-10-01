@@ -129,17 +129,13 @@ func (c CollectorConfig) SuccessorConfigFrom() (SuccessorConfig, string, int, bo
 	if scan == 0 {
 		scan = 50
 	}
-	idle := c.SnapshotPollIdle
-	if idle == 0 {
-		idle = 5 * time.Second
-	}
 	return SuccessorConfig{
 		Channel:               channel,
 		ValidatorVersion:      c.SnapshotValidatorVersion,
 		BootstrapPolicy:       c.SnapshotPolicy,
 		BootstrapDistribution: dist,
 		ScanLimit:             scan,
-		PollIdle:              idle,
+		PollIdle:              5 * time.Second,
 	}, root, keep, true, nil
 }
 

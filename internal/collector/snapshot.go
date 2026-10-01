@@ -313,8 +313,8 @@ func (p *Ports) CompileSnapshot(ctx context.Context, params CompileSnapshotParam
 			"schema_version":      1,
 			"policy":              "educated-v1",
 			"distribution":        params.Distribution,
-			"input_manifest_hash": hexHash(manifestHash),
-			"coverage_digest":     hexHash(coverageDigest),
+			"input_manifest_hash": hexDigest(manifestHash),
+			"coverage_digest":     hexDigest(coverageDigest),
 		}); err != nil {
 		return CompileSnapshotResult{}, err
 	}
@@ -1161,7 +1161,7 @@ func (p *Ports) PublishSnapshot(ctx context.Context, artifactHash []byte, channe
 			"distribution":     distribution,
 			"channel":          channel,
 			"channel_class":    class,
-			"coverage_digest":  hexHash(coverage),
+			"coverage_digest":  hexDigest(coverage),
 			"artifact_locator": loc,
 			"knowledge_cutoff": knowledgeCutoff.Unix(),
 			"published_at":     now.Unix(),

@@ -56,10 +56,7 @@ func resolveUnchanged(ctx context.Context, p *Ports, store *ArtifactStore, cfg S
 	if err := p.ConfirmFreshness(ctx, prev.ArtifactHash, cfg.Channel); err != nil {
 		return err
 	}
-	if err := ReconcileStore(ctx, p, store, cfg.Channel); err != nil {
-		return err
-	}
-	return p.sweepRetirements(ctx, cfg.Channel)
+	return ReconcileStore(ctx, p, store, cfg.Channel)
 }
 
 // SuccessorOutcome classifies one resolved successor attempt. A storage or
@@ -130,7 +127,7 @@ func (p *Ports) RetireSnapshot(ctx context.Context, artifactHash, successorHash 
 	}
 	if err := emitEvent(ctx, tx, hexHash(artifactHash), "SnapshotRetired", 1,
 		time.Now().UTC(), map[string]any{
-			"artifact_hash":  hexDigest(artifactHash),
+			"retired_hash":   hexDigest(artifactHash),
 			"successor_hash": hexDigest(successorHash),
 			"publication_id": publicationID,
 		}); err != nil {
@@ -304,11 +301,11 @@ func eligibleInputs(ctx context.Context, pool *pgxpool.Pool, now time.Time, dist
 func contentEqual(current, successor []byte) (bool, error) {
 	cur, err := routing.DecodeSnapshot(current)
 	if err != nil {
-		return false, errf(CodeInvalidRequest, "current artifact fails the decode contract: %v", err)
+		return false, errf(CodeInvalidEvidence, "current artifact fails the decode contract: %v", err)
 	}
 	suc, err := routing.DecodeSnapshot(successor)
 	if err != nil {
-		return false, errf(CodeInvalidRequest, "successor artifact fails the decode contract: %v", err)
+		return false, errf(CodeInvalidEvidence, "successor artifact fails the decode contract: %v", err)
 	}
 	mask := time.Unix(0, 0).UTC()
 	cd, sd := cur.Data(), suc.Data()
@@ -317,7 +314,7 @@ func contentEqual(current, successor []byte) (bool, error) {
 	cm, err1 := routing.NewSnapshot(cd)
 	sm, err2 := routing.NewSnapshot(sd)
 	if err1 != nil || err2 != nil {
-		return false, errf(CodeInvalidRequest, "masked artifact re-encode failed")
+		return false, errf(CodeInvalidEvidence, "masked artifact re-encode failed")
 	}
 	cb, err := routing.EncodeSnapshot(cm)
 	if err != nil {
@@ -413,20 +410,24 @@ func AttemptSuccessor(ctx context.Context, p *Ports, store *ArtifactStore, cfg S
 	if validation.Outcome != "accepted" {
 		cfg.logf("successor: validation rejected artifact %s: %s",
 			hexDigest(compiled.ArtifactHash), findingsSummary(validation.Findings))
+		if err := p.sweepRetirements(ctx, cfg.Channel); err != nil {
+			return "", err
+		}
 		return SuccessorBlocked, nil
 	}
 
-	pubRes, err := p.PublishSnapshot(ctx, compiled.ArtifactHash, cfg.Channel)
-	if err != nil {
+	if _, err := p.PublishSnapshot(ctx, compiled.ArtifactHash, cfg.Channel); err != nil {
 		var ce *Error
 		if errors.As(err, &ce) && (ce.Code == CodeForbidden || ce.Code == CodeConflict || ce.Code == CodeSourceBlocked) {
 			cfg.logf("successor: publish blocked artifact %s: %s",
 				hexDigest(compiled.ArtifactHash), ce.Detail)
+			if err := p.sweepRetirements(ctx, cfg.Channel); err != nil {
+				return "", err
+			}
 			return SuccessorBlocked, nil
 		}
 		return "", err
 	}
-	_ = pubRes
 
 	// Materialize, adopt, prune, then converge retirements: the sweep
 	// retires the predecessor and any older orphan left by a crash between
@@ -435,14 +436,13 @@ func AttemptSuccessor(ctx context.Context, p *Ports, store *ArtifactStore, cfg S
 	if err := ReconcileStore(ctx, p, store, cfg.Channel); err != nil {
 		return "", err
 	}
-	if err := p.sweepRetirements(ctx, cfg.Channel); err != nil {
-		return "", err
-	}
 	return SuccessorPublished, nil
 }
 
 // ReconcileStore stages and adopts the channel's latest published artifact,
-// rebuilding a missing or corrupt file from snapshots.artifact_bytes.
+// rebuilding a missing or corrupt file from snapshots.artifact_bytes, then
+// converges retirements: the spec's convergence sentence binds every
+// reconciliation, not only resolved attempts.
 func ReconcileStore(ctx context.Context, p *Ports, store *ArtifactStore, channel string) error {
 	pub, err := latestPublication(ctx, p.Pool, channel)
 	if err != nil {
@@ -482,7 +482,10 @@ func ReconcileStore(ctx context.Context, p *Ports, store *ArtifactStore, channel
 			return err
 		}
 	}
-	return store.Prune()
+	if err := store.Prune(); err != nil {
+		return err
+	}
+	return p.sweepRetirements(ctx, channel)
 }
 
 // eligibleTrigger reports whether one outbox event should attempt a
@@ -574,8 +577,8 @@ func processOneBatch(ctx context.Context, p *Ports, store *ArtifactStore, cfg Su
 		_, err := AttemptSuccessor(ctx, p, store, cfg, time.Now().UTC())
 		if err != nil {
 			var ce *Error
-			if errors.As(err, &ce) && ce.Code == CodeInvalidRequest {
-				return false, err // permanent misconfiguration: stop the loop
+			if errors.As(err, &ce) && (ce.Code == CodeInvalidRequest || ce.Code == CodeInvalidEvidence) {
+				return false, err // permanent misconfiguration or stored corruption: stop the loop
 			}
 			cfg.logf("successor: attempt failed, batch will redeliver: %v", err)
 			// Leave receipts unwritten; idle false makes the loop back off

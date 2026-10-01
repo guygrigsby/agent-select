@@ -8,6 +8,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"strings"
 	"testing"
 	"time"
 
@@ -647,23 +648,44 @@ func TestSuccessorEventPayloadsCarryTrueHex(t *testing.T) {
 		if err := json.Unmarshal(payload, &fields); err != nil {
 			t.Fatalf("%s payload not JSON: %v", name, err)
 		}
-		got, _ := fields["artifact_hash"].(string)
-		if !digests[got] {
-			t.Fatalf("%s artifact_hash = %q, want a publication digest (%s or %s)",
-				name, got, hexDigest(first.ArtifactHash), hexDigest(second.ArtifactHash))
-		}
 		if name == "SnapshotRetired" {
+			got, _ := fields["retired_hash"].(string)
 			if got != hexDigest(first.ArtifactHash) {
-				t.Fatalf("SnapshotRetired artifact_hash = %q, want predecessor %q", got, hexDigest(first.ArtifactHash))
+				t.Fatalf("SnapshotRetired retired_hash = %q, want predecessor %q", got, hexDigest(first.ArtifactHash))
 			}
 			succ, _ := fields["successor_hash"].(string)
 			if succ != hexDigest(second.ArtifactHash) {
 				t.Fatalf("SnapshotRetired successor_hash = %q, want %q", succ, hexDigest(second.ArtifactHash))
 			}
+			if _, ok := fields["artifact_hash"]; ok {
+				t.Fatal("SnapshotRetired payload must use retired_hash, not artifact_hash")
+			}
+		} else {
+			got, _ := fields["artifact_hash"].(string)
+			if !digests[got] {
+				t.Fatalf("%s artifact_hash = %q, want a publication digest (%s or %s)",
+					name, got, hexDigest(first.ArtifactHash), hexDigest(second.ArtifactHash))
+			}
+			if name == "SnapshotCompiled" || name == "SnapshotPublished" {
+				var manifest, coverage []byte
+				if err := p.Pool.QueryRow(ctx,
+					`SELECT input_manifest_hash, coverage_digest FROM snapshots WHERE artifact_hash = $1`,
+					mustDecodeHex(t, got)).Scan(&manifest, &coverage); err != nil {
+					t.Fatal(err)
+				}
+				mh, _ := fields["input_manifest_hash"].(string)
+				if name == "SnapshotCompiled" && mh != hexDigest(manifest) {
+					t.Fatalf("SnapshotCompiled input_manifest_hash = %q, want the column digest %q", mh, hexDigest(manifest))
+				}
+				cd, _ := fields["coverage_digest"].(string)
+				if cd != hexDigest(coverage) {
+					t.Fatalf("%s coverage_digest = %q, want the column digest %q", name, cd, hexDigest(coverage))
+				}
+			}
 		}
 		if name == "SnapshotPublished" {
 			loc, _ := fields["artifact_locator"].(string)
-			want := "snapshot://" + got
+			want := "snapshot://" + fields["artifact_hash"].(string)
 			if loc != want {
 				t.Fatalf("SnapshotPublished locator = %q, want %q", loc, want)
 			}
@@ -803,5 +825,187 @@ func TestSuccessorConfigFromDefaults(t *testing.T) {
 	cfg.SnapshotValidatorVersion = ""
 	if _, _, _, ok, err := cfg.SuccessorConfigFrom(); err != nil || ok {
 		t.Fatalf("empty validator version must disable the loop (ok=%v err=%v)", ok, err)
+	}
+}
+
+func mustDecodeHex(t *testing.T, s string) []byte {
+	t.Helper()
+	b, err := hex.DecodeString(s)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return b
+}
+
+// TestRetireSnapshotReplayConflict: a replay of the same (artifact,
+// publication) pair naming a different successor is a conflict, not a
+// silent second retirement.
+func TestRetireSnapshotReplayConflict(t *testing.T) {
+	p := mustPort(t)
+	ctx := context.Background()
+	seedSuccessorBase(t, p)
+	obs := seedSnapshotBase(t, p, "s1", "allowed")
+	seedSnapshotOffer(t, p, obs, "s1")
+	store := testStore(t, 2)
+	cfg := successorCfg()
+
+	if _, err := AttemptSuccessor(ctx, p, store, cfg, ms(time.Now().UTC())); err != nil {
+		t.Fatal(err)
+	}
+	first, err := latestPublication(ctx, p.Pool, "local")
+	if err != nil || first == nil {
+		t.Fatal(err)
+	}
+	seedChangedObservation(t, p, "s1", 6.75, "replay")
+	if _, err := AttemptSuccessor(ctx, p, store, cfg, ms(time.Now().UTC().Add(time.Minute))); err != nil {
+		t.Fatal(err)
+	}
+	second, err := latestPublication(ctx, p.Pool, "local")
+	if err != nil || second == nil {
+		t.Fatal(err)
+	}
+
+	// The legitimate retirement exists; replaying the same pair with a
+	// different successor must conflict.
+	other := hash32([]byte("replay-other-successor"))
+	if err := p.RetireSnapshot(ctx, first.ArtifactHash, other, second.PublicationID); err == nil {
+		t.Fatal("replay with a different successor must conflict")
+	} else {
+		var ce *Error
+		if !errors.As(err, &ce) || ce.Code != CodeConflict {
+			t.Fatalf("want conflict, got %v", err)
+		}
+	}
+	// Idempotent replay of the exact same triple stays a no-op.
+	if err := p.RetireSnapshot(ctx, first.ArtifactHash, second.ArtifactHash, second.PublicationID); err != nil {
+		t.Fatalf("exact replay must be idempotent: %v", err)
+	}
+}
+
+// TestAttemptSuccessorBlockedResolvesAndLogs pins the semantic-block
+// contract: a local-distribution artifact cannot publish to a
+// distributable channel, so the attempt resolves blocked, logs through
+// the hook, publishes nothing and leaves the store empty.
+func TestAttemptSuccessorBlockedResolvesAndLogs(t *testing.T) {
+	p := mustPort(t)
+	ctx := context.Background()
+	seedSuccessorBase(t, p)
+	obs := seedSnapshotBase(t, p, "s1", "allowed")
+	seedSnapshotOffer(t, p, obs, "s1")
+	now := ms(time.Now().UTC())
+	if _, err := p.RegisterPublicationChannel(ctx, "dist", "distributable", now); err != nil {
+		t.Fatal(err)
+	}
+	store := testStore(t, 2)
+	cfg := successorCfg()
+	cfg.Channel = "dist"
+	var logs []string
+	cfg.Log = func(format string, args ...any) {
+		logs = append(logs, fmt.Sprintf(format, args...))
+	}
+
+	outcome, err := AttemptSuccessor(ctx, p, store, cfg, now)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if outcome != SuccessorBlocked {
+		t.Fatalf("channel-class mismatch must resolve blocked, got %q", outcome)
+	}
+	if n := countRows(t, p, `SELECT count(*) FROM snapshot_publications`); n != 0 {
+		t.Fatalf("blocked attempt must not publish, got %d", n)
+	}
+	cur, err := store.Current()
+	if err != nil || cur != "" {
+		t.Fatalf("blocked attempt must leave the store empty: %q err=%v", cur, err)
+	}
+	blocked := false
+	for _, l := range logs {
+		if strings.Contains(l, "blocked") {
+			blocked = true
+		}
+	}
+	if !blocked {
+		t.Fatalf("blocked outcome must be logged, logs = %v", logs)
+	}
+}
+
+// TestSweepRetirementsConvergesMultipleOrphans: successive crash windows
+// can orphan more than one predecessor; the sweep retires each naming the
+// current publication.
+func TestSweepRetirementsConvergesMultipleOrphans(t *testing.T) {
+	p := mustPort(t)
+	ctx := context.Background()
+	seedSuccessorBase(t, p)
+	obs := seedSnapshotBase(t, p, "s1", "allowed")
+	seedSnapshotOffer(t, p, obs, "s1")
+	store := testStore(t, 4)
+	cfg := successorCfg()
+
+	// P1 published and materialized normally.
+	if _, err := AttemptSuccessor(ctx, p, store, cfg, ms(time.Now().UTC())); err != nil {
+		t.Fatal(err)
+	}
+	first, err := latestPublication(ctx, p.Pool, "local")
+	if err != nil || first == nil {
+		t.Fatal(err)
+	}
+
+	// Two successive crash windows: publish successors P2 and P3 without
+	// materializing or retiring.
+	at := ms(time.Now().UTC().Add(time.Minute))
+	published := [][]byte{first.ArtifactHash}
+	for i, amt := range []float64{7.5, 8.5} {
+		seedChangedObservation(t, p, "s1", amt, fmt.Sprintf("multi-%d", i))
+		at = ms(at.Add(time.Minute))
+		inputs, err := eligibleInputs(ctx, p.Pool, at, "local")
+		if err != nil {
+			t.Fatal(err)
+		}
+		compiled, err := p.CompileSnapshot(ctx, CompileSnapshotParams{
+			Inputs:                  inputs,
+			Distribution:            "local",
+			ProjectionPolicyVersion: first.PolicyVersion,
+			CreatedAt:               at,
+			KnowledgeCutoff:         at,
+		})
+		if err != nil {
+			t.Fatal(err)
+		}
+		if _, err := p.ValidateSnapshot(ctx, ValidateSnapshotParams{
+			ArtifactHash:     compiled.ArtifactHash,
+			ValidatorVersion: cfg.ValidatorVersion,
+		}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := p.PublishSnapshot(ctx, compiled.ArtifactHash, "local"); err != nil {
+			t.Fatal(err)
+		}
+		published = append(published, compiled.ArtifactHash)
+	}
+	third, err := latestPublication(ctx, p.Pool, "local")
+	if err != nil || third == nil {
+		t.Fatal(err)
+	}
+
+	// Redelivery converges: both orphans retire naming P3's publication.
+	// The current publication itself never retires.
+	outcome, err := AttemptSuccessor(ctx, p, store, cfg, ms(time.Now().UTC().Add(5*time.Minute)))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if outcome != SuccessorConfirmed {
+		t.Fatalf("redelivery outcome = %q", outcome)
+	}
+	wantRetired := len(published) - 1 // every predecessor, not the current
+	if n := countRows(t, p, `SELECT count(*) FROM snapshot_retirements r
+		JOIN snapshot_publications s ON s.id = r.publication_id
+		WHERE r.artifact_hash = ANY($1) AND s.artifact_hash = $2`,
+		published, third.ArtifactHash); n != wantRetired {
+		t.Fatalf("orphans not all retired under the current publication: %d of %d",
+			n, wantRetired)
+	}
+	cur, err := store.Current()
+	if err != nil || cur != hexDigest(third.ArtifactHash) {
+		t.Fatalf("store not converged: %q err=%v", cur, err)
 	}
 }
