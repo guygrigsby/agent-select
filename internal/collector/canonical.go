@@ -84,6 +84,25 @@ func canonicalHash(b []byte) []byte {
 // hexHash is the lowercase hex form of canonicalHash.
 func hexHash(b []byte) string { return hex.EncodeToString(canonicalHash(b)) }
 
+// hexDigest is the plain lowercase hex form of an already-computed digest,
+// e.g. a stored artifact_hash: no re-hashing, unlike hexHash which hashes
+// content. Filesystem artifact names use this form.
+func hexDigest(b []byte) string { return hex.EncodeToString(b) }
+
+// isHexHash reports whether s is a 64-character lowercase hex string.
+func isHexHash(s string) bool {
+	if len(s) != 64 {
+		return false
+	}
+	for i := range s {
+		c := s[i]
+		if (c < '0' || c > '9') && (c < 'a' || c > 'f') {
+			return false
+		}
+	}
+	return true
+}
+
 // isCanonical reports whether b is already in canonical-v1 form: the JCS
 // transform is idempotent, so a re-encode mismatch means non-canonical input.
 func isCanonical(b []byte) bool {

@@ -30,6 +30,15 @@ type CollectorConfig struct {
 	PollIdleSeconds  int    `toml:"poll_idle_seconds"`
 	UserAgent        string `toml:"user_agent"`
 	ReconcileSeconds int    `toml:"reconcile_seconds"`
+
+	// Successor pipeline (delivery-storage V8). The publisher loop runs
+	// only when a validator version is configured.
+	SnapshotChannel          string `toml:"snapshot_channel"`
+	SnapshotValidatorVersion string `toml:"snapshot_validator_version"`
+	SnapshotPolicy           string `toml:"snapshot_projection_policy_version"`
+	SnapshotDistribution     string `toml:"snapshot_distribution"`
+	StoreDir                 string `toml:"store_dir"`
+	StoreKeepGenerations     int    `toml:"store_keep_generations"`
 }
 
 // ResolveDSN picks the DSN: flag wins, then AGENT_ROUTING_DSN, then config.
@@ -87,6 +96,41 @@ func (c CollectorConfig) WorkerConfigFrom() WorkerConfig {
 	return wc
 }
 
+// SuccessorConfigFrom maps the TOML shape onto the publisher loop
+// configuration, applying defaults. ok reports whether the loop is enabled
+// (a validator version is required).
+func (c CollectorConfig) SuccessorConfigFrom() (SuccessorConfig, string, int, bool, error) {
+	if c.SnapshotValidatorVersion == "" {
+		return SuccessorConfig{}, "", 0, false, nil
+	}
+	channel := c.SnapshotChannel
+	if channel == "" {
+		channel = "local"
+	}
+	dist := c.SnapshotDistribution
+	if dist == "" {
+		dist = "local"
+	}
+	keep := c.StoreKeepGenerations
+	if keep == 0 {
+		keep = 2
+	}
+	root := c.StoreDir
+	if root == "" {
+		base, err := os.UserConfigDir()
+		if err != nil {
+			return SuccessorConfig{}, "", 0, false, err
+		}
+		root = filepath.Join(base, "agent-routing", "store")
+	}
+	return SuccessorConfig{
+		Channel:               channel,
+		ValidatorVersion:      c.SnapshotValidatorVersion,
+		BootstrapPolicy:       c.SnapshotPolicy,
+		BootstrapDistribution: dist,
+	}, root, keep, true, nil
+}
+
 // SignalContext returns a context cancelled on SIGINT/SIGTERM.
 func SignalContext() (context.Context, context.CancelFunc) {
 	return signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
@@ -123,8 +167,18 @@ func RunCollectorWith(ctx context.Context, dsn string, cfg CollectorConfig, f Fe
 	}
 	w := NewWorker(p, f, wc)
 
-	errc := make(chan error, 2)
+	errc := make(chan error, 3)
 	go func() { errc <- w.Run(ctx) }()
+	if sc, root, keep, ok, err := cfg.SuccessorConfigFrom(); ok {
+		if err != nil {
+			return fmt.Errorf("collector: successor configuration: %w", err)
+		}
+		store, err := NewArtifactStore(root, keep)
+		if err != nil {
+			return fmt.Errorf("collector: artifact store: %w", err)
+		}
+		go func() { errc <- RunSuccessorLoop(ctx, p, store, sc) }()
+	}
 	reconcileEvery := time.Minute
 	if cfg.ReconcileSeconds > 0 {
 		reconcileEvery = time.Duration(cfg.ReconcileSeconds) * time.Second
