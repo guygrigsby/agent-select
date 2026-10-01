@@ -5,6 +5,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/jackc/pgx/v5"
@@ -24,6 +25,41 @@ type SuccessorConfig struct {
 	BootstrapDistribution string // first slice: local
 	ScanLimit             int    // delivery scan batch size
 	PollIdle              time.Duration
+	// Log receives blocked outcomes and non-fatal attempt failures. Nil
+	// discards; the daemon wires it to stderr.
+	Log func(format string, args ...any)
+}
+
+func (c SuccessorConfig) logf(format string, args ...any) {
+	if c.Log != nil {
+		c.Log(format, args...)
+	}
+}
+
+// findingsSummary renders validation findings as one line for logs.
+func findingsSummary(findings []ValidationFinding) string {
+	parts := make([]string, 0, len(findings))
+	for _, f := range findings {
+		parts = append(parts, f.Code+": "+f.Detail)
+	}
+	if len(parts) == 0 {
+		return "no findings"
+	}
+	return strings.Join(parts, "; ")
+}
+
+// resolveUnchanged completes the unchanged-content path: append the
+// freshness confirmation for the current artifact, converge the local store
+// and sweep orphaned retirements (a crash between an earlier publish and
+// its retire converges here on redelivery).
+func resolveUnchanged(ctx context.Context, p *Ports, store *ArtifactStore, cfg SuccessorConfig, prev *latestPublicationRow) error {
+	if err := p.ConfirmFreshness(ctx, prev.ArtifactHash, cfg.Channel); err != nil {
+		return err
+	}
+	if err := ReconcileStore(ctx, p, store, cfg.Channel); err != nil {
+		return err
+	}
+	return p.sweepRetirements(ctx, cfg.Channel)
 }
 
 // SuccessorOutcome classifies one resolved successor attempt. A storage or
@@ -55,15 +91,21 @@ func (p *Ports) RetireSnapshot(ctx context.Context, artifactHash, successorHash 
 		return storageErr(err)
 	}
 	defer tx.Rollback(ctx)
-	var exists bool
-	if err := tx.QueryRow(ctx, `
-		SELECT EXISTS (SELECT 1 FROM snapshot_retirements
-		 WHERE artifact_hash = $1 AND publication_id = $2)`,
-		artifactHash, publicationID).Scan(&exists); err != nil {
-		return storageErr(err)
-	}
-	if exists {
+	var storedSuccessor []byte
+	err = tx.QueryRow(ctx, `
+		SELECT successor_hash FROM snapshot_retirements
+		WHERE artifact_hash = $1 AND publication_id = $2`,
+		artifactHash, publicationID).Scan(&storedSuccessor)
+	if err == nil {
+		if !bytes.Equal(storedSuccessor, successorHash) {
+			return errf(CodeConflict,
+				"retirement of %s under %s already names a different successor",
+				hexDigest(artifactHash), publicationID)
+		}
 		return nil
+	}
+	if !errors.Is(err, pgx.ErrNoRows) {
+		return storageErr(err)
 	}
 	var successorPublished bool
 	if err := tx.QueryRow(ctx, `
@@ -74,7 +116,7 @@ func (p *Ports) RetireSnapshot(ctx context.Context, artifactHash, successorHash 
 	}
 	if !successorPublished {
 		return errf(CodeInvalidRequest, "publication %s does not publish successor %s",
-			publicationID, hexHash(successorHash))
+			publicationID, hexDigest(successorHash))
 	}
 	ct, err := tx.Exec(ctx, `
 		INSERT INTO snapshot_retirements (artifact_hash,successor_hash,publication_id,retired_at)
@@ -88,13 +130,53 @@ func (p *Ports) RetireSnapshot(ctx context.Context, artifactHash, successorHash 
 	}
 	if err := emitEvent(ctx, tx, hexHash(artifactHash), "SnapshotRetired", 1,
 		time.Now().UTC(), map[string]any{
-			"artifact_hash":  hexHash(artifactHash),
-			"successor_hash": hexHash(successorHash),
+			"artifact_hash":  hexDigest(artifactHash),
+			"successor_hash": hexDigest(successorHash),
 			"publication_id": publicationID,
 		}); err != nil {
 		return err
 	}
 	return tx.Commit(ctx)
+}
+
+// sweepRetirements retires every older publication on the channel that
+// has no retirement row, naming the current publication as successor. A
+// crash between publish and retire leaves such an orphan; redelivery
+// re-derives from the new current publication and would otherwise confirm
+// freshness forever without completing the retirement. Called on every
+// resolved attempt and at reconciliation.
+func (p *Ports) sweepRetirements(ctx context.Context, channel string) error {
+	latest, err := latestPublication(ctx, p.Pool, channel)
+	if err != nil || latest == nil {
+		return err
+	}
+	rows, err := p.Pool.Query(ctx, `
+		SELECT p.artifact_hash FROM snapshot_publications p
+		WHERE p.channel = $1 AND p.artifact_hash <> $2
+		  AND NOT EXISTS (SELECT 1 FROM snapshot_retirements r
+		                  WHERE r.artifact_hash = p.artifact_hash)
+		ORDER BY p.published_at, p.id`, channel, latest.ArtifactHash)
+	if err != nil {
+		return storageErr(err)
+	}
+	defer rows.Close()
+	var orphans [][]byte
+	for rows.Next() {
+		var h []byte
+		if err := rows.Scan(&h); err != nil {
+			return storageErr(err)
+		}
+		orphans = append(orphans, h)
+	}
+	if err := rows.Err(); err != nil {
+		return storageErr(err)
+	}
+	for _, h := range orphans {
+		if err := p.RetireSnapshot(ctx, h, latest.ArtifactHash, latest.PublicationID); err != nil {
+			return err
+		}
+	}
+	return nil
 }
 
 // ConfirmFreshness implements confirm_snapshot_freshness: append-only
@@ -290,9 +372,11 @@ func AttemptSuccessor(ctx context.Context, p *Ports, store *ArtifactStore, cfg S
 		return "", err
 	}
 
-	// Unchanged content: confirm freshness, no publication.
+	// Unchanged content: confirm freshness, no publication — but still
+	// converge the store and retirements, which repairs a crash between a
+	// previous publish and its retire and heals a stale local generation.
 	if prev != nil && bytes.Equal(prev.ArtifactHash, compiled.ArtifactHash) {
-		if err := p.ConfirmFreshness(ctx, prev.ArtifactHash, cfg.Channel); err != nil {
+		if err := resolveUnchanged(ctx, p, store, cfg, prev); err != nil {
 			return "", err
 		}
 		return SuccessorConfirmed, nil
@@ -312,7 +396,7 @@ func AttemptSuccessor(ctx context.Context, p *Ports, store *ArtifactStore, cfg S
 			return "", err
 		}
 		if same {
-			if err := p.ConfirmFreshness(ctx, prev.ArtifactHash, cfg.Channel); err != nil {
+			if err := resolveUnchanged(ctx, p, store, cfg, prev); err != nil {
 				return "", err
 			}
 			return SuccessorConfirmed, nil
@@ -327,6 +411,8 @@ func AttemptSuccessor(ctx context.Context, p *Ports, store *ArtifactStore, cfg S
 		return "", err
 	}
 	if validation.Outcome != "accepted" {
+		cfg.logf("successor: validation rejected artifact %s: %s",
+			hexDigest(compiled.ArtifactHash), findingsSummary(validation.Findings))
 		return SuccessorBlocked, nil
 	}
 
@@ -334,29 +420,25 @@ func AttemptSuccessor(ctx context.Context, p *Ports, store *ArtifactStore, cfg S
 	if err != nil {
 		var ce *Error
 		if errors.As(err, &ce) && (ce.Code == CodeForbidden || ce.Code == CodeConflict || ce.Code == CodeSourceBlocked) {
+			cfg.logf("successor: publish blocked artifact %s: %s",
+				hexDigest(compiled.ArtifactHash), ce.Detail)
 			return SuccessorBlocked, nil
 		}
 		return "", err
 	}
+	_ = pubRes
 
-	// Materialize, adopt, prune, then retire the predecessor. Publication
-	// rows are the durable intent; reconciliation repairs a crash anywhere
-	// in these filesystem steps.
+	// Materialize, adopt, prune, then converge retirements: the sweep
+	// retires the predecessor and any older orphan left by a crash between
+	// publish and retire. Publication rows are the durable intent;
+	// reconciliation repairs a crash anywhere in these filesystem steps.
 	if err := ReconcileStore(ctx, p, store, cfg.Channel); err != nil {
 		return "", err
 	}
-	if prev != nil {
-		if err := p.RetireSnapshot(ctx, prev.ArtifactHash, compiled.ArtifactHash, pubRes.PublicationID); err != nil {
-			return "", err
-		}
+	if err := p.sweepRetirements(ctx, cfg.Channel); err != nil {
+		return "", err
 	}
 	return SuccessorPublished, nil
-}
-
-// materialize converges the local store to the channel's published truth:
-// stage from snapshots.artifact_bytes, adopt, prune. Safe after any crash.
-func (p *Ports) materialize(ctx context.Context, store *ArtifactStore, channel string) error {
-	return ReconcileStore(ctx, p, store, channel)
 }
 
 // ReconcileStore stages and adopts the channel's latest published artifact,
@@ -434,66 +516,81 @@ func RunSuccessorLoop(ctx context.Context, p *Ports, store *ArtifactStore, cfg S
 	if err := ReconcileStore(ctx, p, store, cfg.Channel); err != nil {
 		return fmt.Errorf("successor: startup reconciliation: %w", err)
 	}
-	limit := cfg.ScanLimit
-	if limit <= 0 {
-		limit = 50
-	}
 	idle := cfg.PollIdle
 	if idle <= 0 {
 		idle = 5 * time.Second
 	}
-	consumer := "publisher"
 	for {
 		if err := ctx.Err(); err != nil {
 			return nil
 		}
-		events, err := p.DeliveryScan(ctx, consumer, limit)
+		busy, err := processOneBatch(ctx, p, store, cfg)
 		if err != nil {
 			if ctx.Err() != nil {
 				return nil
 			}
 			return err
 		}
-		if len(events) == 0 {
-			select {
-			case <-ctx.Done():
-				return nil
-			case <-time.After(idle):
-				continue
-			}
+		if busy {
+			continue
 		}
-		attempt := false
-		for _, e := range events {
-			if eligibleTrigger(e) {
-				attempt = true
-				break
-			}
-		}
-		if attempt {
-			outcome, err := AttemptSuccessor(ctx, p, store, cfg, time.Now().UTC())
-			if err != nil {
-				if ctx.Err() != nil {
-					return nil
-				}
-				// Leave receipts unwritten: the batch redelivers. Back off
-				// briefly so a persistent failure cannot hot-loop.
-				select {
-				case <-ctx.Done():
-					return nil
-				case <-time.After(idle):
-					continue
-				}
-			}
-			_ = outcome
-		}
-		now := time.Now().UTC()
-		for _, e := range events {
-			if err := p.RecordConsumerReceipt(ctx, consumer, e.EventID, now); err != nil {
-				if ctx.Err() != nil {
-					return nil // shutdown: unreceipted events redeliver
-				}
-				return err
-			}
+		select {
+		case <-ctx.Done():
+			return nil
+		case <-time.After(idle):
 		}
 	}
+}
+
+// processOneBatch scans and resolves one delivery batch. It reports busy
+// false when the consumer is idle. Debounce: one batch containing any
+// eligible trigger resolves exactly one successor attempt, then every
+// event in the batch is receipted. An attempt failing on a storage error
+// leaves receipts unwritten so the batch redelivers; a permanent
+// invalid_request (misconfiguration) is fatal so the daemon stops loudly
+// instead of hot-retrying forever.
+func processOneBatch(ctx context.Context, p *Ports, store *ArtifactStore, cfg SuccessorConfig) (bool, error) {
+	limit := cfg.ScanLimit
+	if limit <= 0 {
+		limit = 50
+	}
+	consumer := "publisher"
+	events, err := p.DeliveryScan(ctx, consumer, limit)
+	if err != nil {
+		return false, err
+	}
+	if len(events) == 0 {
+		return false, nil
+	}
+	busy := true
+	attempt := false
+	for _, e := range events {
+		if eligibleTrigger(e) {
+			attempt = true
+			break
+		}
+	}
+	if attempt {
+		_, err := AttemptSuccessor(ctx, p, store, cfg, time.Now().UTC())
+		if err != nil {
+			var ce *Error
+			if errors.As(err, &ce) && ce.Code == CodeInvalidRequest {
+				return false, err // permanent misconfiguration: stop the loop
+			}
+			cfg.logf("successor: attempt failed, batch will redeliver: %v", err)
+			// Leave receipts unwritten; idle false makes the loop back off
+			// before rescanning the redelivered batch.
+			return false, nil
+		}
+	}
+	now := time.Now().UTC()
+	for _, e := range events {
+		if err := p.RecordConsumerReceipt(ctx, consumer, e.EventID, now); err != nil {
+			if ctx.Err() != nil {
+				return false, nil // shutdown: unreceipted events redeliver
+			}
+			return false, err
+		}
+	}
+	return busy, nil
 }

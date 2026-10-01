@@ -276,7 +276,7 @@ func (p *Ports) CompileSnapshot(ctx context.Context, params CompileSnapshotParam
 				}, nil
 			}
 			return CompileSnapshotResult{}, errf(CodeConflict,
-				"a different parameter set produced identical artifact bytes (hash %s)", hexHash(artifactHash))
+				"a different parameter set produced identical artifact bytes (hash %s)", hexDigest(artifactHash))
 		}
 		return CompileSnapshotResult{}, storageErr(err)
 	}
@@ -309,7 +309,7 @@ func (p *Ports) CompileSnapshot(ctx context.Context, params CompileSnapshotParam
 	}
 	if err := emitEvent(ctx, tx, hexHash(artifactHash), "SnapshotCompiled", 1,
 		params.CreatedAt, map[string]any{
-			"artifact_hash":       hexHash(artifactHash),
+			"artifact_hash":       hexDigest(artifactHash),
 			"schema_version":      1,
 			"policy":              "educated-v1",
 			"distribution":        params.Distribution,
@@ -329,7 +329,7 @@ func (p *Ports) CompileSnapshot(ctx context.Context, params CompileSnapshotParam
 }
 
 // artifactLocator is the pinned staging and publication locator grammar.
-func artifactLocator(hash []byte) string { return "snapshot://" + hexHash(hash) }
+func artifactLocator(hash []byte) string { return "snapshot://" + hexDigest(hash) }
 
 func hashDoc(v any) []byte {
 	b, err := canonicalize(v)
@@ -964,7 +964,7 @@ func (p *Ports) ValidateSnapshot(ctx context.Context, params ValidateSnapshotPar
 		SELECT artifact_bytes FROM snapshots WHERE artifact_hash = $1`,
 		params.ArtifactHash).Scan(&artifactBytes)
 	if errors.Is(err, pgx.ErrNoRows) {
-		return ValidateSnapshotResult{}, errf(CodeNotFound, "no staged snapshot for hash %s", hexHash(params.ArtifactHash))
+		return ValidateSnapshotResult{}, errf(CodeNotFound, "no staged snapshot for hash %s", hexDigest(params.ArtifactHash))
 	}
 	if err != nil {
 		return ValidateSnapshotResult{}, storageErr(err)
@@ -1014,7 +1014,7 @@ func (p *Ports) ValidateSnapshot(ctx context.Context, params ValidateSnapshotPar
 	}
 	if err := emitEvent(ctx, tx, hexHash(params.ArtifactHash), "SnapshotValidated", 1,
 		time.Now().UTC(), map[string]any{
-			"artifact_hash":     hexHash(params.ArtifactHash),
+			"artifact_hash":     hexDigest(params.ArtifactHash),
 			"validator_version": params.ValidatorVersion,
 			"outcome":           outcome,
 			"findings_hash":     hexHash(findingsBytes),
@@ -1068,7 +1068,7 @@ func (p *Ports) PublishSnapshot(ctx context.Context, artifactHash []byte, channe
 		SELECT distribution, created_at, knowledge_cutoff, coverage_digest
 		FROM snapshots WHERE artifact_hash = $1`, artifactHash).Scan(&distribution, &createdAt, &knowledgeCutoff, &coverage)
 	if errors.Is(err, pgx.ErrNoRows) {
-		return PublishSnapshotResult{}, errf(CodeNotFound, "no staged snapshot for hash %s", hexHash(artifactHash))
+		return PublishSnapshotResult{}, errf(CodeNotFound, "no staged snapshot for hash %s", hexDigest(artifactHash))
 	}
 	if err != nil {
 		return PublishSnapshotResult{}, storageErr(err)
@@ -1082,7 +1082,7 @@ func (p *Ports) PublishSnapshot(ctx context.Context, artifactHash []byte, channe
 		return PublishSnapshotResult{}, storageErr(err)
 	}
 	if !validated {
-		return PublishSnapshotResult{}, errf(CodeConflict, "artifact %s has no accepted validation", hexHash(artifactHash))
+		return PublishSnapshotResult{}, errf(CodeConflict, "artifact %s has no accepted validation", hexDigest(artifactHash))
 	}
 
 	// Channel class is read from the registry, never caller-supplied.
@@ -1155,7 +1155,7 @@ func (p *Ports) PublishSnapshot(ctx context.Context, artifactHash []byte, channe
 	if err := emitEvent(ctx, tx, hexHash(artifactHash), "SnapshotPublished", 1,
 		now, map[string]any{
 			"publication_id":   pubID,
-			"artifact_hash":    hexHash(artifactHash),
+			"artifact_hash":    hexDigest(artifactHash),
 			"schema_version":   1,
 			"policy":           "educated-v1",
 			"distribution":     distribution,

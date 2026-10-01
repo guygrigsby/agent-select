@@ -4,6 +4,9 @@ import (
 	"context"
 	"crypto/sha256"
 	"encoding/hex"
+	"encoding/json"
+	"errors"
+	"fmt"
 	"os"
 	"testing"
 	"time"
@@ -501,4 +504,304 @@ func makeArtifact(t *testing.T, tag string) []byte {
 func aHash(t *testing.T, tag string) string {
 	t.Helper()
 	return hexDigest(hash32([]byte("artifact-" + tag)))
+}
+
+// TestSuccessorRetirementConvergesAfterCrash reproduces review blocker 1: a
+// crash between publish_snapshot and retire_snapshot leaves the predecessor
+// unretired. Redelivery re-derives from the new publication, sees unchanged
+// content and would previously confirm freshness forever. The sweep must
+// retire the orphan naming the current publication.
+func TestSuccessorRetirementConvergesAfterCrash(t *testing.T) {
+	p := mustPort(t)
+	ctx := context.Background()
+	seedSuccessorBase(t, p)
+	obs := seedSnapshotBase(t, p, "s1", "allowed")
+	seedSnapshotOffer(t, p, obs, "s1")
+	store := testStore(t, 2)
+	cfg := successorCfg()
+
+	if _, err := AttemptSuccessor(ctx, p, store, cfg, ms(time.Now().UTC())); err != nil {
+		t.Fatal(err)
+	}
+	first, err := latestPublication(ctx, p.Pool, "local")
+	if err != nil || first == nil {
+		t.Fatal(err)
+	}
+
+	// Simulate the crash window: evidence changed and a successor was
+	// compiled, validated and published, but the process died before
+	// materializing the store and retiring the predecessor.
+	seedChangedObservation(t, p, "s1", 9.5, "crash")
+	attemptAt := ms(time.Now().UTC().Add(time.Minute))
+	inputs, err := eligibleInputs(ctx, p.Pool, attemptAt, "local")
+	if err != nil {
+		t.Fatal(err)
+	}
+	compiled, err := p.CompileSnapshot(ctx, CompileSnapshotParams{
+		Inputs:                  inputs,
+		Distribution:            "local",
+		ProjectionPolicyVersion: first.PolicyVersion,
+		CreatedAt:               attemptAt,
+		KnowledgeCutoff:         attemptAt,
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	validation, err := p.ValidateSnapshot(ctx, ValidateSnapshotParams{
+		ArtifactHash:     compiled.ArtifactHash,
+		ValidatorVersion: cfg.ValidatorVersion,
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if validation.Outcome != "accepted" {
+		t.Fatalf("crash-window validation = %q", validation.Outcome)
+	}
+	if _, err := p.PublishSnapshot(ctx, compiled.ArtifactHash, "local"); err != nil {
+		t.Fatal(err)
+	}
+
+	// Redelivery: same evidence, so content is unchanged against the
+	// current publication. The attempt must confirm freshness AND converge
+	// the store and the orphaned retirement.
+	outcome, err := AttemptSuccessor(ctx, p, store, cfg, ms(time.Now().UTC().Add(2*time.Minute)))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if outcome != SuccessorConfirmed {
+		t.Fatalf("redelivery outcome = %q", outcome)
+	}
+	second, err := latestPublication(ctx, p.Pool, "local")
+	if err != nil || second == nil {
+		t.Fatal(err)
+	}
+	if hexDigest(second.ArtifactHash) == hexDigest(first.ArtifactHash) {
+		t.Fatal("crash-window publication missing")
+	}
+	if n := countRows(t, p, `SELECT count(*) FROM snapshot_retirements
+		WHERE artifact_hash = $1 AND successor_hash = $2`,
+		first.ArtifactHash, second.ArtifactHash); n != 1 {
+		t.Fatalf("orphaned retirement not converged: %d rows", n)
+	}
+	// The retirement names the successor's publication.
+	if n := countRows(t, p, `SELECT count(*) FROM snapshot_retirements r
+		JOIN snapshot_publications s ON s.id = r.publication_id
+		WHERE r.artifact_hash = $1 AND s.artifact_hash = $2`,
+		first.ArtifactHash, second.ArtifactHash); n != 1 {
+		t.Fatalf("retirement paired to the wrong publication: %d rows", n)
+	}
+	cur, err := store.Current()
+	if err != nil || cur != hexDigest(second.ArtifactHash) {
+		t.Fatalf("store not converged after crash: %q err=%v", cur, err)
+	}
+}
+
+// TestSuccessorEventPayloadsCarryTrueHex pins review blocker 2: every payload
+// field or locator that claims to be an artifact hash carries the artifact's
+// own hex digest, not a hash of the digest.
+func TestSuccessorEventPayloadsCarryTrueHex(t *testing.T) {
+	p := mustPort(t)
+	ctx := context.Background()
+	seedSuccessorBase(t, p)
+	obs := seedSnapshotBase(t, p, "s1", "allowed")
+	seedSnapshotOffer(t, p, obs, "s1")
+	store := testStore(t, 2)
+	cfg := successorCfg()
+
+	if _, err := AttemptSuccessor(ctx, p, store, cfg, ms(time.Now().UTC())); err != nil {
+		t.Fatal(err)
+	}
+	first, err := latestPublication(ctx, p.Pool, "local")
+	if err != nil || first == nil {
+		t.Fatal(err)
+	}
+	seedChangedObservation(t, p, "s1", 5.5, "hexcheck")
+	if _, err := AttemptSuccessor(ctx, p, store, cfg, ms(time.Now().UTC().Add(time.Minute))); err != nil {
+		t.Fatal(err)
+	}
+	second, err := latestPublication(ctx, p.Pool, "local")
+	if err != nil || second == nil {
+		t.Fatal(err)
+	}
+
+	// Every payload field must be a digest of a real publication's
+	// artifact, never a hash of that digest.
+	digests := map[string]bool{
+		hexDigest(first.ArtifactHash):  true,
+		hexDigest(second.ArtifactHash): true,
+	}
+	rows, err := p.Pool.Query(ctx, `SELECT event_name, payload FROM outbox_events
+		WHERE event_name IN ('SnapshotCompiled','SnapshotValidated','SnapshotPublished','SnapshotRetired')`)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer rows.Close()
+	seen := map[string]int{}
+	for rows.Next() {
+		var name string
+		var payload []byte
+		if err := rows.Scan(&name, &payload); err != nil {
+			t.Fatal(err)
+		}
+		var fields map[string]any
+		if err := json.Unmarshal(payload, &fields); err != nil {
+			t.Fatalf("%s payload not JSON: %v", name, err)
+		}
+		got, _ := fields["artifact_hash"].(string)
+		if !digests[got] {
+			t.Fatalf("%s artifact_hash = %q, want a publication digest (%s or %s)",
+				name, got, hexDigest(first.ArtifactHash), hexDigest(second.ArtifactHash))
+		}
+		if name == "SnapshotRetired" {
+			if got != hexDigest(first.ArtifactHash) {
+				t.Fatalf("SnapshotRetired artifact_hash = %q, want predecessor %q", got, hexDigest(first.ArtifactHash))
+			}
+			succ, _ := fields["successor_hash"].(string)
+			if succ != hexDigest(second.ArtifactHash) {
+				t.Fatalf("SnapshotRetired successor_hash = %q, want %q", succ, hexDigest(second.ArtifactHash))
+			}
+		}
+		if name == "SnapshotPublished" {
+			loc, _ := fields["artifact_locator"].(string)
+			want := "snapshot://" + got
+			if loc != want {
+				t.Fatalf("SnapshotPublished locator = %q, want %q", loc, want)
+			}
+		}
+		seen[name]++
+	}
+	if err := rows.Err(); err != nil {
+		t.Fatal(err)
+	}
+	for _, name := range []string{"SnapshotCompiled", "SnapshotValidated", "SnapshotPublished", "SnapshotRetired"} {
+		if seen[name] == 0 {
+			t.Fatalf("no %s event found", name)
+		}
+	}
+}
+
+// TestProcessOneBatchDebounce pins the debounce contract: one scan batch
+// containing several eligible triggers resolves exactly one successor
+// attempt (one publication) and receipts every event in the batch.
+func TestProcessOneBatchDebounce(t *testing.T) {
+	p := mustPort(t)
+	ctx := context.Background()
+	seedSuccessorBase(t, p)
+	obs := seedSnapshotBase(t, p, "s1", "allowed")
+	seedSnapshotOffer(t, p, obs, "s1")
+	store := testStore(t, 2)
+	cfg := successorCfg()
+
+	for i := range 3 {
+		seedObservationEvent(t, p, fmt.Sprintf("obs-multi-%d", i), "s1")
+	}
+	busy, err := processOneBatch(ctx, p, store, cfg)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !busy {
+		t.Fatal("batch with events must report busy")
+	}
+	if n := countRows(t, p, `SELECT count(*) FROM snapshot_publications`); n != 1 {
+		t.Fatalf("debounce must produce exactly one publication, got %d", n)
+	}
+	// The attempt's own outbox events land in later batches; keep
+	// processing until the consumer drains. Each pass must be a no-op for
+	// publications: debounce holds at one publication for the burst.
+	for range 20 {
+		busy, err = processOneBatch(ctx, p, store, cfg)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if n := countRows(t, p, `SELECT count(*) FROM snapshot_publications`); n != 1 {
+			t.Fatalf("drain pass republished: %d publications", n)
+		}
+		if !busy {
+			break
+		}
+	}
+	if busy {
+		t.Fatal("consumer never drained")
+	}
+	events, err := p.DeliveryScan(ctx, "publisher", 10)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(events) != 0 {
+		t.Fatalf("scan after drain returned %d events", len(events))
+	}
+}
+
+// TestProcessOneBatchFatalOnMisconfiguration: a permanent invalid_request
+// from the attempt (missing bootstrap policy on an empty channel) stops the
+// batch processor loudly instead of hot-retrying forever.
+func TestProcessOneBatchFatalOnMisconfiguration(t *testing.T) {
+	p := mustPort(t)
+	ctx := context.Background()
+	seedSuccessorBase(t, p)
+	obs := seedSnapshotBase(t, p, "s1", "allowed")
+	seedSnapshotOffer(t, p, obs, "s1")
+	store := testStore(t, 2)
+	cfg := successorCfg()
+	cfg.BootstrapPolicy = "" // no publication exists to inherit from
+
+	seedObservationEvent(t, p, obs, "s1")
+	_, err := processOneBatch(ctx, p, store, cfg)
+	if err == nil {
+		t.Fatal("misconfigured attempt must be fatal")
+	}
+	var ce *Error
+	if !errors.As(err, &ce) || ce.Code != CodeInvalidRequest {
+		t.Fatalf("want invalid_request, got %v", err)
+	}
+}
+
+// TestCurrentMalformedPointerReadsAbsent: a torn CURRENT pointer reads as
+// absent so reconciliation re-adopts instead of bricking the store.
+func TestCurrentMalformedPointerReadsAbsent(t *testing.T) {
+	store := testStore(t, 2)
+	if err := os.WriteFile(store.currentPath(), []byte("not-a-hash"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	cur, err := store.Current()
+	if err != nil {
+		t.Fatalf("malformed CURRENT must not error: %v", err)
+	}
+	if cur != "" {
+		t.Fatalf("malformed CURRENT must read as absent, got %q", cur)
+	}
+}
+
+// TestSuccessorConfigFromDefaults pins the daemon mapping: defaults for
+// channel, distribution, scan limit, idle and retention, and the validator
+// version gating the loop.
+func TestSuccessorConfigFromDefaults(t *testing.T) {
+	cfg := CollectorConfig{
+		SnapshotValidatorVersion: "vv1",
+		SnapshotPolicy:           "pp-1",
+	}
+	sc, root, keep, ok, err := cfg.SuccessorConfigFrom()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !ok {
+		t.Fatal("validator version set: loop must be enabled")
+	}
+	if sc.Channel != "local" || sc.BootstrapDistribution != "local" {
+		t.Fatalf("channel defaults wrong: %+v", sc)
+	}
+	if sc.ValidatorVersion != "vv1" || sc.BootstrapPolicy != "pp-1" {
+		t.Fatalf("versions not mapped: %+v", sc)
+	}
+	if sc.ScanLimit != 50 || sc.PollIdle != 5*time.Second {
+		t.Fatalf("loop defaults wrong: %+v", sc)
+	}
+	if root == "" || keep != 2 {
+		t.Fatalf("store defaults wrong: root=%q keep=%d", root, keep)
+	}
+
+	cfg.SnapshotValidatorVersion = ""
+	if _, _, _, ok, err := cfg.SuccessorConfigFrom(); err != nil || ok {
+		t.Fatalf("empty validator version must disable the loop (ok=%v err=%v)", ok, err)
+	}
 }

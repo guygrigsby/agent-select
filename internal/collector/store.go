@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"crypto/sha256"
 	"errors"
-	"fmt"
 	"os"
 	"path/filepath"
 	"sort"
@@ -113,7 +112,9 @@ func writeFileSync(target string, data []byte) error {
 }
 
 // Current reads the CURRENT pointer. An absent pointer is not an error: it
-// reports the empty hash, meaning no generation has been adopted yet.
+// reports the empty hash, meaning no generation has been adopted yet. A
+// malformed pointer also reads as absent: the store is a derived projection,
+// so reconciliation heals it by re-adopting instead of bricking the daemon.
 func (s *ArtifactStore) Current() (string, error) {
 	raw, err := os.ReadFile(s.currentPath())
 	if errors.Is(err, os.ErrNotExist) {
@@ -123,11 +124,8 @@ func (s *ArtifactStore) Current() (string, error) {
 		return "", storageErr(err)
 	}
 	hex := strings.TrimSpace(string(raw))
-	if hex == "" {
-		return "", nil
-	}
 	if !isHexHash(hex) {
-		return "", storageErr(fmt.Errorf("store: CURRENT pointer holds malformed hash %q", hex))
+		return "", nil
 	}
 	return hex, nil
 }

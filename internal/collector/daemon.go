@@ -37,6 +37,8 @@ type CollectorConfig struct {
 	SnapshotValidatorVersion string `toml:"snapshot_validator_version"`
 	SnapshotPolicy           string `toml:"snapshot_projection_policy_version"`
 	SnapshotDistribution     string `toml:"snapshot_distribution"`
+	SnapshotScanLimit        int    `toml:"snapshot_scan_limit"`
+	SnapshotPollIdle         time.Duration
 	StoreDir                 string `toml:"store_dir"`
 	StoreKeepGenerations     int    `toml:"store_keep_generations"`
 }
@@ -123,11 +125,21 @@ func (c CollectorConfig) SuccessorConfigFrom() (SuccessorConfig, string, int, bo
 		}
 		root = filepath.Join(base, "agent-routing", "store")
 	}
+	scan := c.SnapshotScanLimit
+	if scan == 0 {
+		scan = 50
+	}
+	idle := c.SnapshotPollIdle
+	if idle == 0 {
+		idle = 5 * time.Second
+	}
 	return SuccessorConfig{
 		Channel:               channel,
 		ValidatorVersion:      c.SnapshotValidatorVersion,
 		BootstrapPolicy:       c.SnapshotPolicy,
 		BootstrapDistribution: dist,
+		ScanLimit:             scan,
+		PollIdle:              idle,
 	}, root, keep, true, nil
 }
 
@@ -176,6 +188,9 @@ func RunCollectorWith(ctx context.Context, dsn string, cfg CollectorConfig, f Fe
 		store, err := NewArtifactStore(root, keep)
 		if err != nil {
 			return fmt.Errorf("collector: artifact store: %w", err)
+		}
+		sc.Log = func(format string, args ...any) {
+			fmt.Fprintf(os.Stderr, "successor: "+format+"\n", args...)
 		}
 		go func() { errc <- RunSuccessorLoop(ctx, p, store, sc) }()
 	}
