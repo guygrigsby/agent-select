@@ -1,0 +1,66 @@
+{
+ "models": [],
+ "benchmarks": [],
+ "sources": [
+  {
+   "url": "https://livecodebench.github.io/performances_generation.json",
+   "file": "data/research/livecodebench/sources/performances_generation.json",
+   "status": "retrieved",
+   "purpose": "Official leaderboard dataset: per-question pass@1 records, model registry with release dates, date window marks",
+   "license": "unknown"
+  },
+  {
+   "url": "https://livecodebench.github.io/leaderboard.html",
+   "file": "data/research/livecodebench/sources/leaderboard.html",
+   "status": "retrieved",
+   "purpose": "Leaderboard page; table populated from the dataset JSON",
+   "license": "unknown"
+  },
+  {
+   "url": "https://api.github.com/repos/LiveCodeBench/LiveCodeBench",
+   "file": "data/research/livecodebench/sources/api_repo.json",
+   "status": "retrieved",
+   "purpose": "Repo metadata: no releases, no tags",
+   "license": "unknown"
+  },
+  {
+   "url": "https://api.github.com/repos/LiveCodeBench/LiveCodeBench/releases/latest",
+   "file": "data/research/livecodebench/sources/api_release_latest.json",
+   "status": "retrieved",
+   "purpose": "404: no tagged result release exists",
+   "license": "unknown"
+  },
+  {
+   "url": "https://api.github.com/repos/LiveCodeBench/LiveCodeBench/git/trees/main?recursive=1",
+   "file": "data/research/livecodebench/sources/api_tree_main.json",
+   "status": "retrieved",
+   "purpose": "Repo tree: no committed result files; scores come from the site dataset",
+   "license": "unknown"
+  },
+  {
+   "url": "https://api.github.com/repos/LiveCodeBench/LiveCodeBench/tags?per_page=5",
+   "file": "data/research/livecodebench/sources/api_tags.json",
+   "status": "retrieved",
+   "purpose": "Empty tag list: no release tags exist",
+   "license": "unknown"
+  },
+  {
+   "url": "https://api.github.com/repos/LiveCodeBench/LiveCodeBench/contents/data",
+   "file": "data/research/livecodebench/sources/api_contents_data_404.json",
+   "status": "retrieved",
+   "purpose": "404 probe: repo carries no data directory",
+   "license": "unknown"
+  },
+  {
+   "url": "https://api.github.com/repos/LiveCodeBench/livecodebench.github.io",
+   "file": "data/research/livecodebench/sources/api_site_repo.json",
+   "status": "retrieved",
+   "purpose": "Site repo metadata: no license file",
+   "license": "unknown"
+  }
+ ],
+ "gaps": [
+  "No tagged result release exists; the official site dataset performances_generation.json is the machine-readable result artifact. Extraction into measurements pending review.",
+  "Site repo LiveCodeBench/livecodebench.github.io carries no license file; redistribution stays denied until one appears."
+ ]
+}

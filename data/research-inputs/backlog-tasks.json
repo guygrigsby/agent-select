@@ -94,10 +94,12 @@
    "id": "mixedbread",
    "kind": "batch_acquisition",
    "batches": ["mixedbread"],
-   "evidence_files": ["data/research/mixedbread/findings.json"],
+   "evidence_files": ["data/research/mixedbread/sources/models.html", "data/research/mixedbread/sources/docs_models.html", "data/research/mixedbread/sources/toast_qa.html", "data/research/mixedbread/sources/terms.html"],
    "evidence_urls": [],
    "desired_fields": ["toast-1 primary identity", "capability evidence"],
-   "closure": "mixedbread/toast-1 researched from its exact primary identity and capability sources with an explicit outcome; never silently excluded."
+   "closure": "mixedbread/toast-1 researched from its exact primary identity and capability sources with an explicit outcome; never silently excluded.",
+   "status": "done",
+   "notes": "Bounded outcome 2026-10-01: Toast 1 is documented as the stores-search engine (QA, agentic search, reranking); no published numeric benchmark tables; terms page is a JS shell, redistribution unknown."
   },
   {
    "id": "unresolved-historical",
@@ -157,37 +159,45 @@
    "id": "livecodebench",
    "kind": "source_acquisition",
    "batches": [],
-   "evidence_files": ["data/research/benchmark-sources/_livecodebench_results.json"],
+   "evidence_files": ["data/research/livecodebench/sources/performances_generation.json", "data/research/livecodebench/sources/leaderboard.html", "data/research/livecodebench/sources/api_repo.json", "data/research/livecodebench/sources/api_release_latest.json", "data/research/livecodebench/sources/api_tree_main.json"],
    "evidence_urls": [],
    "desired_fields": ["tagged result release", "problem window", "sampling", "evaluated identity"],
-   "closure": "A documented tagged result release located with window/release/sampling/identity or the source stays a recorded blocked outcome; repository listings never treated as results."
+   "closure": "A documented tagged result release located with window/release/sampling/identity or the source stays a recorded blocked outcome; repository listings never treated as results.",
+   "status": "in_progress",
+   "notes": "No tagged release exists; official site dataset performances_generation.json retained (per-question pass@1 + model registry + date marks). Extraction into measurements pending review."
   },
   {
    "id": "helm",
    "kind": "source_acquisition",
    "batches": [],
-   "evidence_files": [],
+   "evidence_files": ["data/research/helm/sources/gh_license.json", "data/research/helm/sources/gh_releases.json", "data/research/helm/sources/runs_probe_404.txt"],
    "evidence_urls": [],
    "desired_fields": ["official run/scenario artifacts", "adaptation", "release", "evaluator metadata"],
-   "closure": "Official machine-readable run artifacts located or HELM stays a documented unusable-source outcome; SPA/error pages never claimed as tables."
+   "closure": "Official machine-readable run artifacts located or HELM stays a documented unusable-source outcome; SPA/error pages never claimed as tables.",
+   "status": "done",
+   "notes": "Documented unusable-source outcome: SPA site, releases without run artifacts, runs readme 404. Apache-2.0 recorded for future acquisition."
   },
   {
    "id": "hf-open-llm",
    "kind": "source_acquisition",
    "batches": [],
-   "evidence_files": [],
+   "evidence_files": ["data/research/hf-open-llm/sources/api_results_ds.json", "data/research/hf-open-llm/sources/api_results_tree.json", "data/research/hf-open-llm/sources/ds_page.html"],
    "evidence_urls": [],
    "desired_fields": ["dataset/card/release revisions", "licenses", "harness/precision/task metadata", "evaluated revision"],
-   "closure": "Documented dataset/card/release revisions and licenses captured with harness metadata, or bounded outcome; landing pages never treated as scores."
+   "closure": "Documented dataset/card/release revisions and licenses captured with harness metadata, or bounded outcome; landing pages never treated as scores.",
+   "status": "done",
+   "notes": "Bounded outcome: per-org result JSON tree located; dataset card carries no machine-readable license; extraction deferred until per-file license posture is recorded. Harness metadata rides any future cell."
   },
   {
    "id": "arena",
    "kind": "source_acquisition",
    "batches": [],
-   "evidence_files": ["data/research/benchmark-sources/_lmarena_elo.csv"],
+   "evidence_files": ["data/research/arena/sources/lmarena_terms.html"],
    "evidence_urls": [],
    "desired_fields": ["permitted export/API", "candidate pool", "category", "votes", "rating method", "uncertainty", "evaluation window"],
-   "closure": "Genuine permitted export/API established with full methodology or Arena stays blocked; the saved 404 CSV never presented as evidence; anonymous models stay unresolved."
+   "closure": "Genuine permitted export/API established with full methodology or Arena stays blocked; the saved 404 CSV never presented as evidence; anonymous models stay unresolved.",
+   "status": "done",
+   "notes": "Blocked outcome: terms captured; no public export/API; saved 404 CSV never evidence; anonymous models stay unresolved."
   },
   {
    "id": "artificial-analysis",
@@ -202,19 +212,23 @@
    "id": "geneval",
    "kind": "source_acquisition",
    "batches": [],
-   "evidence_files": ["data/research/images/findings.json"],
+   "evidence_files": ["data/research/coverage-followup/sources/geneval_readme_af4902f.md", "data/research/coverage-followup/sources/geneval_license_af4902f.txt", "data/research/coverage-followup/sources/geneval_head_af4902f.json"],
    "evidence_urls": [],
    "desired_fields": ["commit-pinned source bytes", "prompt set", "evaluator", "settings"],
-   "closure": "42 reviewed cells preserved; captured main bytes compared with a commit-pinned source before claiming the pin; dataset/output rights recorded separately from repository MIT."
+   "closure": "42 reviewed cells preserved; captured main bytes compared with a commit-pinned source before claiming the pin; dataset/output rights recorded separately from repository MIT.",
+   "status": "done",
+   "notes": "Pin verified 2026-10-01: all 42 stored cells match the README table at commit af4902f24d3c value-for-value; MIT license pinned."
   },
   {
    "id": "ella-dpg-t2i",
    "kind": "source_acquisition",
    "batches": [],
-   "evidence_files": [],
+   "evidence_files": ["data/research/coverage-followup/sources/ella_site.html", "data/research/coverage-followup/sources/ella-readme.md"],
    "evidence_urls": [],
    "desired_fields": ["official tables", "release artifacts", "settings"],
-   "closure": "Official tables/release artifacts located with settings; figure-only results remain unreviewed proposals requiring source-cell verification; no invented OCR numbers."
+   "closure": "Official tables/release artifacts located with settings; figure-only results remain unreviewed proposals requiring source-cell verification; no invented OCR numbers.",
+   "status": "done",
+   "notes": "Bounded outcome: official sources present figure-only quantitative results; no machine-readable numbers; no OCR inventions."
   },
   {
    "id": "image-evaluators",

@@ -1,0 +1,16 @@
+{
+ "models": [],
+ "benchmarks": [],
+ "sources": [
+  {
+   "url": "https://lmarena.ai/terms",
+   "file": "data/research/arena/sources/lmarena_terms.html",
+   "status": "retrieved",
+   "purpose": "Terms page capture",
+   "license": "unknown"
+  }
+ ],
+ "gaps": [
+  "Arena stays blocked: no public export or API documented on the terms capture; the earlier elo CSV capture is a 404 envelope and is never presented as evidence; anonymous models would stay identity-unresolved."
+ ]
+}

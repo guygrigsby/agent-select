@@ -1,0 +1,24 @@
+{
+ "batch": "coverage-followup",
+ "scope": "published_measurements",
+ "state": "source_validated",
+ "reason": "Supersedes v3 for source-addition only: appended commit-pinned geneval evidence (README/LICENSE at af4902f24d3c, head metadata), the ELLA project page, and pin-verification/bounded-outcome gap notes. The 42 reviewed GenEval cells are unchanged and the pinned README comparison passed 42/42; no measurement rows were added or altered.",
+ "review_path": "data/reviews/phase3-provenance-2026-09-30.md",
+ "pins": [
+  {
+   "path": "data/research/coverage-followup/findings.json",
+   "sha256": "553851217026bba9e4130a0f6921b83cb03244e17e017c1c1238c54cc4d26811"
+  },
+  {
+   "path": "data/research/coverage-followup/sources/geneval-readme.md",
+   "sha256": "468930e319ebba4b535f9c77cbac91bda6e3b2f6ad21f4c6c55b08161baca94a"
+  },
+  {
+   "path": "data/reviews/phase3-provenance-2026-09-30.md",
+   "sha256": "ec8dff760ce0e122edad3360a4da3e40f34d030c703b853378ea065378fd608b"
+  }
+ ],
+ "decision_version": 4,
+ "decided_at": "2026-10-01T00:00:00Z",
+ "supersedes": "data/reviews/decisions/coverage-followup.v3.json"
+}

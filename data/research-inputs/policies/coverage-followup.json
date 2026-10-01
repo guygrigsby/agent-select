@@ -32,6 +32,20 @@
   "notes": "Saved response is GitHub API 404 (repository does not exist); no material and no governing terms could be retained, so no use is permitted on evidence."
  },
  {
+  "url": "https://api.github.com/repos/djghosh13/geneval/commits/main",
+  "terms_url": "https://raw.githubusercontent.com/djghosh13/geneval/af4902f24d3c/LICENSE",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "source_kind": "github_repo",
+  "license_name": "MIT",
+  "evidence": {
+   "outcome": "success",
+   "retrieved_at": "2026-09-30T20:00:00.000Z",
+   "path": "data/research/coverage-followup/sources/geneval_license_af4902f.txt"
+  }
+ },
+ {
   "url": "https://api.github.com/repos/microsoft/GenEval",
   "source_kind": "github_repo",
   "terms_url": "https://api.github.com/repos/microsoft/GenEval",
@@ -80,6 +94,22 @@
   "notes": "Site Terms of Use (last revised September 15 2026) grant only a personal, noncommercial, revocable license and the Acceptable Use Policy expressly prohibits automated agents generating automated requests or stripping, scraping, or mining data from the Site, which bars research capture, systematic extraction and redistribution of site content."
  },
  {
+  "url": "https://ella-diffusion.github.io/",
+  "terms_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "source_kind": "benchmark_site",
+  "license_name": "cc-by-sa-4.0",
+  "evidence": {
+   "outcome": "success",
+   "retrieved_at": "2026-09-30T20:00:00.000Z",
+   "path": "data/research/coverage-followup/sources/cc-by-sa-deed.html"
+  },
+  "license_text": "Attribution-ShareAlike 4.0 International - Creative Commons Skip to content Languages available aragon\u00e9s Az\u0259rbaycanca Bahasa Indonesia Basque catal\u00e0 dansk Deutsch eesti English espa\u00f1ol Esperanto fran\u00e7ais frysk Gaeilge galego Hrvatski italiano latvie\u0161u Lietuvi\u0161kai Magyar Melayu Nederlands norsk polsk",
+  "notes": "Project site links the CC BY-SA 4.0 deed; deed bytes retained. Figure-only results keep extraction bounded to the ELLA-DPG figure claim."
+ },
+ {
   "url": "https://evalplus.github.io/results.json",
   "source_kind": "benchmark_site",
   "terms_url": "https://evalplus.github.io/results.json",
@@ -126,6 +156,34 @@
    "outcome": "success"
   },
   "notes": "Saved README contains no license section, so the repo LICENSE was fetched and is Apache-2.0, which expressly grants reproduction, derivative works and distribution of repo content including the README; image-based figures in the README were not transcribed."
+ },
+ {
+  "url": "https://raw.githubusercontent.com/djghosh13/geneval/af4902f24d3c/LICENSE",
+  "terms_url": "https://raw.githubusercontent.com/djghosh13/geneval/af4902f24d3c/LICENSE",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "source_kind": "github_repo",
+  "license_name": "MIT",
+  "evidence": {
+   "outcome": "success",
+   "retrieved_at": "2026-09-30T20:00:00.000Z",
+   "path": "data/research/coverage-followup/sources/geneval_license_af4902f.txt"
+  }
+ },
+ {
+  "url": "https://raw.githubusercontent.com/djghosh13/geneval/af4902f24d3c/README.md",
+  "terms_url": "https://raw.githubusercontent.com/djghosh13/geneval/af4902f24d3c/LICENSE",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "source_kind": "github_repo",
+  "license_name": "MIT",
+  "evidence": {
+   "outcome": "success",
+   "retrieved_at": "2026-09-30T20:00:00.000Z",
+   "path": "data/research/coverage-followup/sources/geneval_license_af4902f.txt"
+  }
  },
  {
   "url": "https://raw.githubusercontent.com/djghosh13/geneval/main/LICENSE",

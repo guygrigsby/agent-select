@@ -1,0 +1,50 @@
+[
+ {
+  "url": "https://huggingface.co/api/datasets/open-llm-leaderboard/results",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://huggingface.co/api/datasets/open-llm-leaderboard/results",
+  "research": "allowed",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "Terms of Service \u2013 Hugging Face Hugging Face Models Datasets Spaces Buckets new Docs Enterprise Pricing Website Tasks HuggingChat Collections Languages Organizations Community Blog Posts Daily Papers Hardware Learn Discord Forum GitHub Solutions Team & Enterprise Hugging Face PRO Enterprise Support ",
+  "evidence": {
+   "path": "data/research/hf-open-llm/sources/api_results_ds.json",
+   "retrieved_at": "2026-09-30T20:00:00.000Z",
+   "outcome": "success"
+  },
+  "notes": "API metadata; cardData carries no license field; HF ToS excerpt cited while extraction stays deferred."
+ },
+ {
+  "url": "https://huggingface.co/api/datasets/open-llm-leaderboard/results/tree/main",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://huggingface.co/api/datasets/open-llm-leaderboard/results/tree/main",
+  "research": "allowed",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "Terms of Service \u2013 Hugging Face Hugging Face Models Datasets Spaces Buckets new Docs Enterprise Pricing Website Tasks HuggingChat Collections Languages Organizations Community Blog Posts Daily Papers Hardware Learn Discord Forum GitHub Solutions Team & Enterprise Hugging Face PRO Enterprise Support ",
+  "evidence": {
+   "path": "data/research/hf-open-llm/sources/api_results_tree.json",
+   "retrieved_at": "2026-09-30T20:00:00.000Z",
+   "outcome": "success"
+  },
+  "notes": "Result-file tree located; per-file licenses absent at tree level; extraction deferred pending license posture."
+ },
+ {
+  "url": "https://huggingface.co/datasets/open-llm-leaderboard/results",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://huggingface.co/datasets/open-llm-leaderboard/results",
+  "research": "allowed",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "Terms of Service \u2013 Hugging Face Hugging Face Models Datasets Spaces Buckets new Docs Enterprise Pricing Website Tasks HuggingChat Collections Languages Organizations Community Blog Posts Daily Papers Hardware Learn Discord Forum GitHub Solutions Team & Enterprise Hugging Face PRO Enterprise Support ",
+  "evidence": {
+   "path": "data/research/hf-open-llm/sources/ds_page.html",
+   "retrieved_at": "2026-09-30T20:00:00.000Z",
+   "outcome": "success"
+  },
+  "notes": "Dataset card exposes no license; research reading allowed; extraction and redistribution unknown pending a dataset license."
+ }
+]

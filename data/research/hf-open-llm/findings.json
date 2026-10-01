@@ -1,0 +1,31 @@
+{
+ "models": [],
+ "benchmarks": [],
+ "sources": [
+  {
+   "url": "https://huggingface.co/api/datasets/open-llm-leaderboard/results",
+   "file": "data/research/hf-open-llm/sources/api_results_ds.json",
+   "status": "retrieved",
+   "purpose": "Results dataset metadata; cardData license absent",
+   "license": "unknown"
+  },
+  {
+   "url": "https://huggingface.co/api/datasets/open-llm-leaderboard/results/tree/main",
+   "file": "data/research/hf-open-llm/sources/api_results_tree.json",
+   "status": "retrieved",
+   "purpose": "Per-org directory tree of result JSONs",
+   "license": "unknown"
+  },
+  {
+   "url": "https://huggingface.co/datasets/open-llm-leaderboard/results",
+   "file": "data/research/hf-open-llm/sources/ds_page.html",
+   "status": "retrieved",
+   "purpose": "Dataset page; card license not machine-readable in capture",
+   "license": "unknown"
+  }
+ ],
+ "gaps": [
+  "Dataset README raw fetch is a 404 envelope (retained); per-revision result JSONs exist under per-org directories but per-file license/attribution is not established from the dataset card; extraction deferred until license posture is recorded.",
+  "Leaderboard results are harness-specific IFEval/BBH/MATH/GPQA/MUSR/MMLU-Pro averages; harness metadata must ride each extracted cell."
+ ]
+}

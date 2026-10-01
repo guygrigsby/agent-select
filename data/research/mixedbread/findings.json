@@ -1,32 +1,75 @@
 {
-  "models": [
+ "models": [
+  {
+   "id": "mixedbread/toast-1",
+   "strengths": [
     {
-      "id": "mixedbread/toast-1",
-      "strengths": [
-        {
-          "text": "Built for knowledge-intensive questions, multi-step retrieval, and evidence synthesis. Toast 1 can work with any backend exposed through function calling.",
-          "basis": "catalog_claim",
-          "source_url": "https://ai-gateway.vercel.sh/v1/models",
-          "source_file": "data/raw/vercel-models.json",
-          "locator": "data entry id=mixedbread/toast-1 description"
-        }
-      ],
-      "weaknesses": [],
-      "benchmark_status": "unresearched",
-      "notes": "Catalog-only coverage. No exact-revision primary source checked; no demonstrated empirical weakness."
+     "text": "Built for knowledge-intensive questions, multi-step retrieval, and evidence synthesis. Toast 1 can work with any backend exposed through function calling.",
+     "basis": "catalog_claim",
+     "source_url": "https://ai-gateway.vercel.sh/v1/models",
+     "source_file": "data/raw/vercel-models.json",
+     "locator": "data entry id=mixedbread/toast-1 description"
     }
-  ],
-  "benchmarks": [],
-  "sources": [
-    {
-      "url": "https://ai-gateway.vercel.sh/v1/models",
-      "file": "data/raw/vercel-models.json",
-      "status": "retrieved",
-      "purpose": "Discovery baseline",
-      "license": "unknown"
-    }
-  ],
-  "gaps": [
-    "Exact-revision sources and published evaluations remain unresearched."
-  ]
+   ],
+   "weaknesses": [],
+   "benchmark_status": "unresearched",
+   "notes": "Catalog-only coverage. No exact-revision primary source checked; no demonstrated empirical weakness."
+  }
+ ],
+ "benchmarks": [],
+ "sources": [
+  {
+   "url": "https://ai-gateway.vercel.sh/v1/models",
+   "file": "data/raw/vercel-models.json",
+   "status": "retrieved",
+   "purpose": "Discovery baseline",
+   "license": "unknown"
+  },
+  {
+   "url": "https://www.mixedbread.ai/models",
+   "file": "data/research/mixedbread/sources/models.html",
+   "status": "retrieved",
+   "purpose": "Models listing; JS-rendered",
+   "license": "unknown"
+  },
+  {
+   "url": "https://www.mixedbread.ai/docs",
+   "file": "data/research/mixedbread/sources/docs.html",
+   "status": "retrieved",
+   "purpose": "Docs index",
+   "license": "unknown"
+  },
+  {
+   "url": "https://www.mixedbread.ai/docs/models",
+   "file": "data/research/mixedbread/sources/docs_models.html",
+   "status": "retrieved",
+   "purpose": "Docs model pages registry naming Toast 1",
+   "license": "unknown"
+  },
+  {
+   "url": "https://www.mixedbread.ai/docs/stores/search/question-answering",
+   "file": "data/research/mixedbread/sources/toast_qa.html",
+   "status": "retrieved",
+   "purpose": "Toast 1 QA/agentic-search/rerank product documentation",
+   "license": "unknown"
+  },
+  {
+   "url": "https://www.mixedbread.ai/terms",
+   "file": "data/research/mixedbread/sources/terms.html",
+   "status": "retrieved",
+   "purpose": "Terms page; JS application shell, not machine-readable",
+   "license": "unknown"
+  },
+  {
+   "url": "https://www.mixedbread.ai/pricing",
+   "file": "data/research/mixedbread/sources/pricing.html",
+   "status": "retrieved",
+   "purpose": "Pricing page",
+   "license": "unknown"
+  }
+ ],
+ "gaps": [
+  "Exact-revision sources and published evaluations remain unresearched.",
+  "mixedbread/toast-1: docs describe Toast 1 as the engine for stores search (question answering, agentic search, reranking) with no published numeric benchmark tables; terms page is a JS shell so redistribution posture stays unknown. Bounded outcome: no exact-model numeric benchmark located in checked mixedbread sources."
+ ]
 }
