@@ -248,7 +248,10 @@ func RunGatesDB(root string, db *sql.DB) error {
 	if err := RunGate3(root, db); err != nil {
 		return err
 	}
-	return RunGate6(db)
+	if err := RunGate6(db); err != nil {
+		return err
+	}
+	return RunGate7(db)
 }
 
 // RunGate6 is the §5 source-policy gate: policy URL coverage equals the
@@ -280,6 +283,206 @@ func RunGate6(db *sql.DB) error {
 			return inconsf("source-policy gate (%s): %v", one.name, err)
 		}
 		return inconsf("source-policy gate (%s): %s", one.name, v)
+	}
+	return nil
+}
+
+// componentListSQL renders the common component vocabulary as a quoted SQL
+// IN list, generated from commonComponents so the gate cannot drift from the
+// derivation.
+func componentListSQL() string {
+	quoted := make([]string, len(commonComponents))
+	for i, c := range commonComponents {
+		quoted[i] = "'" + c + "'"
+	}
+	return strings.Join(quoted, ",")
+}
+
+// RunGate7 is the §12.6 qualification gate: derived qualification tables
+// cover their inputs exactly and match recomputation from the source rows.
+func RunGate7(db *sql.DB) error {
+	type q struct {
+		sql  string
+		name string
+	}
+	qs := []q{
+		{`SELECT m.id FROM catalog_models m LEFT JOIN offer_binding_qualifications b ON b.model_id=m.id WHERE b.model_id IS NULL LIMIT 1`, "catalog model without an offer binding qualification"},
+		{`SELECT b.model_id FROM offer_binding_qualifications b WHERE NOT EXISTS(SELECT 1 FROM catalog_models m WHERE m.id=b.model_id) LIMIT 1`, "offer binding qualification for a model absent from the catalog"},
+		{`SELECT j.model_id FROM exact_catalog_joins j JOIN offer_binding_qualifications b ON b.model_id=j.model_id WHERE b.binding<>'exact_join' OR b.provider<>j.provider OR b.upstream_id<>j.upstream_id LIMIT 1`, "exact_catalog_joins model whose offer binding is not the matching exact_join row"},
+		{`SELECT b.model_id FROM offer_binding_qualifications b WHERE b.binding='unjoined' AND (b.provider<>'' OR b.upstream_id<>'') LIMIT 1`, "unjoined offer binding with a non-empty provider or upstream_id"},
+		{`SELECT b.model_id FROM offer_binding_qualifications b WHERE b.binding='exact_join' AND NOT EXISTS(SELECT 1 FROM exact_catalog_joins j WHERE j.model_id=b.model_id AND j.provider=b.provider AND j.upstream_id=b.upstream_id) LIMIT 1`, "exact_join offer binding that does not reproduce its exact_catalog_joins row"},
+		{`SELECT m.id FROM benchmark_measurements m WHERE (SELECT COUNT(*) FROM measurement_settings s WHERE s.scope='linked' AND s.measurement_id=m.id)<>12 LIMIT 1`, "linked measurement without exactly twelve settings rows"},
+		{`SELECT u.id FROM unresolved_measurements u WHERE (SELECT COUNT(*) FROM measurement_settings s WHERE s.scope='unresolved' AND s.measurement_id=u.id)<>12 LIMIT 1`, "unresolved measurement without exactly twelve settings rows"},
+		{`SELECT s.scope||' '||s.measurement_id FROM measurement_settings s WHERE s.scope='linked' AND NOT EXISTS(SELECT 1 FROM benchmark_measurements m WHERE m.id=s.measurement_id) LIMIT 1`, "settings row referencing a linked measurement that does not exist"},
+		{`SELECT s.scope||' '||s.measurement_id FROM measurement_settings s WHERE s.scope='unresolved' AND NOT EXISTS(SELECT 1 FROM unresolved_measurements u WHERE u.id=s.measurement_id) LIMIT 1`, "settings row referencing an unresolved measurement that does not exist"},
+		{`SELECT s.scope||' '||s.measurement_id||' '||s.component FROM measurement_settings s WHERE s.knowledge='unknown' AND s.value_or_reason<>'` + unknownReason + `' LIMIT 1`, "unknown settings row without the fixed reason"},
+		{`SELECT scope||' '||measurement_id||' '||component FROM measurement_settings WHERE component NOT IN (` + componentListSQL() + `) LIMIT 1`, "settings row with a component outside the common critical components"},
+		{`SELECT l.model_id||' '||l.name FROM catalog_limits l LEFT JOIN limit_qualifications q ON q.model_id=l.model_id AND q.name=l.name WHERE q.model_id IS NULL OR q.value<>l.value LIMIT 1`, "catalog limit without a matching limit qualification carrying the same value"},
+		{`SELECT q.model_id||' '||q.name FROM limit_qualifications q WHERE NOT EXISTS(SELECT 1 FROM catalog_limits l WHERE l.model_id=q.model_id AND l.name=q.name) LIMIT 1`, "limit qualification without a catalog limit row"},
+	}
+	for _, one := range qs {
+		var v string
+		err := db.QueryRow(one.sql).Scan(&v)
+		if err == sql.ErrNoRows {
+			continue
+		}
+		if err != nil {
+			return inconsf("qualification gate (%s): %v", one.name, err)
+		}
+		return inconsf("qualification gate (%s): %s", one.name, v)
+	}
+	// Known settings values must occur in the measurement's configuration
+	// (or equal benchmark_version for benchmark_release).
+	knownValue := `
+SELECT s.scope, s.measurement_id, s.component, s.value_or_reason, m.configuration, m.benchmark_version
+FROM measurement_settings s
+JOIN benchmark_measurements m ON m.id=s.measurement_id AND s.scope='linked'
+WHERE s.knowledge='known'
+UNION ALL
+SELECT s.scope, s.measurement_id, s.component, s.value_or_reason, u.configuration, u.benchmark_version
+FROM measurement_settings s
+JOIN unresolved_measurements u ON u.id=s.measurement_id AND s.scope='unresolved'
+WHERE s.knowledge='known'`
+	rows, err := db.Query(knownValue)
+	if err != nil {
+		return inconsf("qualification gate (known settings scan): %v", err)
+	}
+	for rows.Next() {
+		var scope, comp, val, config, version string
+		var id int64
+		if err := rows.Scan(&scope, &id, &comp, &val, &config, &version); err != nil {
+			return inconsf("qualification gate (known settings scan): %v", err)
+		}
+		ok := comp == "benchmark_release" && val == version
+		if !ok && strings.Contains(strings.ToLower(config), strings.ToLower(val)) {
+			ok = true
+		}
+		if !ok {
+			return inconsf("qualification gate (known settings value absent from configuration): %s %d %s", scope, id, comp)
+		}
+	}
+	if err := rows.Err(); err != nil {
+		rows.Close()
+		return inconsf("qualification gate (known settings scan): %v", err)
+	}
+	rows.Close()
+	// Comparison qualifications must cover every measurement and equal
+	// recomputation from the settings rows.
+	type cmp struct {
+		scope    string
+		id       int64
+		eligible int
+		blocking string
+	}
+	stored := map[[2]any]cmp{}
+	crows, err := db.Query(`SELECT scope, measurement_id, eligible, blocking_components FROM comparison_qualifications`)
+	if err != nil {
+		return inconsf("qualification gate (comparison scan): %v", err)
+	}
+	for crows.Next() {
+		var c cmp
+		if err := crows.Scan(&c.scope, &c.id, &c.eligible, &c.blocking); err != nil {
+			crows.Close()
+			return inconsf("qualification gate (comparison scan): %v", err)
+		}
+		stored[[2]any{c.scope, c.id}] = c
+	}
+	crows.Close()
+	recompute := func(scope string) error {
+		tbl := "benchmark_measurements"
+		if scope == "unresolved" {
+			tbl = "unresolved_measurements"
+		}
+		r, err := db.Query(`SELECT id, benchmark_version, configuration FROM ` + tbl)
+		if err != nil {
+			return inconsf("qualification gate (comparison recompute): %v", err)
+		}
+		for r.Next() {
+			var id int64
+			var version, config string
+			if err := r.Scan(&id, &version, &config); err != nil {
+				return inconsf("qualification gate (comparison recompute): %v", err)
+			}
+			settings := deriveSettings(config, version)
+			blocking := ""
+			for _, s := range settings {
+				if s.knowledge == "unknown" {
+					if blocking != "" {
+						blocking += ","
+					}
+					blocking += s.component
+				}
+			}
+			eligible := 0
+			if scope == "linked" && blocking == "" {
+				eligible = 1
+			}
+			c, ok := stored[[2]any{scope, id}]
+			if !ok {
+				return inconsf("qualification gate (comparison qualification missing): %s %d", scope, id)
+			}
+			if c.eligible != eligible || c.blocking != blocking {
+				return inconsf("qualification gate (comparison qualification mismatch): %s %d", scope, id)
+			}
+			delete(stored, [2]any{scope, id})
+		}
+		if err := r.Err(); err != nil {
+			return inconsf("qualification gate (comparison recompute): %v", err)
+		}
+		r.Close()
+		return nil
+	}
+	if err := recompute("linked"); err != nil {
+		return err
+	}
+	if err := recompute("unresolved"); err != nil {
+		return err
+	}
+	for k := range stored {
+		return inconsf("qualification gate (comparison qualification without a measurement): %v %v", k[0], k[1])
+	}
+	// Price dimension interpretations must equal recomputation per distinct pair
+	// (pairs are collected first: a single-connection database cannot run the
+	// per-pair lookup while the pair scan is still open).
+	prows, err := db.Query(`SELECT DISTINCT unit, field_path FROM price_facts`)
+	if err != nil {
+		return inconsf("qualification gate (price pair scan): %v", err)
+	}
+	var pairs [][2]string
+	for prows.Next() {
+		var unit, path string
+		if err := prows.Scan(&unit, &path); err != nil {
+			prows.Close()
+			return inconsf("qualification gate (price pair scan): %v", err)
+		}
+		pairs = append(pairs, [2]string{unit, path})
+	}
+	if err := prows.Err(); err != nil {
+		prows.Close()
+		return inconsf("qualification gate (price pair scan): %v", err)
+	}
+	prows.Close()
+	for _, pair := range pairs {
+		unit, path := pair[0], pair[1]
+		class, basis := classifyPriceDimension(unit, path)
+		var gotClass, gotBasis string
+		err := db.QueryRow(`SELECT dimension_class, basis FROM price_dimension_interpretations WHERE unit=? AND field_path=?`, unit, path).Scan(&gotClass, &gotBasis)
+		if err == sql.ErrNoRows {
+			return inconsf("qualification gate (price pair without an interpretation): %s %s", unit, path)
+		}
+		if err != nil {
+			return inconsf("qualification gate (price pair scan): %v", err)
+		}
+		if gotClass != class || gotBasis != basis {
+			return inconsf("qualification gate (price interpretation mismatch): %s %s", unit, path)
+		}
+	}
+	var extra int
+	if err := db.QueryRow(`SELECT COUNT(*) FROM price_dimension_interpretations i WHERE NOT EXISTS(SELECT 1 FROM price_facts f WHERE f.unit=i.unit AND f.field_path=i.field_path)`).Scan(&extra); err != nil {
+		return inconsf("qualification gate (price interpretation scan): %v", err)
+	}
+	if extra > 0 {
+		return inconsf("qualification gate (price interpretation without a price fact pair): %d rows", extra)
 	}
 	return nil
 }

@@ -3,7 +3,7 @@ package research
 // SchemaVersion is the research schema version this tool carries (§7).
 // The DDL below is the schema 3 reconstruction, byte-faithful to the frozen
 // corpus (all tables, views, indexes, checks).
-const SchemaVersion = 4
+const SchemaVersion = 5
 
 // SchemaDDL creates every schema 3 object in declaration order (§4:
 // tables are inserted in schema order after creation).
@@ -40,4 +40,10 @@ CREATE VIEW source_validated_unresolved AS SELECT b.* FROM unresolved_measuremen
 CREATE VIEW accepted_benchmarks AS SELECT b.* FROM benchmark_measurements b JOIN review_results r ON b.batch=r.batch WHERE r.grade='accepted';
 CREATE VIEW coverage AS SELECT m.id,m.kind,CASE WHEN EXISTS(SELECT 1 FROM benchmark_measurements b WHERE b.model_id=m.id) THEN 'scores_found' WHEN EXISTS(SELECT 1 FROM model_research r WHERE r.model_id=m.id AND r.benchmark_status='not_found_in_checked_sources') THEN 'no_scores_in_checked_sources' WHEN EXISTS(SELECT 1 FROM model_research r WHERE r.model_id=m.id) THEN 'unresearched' ELSE 'out_of_research_scope' END benchmark_coverage FROM catalog_models m;
 CREATE TABLE source_policies(url TEXT PRIMARY KEY,batch TEXT NOT NULL,source_kind TEXT NOT NULL CHECK(source_kind IN ('provider_docs','huggingface_model','github_repo','arxiv_paper','benchmark_site','other')),terms_url TEXT NOT NULL CHECK(terms_url LIKE 'https://%'),research TEXT NOT NULL CHECK(research IN ('allowed','denied','unknown')),extraction TEXT NOT NULL CHECK(extraction IN ('allowed','denied','unknown')),redistribution TEXT NOT NULL CHECK(redistribution IN ('allowed','denied','unknown')),license_name TEXT NOT NULL,license_text TEXT NOT NULL,evidence_path TEXT NOT NULL REFERENCES source_files(path),evidence_retrieved_at TEXT NOT NULL,evidence_outcome TEXT NOT NULL CHECK(evidence_outcome IN ('success','http_error','source_blocked')),checked_at TEXT NOT NULL,effective_at TEXT NOT NULL,expires_at TEXT NOT NULL,notes TEXT NOT NULL);
-CREATE INDEX source_policy_batch ON source_policies(batch);`
+CREATE INDEX source_policy_batch ON source_policies(batch);
+CREATE TABLE offer_binding_qualifications(model_id TEXT PRIMARY KEY REFERENCES catalog_models(id),binding TEXT NOT NULL CHECK(binding IN ('exact_join','unjoined')),provider TEXT NOT NULL,upstream_id TEXT NOT NULL,catalog_observed_at TEXT NOT NULL,cross_source_observed_at TEXT NOT NULL,basis TEXT NOT NULL);
+CREATE TABLE measurement_settings(scope TEXT NOT NULL CHECK(scope IN ('linked','unresolved')),measurement_id INTEGER NOT NULL,component TEXT NOT NULL,knowledge TEXT NOT NULL CHECK(knowledge IN ('known','unknown')),value_or_reason TEXT NOT NULL,PRIMARY KEY(scope,measurement_id,component));
+CREATE INDEX measurement_settings_component ON measurement_settings(component,knowledge);
+CREATE TABLE comparison_qualifications(scope TEXT NOT NULL CHECK(scope IN ('linked','unresolved')),measurement_id INTEGER NOT NULL,eligible INTEGER NOT NULL CHECK(eligible IN (0,1)),blocking_components TEXT NOT NULL,PRIMARY KEY(scope,measurement_id));
+CREATE TABLE limit_qualifications(model_id TEXT NOT NULL,name TEXT NOT NULL,value INTEGER NOT NULL,direction TEXT NOT NULL CHECK(direction IN ('input','output','combined','unknown')),operation TEXT NOT NULL CHECK(operation IN ('text','image_input','image_output','all','unknown')),accounting TEXT NOT NULL CHECK(accounting IN ('independent','combined_context','unknown')),basis TEXT NOT NULL,PRIMARY KEY(model_id,name),FOREIGN KEY(model_id,name) REFERENCES catalog_limits(model_id,name));
+CREATE TABLE price_dimension_interpretations(unit TEXT NOT NULL,field_path TEXT NOT NULL,dimension_class TEXT NOT NULL CHECK(dimension_class IN ('token_input_monetary','token_output_monetary','token_cache_read_monetary','token_cache_write_monetary','token_other_monetary','threshold_count','unresolved')),basis TEXT NOT NULL,PRIMARY KEY(unit,field_path));`

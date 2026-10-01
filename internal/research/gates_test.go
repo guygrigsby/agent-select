@@ -15,6 +15,7 @@ func openFixtureDB(t *testing.T) *sql.DB {
 	if err != nil {
 		t.Fatal(err)
 	}
+	db.SetMaxOpenConns(1) // :memory: is per-connection; keep one schema instance
 	t.Cleanup(func() { db.Close() })
 	if _, err := db.Exec(SchemaDDL); err != nil {
 		t.Fatalf("schema: %v", err)
@@ -200,5 +201,161 @@ func TestPolicyLoadDiagnostics(t *testing.T) {
 	}
 	if err := CheckPolicyBatches(pol, []string{"alpha", "beta"}); err != nil {
 		t.Fatalf("known batches must pass: %v", err)
+	}
+}
+
+// seedQualificationGreen seeds a minimal schema-5 database whose
+// qualification tables equal recomputation: one exact-joined model with a
+// linked measurement, one unresolved measurement, one limit, one price pair.
+func seedQualificationGreen(t *testing.T, db *sql.DB) {
+	t.Helper()
+	mustExec(t, db, `INSERT INTO source_files VALUES('cap','https://e.invalid/cap','aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',1,'t1','mtime','unknown','unknown')`)
+	mustExec(t, db, `INSERT INTO catalog_models VALUES('m','n','o','language','d','cap')`)
+	mustExec(t, db, `INSERT INTO exact_catalog_joins VALUES('m','vercel','m')`)
+	mustExec(t, db, `INSERT INTO offer_binding_qualifications VALUES('m','exact_join','vercel','m','t1','t1','vercel catalog exact-id join to models.dev entry')`)
+	mustExec(t, db, `INSERT INTO benchmark_measurements VALUES(1,'m','b','bench','v1','acc','1','pct','5-shot; no tools','https://e.invalid/b','cap','l','provider_reported','exact naming')`)
+	mustExec(t, db, `INSERT INTO unresolved_measurements VALUES(1,'b','label','bench','unknown','acc','1','pct','reasoning-effort high','https://e.invalid/u','cap','l','third_party_reported','unresolved')`)
+	for _, tc := range []struct {
+		scope string
+		id    int64
+		cfg   string
+		ver   string
+	}{
+		{"linked", 1, "5-shot; no tools", "v1"},
+		{"unresolved", 1, "reasoning-effort high", "unknown"},
+	} {
+		settings := deriveSettings(tc.cfg, tc.ver)
+		blocking := ""
+		for _, s := range settings {
+			mustExec(t, db, `INSERT INTO measurement_settings VALUES(?,?,?,?,?)`, tc.scope, tc.id, s.component, s.knowledge, s.valueOrReason)
+			if s.knowledge == "unknown" {
+				if blocking != "" {
+					blocking += ","
+				}
+				blocking += s.component
+			}
+		}
+		eligible := 0
+		if tc.scope == "linked" && blocking == "" {
+			eligible = 1
+		}
+		mustExec(t, db, `INSERT INTO comparison_qualifications VALUES(?,?,?,?)`, tc.scope, tc.id, eligible, blocking)
+	}
+	mustExec(t, db, `INSERT INTO catalog_limits VALUES('m','context_window',128000)`)
+	mustExec(t, db, `INSERT INTO limit_qualifications VALUES('m','context_window',128000,'unknown','unknown','unknown','catalog limit field carries no direction/operation/accounting semantics')`)
+	mustExec(t, db, `INSERT INTO price_facts VALUES('cap','vercel','m','/input','0.25','USD_per_million_tokens')`)
+	class, basis := classifyPriceDimension("USD_per_million_tokens", "/input")
+	mustExec(t, db, `INSERT INTO price_dimension_interpretations VALUES(?,?,?,?)`, "USD_per_million_tokens", "/input", class, basis)
+}
+
+func TestQualificationGateGreen(t *testing.T) {
+	db := openFixtureDB(t)
+	seedQualificationGreen(t, db)
+	if err := RunGate7(db); err != nil {
+		t.Fatalf("green fixture must pass gate 7: %v", err)
+	}
+}
+
+func TestQualificationGateRed(t *testing.T) {
+	cases := []struct {
+		name  string
+		query string
+	}{
+		{"missing settings row", `DELETE FROM measurement_settings WHERE scope='linked' AND component='split'`},
+		{"tampered blocking list", `UPDATE comparison_qualifications SET blocking_components='' WHERE scope='unresolved'`},
+		{"hand-entered eligibility", `UPDATE comparison_qualifications SET eligible=1 WHERE scope='unresolved'`},
+		{"extra settings row", `INSERT INTO measurement_settings VALUES('linked',99,'split','unknown','x')`},
+		{"unjoined with provider", `UPDATE offer_binding_qualifications SET binding='unjoined' WHERE model_id='m'`},
+		{"binding without join", `INSERT INTO catalog_models VALUES('m2','n2','o','language','d','cap'); INSERT INTO offer_binding_qualifications VALUES('m2','exact_join','vercel','x','t1','t1','b')`},
+		{"limit value drift", `UPDATE limit_qualifications SET value=1000`},
+		{"price class drift", `UPDATE price_dimension_interpretations SET dimension_class='threshold_count'`},
+		{"price pair uncovered", `INSERT INTO price_facts VALUES('cap','vercel','m','/output','1','USD_per_million_tokens')`},
+		{"known value absent from configuration", `UPDATE measurement_settings SET value_or_reason='8-shot' WHERE scope='linked' AND component='tool_policy'`},
+		{"component renamed off the common list", `UPDATE measurement_settings SET component='custom_thing' WHERE component='split'`},
+		{"joined model flipped to unjoined", `UPDATE offer_binding_qualifications SET binding='unjoined', provider='', upstream_id='' WHERE model_id='m'`},
+	}
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			db := openFixtureDB(t)
+			seedQualificationGreen(t, db)
+			mustExec(t, db, c.query)
+			if err := RunGate7(db); err == nil {
+				t.Fatalf("%s must fail gate 7", c.name)
+			}
+		})
+	}
+}
+
+func TestDeriveSettingsRules(t *testing.T) {
+	get := func(ss []settingRow, comp string) settingRow {
+		for _, s := range ss {
+			if s.component == comp {
+				return s
+			}
+		}
+		t.Fatalf("component %s missing", comp)
+		return settingRow{}
+	}
+	// unknown-sentinel version stays unknown (spec §12.2)
+	ss := deriveSettings("no tools", "unknown")
+	if s := get(ss, "benchmark_release"); s.knowledge != "unknown" || s.valueOrReason != unknownReason {
+		t.Fatalf("unknown sentinel version must stay unknown: %+v", s)
+	}
+	// concrete version is known verbatim
+	ss = deriveSettings("with tools; no test-time compute; reasoning-effort low", "v2")
+	if s := get(ss, "benchmark_release"); s.knowledge != "known" || s.valueOrReason != "v2" {
+		t.Fatalf("concrete version must be known verbatim: %+v", s)
+	}
+	if s := get(ss, "tool_policy"); s.knowledge != "known" || s.valueOrReason != "with tools" {
+		t.Fatalf("with tools must match: %+v", s)
+	}
+	if s := get(ss, "output_compute_budget"); s.knowledge != "known" || s.valueOrReason != "no test-time compute" {
+		t.Fatalf("no test-time compute must match: %+v", s)
+	}
+	if s := get(ss, "reasoning_effort"); s.knowledge != "known" || s.valueOrReason != "reasoning-effort" {
+		t.Fatalf("reasoning-effort must match: %+v", s)
+	}
+	// keyword match is case-insensitive
+	if s := get(deriveSettings("With Tools", ""), "tool_policy"); s.knowledge != "known" {
+		t.Fatalf("case-insensitive match failed: %+v", s)
+	}
+	// undocumented components stay unknown with the fixed reason
+	for _, comp := range []string{"split", "protocol_harness_version", "prompt_template", "shots", "decoding_sampling_policy", "seed_distribution", "generation_count", "precision_quantization"} {
+		if s := get(ss, comp); s.knowledge != "unknown" || s.valueOrReason != unknownReason {
+			t.Fatalf("%s must be unknown with fixed reason: %+v", comp, s)
+		}
+	}
+}
+
+func TestClassifyPriceDimension(t *testing.T) {
+	cases := []struct {
+		unit, path, class string
+	}{
+		{"USD_per_million_tokens", "/input", "token_input_monetary"},
+		{"USD_per_token", "/output", "token_output_monetary"},
+		{"USD_per_million_tokens", "/cache_read", "token_cache_read_monetary"},
+		{"USD_per_million_tokens", "/input_cache_read", "token_cache_read_monetary"},
+		{"USD_per_million_tokens", "/cache_write", "token_cache_write_monetary"},
+		{"USD_per_million_tokens", "/context_over_200k/input", "token_input_monetary"},
+		{"source_specific_unresolved", "/tiers/0/tier/size", "threshold_count"},
+		{"source_specific_unresolved", "/reasoning", "unresolved"},
+		{"USD_per_million_tokens", "/input_audio", "unresolved"},
+	}
+	for _, c := range cases {
+		class, basis := classifyPriceDimension(c.unit, c.path)
+		if class != c.class {
+			t.Fatalf("%s %s: class %s want %s", c.unit, c.path, class, c.class)
+		}
+		if c.class == "unresolved" && basis != "path/unit semantics not documented in retained catalog bytes" {
+			t.Fatalf("%s %s: unresolved basis %q", c.unit, c.path, basis)
+		}
+		if c.class != "unresolved" && basis == "" {
+			t.Fatalf("%s %s: classified rows need a basis", c.unit, c.path)
+		}
+	}
+	// tiered path names the retained condition
+	_, basis := classifyPriceDimension("USD_per_million_tokens", "/context_over_200k/input")
+	if !strings.Contains(basis, "tier condition retained verbatim in field_path") {
+		t.Fatalf("tiered basis must note the condition: %q", basis)
 	}
 }

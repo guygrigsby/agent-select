@@ -518,6 +518,11 @@ output and on the published set under `check`:
    qualifying evidence; `redistribution='allowed'` carries an allowlisted
    `license_name`; every `source_access` batch has a policies file and no
    policies file names a batch absent from `source_access`.
+7. Qualification gate (exit 3, §12.6): the derived §12 tables cover their
+   inputs exactly and equal recomputation — offer bindings, twelve common
+   component settings per measurement (membership, not just count),
+   recomputed comparison eligibility, limit coverage and price dimension
+   interpretation equality per distinct pair.
 
 ## 6. Path and resource safety
 
@@ -534,7 +539,19 @@ Failure names path and row, never file contents.
 ## 7. Schema and version policy
 
 Research schema lives in the Go research package as versioned DDL; it is not a
-production migration. Schema 4 extends schema 3 with exactly one table:
+production migration. Schema 5 extends schema 4 with the five derived §12
+tables: `offer_binding_qualifications` (model_id PK FK catalog_models,
+binding CHECK enum, provider, upstream_id, catalog_observed_at,
+cross_source_observed_at, basis), `measurement_settings` (scope CHECK enum,
+measurement_id, component, knowledge CHECK enum, value_or_reason; PK
+(scope,measurement_id,component); index (component,knowledge); no FK on
+measurement_id by design — two possible parents, gate 7 enforces closure),
+`comparison_qualifications` (scope, measurement_id, eligible CHECK 0/1,
+blocking_components; PK (scope,measurement_id)), `limit_qualifications`
+(model_id+name PK FK catalog_limits, value, direction/operation/accounting
+CHECK enums, basis) and `price_dimension_interpretations` (unit+field_path
+PK, dimension_class CHECK enum, basis). Every schema-5 table is derived
+at rebuild (§12) and carries no new inputs. Schema 4 extends schema 3 with exactly one table:
 `source_policies` (§2.5) — `url TEXT PRIMARY KEY`, `batch`, `source_kind`
 (CHECK enum), `terms_url` (CHECK `https://` prefix), `research`/`extraction`/`redistribution`
 (CHECK permission enums), `license_name`, `license_text`, `evidence_path`
@@ -771,7 +788,132 @@ no rows has nothing to pin beyond the findings file. Existing reviewed
 cells must survive every rebuild byte-identically or the change is
 rejected.
 
+## 12. Qualification (phase 9)
+
+Schema 5 adds five derived tables. They carry no new inputs: every row is
+deterministically derived from assembled tables at rebuild time and any
+manual edit is overwritten by the next rebuild. They express bounded,
+honest qualification of identity bindings, measurement settings, limits
+and price dimensions. The production contracts
+(`benchmark-comparability.md`, `model-identity.md`,
+`image-capabilities.md`) stay authoritative for comparison semantics: a
+research-layer `known` never upgrades an evidence class and never
+asserts production comparison eligibility. Family-specific critical
+components are not assessed at this layer.
+
+### 12.1 Offer binding qualifications
+
+`offer_binding_qualifications(model_id PK, binding, provider,
+upstream_id, catalog_observed_at, cross_source_observed_at, basis)`: one
+row per catalog model. An `exact_catalog_joins` row yields
+`binding='exact_join'` with its provider/upstream_id and the two catalog
+captures' `observed_at` instants (vercel capture for the model,
+models.dev capture for the joined offer); every other model gets
+`binding='unjoined'` with empty provider/upstream_id and a basis naming
+the unmatched entry. Name similarity never creates a row.
+
+### 12.2 Measurement settings
+
+`measurement_settings(scope, measurement_id, component, knowledge,
+value_or_reason)`: one row per measurement — `scope='linked'` rows
+reference `benchmark_measurements(id)`, `scope='unresolved'` rows
+reference `unresolved_measurements(id)` — for each of the twelve common
+critical components named by `benchmark-comparability.md`:
+`benchmark_release`, `split`, `protocol_harness_version`,
+`prompt_template`, `shots`, `decoding_sampling_policy`,
+`seed_distribution`, `generation_count`, `output_compute_budget`,
+`reasoning_effort`, `tool_policy`, `precision_quantization`.
+Derivation rules are exact and conservative (case-insensitive substring
+match on the row's `configuration` sentence):
+
+- `benchmark_release` known iff `benchmark_version` is a concrete release
+  value (non-empty and not the `unknown` sentinel); the value is the
+  column verbatim. A version recorded as `unknown` stays knowledge
+  `unknown` with the fixed reason.
+- `tool_policy` known iff configuration contains `no tools` or
+  `with tools`; value is the matched phrase.
+- `output_compute_budget` known iff configuration contains
+  `no test-time compute`; value is the matched phrase.
+- `reasoning_effort` known iff configuration contains
+  `reasoning-effort`; value is the matched phrase.
+- every other component is unknown with reason `not documented in
+  retained source bytes`.
+
+`measurement_id` carries no SQL foreign key (two possible parents);
+gate 7 enforces per-scope referential closure instead.
+
+### 12.3 Comparison qualifications
+
+`comparison_qualifications(scope, measurement_id, eligible,
+blocking_components)`: `eligible=1` only when `scope='linked'` and all
+twelve common components are known. `blocking_components` lists unknown
+components comma-separated in the fixed §12.2 order (empty when
+eligible). Zero eligible rows is the expected honest current state; the
+gate recomputes eligibility from the settings rows, so a future eligible
+row must be earned through its settings, never hand-entered.
+Research-layer eligibility covers only the common components and never
+asserts production comparability.
+
+### 12.4 Limit qualifications
+
+`limit_qualifications(model_id, name, value, direction, operation,
+accounting, basis)`: one row per `catalog_limits` row with the value
+copied and `direction='unknown'`, `operation='unknown'`,
+`accounting='unknown'`, basis `catalog limit field carries no
+direction/operation/accounting semantics`. A non-unknown direction,
+operation or accounting value requires a spec change naming documented
+semantics in retained catalog bytes, never a data edit.
+
+### 12.5 Price dimension interpretations
+
+`price_dimension_interpretations(unit, field_path, dimension_class,
+basis)`: one row per distinct `(unit, field_path)` in `price_facts`,
+classified by terminal path segment and unit:
+
+- unit `USD_per_million_tokens` or `USD_per_token` with terminal
+  segment `input`, `output`, `cache_read`, `input_cache_read` or
+  `cache_write` maps to the corresponding `token_*_monetary` class; the
+  basis names the per-million or per-token scale and any tier/context
+  condition retained verbatim in `field_path` (e.g.
+  `/context_over_200k/input` is tiered token input).
+- terminal segment `size` maps to `threshold_count`: a count threshold,
+  not a monetary value.
+- every other `(unit, field_path)` combination is `unresolved` with
+  reason `path/unit semantics not documented in retained catalog bytes`.
+
+`raw_decimal` stays verbatim in `price_facts`; interpretation never
+rewrites or rounds it (Mercury's `0.024999999999999998` remains exact)
+and `pricing_disagreements` stays exact-value reporting with no
+tolerance applied at this layer.
+
+### 12.6 Gate 7 (qualification, exit 3)
+
+1. Every catalog model has exactly one `offer_binding_qualifications`
+   row; `unjoined` rows carry empty provider/upstream_id; every
+   `exact_catalog_joins` model's row is the matching `exact_join` row and
+   every `exact_join` row reproduces its `exact_catalog_joins` row.
+2. Every `benchmark_measurements` and `unresolved_measurements` row has
+   exactly twelve `measurement_settings` rows, one per common component
+   (membership enforced, not just count); ids resolve in the table named
+   by `scope`; known rows carry a value that occurs in the row's
+   `configuration` or equals its `benchmark_version`.
+3. `comparison_qualifications` covers every measurement exactly once and
+   recomputed eligibility matches the stored rows exactly, including the
+   `blocking_components` list.
+4. Every `catalog_limits` row has exactly one `limit_qualifications` row
+   carrying the same value.
+5. Every distinct `(unit, field_path)` in `price_facts` has exactly one
+   interpretation row; `token_*_monetary` and `threshold_count` rows
+   carry non-empty basis; `unresolved` rows carry the fixed §12.5 reason.
+
 ## Changelog
+
+- 2026-10-01 phase 9: §12 qualification layer — schema 5 derived tables
+  (`offer_binding_qualifications`, `measurement_settings`,
+  `comparison_qualifications`, `limit_qualifications`,
+  `price_dimension_interpretations`), §5 gate 7, §7 schema-5 delta.
+  Derived-only, no new inputs; zero comparison-eligible facts is the
+  recorded honest baseline.
 
 - 2026-09-30 phase 8: §2.5 source policies input, §5 gate 6, schema 4
   `source_policies` table (§7 delta), control-path regex admits

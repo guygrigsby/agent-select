@@ -413,12 +413,188 @@ func assemble(root string, cfg *Config, inv *Inventory, led *Ledger, pol *Polici
 		}
 	}
 
+	// 24. qualification layer (§12, schema 5) — derived, no new inputs.
+	obsAt := make(map[string]string, len(inv.Rows))
+	for _, row := range inv.Rows {
+		obsAt[row.Path] = row.ObservedAt
+	}
+	tOfferBindings := newTable("offer_binding_qualifications", "offer_binding_qualifications", false, "SSSSSSS")
+	joinByModel := make(map[string]ExactJoin, len(cat.ExactJoins))
+	for _, j := range cat.ExactJoins {
+		joinByModel[j.ModelID] = j
+	}
+	for _, m := range cat.Models {
+		if j, ok := joinByModel[m.ID]; ok {
+			tOfferBindings.add(m.ID, "exact_join", j.Provider, j.UpstreamID, obsAt[vercelCapture], obsAt[modelsDevCapture], "vercel catalog exact-id join to models.dev entry")
+		} else {
+			tOfferBindings.add(m.ID, "unjoined", "", "", obsAt[vercelCapture], "", "no exact-id join in the models.dev capture; unmatched catalog entry")
+		}
+	}
+	tSettings := newTable("measurement_settings", "measurement_settings", false, "SISSS")
+	tComparisons := newTable("comparison_qualifications", "comparison_qualifications", false, "SIIS")
+	// benchmark_measurements ids are assigned by insert order over the sorted
+	// tuple; pre-sort and pre-assign so derivation references the same ids
+	// (writeDB's stable re-sort is a no-op on pre-sorted rows, mirroring 4b).
+	sort.SliceStable(tBenchmarks.rows, func(i, j int) bool { return tBenchmarks.less(tBenchmarks.rows[i], tBenchmarks.rows[j]) })
+	for i := range tBenchmarks.rows {
+		tBenchmarks.rows[i][0] = int64(i + 1)
+	}
+	for _, r := range tBenchmarks.rows {
+		config, _ := r[8].(string)
+		version, _ := r[4].(string)
+		settings := deriveSettings(config, version)
+		blocking := ""
+		for _, s := range settings {
+			tSettings.add("linked", r[0], s.component, s.knowledge, s.valueOrReason)
+			if s.knowledge == "unknown" {
+				if blocking != "" {
+					blocking += ","
+				}
+				blocking += s.component
+			}
+		}
+		eligible := 0
+		if blocking == "" {
+			eligible = 1
+		}
+		tComparisons.add("linked", r[0], eligible, blocking)
+	}
+	for _, r := range tUnresolved.rows {
+		config, _ := r[8].(string)
+		version, _ := r[4].(string)
+		settings := deriveSettings(config, version)
+		blocking := ""
+		for _, s := range settings {
+			tSettings.add("unresolved", r[0], s.component, s.knowledge, s.valueOrReason)
+			if s.knowledge == "unknown" {
+				if blocking != "" {
+					blocking += ","
+				}
+				blocking += s.component
+			}
+		}
+		tComparisons.add("unresolved", r[0], 0, blocking)
+	}
+	tLimitQuals := newTable("limit_qualifications", "limit_qualifications", false, "SSISSSS")
+	for _, r := range tCatalogLimits.rows {
+		tLimitQuals.add(r[0], r[1], r[2], "unknown", "unknown", "unknown", "catalog limit field carries no direction/operation/accounting semantics")
+	}
+	tPriceInterp := newTable("price_dimension_interpretations", "price_dimension_interpretations", false, "SSSS")
+	seenPair := map[[2]string]bool{}
+	for _, r := range tPriceFacts.rows {
+		unit, _ := r[5].(string)
+		path, _ := r[3].(string)
+		key := [2]string{unit, path}
+		if seenPair[key] {
+			continue
+		}
+		seenPair[key] = true
+		class, basis := classifyPriceDimension(unit, path)
+		tPriceInterp.add(unit, path, class, basis)
+	}
+
 	all := []*tableRows{tSourceFiles, tCatalogModels, tCatalogModalities, tCatalogLimits,
 		tCatalogParams, tCatalogTags, tProviderOffers, tCanonicalLabels, tExactJoins,
 		tPriceFacts, tDisagreements, tReviewResults, tModelResearch, tClaims, tUnlocated,
 		tBenchmarks, tUnresolved, tProposals, tSourceAccess, tGaps, tEvidenceReviews,
-		tEvidenceInputs, tMetadata, tSourcePolicies}
+		tEvidenceInputs, tMetadata, tSourcePolicies, tOfferBindings, tSettings,
+		tComparisons, tLimitQuals, tPriceInterp}
 	return res, all, nil
+}
+
+// commonComponents is the fixed §12.2 component order.
+var commonComponents = []string{
+	"benchmark_release", "split", "protocol_harness_version", "prompt_template",
+	"shots", "decoding_sampling_policy", "seed_distribution", "generation_count",
+	"output_compute_budget", "reasoning_effort", "tool_policy", "precision_quantization",
+}
+
+const unknownReason = "not documented in retained source bytes"
+
+type settingRow struct {
+	component     string
+	knowledge     string
+	valueOrReason string
+}
+
+// deriveSettings applies the §12.2 keyword rules to one measurement's
+// configuration sentence and benchmark_version.
+func deriveSettings(config, version string) []settingRow {
+	lower := strings.ToLower(config)
+	keyword := func(needle string) (bool, string) {
+		if strings.Contains(lower, needle) {
+			return true, needle
+		}
+		return false, ""
+	}
+	out := make([]settingRow, 0, len(commonComponents))
+	for _, comp := range commonComponents {
+		switch comp {
+		case "benchmark_release":
+			if version == "" || version == "unknown" {
+				out = append(out, settingRow{comp, "unknown", unknownReason})
+			} else {
+				out = append(out, settingRow{comp, "known", version})
+			}
+		case "tool_policy":
+			if ok, v := keyword("no tools"); ok {
+				out = append(out, settingRow{comp, "known", v})
+			} else if ok, v := keyword("with tools"); ok {
+				out = append(out, settingRow{comp, "known", v})
+			} else {
+				out = append(out, settingRow{comp, "unknown", unknownReason})
+			}
+		case "output_compute_budget":
+			if ok, v := keyword("no test-time compute"); ok {
+				out = append(out, settingRow{comp, "known", v})
+			} else {
+				out = append(out, settingRow{comp, "unknown", unknownReason})
+			}
+		case "reasoning_effort":
+			if ok, v := keyword("reasoning-effort"); ok {
+				out = append(out, settingRow{comp, "known", v})
+			} else {
+				out = append(out, settingRow{comp, "unknown", unknownReason})
+			}
+		default:
+			out = append(out, settingRow{comp, "unknown", unknownReason})
+		}
+	}
+	return out
+}
+
+// classifyPriceDimension applies the §12.5 terminal-segment rules.
+func classifyPriceDimension(unit, fieldPath string) (class, basis string) {
+	seg := fieldPath
+	if i := strings.LastIndex(fieldPath, "/"); i >= 0 {
+		seg = fieldPath[i+1:]
+	}
+	if seg == "size" {
+		return "threshold_count", "tier size is a count threshold, not a monetary value"
+	}
+	if unit != "USD_per_million_tokens" && unit != "USD_per_token" {
+		return "unresolved", "path/unit semantics not documented in retained catalog bytes"
+	}
+	scale := "per-million"
+	if unit == "USD_per_token" {
+		scale = "per-token"
+	}
+	tier := ""
+	if strings.Contains(fieldPath, "tiers/") || strings.Contains(fieldPath, "context_over_200k") {
+		tier = "; tier condition retained verbatim in field_path"
+	}
+	switch seg {
+	case "input":
+		return "token_input_monetary", "monetary " + scale + " token input" + tier
+	case "output":
+		return "token_output_monetary", "monetary " + scale + " token output" + tier
+	case "cache_read", "input_cache_read":
+		return "token_cache_read_monetary", "monetary " + scale + " token cache read" + tier
+	case "cache_write":
+		return "token_cache_write_monetary", "monetary " + scale + " token cache write" + tier
+	default:
+		return "unresolved", "path/unit semantics not documented in retained catalog bytes"
+	}
 }
 
 // measurementSourcePaths returns distinct source paths for a batch from the
