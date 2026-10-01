@@ -42,7 +42,7 @@ type Rejection struct {
 // decision.
 type Decision struct {
 	RequestID         string      `json:"request_id"`
-	Selected          *Selection  `json:"selected"`
+	Selected          *Selection  `json:"selected,omitempty"`
 	Alternatives      []Selection `json:"alternatives"`
 	Rejections        []Rejection `json:"rejections"`
 	SnapshotHash      string      `json:"snapshot_hash"`

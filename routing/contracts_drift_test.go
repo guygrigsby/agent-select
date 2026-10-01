@@ -19,10 +19,15 @@ import (
 
 const contractDocPath = "../docs/specs/educated-routing.md"
 
-// contractOmitemptyAllowance is the documented sentence permitting the single
-// omitempty exception (OfferData.ConfirmedAt); the guard fails if the
-// document loses it, so the hardcoded exception can never go unguarded.
-const contractOmitemptyAllowance = "Zero `ConfirmedAt` omits `confirmed_at`"
+// contractOmitemptyAllowances maps each omitempty exception to the exact
+// documented sentence permitting it; the guard fails if the document loses
+// a sentence, so no hardcoded exception can ever go unguarded.
+var contractOmitemptyAllowances = []struct {
+	label, field, sentence string
+}{
+	{"OfferData", "ConfirmedAt", "Zero `ConfirmedAt` omits `confirmed_at`"},
+	{"Decision", "Selected", "nil `Selected` omits `selected`"},
+}
 
 // contractDTOs is the single fact source for the documented complete data
 // shapes: one row ties each doc label to its Go type and defining file. Error
@@ -168,12 +173,23 @@ func snakeCase(s string) string {
 	return b.String()
 }
 
+func omitemptyPermitted(label, field string) bool {
+	for _, a := range contractOmitemptyAllowances {
+		if a.label == label && a.field == field {
+			return true
+		}
+	}
+	return false
+}
+
 func compareContractDTOs(doc string) []string {
 	var drift []string
-	if !strings.Contains(doc, contractOmitemptyAllowance) {
-		drift = append(drift, fmt.Sprintf(
-			"docs/specs/educated-routing.md lost the omitempty allowance %q; remedy: restore the sentence or remove the OfferData.ConfirmedAt exception from the drift guard",
-			contractOmitemptyAllowance))
+	for _, a := range contractOmitemptyAllowances {
+		if !strings.Contains(doc, a.sentence) {
+			drift = append(drift, fmt.Sprintf(
+				"docs/specs/educated-routing.md lost the omitempty allowance %q; remedy: restore the sentence or remove the %s.%s exception from the drift guard",
+				a.sentence, a.label, a.field))
+		}
 	}
 	docFields, problems := parseContractDTOFields(doc)
 	drift = append(drift, problems...)
@@ -232,9 +248,9 @@ func compareContractDTOs(doc string) []string {
 					"%s JSON tag for %s.%s is %q but docs/specs/educated-routing.md requires the snake-case form %q; remedy: set the json tag to %q",
 					codeFile, e.label, name, jsonName, want, want))
 			}
-			if strings.Contains(tag, ",omitempty") && !(e.label == "OfferData" && name == "ConfirmedAt") {
+			if strings.Contains(tag, ",omitempty") && !omitemptyPermitted(e.label, name) {
 				drift = append(drift, fmt.Sprintf(
-					"%s %s.%s carries omitempty but docs/specs/educated-routing.md only permits it for zero ConfirmedAt; remedy: drop the option so every other field is always present",
+					"%s %s.%s carries omitempty but docs/specs/educated-routing.md does not permit it there; remedy: drop the option so the field is always present",
 					codeFile, e.label, name))
 			}
 		}
@@ -355,22 +371,27 @@ func TestContractDriftSeededMutation(t *testing.T) {
 	if !sawDup {
 		t.Errorf("seeded duplicate enum token was not detected; got drift %v", enumDrift)
 	}
-	// The hardcoded OfferData.ConfirmedAt omitempty exception depends on the
-	// documented allowance sentence; removing it must be flagged so removal
-	// of the sentence cannot leave the exception unguarded.
-	noAllowance := strings.Replace(doc, contractOmitemptyAllowance+";", "", 1)
-	if !strings.Contains(doc, contractOmitemptyAllowance) || noAllowance == doc {
-		t.Fatal("seed fixture: failed to remove the ConfirmedAt omittance allowance")
-	}
-	allowanceDrift := compareContractDTOs(noAllowance)
-	sawAllowance := false
-	for _, d := range allowanceDrift {
-		if strings.Contains(d, "omitempty") {
-			sawAllowance = true
+	// Each hardcoded omitempty exception depends on its documented
+	// allowance sentence; removing either must be flagged so removal of a
+	// sentence cannot leave its exception unguarded.
+	for _, clause := range []string{
+		"Zero `ConfirmedAt` omits `confirmed_at`;",
+		"nil `Selected` omits `selected`;",
+	} {
+		noAllowance := strings.Replace(doc, clause, "", 1)
+		if noAllowance == doc {
+			t.Fatalf("seed fixture: failed to remove allowance clause %q", clause)
 		}
-	}
-	if !sawAllowance {
-		t.Errorf("seeded omitempty allowance removal was not detected; got drift %v", allowanceDrift)
+		allowanceDrift := compareContractDTOs(noAllowance)
+		sawAllowance := false
+		for _, d := range allowanceDrift {
+			if strings.Contains(d, "omitempty") {
+				sawAllowance = true
+			}
+		}
+		if !sawAllowance {
+			t.Errorf("seeded omitempty allowance removal %q was not detected; got drift %v", clause, allowanceDrift)
+		}
 	}
 	if d := compareContractDTOs(doc); len(d) != 0 {
 		t.Errorf("real document unexpectedly drifted after seeding: %v", d)

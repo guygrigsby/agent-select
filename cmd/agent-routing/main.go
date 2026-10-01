@@ -19,6 +19,12 @@ func main() {
 }
 
 func run(args []string) int {
+	// Adapter commands (cli-adapter.md) dispatch before research flags:
+	// they take no --root/--json and own their exit table.
+	if len(args) == 0 || (args[0] != "research" && args[0] != "collect") {
+		// Unknown subcommand is a usage error on the adapter exit table.
+		return runAdapter(args)
+	}
 	fs := flag.NewFlagSet("agent-routing", flag.ContinueOnError)
 	fs.SetOutput(os.Stderr)
 	root := fs.String("root", ".", "repository root")
