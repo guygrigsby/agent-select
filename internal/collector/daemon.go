@@ -38,7 +38,6 @@ type CollectorConfig struct {
 	SnapshotPolicy           string `toml:"snapshot_projection_policy_version"`
 	SnapshotDistribution     string `toml:"snapshot_distribution"`
 	SnapshotScanLimit        int    `toml:"snapshot_scan_limit"`
-	SnapshotPollIdle         time.Duration
 	StoreDir                 string `toml:"store_dir"`
 	StoreKeepGenerations     int    `toml:"store_keep_generations"`
 }
