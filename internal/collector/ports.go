@@ -177,7 +177,9 @@ func (p *Ports) LeaseJob(ctx context.Context, jobID, workerID string,
 }
 
 // RecoverJob implements recover_job: the coordinator verifies the named lease
-// has expired, advances the attempt counter and returns the derived state. No
+// has expired, marks the recovery durably, advances the attempt counter once
+// and returns the derived state. Idempotent by expired token: the first
+// recovery sets recovered_at; replays derive state without mutation. No
 // attempt row and no domain event: nothing was observed.
 func (p *Ports) RecoverJob(ctx context.Context, jobID string, expiredToken int64,
 	now time.Time) (string, error) {
@@ -199,9 +201,19 @@ func (p *Ports) RecoverJob(ctx context.Context, jobID string, expiredToken int64
 	if expiresAt.After(now) {
 		return "", errf(CodeStaleLease, "lease %d of job %s has not expired", expiredToken, jobID)
 	}
-	if _, err := tx.Exec(ctx,
-		`UPDATE jobs SET attempts = attempts + 1 WHERE id = $1`, jobID); err != nil {
+	tag, err := tx.Exec(ctx, `
+		UPDATE job_leases SET recovered_at = $3
+		WHERE job_id = $1 AND token = $2 AND recovered_at IS NULL`,
+		jobID, expiredToken, now)
+	if err != nil {
 		return "", storageErr(err)
+	}
+	if tag.RowsAffected() == 1 {
+		// First recovery under this token: count the take-up once.
+		if _, err := tx.Exec(ctx,
+			`UPDATE jobs SET attempts = attempts + 1 WHERE id = $1`, jobID); err != nil {
+			return "", storageErr(err)
+		}
 	}
 	if err := tx.Commit(ctx); err != nil {
 		return "", storageErr(err)

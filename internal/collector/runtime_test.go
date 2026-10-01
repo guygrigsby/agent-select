@@ -4,9 +4,12 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"net"
 	"net/http"
 	"net/http/httptest"
+	"net/netip"
 	"net/url"
+	"strings"
 	"sync"
 	"testing"
 	"time"
@@ -491,8 +494,15 @@ func TestHTTPFetcherGuards(t *testing.T) {
 	if _, err := strict.Fetch(context.Background(), "s", "https://10.0.0.1/r"); err == nil {
 		t.Fatal("private accepted")
 	}
-	if !isPrivateAddr("::1") || !isPrivateAddr("169.254.1.1") || isPrivateAddr("93.184.216.34") {
-		t.Fatal("isPrivateAddr misclassifies")
+	for ip, want := range map[string]bool{
+		"::1": true, "169.254.1.1": true, "93.184.216.34": false,
+		"100.64.1.1": true, "198.18.5.5": true, "198.16.0.1": false, "100.63.0.1": false,
+		"192.0.2.1": false, "fe80::1": true, "fd00::1": true,
+	} {
+		a := netip.MustParseAddr(ip)
+		if got := isPrivateIP(a); got != want {
+			t.Fatalf("isPrivateIP(%s) = %v, want %v", ip, got, want)
+		}
 	}
 
 	// Body cap and live fetch in test mode.
@@ -531,5 +541,153 @@ func TestHTTPFetcherGuards(t *testing.T) {
 		URL: parseURL("https://example.com/x"),
 	}, nil); err != nil {
 		t.Fatalf("public redirect rejected: %v", err)
+	}
+}
+
+// TestGuardedDialResolvesHostnames pins the production dial guard's hostname
+// path: a hostname is resolved and every resolved address validated (review
+// round 1 shipped a guard that refused all hostnames as unparseable), the
+// dial goes to the validated address itself (no re-resolution window), and
+// CGNAT/benchmarking ranges are blocked alongside the classic private ones.
+func TestGuardedDialResolvesHostnames(t *testing.T) {
+	ctx := context.Background()
+
+	cases := []struct {
+		name     string
+		resolve  []string
+		wantDial bool
+		wantErr  string
+	}{
+		{"public hostname resolves and dials", []string{"93.184.216.34"}, true, ""},
+		{"hostname to loopback refused", []string{"127.0.0.1"}, false, "resolves to private address"},
+		{"hostname to cgnat refused", []string{"100.64.1.1"}, false, "resolves to private address"},
+		{"hostname to benchmarking refused", []string{"198.18.0.7"}, false, "resolves to private address"},
+		{"mixed resolution with one private refused", []string{"93.184.216.34", "10.0.0.5"}, false, "resolves to private address"},
+		{"empty resolution refused", nil, false, "no addresses"},
+	}
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			f := NewHTTPFetcher("test-agent")
+			addrs := make([]netip.Addr, 0, len(tc.resolve))
+			for _, s := range tc.resolve {
+				addrs = append(addrs, netip.MustParseAddr(s))
+			}
+			f.resolve = func(context.Context, string) ([]netip.Addr, error) {
+				return addrs, nil
+			}
+			var dialed []string
+			f.dial = func(_ context.Context, _, addr string) (net.Conn, error) {
+				dialed = append(dialed, addr)
+				return nil, fmt.Errorf("stub dial")
+			}
+			_, err := f.guardedDial(ctx, "tcp", "catalog.example:443")
+			if tc.wantDial {
+				if err == nil || err.Error() != "stub dial" {
+					t.Fatalf("expected stub dial error, got %v", err)
+				}
+				if len(dialed) != 1 || dialed[0] != net.JoinHostPort(tc.resolve[0], "443") {
+					t.Fatalf("dialed %v, want the validated address %s:443", dialed, tc.resolve[0])
+				}
+				return
+			}
+			if err == nil || !strings.Contains(err.Error(), tc.wantErr) {
+				t.Fatalf("expected refusal containing %q, got %v", tc.wantErr, err)
+			}
+			if len(dialed) != 0 {
+				t.Fatalf("dialed despite refusal: %v", dialed)
+			}
+		})
+	}
+
+	// Literal IPs bypass resolution and are validated directly.
+	f := NewHTTPFetcher("test-agent")
+	f.resolve = func(_ context.Context, host string) ([]netip.Addr, error) {
+		if ip, err := netip.ParseAddr(host); err == nil {
+			return []netip.Addr{ip.Unmap()}, nil // same passthrough as resolveHost
+		}
+		return nil, fmt.Errorf("unexpected hostname resolution %q", host)
+	}
+	f.dial = func(_ context.Context, _, addr string) (net.Conn, error) {
+		return nil, fmt.Errorf("dialled %s", addr)
+	}
+	if _, err := f.guardedDial(ctx, "tcp", "10.1.2.3:443"); err == nil ||
+		!strings.Contains(err.Error(), "resolves to private address") {
+		t.Fatalf("literal private IP not refused: %v", err)
+	}
+	_, err := f.guardedDial(ctx, "tcp", "93.184.216.34:443")
+	if err == nil || !strings.Contains(err.Error(), "93.184.216.34:443") {
+		t.Fatalf("literal public IP not dialed: %v", err)
+	}
+}
+
+// TestWorkerStrandedOutputChangedBytesDefers pins the changed-bytes-after-crash
+// path: a stranded stage output (crash between RecordAttempt and CompleteJob)
+// followed by an upstream change conflicts on output identity. The worker must
+// defer durably with backoff (round 1 shipped an unbounded refetch loop with
+// zero durable progress: no attempt row, no event, immediately claimable).
+func TestWorkerStrandedOutputChangedBytesDefers(t *testing.T) {
+	p := mustPort(t)
+	ctx := context.Background()
+	jobID, token, obs, output := leaseFetchJob(t, p, "stranded")
+	if _, err := p.RecordAttempt(ctx, RecordAttemptParams{
+		JobID: jobID, Token: token, CollectorVersion: "cv-test",
+		RecordedAt: obs.RetrievedAt, Observation: obs, OutputBytes: output,
+	}); err != nil {
+		t.Fatal(err)
+	}
+	// Crash: no CompleteJob. The lease expires; the job re-enters the
+	// claimable scan with the stranded output link in place.
+	later := obs.RetrievedAt.Add(2 * time.Minute)
+	f := &scriptedFetcher{results: []FetchResult{{
+		HTTPStatus: 200, Body: []byte("body-v2-upstream-changed"), Headers: []byte("h2"),
+	}}}
+	w, setNow := newTestWorker(t, p, f, WorkerConfig{})
+	(*setNow)(later)
+	if n, err := w.runOnce(ctx); err != nil || n != 1 {
+		t.Fatalf("runOnce n=%d err=%v", n, err)
+	}
+	if f.callCount() != 1 {
+		t.Fatalf("fetches = %d", f.callCount())
+	}
+	// The disagreement is durable and visible: a deferred attempt row whose
+	// detail names the conflict.
+	var outcome, detail string
+	var retryNotBefore time.Time
+	if err := p.Pool.QueryRow(ctx, `
+		SELECT a.outcome, a.detail, a.retry_not_before
+		FROM job_attempts a WHERE a.job_id = $1
+		ORDER BY a.observed_at DESC, a.token DESC LIMIT 1`, jobID).
+		Scan(&outcome, &detail, &retryNotBefore); err != nil {
+		t.Fatal(err)
+	}
+	if outcome != "deferred" || !strings.Contains(detail, "conflicting output") {
+		t.Fatalf("latest attempt %q %q", outcome, detail)
+	}
+	if !retryNotBefore.After(later) {
+		t.Fatalf("no backoff: retry_not_before %v not after %v", retryNotBefore, later)
+	}
+	// Rate-limited: scans before the deadline do not refetch.
+	(*setNow)(later.Add(500 * time.Millisecond))
+	if n, err := w.runOnce(ctx); err != nil || n != 0 {
+		t.Fatalf("pre-deadline runOnce n=%d err=%v (refetch loop)", n, err)
+	}
+	if f.callCount() != 1 {
+		t.Fatalf("refetched before deadline: %d", f.callCount())
+	}
+	// After the deadline the job is claimable again: retries proceed under
+	// backoff rather than a 1 Hz loop.
+	(*setNow)(retryNotBefore.Add(time.Second))
+	jobs, err := p.ClaimableJobs(ctx, retryNotBefore.Add(time.Second), 10)
+	if err != nil {
+		t.Fatal(err)
+	}
+	found := false
+	for _, j := range jobs {
+		if j.JobID == jobID {
+			found = true
+		}
+	}
+	if !found {
+		t.Fatal("job not claimable after retry deadline")
 	}
 }

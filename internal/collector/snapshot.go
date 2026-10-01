@@ -240,7 +240,14 @@ func (p *Ports) CompileSnapshot(ctx context.Context, params CompileSnapshotParam
 	}
 	artifactHash := canonicalHash(artifactBytes)
 
-	if _, err := tx.Exec(ctx, `
+	// The insert runs inside a savepoint: on a 23505 the savepoint rollback
+	// keeps the transaction alive so the parameter-tuple re-select can
+	// actually run (Postgres aborts the whole transaction on a bare error,\t// which would make the re-select below dead code).
+	sp, err := tx.Begin(ctx)
+	if err != nil {
+		return CompileSnapshotResult{}, storageErr(err)
+	}
+	if _, err := sp.Exec(ctx, `
 		INSERT INTO snapshots (artifact_hash,schema_version,policy,distribution,
 		  projection_policy_version,created_at,knowledge_cutoff,artifact_bytes,
 		  input_manifest_hash,coverage_digest)
@@ -248,6 +255,7 @@ func (p *Ports) CompileSnapshot(ctx context.Context, params CompileSnapshotParam
 		artifactHash, params.Distribution, params.ProjectionPolicyVersion,
 		params.CreatedAt, params.KnowledgeCutoff, artifactBytes,
 		manifestHash, coverageDigest); err != nil {
+		_ = sp.Rollback(ctx)
 		var pgErr *pgconn.PgError
 		if errors.As(err, &pgErr) && pgErr.Code == "23505" {
 			// Artifact hash collision: identical bytes already staged. A
@@ -270,6 +278,9 @@ func (p *Ports) CompileSnapshot(ctx context.Context, params CompileSnapshotParam
 			return CompileSnapshotResult{}, errf(CodeConflict,
 				"a different parameter set produced identical artifact bytes (hash %s)", hexHash(artifactHash))
 		}
+		return CompileSnapshotResult{}, storageErr(err)
+	}
+	if err := sp.Commit(ctx); err != nil { // releases the savepoint
 		return CompileSnapshotResult{}, storageErr(err)
 	}
 	for ordinal, in := range routingInputs {

@@ -47,6 +47,7 @@ func (p *Ports) ClaimableJobs(ctx context.Context, now time.Time, limit int) ([]
 	rows, err := p.Pool.Query(ctx, `
 		SELECT j.id, j.source_id, j.resource_url, j.stage, j.attempts
 		FROM jobs j
+		JOIN sources s ON s.id = j.source_id AND s.enabled
 		LEFT JOIN LATERAL (
 			SELECT a.outcome, a.retry_not_before
 			FROM job_attempts a
@@ -97,10 +98,12 @@ func (p *Ports) PriorObservationID(ctx context.Context, sourceID, resourceURL st
 }
 
 // ExpiredLeases returns expired leases needing recovery: the job's latest
-// lease (not superseded), not completed, with no attempt recorded under it.
-// A lease that already produced attempt evidence needs no recovery: the
-// claimable scan re-enters that work by retry deadline, and the durable
-// output link lets a fresh lease adopt the same work tuple.
+// lease (not superseded), not completed, not already recovered, with no
+// attempt recorded under it. A lease that already produced attempt evidence
+// needs no recovery: the claimable scan re-enters that work by retry
+// deadline, and the durable output link lets a fresh lease adopt the same
+// work tuple. A lease already marked recovered stays marked: reconciliation
+// replays derive state without re-adopting the lease.
 func (p *Ports) ExpiredLeases(ctx context.Context, now time.Time, limit int) ([]ExpiredLease, error) {
 	if limit <= 0 {
 		return nil, errf(CodeInvalidRequest, "positive limit required")
@@ -110,6 +113,7 @@ func (p *Ports) ExpiredLeases(ctx context.Context, now time.Time, limit int) ([]
 		FROM job_leases l
 		JOIN jobs j ON j.id = l.job_id
 		WHERE l.expires_at <= $1
+		  AND l.recovered_at IS NULL
 		  AND j.fencing_token = l.token
 		  AND NOT EXISTS (
 			SELECT 1 FROM job_completions c WHERE c.job_id = l.job_id)
@@ -351,6 +355,17 @@ func (w *Worker) processOne(ctx context.Context, job ClaimableJob) {
 				// will refetch. Nothing durable was lost.
 				return
 			}
+			if codeOfErr(err) == CodeConflict {
+				// The stranded output under this work tuple disagrees with
+				// this fetch: upstream bytes changed between the crash and
+				// the refetch. Not adoptable (identity differs), not a
+				// transport retry. Defer with backoff so the disagreement is
+				// durable, visible and rate-limited pending disposition;
+				// without this the job refetches on every scan with zero
+				// durable progress.
+				w.deferRetry(ctx, job, lease.Token, FetchResult{},
+					fmt.Errorf("conflicting output for work tuple: upstream bytes changed under a stranded output; awaiting disposition"))
+			}
 			return
 		}
 		// The durable output exists; completion closes the aggregate and
@@ -391,6 +406,11 @@ func (w *Worker) processOne(ctx context.Context, job ClaimableJob) {
 			})
 			if rerr == nil {
 				_, _ = w.p.CompleteJob(ctx, job.JobID, lease.Token, rec.OutputID, w.now())
+			} else if codeOfErr(rerr) == CodeConflict {
+				// Same stranded-output disagreement as the success path:
+				// defer durably instead of refetching on every scan.
+				w.deferRetry(ctx, job, lease.Token, FetchResult{},
+					fmt.Errorf("conflicting output for work tuple: upstream bytes changed under a stranded output; awaiting disposition"))
 			}
 		}
 	case 401, 403:
@@ -523,13 +543,26 @@ func randBytes8() []byte {
 	return b[:]
 }
 
-// isPrivateAddr reports whether an address is private, loopback, link-local,
-// unspecified or multicast: never a legal fetch target in production.
-func isPrivateAddr(s string) bool {
-	a, err := netip.ParseAddr(s)
-	if err != nil {
+// extraBlockedRanges are non-routable or special-purpose ranges beyond the
+// netip primitives: CGNAT 100.64/10 and the benchmarking range 198.18/15.
+var extraBlockedRanges = []netip.Prefix{
+	netip.MustParsePrefix("100.64.0.0/10"),
+	netip.MustParsePrefix("198.18.0.0/15"),
+}
+
+// isPrivateIP reports whether an address is private, loopback, link-local,
+// multicast, unspecified or otherwise non-routable. Hostname strings are
+// resolved and validated by guardedDial before dialing; this predicate only
+// ever sees parsed addresses.
+func isPrivateIP(a netip.Addr) bool {
+	if a.IsPrivate() || a.IsLoopback() || a.IsLinkLocalUnicast() ||
+		a.IsLinkLocalMulticast() || a.IsUnspecified() || a.IsMulticast() {
 		return true
 	}
-	return a.IsPrivate() || a.IsLoopback() || a.IsLinkLocalUnicast() ||
-		a.IsLinkLocalMulticast() || a.IsUnspecified() || a.IsMulticast()
+	for _, p := range extraBlockedRanges {
+		if p.Contains(a) {
+			return true
+		}
+	}
+	return false
 }

@@ -24,6 +24,11 @@ type HTTPFetcher struct {
 	// InsecureAllowLocal permits http and private hosts. Test mode only;
 	// the daemon never sets it.
 	InsecureAllowLocal bool
+
+	// resolve and dial back guardedDial; tests inject stubs to verify
+	// resolution, validation and the dialed address without network I/O.
+	resolve func(ctx context.Context, host string) ([]netip.Addr, error)
+	dial    func(ctx context.Context, network, addr string) (net.Conn, error)
 }
 
 // NewHTTPFetcher builds the production fetcher: HTTPS-only, private
@@ -44,13 +49,14 @@ func newHTTPFetcher(userAgent string, allowLocal bool) *HTTPFetcher {
 		MaxBody:            10 << 20,
 		Timeout:            30 * time.Second,
 		InsecureAllowLocal: allowLocal,
+		resolve:            resolveHost,
+		dial:               (&net.Dialer{Timeout: 10 * time.Second}).DialContext,
 	}
-	dialer := &net.Dialer{Timeout: 10 * time.Second}
 	transport := &http.Transport{
-		DialContext: dialer.DialContext,
+		DialContext: f.dial,
 	}
 	if !f.InsecureAllowLocal {
-		transport.DialContext = guardedDial(dialer)
+		transport.DialContext = f.guardedDial
 	}
 	f.Client = &http.Client{
 		Transport: transport,
@@ -62,28 +68,53 @@ func newHTTPFetcher(userAgent string, allowLocal bool) *HTTPFetcher {
 	return f
 }
 
-// guardedDial rejects private, loopback and link-local resolved addresses
-// before connecting.
-func guardedDial(d *net.Dialer) func(ctx context.Context, network, addr string) (net.Conn, error) {
-	return func(ctx context.Context, network, addr string) (net.Conn, error) {
-		host, _, err := net.SplitHostPort(addr)
-		if err != nil {
-			return nil, fmt.Errorf("collector: bad address %s: %w", addr, err)
-		}
-		if isPrivateAddr(host) {
-			return nil, fmt.Errorf("collector: refusing private address %s", host)
-		}
-		ips, err := net.DefaultResolver.LookupIPAddr(ctx, host)
-		if err != nil {
-			return nil, err
-		}
-		for _, ip := range ips {
-			if isPrivateAddr(ip.IP.String()) {
-				return nil, fmt.Errorf("collector: %s resolves to private address %s", host, ip.IP)
-			}
-		}
-		return d.DialContext(ctx, network, addr)
+// guardedDial resolves the host, validates every resolved address and dials
+// the validated address itself. Literal IPs skip resolution. Dialing exactly
+// the validated address (not the hostname) closes the DNS-rebinding window:
+// the transport cannot re-resolve to a different host between check and
+// connect. SNI and Host stay derived from the URL hostname.
+func (f *HTTPFetcher) guardedDial(ctx context.Context, network, addr string) (net.Conn, error) {
+	host, port, err := net.SplitHostPort(addr)
+	if err != nil {
+		return nil, fmt.Errorf("collector: bad address %s: %w", addr, err)
 	}
+	addrs, err := f.resolve(ctx, host)
+	if err != nil {
+		return nil, err
+	}
+	if len(addrs) == 0 {
+		return nil, fmt.Errorf("collector: %s resolved to no addresses", host)
+	}
+	for _, a := range addrs {
+		if isPrivateIP(a) {
+			return nil, fmt.Errorf("collector: %s resolves to private address %s", host, a)
+		}
+	}
+	return f.dial(ctx, network, net.JoinHostPort(addrs[0].String(), port))
+}
+
+// resolveHost resolves a hostname to its addresses; literal IPs pass through
+// unchanged.
+func resolveHost(ctx context.Context, host string) ([]netip.Addr, error) {
+	if ip, err := netip.ParseAddr(host); err == nil {
+		return []netip.Addr{ip.Unmap()}, nil
+	}
+	ips, err := net.DefaultResolver.LookupIPAddr(ctx, host)
+	if err != nil {
+		return nil, err
+	}
+	if len(ips) == 0 {
+		return nil, fmt.Errorf("collector: %s resolved to no addresses", host)
+	}
+	out := make([]netip.Addr, 0, len(ips))
+	for _, ip := range ips {
+		a, ok := netip.AddrFromSlice(ip.IP)
+		if !ok {
+			return nil, fmt.Errorf("collector: %s resolved to unparseable address %s", host, ip.IP)
+		}
+		out = append(out, a.Unmap())
+	}
+	return out, nil
 }
 
 func (f *HTTPFetcher) checkRedirect(req *http.Request, via []*http.Request) error {
@@ -108,7 +139,7 @@ func (f *HTTPFetcher) validateURL(u *url.URL) error {
 	}
 	// Literal IP hosts are checked here; hostnames are resolved and
 	// checked at dial time (guardedDial).
-	if ip, err := netip.ParseAddr(u.Hostname()); err == nil && isPrivateAddr(ip.String()) {
+	if ip, err := netip.ParseAddr(u.Hostname()); err == nil && isPrivateIP(ip.Unmap()) {
 		return fmt.Errorf("collector: refusing private host %s", u.Hostname())
 	}
 	return nil

@@ -544,6 +544,41 @@ func TestRecoverJobRequiresExpiredLease(t *testing.T) {
 	if _, err := p.RecoverJob(ctx, r.JobID, 9999, now.Add(3*time.Minute)); codeOf(t, err) != CodeNotFound {
 		t.Fatal("unknown lease recovered")
 	}
+	// Idempotent by expired token: repeated reconciliation sweeps with the
+	// same token must not inflate attempts (round 1 shipped a re-adopt loop
+	// that gained +1 per sweep forever).
+	if state, err := p.RecoverJob(ctx, r.JobID, lease.Token, now.Add(4*time.Minute)); err != nil || state != "queued" {
+		t.Fatalf("replay recovery state %s err %v", state, err)
+	}
+	if state, err := p.RecoverJob(ctx, r.JobID, lease.Token, now.Add(5*time.Minute)); err != nil || state != "queued" {
+		t.Fatalf("second replay recovery state %s err %v", state, err)
+	}
+	if err := p.Pool.QueryRow(ctx,
+		`SELECT attempts FROM jobs WHERE id = $1`, r.JobID).Scan(&attempts); err != nil || attempts != 2 {
+		t.Fatalf("attempts after replays %d err %v (recovery replays must not increment)", attempts, err)
+	}
+	if expired, err := p.ExpiredLeases(ctx, now.Add(6*time.Minute), 10); err != nil {
+		t.Fatal(err)
+	} else {
+		for _, e := range expired {
+			if e.JobID == r.JobID {
+				t.Fatal("recovered lease still listed by ExpiredLeases")
+			}
+		}
+	}
+	// A new lease under a new token recovers independently.
+	lease2, err := p.LeaseJob(ctx, r.JobID, "w2", time.Minute, now.Add(7*time.Minute))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if _, err := p.RecoverJob(ctx, r.JobID, lease2.Token, now.Add(9*time.Minute)); err != nil {
+		t.Fatal(err)
+	}
+	// lease1 (1) + recovery (2) + lease2 (3) + recovery2 (4): each take-up counts once.
+	if err := p.Pool.QueryRow(ctx,
+		`SELECT attempts FROM jobs WHERE id = $1`, r.JobID).Scan(&attempts); err != nil || attempts != 4 {
+		t.Fatalf("attempts after fresh-token recovery %d err %v", attempts, err)
+	}
 }
 
 func TestLeaseJobSingleActiveLease(t *testing.T) {

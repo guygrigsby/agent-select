@@ -801,3 +801,77 @@ func TestSnapshotIdenticalBytesCollisionConflict(t *testing.T) {
 		t.Fatalf("replay must not add rows: %d", n)
 	}
 }
+
+// TestSnapshotConcurrentIdenticalCompileReplays pins the 23505 path: two
+// concurrent compiles with identical parameters both succeed (the loser
+// replays the winner's row), leaving exactly one snapshot row, one input set
+// and one SnapshotCompiled event. The re-select that classifies replay vs
+// conflict must run inside a live transaction (savepoint), not an aborted one.
+func TestSnapshotConcurrentIdenticalCompileReplays(t *testing.T) {
+	p := mustPort(t)
+	obs := seedSnapshotBase(t, p, "race", "allowed")
+	seedSnapshotOffer(t, p, obs, "race")
+	if _, err := p.RegisterProjectionPolicy(context.Background(), "pp-1", validProjectionPolicy(t), ms(time.Now().UTC())); err != nil {
+		t.Fatal(err)
+	}
+	now := ms(time.Now().UTC())
+	params := CompileSnapshotParams{
+		Inputs: []InputRef{{
+			ObservationID: obs, SourceID: "race",
+			PolicyVersion: hexHash(hash32([]byte("policy-race"))),
+		}},
+		Distribution:            "local",
+		ProjectionPolicyVersion: "pp-1",
+		CreatedAt:               now,
+		KnowledgeCutoff:         now.Add(-time.Minute),
+	}
+	ctx := context.Background()
+	start := make(chan struct{})
+	type outcome struct {
+		res CompileSnapshotResult
+		err error
+	}
+	resCh := make(chan outcome, 2)
+	for range 2 {
+		go func() {
+			<-start
+			r, err := p.CompileSnapshot(ctx, params)
+			resCh <- outcome{r, err}
+		}()
+	}
+	close(start)
+	var results []CompileSnapshotResult
+	for range 2 {
+		oc := <-resCh
+		if oc.err != nil {
+			t.Fatalf("concurrent identical compile returned %v; replay must succeed, not conflict", oc.err)
+		}
+		results = append(results, oc.res)
+	}
+	if string(results[0].ArtifactHash) != string(results[1].ArtifactHash) {
+		t.Fatalf("replayed hash %s differs from winner %s",
+			hexHash(results[1].ArtifactHash), hexHash(results[0].ArtifactHash))
+	}
+	hash := results[0].ArtifactHash
+	var snaps, inputs, audits, events int
+	if err := p.Pool.QueryRow(ctx,
+		`SELECT count(*) FROM snapshots WHERE artifact_hash = $1`, hash).Scan(&snaps); err != nil {
+		t.Fatal(err)
+	}
+	if err := p.Pool.QueryRow(ctx,
+		`SELECT count(*) FROM snapshot_inputs WHERE artifact_hash = $1`, hash).Scan(&inputs); err != nil {
+		t.Fatal(err)
+	}
+	if err := p.Pool.QueryRow(ctx,
+		`SELECT count(*) FROM snapshot_rights_audits WHERE artifact_hash = $1`, hash).Scan(&audits); err != nil {
+		t.Fatal(err)
+	}
+	if err := p.Pool.QueryRow(ctx,
+		`SELECT count(*) FROM outbox_events WHERE aggregate_id = $1 AND event_name = 'SnapshotCompiled'`,
+		hexHash(hash)).Scan(&events); err != nil {
+		t.Fatal(err)
+	}
+	if snaps != 1 || inputs != 1 || audits != 1 || events != 1 {
+		t.Fatalf("counts snaps=%d inputs=%d audits=%d events=%d, want all 1", snaps, inputs, audits, events)
+	}
+}
