@@ -16,7 +16,9 @@ CREATE TABLE offers (
     provider TEXT NOT NULL,
     upstream_id TEXT NOT NULL,
     catalog_observation_id TEXT NOT NULL REFERENCES observations(id) ON DELETE RESTRICT,
-    advertised_kind TEXT NOT NULL,
+    advertised_kind TEXT NOT NULL CHECK (advertised_kind IN
+        ('language','image','embedding','reranking','audio','video','evaluation','unknown')),
+    -- ModelKind closed vocabulary per domain-model.md Enumerations.
     UNIQUE (provider, upstream_id)
 );
 

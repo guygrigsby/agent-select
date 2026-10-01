@@ -84,12 +84,15 @@ CREATE TABLE limit_assertions (
         OR (limit_name = 'reference_image_count' AND unit = 'image' AND scope = 'input' AND role = 'reference')
         OR (limit_name = 'mask_count' AND unit = 'image' AND scope = 'input' AND role = 'mask'
             AND operation = 'image_editing')
-        OR (limit_name IN ('image_width','image_height') AND unit = 'pixel' AND scope IN ('input','output')
-            AND role IN ('input_image','output_image','reference','mask'))
-        OR (limit_name = 'image_pixels' AND unit = 'pixel_area' AND scope IN ('input','output')
-            AND role IN ('input_image','output_image','reference','mask'))
-        OR (limit_name = 'image_bytes' AND unit = 'byte' AND scope IN ('input','output')
-            AND role IN ('input_image','output_image','reference','mask'))
+        OR (limit_name IN ('image_width','image_height') AND unit = 'pixel' AND
+            ((scope = 'input' AND role IN ('input_image','reference','mask'))
+             OR (scope = 'output' AND role = 'output_image')))
+        OR (limit_name = 'image_pixels' AND unit = 'pixel_area' AND
+            ((scope = 'input' AND role IN ('input_image','reference','mask'))
+             OR (scope = 'output' AND role = 'output_image')))
+        OR (limit_name = 'image_bytes' AND unit = 'byte' AND
+            ((scope = 'input' AND role IN ('input_image','reference','mask'))
+             OR (scope = 'output' AND role = 'output_image')))
     )
 );
 CREATE INDEX limit_intersection ON limit_assertions (operation, scope, role, limit_name);

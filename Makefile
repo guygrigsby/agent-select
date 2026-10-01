@@ -7,7 +7,7 @@ build:
 	go build -o $(TOOL) ./cmd/agent-routing
 
 test: build
-	go test ./...
+	AR_REQUIRE_POSTGRES=1 go test ./...
 
 # Full artifact gate: input pins, review decisions, rebuilt manifest
 # byte-compare, integrity/FK/coverage/status gates on the published DB,

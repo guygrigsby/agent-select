@@ -82,7 +82,7 @@ CREATE INDEX benchmark_period_window ON benchmark_run_periods (started_at, ended
 
 CREATE TABLE benchmark_cohort_policies (
     version TEXT PRIMARY KEY,
-    family TEXT NOT NULL CHECK (family <> ''),
+    family TEXT NOT NULL CHECK (family <> ''),  -- open vocabulary: family grammar owned by cohort policy content
     canonicalization_version TEXT NOT NULL,
     content_hash BYTEA NOT NULL UNIQUE CHECK (octet_length(content_hash) = 32),
     recorded_at TIMESTAMPTZ NOT NULL

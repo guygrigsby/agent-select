@@ -8,7 +8,10 @@ import (
 	"crypto/sha256"
 	"embed"
 	"encoding/hex"
+	"errors"
+
 	"fmt"
+	"github.com/jackc/pgx/v5"
 	"io/fs"
 	"sort"
 	"strings"
@@ -73,7 +76,7 @@ func Migrate(ctx context.Context, pool *pgxpool.Pool) error {
 				return fmt.Errorf("migration %s content changed after being applied", name)
 			}
 			continue
-		case err.Error() == "no rows in result set":
+		case errors.Is(err, pgx.ErrNoRows):
 			// not yet applied
 		default:
 			return err

@@ -37,7 +37,7 @@ CREATE TABLE job_attempts (
     detail TEXT NOT NULL,
     retry_not_before TIMESTAMPTZ NOT NULL,
     PRIMARY KEY (job_id, token, observed_at),
-    FOREIGN KEY (job_id, token) REFERENCES job_leases(job_id, token) ON DELETE CASCADE,
+    FOREIGN KEY (job_id, token) REFERENCES job_leases(job_id, token) ON DELETE RESTRICT,
     CHECK (outcome <> 'deferred' OR retry_not_before > observed_at),
     CHECK (outcome = 'deferred' OR retry_not_before = observed_at)
 );

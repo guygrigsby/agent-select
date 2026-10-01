@@ -8,6 +8,7 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/testcontainers/testcontainers-go"
 	"github.com/testcontainers/testcontainers-go/wait"
+	"os"
 	"testing"
 	"time"
 )
@@ -27,6 +28,11 @@ func startPostgres(t *testing.T) *pgxpool.Pool {
 		Started:          true,
 	})
 	if err != nil {
+		// The artifact gate sets AR_REQUIRE_POSTGRES so a Docker-less
+		// environment fails instead of silently skipping the authority tests.
+		if os.Getenv("AR_REQUIRE_POSTGRES") != "" {
+			t.Fatalf("postgres container unavailable: %v", err)
+		}
 		t.Skipf("postgres container unavailable: %v", err)
 	}
 	t.Cleanup(func() { _ = c.Terminate(ctx) })
@@ -161,6 +167,44 @@ func TestObservationStatusCheckRejectsDishonestPairs(t *testing.T) {
 	}
 	// source_blocked outside its status set fails.
 	wantFail(t, "source_blocked with 404", ins("o6", 404, "source_blocked"))
+	// http_error requires status 0 (transport failure) or >= 400.
+	wantFail(t, "http_error with 302", ins("o7", 302, "http_error"))
+	if err := ins("o8", 503, "http_error"); err != nil {
+		t.Fatalf("http_error with 503: %v", err)
+	}
+	// invalid_shape requires a 2xx body.
+	wantFail(t, "invalid_shape with 400", ins("o9", 400, "invalid_shape"))
+	if err := ins("o10", 250, "invalid_shape"); err != nil {
+		t.Fatalf("invalid_shape with 250: %v", err)
+	}
+	// quarantine is administrative and pairs with any status.
+	if err := ins("o11", 418, "quarantine"); err != nil {
+		t.Fatalf("quarantine with 418: %v", err)
+	}
+}
+
+func TestOfferAdvertisedKindVocabulary(t *testing.T) {
+	pool := startPostgres(t)
+	ctx := context.Background()
+	body := []byte("b")
+	mustExec(t, pool,
+		`INSERT INTO sources (id,url,source_kind,parser_version,freshness_ceiling_seconds,enabled)
+		 VALUES ('s1','https://s1','vercel_catalog','p1',3600,true)`)
+	mustExec(t, pool, `INSERT INTO content_blobs (hash,bytes) VALUES ($1,$2)`, hash32(body), body)
+	ins := func(id, kind string) error {
+		_, err := pool.Exec(ctx, `
+			INSERT INTO offers (id,provider,upstream_id,catalog_observation_id,advertised_kind)
+			VALUES ($1,'prov',$1,
+			  (SELECT id FROM observations WHERE id = 'obs-off'),$2)`, id, kind)
+		return err
+	}
+	mustExec(t, pool, `
+		INSERT INTO observations (id,source_id,resource_url,retrieved_at,http_status,outcome,body_hash,headers_bytes,collector_version)
+		VALUES ('obs-off','s1','u',$1,200,'success',$2,'{}','c1')`, time.Now().UTC(), hash32(body))
+	if err := ins("of1", "language"); err != nil {
+		t.Fatalf("language kind: %v", err)
+	}
+	wantFail(t, "invented kind", ins("of2", "toaster"))
 }
 
 func TestJobAttemptFencingAndRetryChecks(t *testing.T) {
@@ -366,6 +410,20 @@ func TestLimitAssertionLegalCombinations(t *testing.T) {
 	// Illegal: image_count with reference role.
 	wantFail(t, "image_count with reference role",
 		mkLimit("image_count", "image", "maximum", "input", "image_generation", "reference", 2))
+	// Legal pairing arms for the dimension/size limits: reference and mask
+	// always input scope; output_image always output scope.
+	if err := mkLimit("image_width", "pixel", "maximum", "input", "image_editing", "reference", 4096); err != nil {
+		t.Fatalf("image_width input/reference rejected: %v", err)
+	}
+	if err := mkLimit("image_pixels", "pixel_area", "maximum", "output", "image_generation", "output_image", 1<<20); err != nil {
+		t.Fatalf("image_pixels output/output_image rejected: %v", err)
+	}
+	wantFail(t, "image_width output with reference role",
+		mkLimit("image_width", "pixel", "maximum", "output", "image_editing", "reference", 4096))
+	wantFail(t, "image_pixels input with output_image role",
+		mkLimit("image_pixels", "pixel_area", "maximum", "input", "image_generation", "output_image", 1<<20))
+	wantFail(t, "image_bytes output with mask role",
+		mkLimit("image_bytes", "byte", "maximum", "output", "image_editing", "mask", 999))
 }
 
 func TestPriceScopeKnowledgeEncoding(t *testing.T) {
