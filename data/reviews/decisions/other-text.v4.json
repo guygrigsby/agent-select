@@ -1,0 +1,36 @@
+{
+ "batch": "other-text",
+ "scope": "published_measurements",
+ "state": "source_validated",
+ "reason": "Coverage supersession of other-text.v3: provider-apis wave added six documented source URLs (xiaomi MiMo, meituan LongCat-2.0, poolside laguna, inference.net, tencent org search, stealth.ai) with retained bytes and bounded negative outcomes for tencent hy* and stealth. No measurement rows or existing claims changed.",
+ "review_path": "data/reviews/phase8-provider-apis-2026-10-01.md",
+ "pins": [
+  {
+   "path": "data/research/other-text/findings.json",
+   "sha256": "02bb2598b491bdcd40ba3ec1e348bdabed73984a40d5b2fd283eae9866e7730c"
+  },
+  {
+   "path": "data/research/other-text/sources/arcee-trinity-large-thinking-readme.md",
+   "sha256": "8c000bf5ad430c4d70810032a6388e40bd39b7ec2c016a97a808f4af48caed1b"
+  },
+  {
+   "path": "data/research/other-text/sources/stepfun-step-3.5-flash-github.md",
+   "sha256": "62950f2aa4670618ea3bc73df0816880db2bf9c83c0130288cd3fe0421df9e3d"
+  },
+  {
+   "path": "data/research/other-text/sources/stepfun-step-3.5-flash-readme.md",
+   "sha256": "6b903e2816900a43ec28d4a8f0f5c2feb72f7c65945cad503375414a270751d2"
+  },
+  {
+   "path": "data/research/other-text/sources/stepfun-step-3.7-flash-readme.md",
+   "sha256": "b0d04c993d40a28fff3ecac99045de502e75b0c0635e233f2aa8614783972519"
+  },
+  {
+   "path": "data/reviews/phase8-provider-apis-2026-10-01.md",
+   "sha256": "f49fa723733ea4a68bc5553a0e8fb0a2a1ad09a26b5f57ef19c4701baee3a4b6"
+  }
+ ],
+ "decision_version": 4,
+ "decided_at": "2026-10-01T00:00:00Z",
+ "supersedes": "data/reviews/decisions/other-text.v3.json"
+}

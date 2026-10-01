@@ -1,5 +1,21 @@
 [
  {
+  "url": "https://api.github.com/search/repositories?q=org%3ATencent-Hunyuan&sort=stars&per_page=5",
+  "source_kind": "github_repo",
+  "terms_url": "https://api.github.com/search/repositories?q=org%3ATencent-Hunyuan&sort=stars&per_page=5",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "",
+  "evidence": {
+   "path": "data/research/other-text/sources/tencent-hunyuan-search.json",
+   "retrieved_at": "2026-10-01T02:07:35.221Z",
+   "outcome": "success"
+  },
+  "notes": "Bounded outcome for Tencent hy3/hy4-preview/hy-mt2 family (5 catalog models): documented org search returns only 3D/video/DiT repos with NOASSERTION licenses; no public LLM documentation repo located. No hy3 model documentation exists to inventory; follow-up search for Hunyuan-MT returned 0 results."
+ },
+ {
   "url": "https://arcee.ai/blog/trinity-large-thinking",
   "source_kind": "provider_docs",
   "terms_url": "https://arcee.ai/terms-and-conditions",
@@ -7,7 +23,7 @@
   "extraction": "denied",
   "redistribution": "unknown",
   "license_name": "proprietary",
-  "license_text": "(D) use any deep linking, robot, spider, scraper or other automated means to access the Services and collect content for any purpose without Arcee AI\u2019s express written permission",
+  "license_text": "(D) use any deep linking, robot, spider, scraper or other automated means to access the Services and collect content for any purpose without Arcee AI’s express written permission",
   "evidence": {
    "path": "data/research/terms/other-text/arcee-terms.html",
    "retrieved_at": "2026-09-30T23:16:11.382Z",
@@ -199,7 +215,7 @@
   "extraction": "denied",
   "redistribution": "denied",
   "license_name": "proprietary",
-  "license_text": "copy, rent, lease, sell, loan, transfer, assign, license or purport to sublicense, resell, distribute, modify, alter, or create derivative works of any part of the Service or any of our Intellectual Property (as defined below), including, without limitation by any automated or non-automated \u201cscraping\u201d",
+  "license_text": "copy, rent, lease, sell, loan, transfer, assign, license or purport to sublicense, resell, distribute, modify, alter, or create derivative works of any part of the Service or any of our Intellectual Property (as defined below), including, without limitation by any automated or non-automated “scraping”",
   "evidence": {
    "path": "data/research/terms/other-text/fireworks-terms-of-service.txt",
    "retrieved_at": "2026-09-30T23:19:54.613Z",
@@ -215,7 +231,7 @@
   "extraction": "denied",
   "redistribution": "denied",
   "license_name": "proprietary",
-  "license_text": "copy, rent, lease, sell, loan, transfer, assign, license or purport to sublicense, resell, distribute, modify, alter, or create derivative works of any part of the Service or any of our Intellectual Property (as defined below), including, without limitation by any automated or non-automated \u201cscraping\u201d",
+  "license_text": "copy, rent, lease, sell, loan, transfer, assign, license or purport to sublicense, resell, distribute, modify, alter, or create derivative works of any part of the Service or any of our Intellectual Property (as defined below), including, without limitation by any automated or non-automated “scraping”",
   "evidence": {
    "path": "data/research/terms/other-text/fireworks-terms-of-service.txt",
    "retrieved_at": "2026-09-30T23:19:54.613Z",
@@ -270,6 +286,22 @@
    "outcome": "success"
   },
   "notes": "Saved model card front matter carries the license: mit tag; MIT is an enumerated express redistribution grant (full license body not present in the card)."
+ },
+ {
+  "url": "https://huggingface.co/poolside/laguna-s-2.1/raw/main/README.md",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://huggingface.co/poolside/laguna-s-2.1/raw/main/README.md",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "openmdw-1.1",
+  "license_text": "Laguna S 2.1 is released under OpenMDW-1.1, a fully permissive license. Use it, modify it, and build commercial products on it. No permission required.\nIf you want more t",
+  "evidence": {
+   "path": "data/research/other-text/sources/poolside-laguna-s-2.1-readme.md",
+   "retrieved_at": "2026-10-01T02:07:35.221Z",
+   "outcome": "success"
+  },
+  "notes": "Documented URL for poolside laguna family (2 catalog models); card declares OpenMDW-1.1 (allowlisted, fully permissive per card text); fetched via resolve redirect, canonical raw URL recorded."
  },
  {
   "url": "https://huggingface.co/stepfun-ai/Step-3.5-Flash/raw/main/README.md",
@@ -327,13 +359,29 @@
   "extraction": "denied",
   "redistribution": "denied",
   "license_name": "proprietary",
-  "license_text": "\u201ccrawls,\u201d \u201cscrapes,\u201d or \u201cspiders\u201d any page, data, or portion of or relating to the Services or Content (through use of manual or automated means); copies or stores any significant portion of the Content",
+  "license_text": "“crawls,” “scrapes,” or “spiders” any page, data, or portion of or relating to the Services or Content (through use of manual or automated means); copies or stores any significant portion of the Content",
   "evidence": {
    "path": "data/research/terms/other-text/inception-terms.html",
    "retrieved_at": "2026-09-30T23:16:18.994Z",
    "outcome": "success"
   },
   "notes": "Inception Terms of Use (linked from the blog footer) expressly ban crawling/scraping any page, storing significant portions, and reproduction or derivative exploitation."
+ },
+ {
+  "url": "https://inference.net/",
+  "source_kind": "provider_docs",
+  "terms_url": "https://inference.net/",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "",
+  "evidence": {
+   "path": "data/research/other-text/sources/inference-net.html",
+   "retrieved_at": "2026-10-01T02:07:35.221Z",
+   "outcome": "success"
+  },
+  "notes": "Documented URL for inference-net family (2 catalog models). Site terms not separately located or retained; permissions unknown, page bytes retained."
  },
  {
   "url": "https://interfaze.ai",
@@ -368,6 +416,38 @@
   "notes": "Morph ToS Acceptable Use Policy restricts scraping to documented APIs, which blog page retrieval is not, so research denied; systematic extraction of page content is scraping outside documented APIs, so extraction denied; no express content redistribution grant, so redistribution unknown."
  },
  {
+  "url": "https://raw.githubusercontent.com/XiaomiMiMo/MiMo/main/README.md",
+  "source_kind": "github_repo",
+  "terms_url": "https://raw.githubusercontent.com/XiaomiMiMo/MiMo/main/LICENSE",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "apache-2.0",
+  "license_text": "Apache License\n                           Version 2.0, January 2004\n                        http://www.apache.org/licens",
+  "evidence": {
+   "path": "data/research/other-text/sources/xiaomi-mimo-license.txt",
+   "retrieved_at": "2026-10-01T02:07:35.221Z",
+   "outcome": "success"
+  },
+  "notes": "Documented URL for Xiaomi MiMo family (5 catalog models); Apache-2.0 LICENSE retained byte-exact. Repo license covers repo docs; benchmark-data rights remain separate."
+ },
+ {
+  "url": "https://raw.githubusercontent.com/meituan-longcat/LongCat-2.0/main/README.md",
+  "source_kind": "github_repo",
+  "terms_url": "https://raw.githubusercontent.com/meituan-longcat/LongCat-2.0/main/LICENSE",
+  "research": "allowed",
+  "extraction": "allowed",
+  "redistribution": "allowed",
+  "license_name": "mit",
+  "license_text": "MIT License\n\nCopyright (c) 2026 Meituan\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this soft",
+  "evidence": {
+   "path": "data/research/other-text/sources/meituan-longcat-2.0-license.txt",
+   "retrieved_at": "2026-10-01T02:07:35.221Z",
+   "outcome": "success"
+  },
+  "notes": "Documented URL for Meituan LongCat text family (longcat-2.0); org search verified repo; MIT LICENSE retained byte-exact. Repo license covers repo docs; benchmark-data rights remain separate."
+ },
+ {
   "url": "https://sakana.ai/fugu/",
   "source_kind": "provider_docs",
   "terms_url": "https://console.sakana.ai/terms-of-service",
@@ -400,6 +480,22 @@
   "notes": "Sakana API Platform ToS (explicitly covering Sakana Fugu) grants no content rights and has no site automated-access ban, so research allowed and extraction/redistribution unknown; sakana.ai/terms 404ed once before the console URL succeeded."
  },
  {
+  "url": "https://stealth.ai/",
+  "source_kind": "provider_docs",
+  "terms_url": "https://stealth.ai/",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "unknown",
+  "license_text": "",
+  "evidence": {
+   "path": "data/research/other-text/sources/stealth-ai.html",
+   "retrieved_at": "2026-10-01T02:07:35.221Z",
+   "outcome": "success"
+  },
+  "notes": "Bounded outcome for stealth/space-bunny-alpha: site is an empty placeholder shell (219 bytes, no body content); no public model documentation exists. Permissions unknown; nothing further to inventory."
+ },
+ {
   "url": "https://thinkingmachines.ai/inkling",
   "source_kind": "provider_docs",
   "terms_url": "https://thinkingmachines.ai/legal/terms/",
@@ -407,7 +503,7 @@
   "extraction": "denied",
   "redistribution": "denied",
   "license_name": "proprietary",
-  "license_text": "sublicense, resell, distribute, modify, alter, or create derivative works of any part of the Services or any of our intellectual property, including, without limitation by any automated or non-automated \u201cscraping;\u201d",
+  "license_text": "sublicense, resell, distribute, modify, alter, or create derivative works of any part of the Services or any of our intellectual property, including, without limitation by any automated or non-automated “scraping;”",
   "evidence": {
    "path": "data/research/terms/other-text/tml-terms.html",
    "retrieved_at": "2026-09-30T23:16:21.360Z",

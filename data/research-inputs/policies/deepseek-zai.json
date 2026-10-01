@@ -158,5 +158,21 @@
    "outcome": "success"
   },
   "notes": "Saved model card carries the license:mit tag and an explicit grant that the repository and model weights are under the MIT License."
+ },
+ {
+  "url": "https://huggingface.co/zai-org/GLM-5.3/raw/main/README.md",
+  "source_kind": "huggingface_model",
+  "terms_url": "https://huggingface.co/zai-org/GLM-5.3/raw/main/README.md",
+  "research": "unknown",
+  "extraction": "unknown",
+  "redistribution": "unknown",
+  "license_name": "glm-5.3 (custom)",
+  "license_text": "license: other\nlicense_name: glm-5.3\npip",
+  "evidence": {
+   "path": "data/research/deepseek-zai/saved_sources/hf-glm-5.3-readme.md",
+   "retrieved_at": "2026-10-01T02:07:35.221Z",
+   "outcome": "success"
+  },
+  "notes": "First inventoried documented URL for z.ai GLM family (owner zai, 17 catalog models): current GLM-5.3 model card. Card declares license 'other' with custom license_name glm-5.3, which is not in the redistribution allowlist, so all permissions stay unknown; no license terms asserted beyond card bytes."
  }
 ]

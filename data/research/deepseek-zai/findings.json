@@ -3881,20 +3881,6 @@
  ],
  "sources": [
   {
-   "url": "https://arxiv.org/html/2501.12948v1",
-   "file": "data/research/deepseek-zai/saved_sources/deepseek-r1-paper.html",
-   "status": "retrieved",
-   "purpose": "DeepSeek-R1 primary paper",
-   "license": "unknown"
-  },
-  {
-   "url": "https://arxiv.org/abs/2501.12948",
-   "file": "data/research/deepseek-zai/saved_sources/deepseek-r1-abs.html",
-   "status": "retrieved",
-   "purpose": "DeepSeek-R1 abstract",
-   "license": "unknown"
-  },
-  {
    "url": "https://api.github.com/repos/deepseek-ai/DeepSeek-R1",
    "file": "data/research/deepseek-zai/saved_sources/deepseek-r1-github.json",
    "status": "retrieved",
@@ -3902,10 +3888,10 @@
    "license": "unknown"
   },
   {
-   "url": "https://arxiv.org/html/2412.19437v1",
-   "file": "data/research/deepseek-zai/saved_sources/deepseek-v3-paper.html",
+   "url": "https://api.github.com/repos/deepseek-ai/DeepSeek-V3",
+   "file": "data/research/deepseek-zai/saved_sources/deepseek-v3-github.json",
    "status": "retrieved",
-   "purpose": "DeepSeek-V3 primary paper",
+   "purpose": "DeepSeek-V3 repository metadata",
    "license": "unknown"
   },
   {
@@ -3916,10 +3902,24 @@
    "license": "unknown"
   },
   {
-   "url": "https://api.github.com/repos/deepseek-ai/DeepSeek-V3",
-   "file": "data/research/deepseek-zai/saved_sources/deepseek-v3-github.json",
+   "url": "https://arxiv.org/abs/2501.12948",
+   "file": "data/research/deepseek-zai/saved_sources/deepseek-r1-abs.html",
    "status": "retrieved",
-   "purpose": "DeepSeek-V3 repository metadata",
+   "purpose": "DeepSeek-R1 abstract",
+   "license": "unknown"
+  },
+  {
+   "url": "https://arxiv.org/html/2412.19437v1",
+   "file": "data/research/deepseek-zai/saved_sources/deepseek-v3-paper.html",
+   "status": "retrieved",
+   "purpose": "DeepSeek-V3 primary paper",
+   "license": "unknown"
+  },
+  {
+   "url": "https://arxiv.org/html/2501.12948v1",
+   "file": "data/research/deepseek-zai/saved_sources/deepseek-r1-paper.html",
+   "status": "retrieved",
+   "purpose": "DeepSeek-R1 primary paper",
    "license": "unknown"
   },
   {
@@ -3949,6 +3949,13 @@
    "status": "retrieved",
    "purpose": "DeepSeek-V4.1-Flash model card benchmark tables (frontier comparison, V4.1-Flash and GLM-5.3 columns; agent scaffold comparison)",
    "license": "mit"
+  },
+  {
+   "url": "https://huggingface.co/zai-org/GLM-5.3/raw/main/README.md",
+   "file": "data/research/deepseek-zai/saved_sources/hf-glm-5.3-readme.md",
+   "status": "retrieved",
+   "purpose": "Provider source bytes for z.ai GLM family (owner zai, 17 models) capability/benchmark inspection; first inventoried documented URL for this family.",
+   "license": "other (glm-5.3 custom)"
   }
  ],
  "gaps": [

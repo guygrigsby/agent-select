@@ -1,1192 +1,1193 @@
 {
-  "models": [
+ "models": [
+  {
+   "id": "bfl/flux-2-flex",
+   "strengths": [
     {
-      "id": "bfl/flux-2-flex",
-      "strengths": [
-        {
-          "text": "Customizable image generation and editing with adjustable steps and guidance; better typography/text rendering; supports up to 10 reference images (up to 14 MP total input)",
-          "basis": "catalog_claim",
-          "source_url": "https://vercel.com",
-          "source_file": "data/research/images/assignment.json",
-          "locator": "FLUX.2 [flex] description field"
-        },
-        {
-          "text": "Based on FLUX.2 base model trained for visual intelligence with highest quality, up to 4MP resolution, and multi-ref images",
-          "basis": "catalog_claim",
-          "source_url": "https://blackforestlabs.ai",
-          "source_file": "data/research/images/sources/bfl_blog_flux1.html",
-          "locator": "Announcing Black Forest Labs page - state-of-the-art claims"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources. Image generation quality claims are provider-reported only.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark tables found across GitHub, HuggingFace, or provider documentation pages checked"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "FLUX.2 was released around December 2025. No GenEval, DPG-Bench, T2I-CompBench, or Artifactor scores found in checked sources. Provider claims state-of-the-art quality but no numeric benchmarks retrieved."
+     "text": "Customizable image generation and editing with adjustable steps and guidance; better typography/text rendering; supports up to 10 reference images (up to 14 MP total input)",
+     "basis": "catalog_claim",
+     "source_url": "https://vercel.com",
+     "source_file": "data/research/images/assignment.json",
+     "locator": "FLUX.2 [flex] description field"
     },
     {
-      "id": "bfl/flux-2-klein-4b",
-      "strengths": [
-        {
-          "text": "Fastest BFL image model - end-to-end inference in less than a second; unifies image generation and editing in a single compact 4B parameter model",
-          "basis": "catalog_claim",
-          "source_url": "https://vercel.com",
-          "source_file": "data/research/images/assignment.json",
-          "locator": "FLUX.2 [klein] 4B description"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found. No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data in checked sources"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Just 4B parameters. No benchmark data found in any checked source. Provider claims fastest image model yet."
-    },
-    {
-      "id": "bfl/flux-2-klein-9b",
-      "strengths": [
-        {
-          "text": "Fast image model variant - end-to-end inference in less than a second; unifies image generation and editing in single model",
-          "basis": "catalog_claim",
-          "source_url": "https://vercel.com",
-          "source_file": "data/research/images/assignment.json",
-          "locator": "FLUX.2 [klein] 9B description"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "9B parameter variant of klein family. Same latency claims as 4B but larger model. No independent benchmarks found."
-    },
-    {
-      "id": "bfl/flux-2-max",
-      "strengths": [
-        {
-          "text": "Maximum quality variant of FLUX.2 line, highest resolution (up to 4MP) and multi-ref image support",
-          "basis": "catalog_claim",
-          "source_url": "https://vercel.com",
-          "source_file": "data/research/images/assignment.json",
-          "locator": "FLUX.2 [max] entry"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Released around December 2025. No benchmark data retrieved."
-    },
-    {
-      "id": "bfl/flux-2-pro",
-      "strengths": [
-        {
-          "text": "Professional-grade FLUX.2 model with full quality and features",
-          "basis": "catalog_claim",
-          "source_url": "https://vercel.com",
-          "source_file": "data/research/images/assignment.json",
-          "locator": "FLUX.2 [pro] entry"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "No description field in assignment.json. No benchmarks found."
-    },
-    {
-      "id": "bfl/flux-kontext-max",
-      "strengths": [
-        {
-          "text": "Kontext models add context/reference image understanding for image generation",
-          "basis": "catalog_claim",
-          "source_url": "https://vercel.com",
-          "source_file": "data/research/images/assignment.json",
-          "locator": "flux-kontext-max entry"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Kontext variant adds image context understanding. No benchmark data found."
-    },
-    {
-      "id": "bfl/flux-kontext-pro",
-      "strengths": [
-        {
-          "text": "Kontext variant for professional image generation with reference understanding",
-          "basis": "catalog_claim",
-          "source_url": "https://vercel.com",
-          "source_file": "data/research/images/assignment.json",
-          "locator": "flux-kontext-pro entry"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Kontext variant. No benchmark data found."
-    },
-    {
-      "id": "bfl/flux-pro-1.0-fill",
-      "strengths": [
-        {
-          "text": "Specialized image inpainting/fill model based on FLUX.1 technology",
-          "basis": "catalog_claim",
-          "source_url": "https://vercel.com",
-          "source_file": "data/research/images/assignment.json",
-          "locator": "flux-pro-1.0-fill entry"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "FLUX.1 Pro-based fill/inpainting model. No benchmarks found."
-    },
-    {
-      "id": "bfl/flux-pro-1.1",
-      "strengths": [
-        {
-          "text": "FLUX.1.1 Pro - improved over FLUX.1 Pro with faster inference and better quality",
-          "basis": "catalog_claim",
-          "source_url": "https://vercel.com",
-          "source_file": "data/research/images/assignment.json",
-          "locator": "flux-pro-1.1 entry"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "FLUX.1.1 Pro. No benchmark data found in retrieved sources."
-    },
-    {
-      "id": "bfl/flux-pro-1.1-ultra",
-      "strengths": [
-        {
-          "text": "Ultra quality variant of FLUX.1.1 Pro for maximum image fidelity",
-          "basis": "catalog_claim",
-          "source_url": "https://vercel.com",
-          "source_file": "data/research/images/assignment.json",
-          "locator": "flux-pro-1.1-ultra entry"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Ultra variant. No benchmarks found."
-    },
-    {
-      "id": "bytedance/seedream-4.0",
-      "strengths": [
-        {
-          "text": "ByteDance Seedream series - text-to-image generation model from Doubao/ByteDance",
-          "basis": "catalog_claim",
-          "source_url": "https://www.bytedance.com/en/products/seedream",
-          "source_file": "data/research/images/sources/bytedance_seedream.html",
-          "locator": "ByteDance Seedream product page"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Seedream 4.0. ByteDance product page retrieved but no benchmark data visible. Paper reference: arxiv.org/abs/2504.04362 (Seedream paper) but actual arXiv HTML was for a different paper (wrong page)."
-    },
-    {
-      "id": "bytedance/seedream-4.5",
-      "strengths": [
-        {
-          "text": "Updated Seedream model with improvements over 4.0",
-          "basis": "catalog_claim",
-          "source_url": "https://huggingface.co/ByteDance/Seedream-4.5",
-          "source_file": "data/research/images/sources/bytedance_seedream_5.html",
-          "locator": "ByteDance page - Seedream mentioned"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Seedream 4.5. HuggingFace page for ByteDance/Seedream-4.5 required authentication (blocked). No benchmark data retrieved."
-    },
-    {
-      "id": "bytedance/seedream-5.0-lite",
-      "strengths": [
-        {
-          "text": "Latest Seedream generation (5.0) with lite/fast variant",
-          "basis": "catalog_claim",
-          "source_url": "https://www.bytedance.com/en/articles/seedream-5",
-          "source_file": "data/research/images/sources/seedream_5_blog.html",
-          "locator": "Seedream 5 announcement page"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Seedream 5.0 Lite - latest model generation. No benchmark scores retrieved."
-    },
-    {
-      "id": "bytedance/seedream-5.0-pro",
-      "strengths": [
-        {
-          "text": "Highest quality Seedream 5.0 pro variant",
-          "basis": "catalog_claim",
-          "source_url": "https://www.bytedance.com/en/articles/seedream-5-pro",
-          "source_file": "data/research/images/sources/seedream_5_blog.html",
-          "locator": "Seedream 5 page"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Seedream 5.0 Pro. No benchmark scores retrieved."
-    },
-    {
-      "id": "google/gemini-2.5-flash-image",
-      "strengths": [
-        {
-          "text": "Legacy pioneer of Gemini Nano Banana image generation; native image generation with Gemini conversational interface",
-          "basis": "catalog_claim",
-          "source_url": "https://ai.google.dev/gemini-api/docs/image-generation",
-          "source_file": "data/research/images/sources/google_gemini_2_flash_image.html",
-          "locator": "Gemini API image generation docs - 'Nano Banana (Gemini 2.5 Flash Image)'"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "Legacy model; Google recommends transitioning to Gemini 3.1 Flash Lite Image for improved capabilities",
-          "basis": "primary_claim",
-          "source_url": "https://ai.google.dev/gemini-api/docs/image-generation",
-          "source_file": "data/research/images/sources/google_gemini_2_flash_image.html",
-          "locator": "'we strongly recommend that customers transition to Nano Banana 2 Lite'"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Gemini 2.5 Flash Image. Documented as legacy model. No benchmark numbers found in retrieved documentation."
-    },
-    {
-      "id": "google/gemini-3-pro-image",
-      "strengths": [
-        {
-          "text": "Highest quality Gemini image generation model; native image generation with conversational interface",
-          "basis": "catalog_claim",
-          "source_url": "https://ai.google.dev/gemini-api/docs/image-generation",
-          "source_file": "data/research/images/sources/google_gemini_2_flash_image.html",
-          "locator": "Gemini API docs - image generation capabilities"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Gemini 3 Pro Image. High-end variant. No benchmark data retrieved."
-    },
-    {
-      "id": "google/gemini-3.1-flash-image",
-      "strengths": [
-        {
-          "text": "Fast and capable Gemini image generation model; named 'Nano Banana 2' with balanced speed/quality",
-          "basis": "catalog_claim",
-          "source_url": "https://ai.google.dev/gemini-api/docs/image-generation",
-          "source_file": "data/research/images/sources/google_gemini_2_flash_image.html",
-          "locator": "Nano Banana 2 references in docs"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Gemini 3.1 Flash Image. No benchmark data retrieved."
-    },
-    {
-      "id": "google/gemini-3.1-flash-image-preview",
-      "strengths": [
-        {
-          "text": "Preview/beta variant of Gemini 3.1 Flash Image for early testing",
-          "basis": "catalog_claim",
-          "source_url": "https://vercel.com",
-          "source_file": "data/research/images/assignment.json",
-          "locator": "gemini-3.1-flash-image-preview entry"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "Preview model; no benchmark data available.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "Preview designation in the catalog"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Preview model. No benchmark data found."
-    },
-    {
-      "id": "google/gemini-3.1-flash-lite-image",
-      "strengths": [
-        {
-          "text": "Fastest and cheapest Gemini image model; engineered for velocity and scale where speed and cost are primary constraints",
-          "basis": "catalog_claim",
-          "source_url": "https://ai.google.dev/gemini-api/docs/image-generation",
-          "source_file": "data/research/images/sources/google_gemini_2_flash_image.html",
-          "locator": "'Our fastest and cheapest Gemini image model'"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "Not optimized for multiple reference images",
-          "basis": "primary_claim",
-          "source_url": "https://ai.google.dev/gemini-api/docs/image-generation",
-          "source_file": "data/research/images/sources/google_gemini_2_flash_image.html",
-          "locator": "'Not optimized for multiple reference images' and 'where speed and cost are the primary operational constraints'"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Lite variant. No benchmark data found."
-    },
-    {
-      "id": "meta/muse-image-1.0",
-      "strengths": [
-        {
-          "text": "Meta AI image generation model from the Muse family",
-          "basis": "catalog_claim",
-          "source_url": "https://vercel.com",
-          "source_file": "data/research/images/assignment.json",
-          "locator": "muse-image-1.0 entry"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources. No separate Muse image model page found at meta.com.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "meta.com/muse-image returned other content"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Muse Image 1.0. Meta's Muse model page was not found at expected URL. No benchmark data retrieved."
-    },
-    {
-      "id": "openai/gpt-image-1",
-      "strengths": [
-        {
-          "text": "OpenAI's first dedicated image generation model; integrates with DALL-E technology",
-          "basis": "catalog_claim",
-          "source_url": "https://platform.openai.com/docs/models/gpt-image-1",
-          "source_file": "data/research/images/sources/openai_gpt_image_1.html",
-          "locator": "GPT-Image-1 Model page"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found in checked sources"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "GPT-Image-1. OpenAI platform documentation page retrieved but benchmark tables are likely client-side rendered and not in saved HTML. No numeric benchmarks extracted."
-    },
-    {
-      "id": "openai/gpt-image-1-mini",
-      "strengths": [
-        {
-          "text": "Smaller/faster variant of GPT-Image-1 for cost-efficient generation",
-          "basis": "catalog_claim",
-          "source_url": "https://vercel.com",
-          "source_file": "data/research/images/assignment.json",
-          "locator": "gpt-image-1-mini entry"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Mini variant. No benchmarks found."
-    },
-    {
-      "id": "openai/gpt-image-1.5",
-      "strengths": [
-        {
-          "text": "Significant improvement over GPT-Image-1; OpenAI's next-generation image generation model",
-          "basis": "catalog_claim",
-          "source_url": "https://openai.com/index/gpt-image-1-5/",
-          "source_file": "data/research/images/assignment.json",
-          "locator": "Assignment catalog entry; announcement URL was not retrieved"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources. Announcement page returned 404.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "URL https://openai.com/index/gpt-image-1-5/ was blocked (not found)"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "GPT-Image-1.5. Announcement page not found at expected URL. No benchmarks retrieved."
-    },
-    {
-      "id": "openai/gpt-image-2",
-      "strengths": [
-        {
-          "text": "GPT-Image-2 - major generation of OpenAI image model with improved capabilities",
-          "basis": "catalog_claim",
-          "source_url": "https://vercel.com",
-          "source_file": "data/research/images/assignment.json",
-          "locator": "gpt-image-2 entry"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "GPT-Image-2. No benchmarks retrieved. openai.com/index/introducing-gpt-image-2/ returned other content."
-    },
-    {
-      "id": "openai/gpt-image-2.5-flare",
-      "strengths": [
-        {
-          "text": "Latest OpenAI image model generation (2.5) with Flare variant",
-          "basis": "catalog_claim",
-          "source_url": "https://vercel.com",
-          "source_file": "data/research/images/assignment.json",
-          "locator": "gpt-image-2.5-flare entry"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "GPT-Image-2.5 Flare. Latest OpenAI image model. No benchmarks found."
-    },
-    {
-      "id": "openai/gpt-image-2.5-sunburst",
-      "strengths": [
-        {
-          "text": "Latest OpenAI image model generation (2.5) with Sunburst variant",
-          "basis": "catalog_claim",
-          "source_url": "https://vercel.com",
-          "source_file": "data/research/images/assignment.json",
-          "locator": "gpt-image-2.5-sunburst entry"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "GPT-Image-2.5 Sunburst. No benchmarks found."
-    },
-    {
-      "id": "prodia/flux-fast-schnell",
-      "strengths": [
-        {
-          "text": "Prodia-hosted FLUX.1-schnell model for fast image generation",
-          "basis": "catalog_claim",
-          "source_url": "https://prodia.com/",
-          "source_file": "data/research/images/sources/prodia.html",
-          "locator": "Prodia homepage (minimal content retrieved)"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found. Prodia is a third-party hosting provider, model is based on FLUX.1-schnell (open weights).",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "FLUX fast schnell hosted by Prodia. The base FLUX.1-schnell is open-weights but Prodia's specific version may differ. No benchmarks."
-    },
-    {
-      "id": "quiverai/arrow-1.1",
-      "strengths": [
-        {
-          "text": "QuiverAI Arrow series for image generation",
-          "basis": "catalog_claim",
-          "source_url": "https://quiverai.com/",
-          "source_file": "data/research/images/sources/quiverai_arrow.html",
-          "locator": "QuiverAI homepage (minimal content)"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources. Very limited provider documentation available.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "QuiverAI Arrow 1.1. Provider documentation very limited. No benchmarks found."
-    },
-    {
-      "id": "quiverai/arrow-2",
-      "strengths": [
-        {
-          "text": "Second generation QuiverAI Arrow image generation model",
-          "basis": "catalog_claim",
-          "source_url": "https://vercel.com",
-          "source_file": "data/research/images/assignment.json",
-          "locator": "arrow-2 entry"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Arrow 2. No benchmarks found."
-    },
-    {
-      "id": "quiverai/arrow-2-telos",
-      "strengths": [
-        {
-          "text": "Latest QuiverAI Arrow 2 Telos variant with enhanced capabilities",
-          "basis": "catalog_claim",
-          "source_url": "https://vercel.com",
-          "source_file": "data/research/images/assignment.json",
-          "locator": "arrow-2-telos entry"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Arrow 2 Telos variant. No benchmarks found."
-    },
-    {
-      "id": "recraft/recraft-v2",
-      "strengths": [
-        {
-          "text": "Recraft's image generation model v2 with design-focused capabilities",
-          "basis": "catalog_claim",
-          "source_url": "https://www.recraft.ai/docs",
-          "source_file": "data/research/images/sources/recraft_docs_api.html",
-          "locator": "Recraft API documentation - mentions FLUX and Seedream"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources. No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Recraft v2. Recraft API documentation was checked. No benchmarks found."
-    },
-    {
-      "id": "recraft/recraft-v3",
-      "strengths": [
-        {
-          "text": "Third generation Recraft model with improved image generation quality",
-          "basis": "catalog_claim",
-          "source_url": "https://www.recraft.ai/",
-          "source_file": "data/research/images/sources/recraft_main.html",
-          "locator": "Recraft homepage"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Recraft v3. No benchmarks found."
-    },
-    {
-      "id": "recraft/recraft-v4",
-      "strengths": [
-        {
-          "text": "Recraft v4 - latest major generation of Recraft image models",
-          "basis": "catalog_claim",
-          "source_url": "https://vercel.com",
-          "source_file": "data/research/images/assignment.json",
-          "locator": "recraft-v4 entry"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Recraft v4. No benchmarks found."
-    },
-    {
-      "id": "recraft/recraft-v4-pro",
-      "strengths": [
-        {
-          "text": "Pro variant of Recraft v4 for professional-grade image generation",
-          "basis": "catalog_claim",
-          "source_url": "https://vercel.com",
-          "source_file": "data/research/images/assignment.json",
-          "locator": "recraft-v4-pro entry"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Recraft v4 Pro. No benchmarks found."
-    },
-    {
-      "id": "recraft/recraft-v4.1",
-      "strengths": [
-        {
-          "text": "Recraft v4.1 - iterative improvement over v4",
-          "basis": "catalog_claim",
-          "source_url": "https://vercel.com",
-          "source_file": "data/research/images/assignment.json",
-          "locator": "recraft-v4.1 entry"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Recraft v4.1. No benchmarks found."
-    },
-    {
-      "id": "recraft/recraft-v4.1-flash",
-      "strengths": [
-        {
-          "text": "Fast variant of Recraft v4.1 optimized for speed",
-          "basis": "catalog_claim",
-          "source_url": "https://vercel.com",
-          "source_file": "data/research/images/assignment.json",
-          "locator": "recraft-v4.1-flash entry"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Recraft v4.1 Flash. No benchmarks found."
-    },
-    {
-      "id": "recraft/recraft-v4.1-pro",
-      "strengths": [
-        {
-          "text": "Pro variant of Recraft v4.1 for highest quality",
-          "basis": "catalog_claim",
-          "source_url": "https://vercel.com",
-          "source_file": "data/research/images/assignment.json",
-          "locator": "recraft-v4.1-pro entry"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Recraft v4.1 Pro. No benchmarks found."
-    },
-    {
-      "id": "recraft/recraft-v4.1-utility",
-      "strengths": [
-        {
-          "text": "Utility-focused variant of Recraft v4.1 for practical applications",
-          "basis": "catalog_claim",
-          "source_url": "https://vercel.com",
-          "source_file": "data/research/images/assignment.json",
-          "locator": "recraft-v4.1-utility entry"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Recraft v4.1 Utility. No benchmarks found."
-    },
-    {
-      "id": "recraft/recraft-v4.1-utility-pro",
-      "strengths": [
-        {
-          "text": "Pro utility variant of Recraft v4.1 combining utility focus with highest quality",
-          "basis": "catalog_claim",
-          "source_url": "https://vercel.com",
-          "source_file": "data/research/images/assignment.json",
-          "locator": "recraft-v4.1-utility-pro entry"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Recraft v4.1 Utility Pro. No benchmarks found."
-    },
-    {
-      "id": "spacexai/grok-imagine-image",
-      "strengths": [
-        {
-          "text": "xAI Grok image generation model - integrated with Grok ecosystem",
-          "basis": "catalog_claim",
-          "source_url": "https://docs.x.ai/docs/image-generation",
-          "source_file": "data/research/images/sources/xai_models.html",
-          "locator": "xAI docs - image generation mentioned in models documentation"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Grok Imagine Image (original). xAI docs page retrieved but image gen documentation page not found separately. No benchmarks."
-    },
-    {
-      "id": "spacexai/grok-imagine-image-2.0",
-      "strengths": [
-        {
-          "text": "Second generation Grok image generation model from xAI with improved capabilities",
-          "basis": "catalog_claim",
-          "source_url": "https://vercel.com",
-          "source_file": "data/research/images/assignment.json",
-          "locator": "grok-imagine-image-2.0 entry"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No independent benchmark scores found in checked sources.",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "",
-          "locator": "No benchmark data found"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Grok Imagine 2.0. Very new model. No benchmarks found."
+     "text": "Based on FLUX.2 base model trained for visual intelligence with highest quality, up to 4MP resolution, and multi-ref images",
+     "basis": "catalog_claim",
+     "source_url": "https://blackforestlabs.ai",
+     "source_file": "data/research/images/sources/bfl_blog_flux1.html",
+     "locator": "Announcing Black Forest Labs page - state-of-the-art claims"
     }
-  ],
-  "benchmarks": [],
-  "sources": [
+   ],
+   "weaknesses": [
     {
-      "url": "https://blackforestlabs.ai/announcing-black-forest-labs/",
-      "file": "data/research/images/sources/bfl_blog_flux1.html",
-      "status": "retrieved",
-      "purpose": "BFL FLUX.1 announcement and state-of-the-art claims",
-      "license": "unknown"
-    },
-    {
-      "url": "https://github.com/black-forest-labs/flux",
-      "file": "data/research/images/sources/bfl_github.html",
-      "status": "retrieved",
-      "purpose": "BFL FLUX official inference repo",
-      "license": "unknown"
-    },
-    {
-      "url": "https://huggingface.co/black-forest-labs",
-      "file": "data/research/images/sources/bfl_hf.html",
-      "status": "retrieved",
-      "purpose": "BFL HuggingFace organization page",
-      "license": "unknown"
-    },
-    {
-      "url": "https://huggingface.co/black-forest-labs/FLUX.1-schnell",
-      "file": "data/research/images/sources/bfl_hf_flux_schnell.html",
-      "status": "retrieved",
-      "purpose": "FLUX.1-schnell model card on HuggingFace",
-      "license": "unknown"
-    },
-    {
-      "url": "https://www.bytedance.com/en/products/seedream",
-      "file": "data/research/images/sources/bytedance_seedream.html",
-      "status": "retrieved",
-      "purpose": "ByteDance Seedream product page",
-      "license": "unknown"
-    },
-    {
-      "url": "https://www.bytedance.com/en/articles/seedream-5-pro",
-      "file": "data/research/images/sources/bytedance_seedream_5.html",
-      "status": "retrieved",
-      "purpose": "ByteDance Seedream 5 announcement",
-      "license": "unknown"
-    },
-    {
-      "url": "https://ai.google.dev/gemini-api/docs/image-generation",
-      "file": "data/research/images/sources/google_gemini_2_flash_image.html",
-      "status": "retrieved",
-      "purpose": "Google Gemini image generation API documentation",
-      "license": "unknown"
-    },
-    {
-      "url": "https://ai.google.dev/gemini-api/docs/models",
-      "file": "data/research/images/sources/google_gemini_models.html",
-      "status": "retrieved",
-      "purpose": "Google Gemini models documentation",
-      "license": "unknown"
-    },
-    {
-      "url": "https://deepmind.google/technologies/imagen-3/",
-      "file": "data/research/images/sources/imagen3.html",
-      "status": "retrieved",
-      "purpose": "Google DeepMind Imagen 3 page",
-      "license": "unknown"
-    },
-    {
-      "url": "https://imagen.research.google/",
-      "file": "data/research/images/sources/imagen_eval.html",
-      "status": "retrieved",
-      "purpose": "Google Imagen research page",
-      "license": "unknown"
-    },
-    {
-      "url": "https://platform.openai.com/docs/models/gpt-image-1",
-      "file": "data/research/images/sources/openai_gpt_image_1.html",
-      "status": "retrieved",
-      "purpose": "OpenAI GPT-Image-1 model documentation",
-      "license": "unknown"
-    },
-    {
-      "url": "https://platform.openai.com/docs/guides/images",
-      "file": "data/research/images/sources/openai_image_generation_guide.html",
-      "status": "retrieved",
-      "purpose": "OpenAI image generation guide",
-      "license": "unknown"
-    },
-    {
-      "url": "https://platform.openai.com/docs/guides/image-generation",
-      "file": "data/research/images/sources/openai_platform_image.html",
-      "status": "retrieved",
-      "purpose": "OpenAI image generation platform docs",
-      "license": "unknown"
-    },
-    {
-      "url": "https://prodia.com/",
-      "file": "data/research/images/sources/prodia.html",
-      "status": "retrieved",
-      "purpose": "Prodia homepage",
-      "license": "unknown"
-    },
-    {
-      "url": "https://quiverai.com/",
-      "file": "data/research/images/sources/quiverai_arrow.html",
-      "status": "retrieved",
-      "purpose": "QuiverAI homepage",
-      "license": "unknown"
-    },
-    {
-      "url": "https://github.com/quiverai",
-      "file": "data/research/images/sources/quiverai_arrow_github.html",
-      "status": "retrieved",
-      "purpose": "QuiverAI GitHub organization",
-      "license": "unknown"
-    },
-    {
-      "url": "https://www.recraft.ai/",
-      "file": "data/research/images/sources/recraft_main.html",
-      "status": "retrieved",
-      "purpose": "Recraft homepage",
-      "license": "unknown"
-    },
-    {
-      "url": "https://www.recraft.ai/docs",
-      "file": "data/research/images/sources/recraft_docs_api.html",
-      "status": "retrieved",
-      "purpose": "Recraft API documentation",
-      "license": "unknown"
-    },
-    {
-      "url": "https://arxiv.org/abs/2504.04362",
-      "file": "data/research/images/sources/seedream_paper.html",
-      "status": "retrieved",
-      "purpose": "Seedream paper abstract page (note: actual HTML returned different paper content)",
-      "license": "unknown"
-    },
-    {
-      "url": "https://arxiv.org/pdf/2504.04362",
-      "file": "data/research/images/sources/seedream_paper_pdf.html",
-      "status": "retrieved",
-      "purpose": "Seedream paper PDF",
-      "license": "unknown"
-    },
-    {
-      "url": "https://github.com/Karine-Huang/T2I-CompBench",
-      "file": "data/research/images/sources/t2i_compbench.html",
-      "status": "retrieved",
-      "purpose": "T2I-CompBench GitHub repository",
-      "license": "unknown"
-    },
-    {
-      "url": "https://github.com/THUDM/ImageReward",
-      "file": "data/research/images/sources/image_reward.html",
-      "status": "retrieved",
-      "purpose": "ImageReward GitHub repository",
-      "license": "unknown"
-    },
-    {
-      "url": "https://docs.x.ai/docs/models",
-      "file": "data/research/images/sources/xai_models.html",
-      "status": "retrieved",
-      "purpose": "xAI models and pricing documentation",
-      "license": "unknown"
-    },
-    {
-      "url": "https://www.recraft.ai/blog/recraft-v3",
-      "file": "",
-      "status": "blocked_404",
-      "purpose": "Recraft v3 blog announcement",
-      "license": "unknown"
-    },
-    {
-      "url": "https://www.recraft.ai/blog/recraft-v4",
-      "file": "",
-      "status": "blocked_404",
-      "purpose": "Recraft v4 blog announcement",
-      "license": "unknown"
-    },
-    {
-      "url": "https://www.recraft.ai/blog/recraft-v4-1",
-      "file": "",
-      "status": "blocked_404",
-      "purpose": "Recraft v4.1 blog announcement",
-      "license": "unknown"
-    },
-    {
-      "url": "https://docs.x.ai/docs/image-generation",
-      "file": "",
-      "status": "blocked_404",
-      "purpose": "xAI image generation documentation",
-      "license": "unknown"
-    },
-    {
-      "url": "https://huggingface.co/ByteDance/Seedream-4.5",
-      "file": "",
-      "status": "blocked_403",
-      "purpose": "ByteDance Seedream 4.5 HuggingFace model card",
-      "license": "unknown"
-    },
-    {
-      "url": "https://huggingface.co/black-forest-labs/FLUX.2",
-      "file": "",
-      "status": "blocked_403",
-      "purpose": "BFL FLUX.2 HuggingFace model card",
-      "license": "unknown"
-    },
-    {
-      "url": "https://www.recraft.ai/recraft-v3",
-      "file": "",
-      "status": "blocked_404",
-      "purpose": "Recraft v3 announcement page",
-      "license": "unknown"
-    },
-    {
-      "url": "https://openai.com/index/gpt-image-1-5/",
-      "file": "",
-      "status": "blocked_404",
-      "purpose": "OpenAI GPT-Image-1.5 announcement",
-      "license": "unknown"
-    },
-    {
-      "url": "https://openai.com/index/introducing-gpt-image-2/",
-      "file": "",
-      "status": "blocked_redirect",
-      "purpose": "OpenAI GPT-Image-2 announcement",
-      "license": "unknown"
+     "text": "No independent benchmark scores found in checked sources. Image generation quality claims are provider-reported only.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark tables found across GitHub, HuggingFace, or provider documentation pages checked"
     }
-  ],
-  "gaps": [
-    "No numeric benchmark scores (GenEval, DPG-Bench, T2I-CompBench, FID, CLIP score, PickScore, ImageReward, Artifactor) were extracted from any downloaded source for any of the 41 models.",
-    "Many model announcement/blog pages (Recraft, OpenAI GPT-Image-1.5, OpenAI GPT-Image-2) returned 404 or redirect errors, preventing access to provider-reported benchmark data.",
-    "HuggingFace model cards for BFL and ByteDance models required authentication (403) and could not be read.",
-    "The Artifactor Benchmark leaderboard (likely containing comparative scores across models) could not be accessed via HuggingFace Spaces or GitHub Pages - JS-rendered content not captured.",
-    "Search for 'GenEval', 'DPG-Bench', 'FID', 'CLIP score', 'ImageReward', 'PickScore', 'aesthetic score' across all downloaded HTML pages did not yield numeric benchmark tables - benchmark data appears to be dynamically loaded/rendered and not present in static HTML.",
-    "Google Gemini image generation documentation (ai.google.dev) provides details about model capabilities but no numeric benchmark results in the static HTML captured.",
-    "Seedream paper reference (arxiv.org/abs/2504.04362) returned incorrect content - the arXiv abstract page redirects to a different paper, not the Seedream text-to-image paper.",
-    "Recraft documentation was checked, but it does not establish a general architecture or wrapper relationship for every listed model.",
-    "All 41 models lack published independent benchmark evidence from checked sources. This is a systematic gap due to: (a) the static HTML capture approach missing JavaScript-rendered benchmark tables, (b) many models being very recent releases with limited published evaluations, and (c) access restrictions on HuggingFace model card pages."
-  ]
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "FLUX.2 was released around December 2025. No GenEval, DPG-Bench, T2I-CompBench, or Artifactor scores found in checked sources. Provider claims state-of-the-art quality but no numeric benchmarks retrieved."
+  },
+  {
+   "id": "bfl/flux-2-klein-4b",
+   "strengths": [
+    {
+     "text": "Fastest BFL image model - end-to-end inference in less than a second; unifies image generation and editing in a single compact 4B parameter model",
+     "basis": "catalog_claim",
+     "source_url": "https://vercel.com",
+     "source_file": "data/research/images/assignment.json",
+     "locator": "FLUX.2 [klein] 4B description"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found. No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data in checked sources"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Just 4B parameters. No benchmark data found in any checked source. Provider claims fastest image model yet."
+  },
+  {
+   "id": "bfl/flux-2-klein-9b",
+   "strengths": [
+    {
+     "text": "Fast image model variant - end-to-end inference in less than a second; unifies image generation and editing in single model",
+     "basis": "catalog_claim",
+     "source_url": "https://vercel.com",
+     "source_file": "data/research/images/assignment.json",
+     "locator": "FLUX.2 [klein] 9B description"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "9B parameter variant of klein family. Same latency claims as 4B but larger model. No independent benchmarks found."
+  },
+  {
+   "id": "bfl/flux-2-max",
+   "strengths": [
+    {
+     "text": "Maximum quality variant of FLUX.2 line, highest resolution (up to 4MP) and multi-ref image support",
+     "basis": "catalog_claim",
+     "source_url": "https://vercel.com",
+     "source_file": "data/research/images/assignment.json",
+     "locator": "FLUX.2 [max] entry"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Released around December 2025. No benchmark data retrieved."
+  },
+  {
+   "id": "bfl/flux-2-pro",
+   "strengths": [
+    {
+     "text": "Professional-grade FLUX.2 model with full quality and features",
+     "basis": "catalog_claim",
+     "source_url": "https://vercel.com",
+     "source_file": "data/research/images/assignment.json",
+     "locator": "FLUX.2 [pro] entry"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "No description field in assignment.json. No benchmarks found."
+  },
+  {
+   "id": "bfl/flux-kontext-max",
+   "strengths": [
+    {
+     "text": "Kontext models add context/reference image understanding for image generation",
+     "basis": "catalog_claim",
+     "source_url": "https://vercel.com",
+     "source_file": "data/research/images/assignment.json",
+     "locator": "flux-kontext-max entry"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Kontext variant adds image context understanding. No benchmark data found."
+  },
+  {
+   "id": "bfl/flux-kontext-pro",
+   "strengths": [
+    {
+     "text": "Kontext variant for professional image generation with reference understanding",
+     "basis": "catalog_claim",
+     "source_url": "https://vercel.com",
+     "source_file": "data/research/images/assignment.json",
+     "locator": "flux-kontext-pro entry"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Kontext variant. No benchmark data found."
+  },
+  {
+   "id": "bfl/flux-pro-1.0-fill",
+   "strengths": [
+    {
+     "text": "Specialized image inpainting/fill model based on FLUX.1 technology",
+     "basis": "catalog_claim",
+     "source_url": "https://vercel.com",
+     "source_file": "data/research/images/assignment.json",
+     "locator": "flux-pro-1.0-fill entry"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "FLUX.1 Pro-based fill/inpainting model. No benchmarks found."
+  },
+  {
+   "id": "bfl/flux-pro-1.1",
+   "strengths": [
+    {
+     "text": "FLUX.1.1 Pro - improved over FLUX.1 Pro with faster inference and better quality",
+     "basis": "catalog_claim",
+     "source_url": "https://vercel.com",
+     "source_file": "data/research/images/assignment.json",
+     "locator": "flux-pro-1.1 entry"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "FLUX.1.1 Pro. No benchmark data found in retrieved sources."
+  },
+  {
+   "id": "bfl/flux-pro-1.1-ultra",
+   "strengths": [
+    {
+     "text": "Ultra quality variant of FLUX.1.1 Pro for maximum image fidelity",
+     "basis": "catalog_claim",
+     "source_url": "https://vercel.com",
+     "source_file": "data/research/images/assignment.json",
+     "locator": "flux-pro-1.1-ultra entry"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Ultra variant. No benchmarks found."
+  },
+  {
+   "id": "bytedance/seedream-4.0",
+   "strengths": [
+    {
+     "text": "ByteDance Seedream series - text-to-image generation model from Doubao/ByteDance",
+     "basis": "catalog_claim",
+     "source_url": "https://www.bytedance.com/en/products/seedream",
+     "source_file": "data/research/images/sources/bytedance_seedream.html",
+     "locator": "ByteDance Seedream product page"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Seedream 4.0. ByteDance product page retrieved but no benchmark data visible. Paper reference: arxiv.org/abs/2504.04362 (Seedream paper) but actual arXiv HTML was for a different paper (wrong page)."
+  },
+  {
+   "id": "bytedance/seedream-4.5",
+   "strengths": [
+    {
+     "text": "Updated Seedream model with improvements over 4.0",
+     "basis": "catalog_claim",
+     "source_url": "https://huggingface.co/ByteDance/Seedream-4.5",
+     "source_file": "data/research/images/sources/bytedance_seedream_5.html",
+     "locator": "ByteDance page - Seedream mentioned"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Seedream 4.5. HuggingFace page for ByteDance/Seedream-4.5 required authentication (blocked). No benchmark data retrieved."
+  },
+  {
+   "id": "bytedance/seedream-5.0-lite",
+   "strengths": [
+    {
+     "text": "Latest Seedream generation (5.0) with lite/fast variant",
+     "basis": "catalog_claim",
+     "source_url": "https://www.bytedance.com/en/articles/seedream-5",
+     "source_file": "data/research/images/sources/seedream_5_blog.html",
+     "locator": "Seedream 5 announcement page"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Seedream 5.0 Lite - latest model generation. No benchmark scores retrieved."
+  },
+  {
+   "id": "bytedance/seedream-5.0-pro",
+   "strengths": [
+    {
+     "text": "Highest quality Seedream 5.0 pro variant",
+     "basis": "catalog_claim",
+     "source_url": "https://www.bytedance.com/en/articles/seedream-5-pro",
+     "source_file": "data/research/images/sources/seedream_5_blog.html",
+     "locator": "Seedream 5 page"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Seedream 5.0 Pro. No benchmark scores retrieved."
+  },
+  {
+   "id": "google/gemini-2.5-flash-image",
+   "strengths": [
+    {
+     "text": "Legacy pioneer of Gemini Nano Banana image generation; native image generation with Gemini conversational interface",
+     "basis": "catalog_claim",
+     "source_url": "https://ai.google.dev/gemini-api/docs/image-generation",
+     "source_file": "data/research/images/sources/google_gemini_2_flash_image.html",
+     "locator": "Gemini API image generation docs - 'Nano Banana (Gemini 2.5 Flash Image)'"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "Legacy model; Google recommends transitioning to Gemini 3.1 Flash Lite Image for improved capabilities",
+     "basis": "primary_claim",
+     "source_url": "https://ai.google.dev/gemini-api/docs/image-generation",
+     "source_file": "data/research/images/sources/google_gemini_2_flash_image.html",
+     "locator": "'we strongly recommend that customers transition to Nano Banana 2 Lite'"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Gemini 2.5 Flash Image. Documented as legacy model. No benchmark numbers found in retrieved documentation."
+  },
+  {
+   "id": "google/gemini-3-pro-image",
+   "strengths": [
+    {
+     "text": "Highest quality Gemini image generation model; native image generation with conversational interface",
+     "basis": "catalog_claim",
+     "source_url": "https://ai.google.dev/gemini-api/docs/image-generation",
+     "source_file": "data/research/images/sources/google_gemini_2_flash_image.html",
+     "locator": "Gemini API docs - image generation capabilities"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Gemini 3 Pro Image. High-end variant. No benchmark data retrieved."
+  },
+  {
+   "id": "google/gemini-3.1-flash-image",
+   "strengths": [
+    {
+     "text": "Fast and capable Gemini image generation model; named 'Nano Banana 2' with balanced speed/quality",
+     "basis": "catalog_claim",
+     "source_url": "https://ai.google.dev/gemini-api/docs/image-generation",
+     "source_file": "data/research/images/sources/google_gemini_2_flash_image.html",
+     "locator": "Nano Banana 2 references in docs"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Gemini 3.1 Flash Image. No benchmark data retrieved."
+  },
+  {
+   "id": "google/gemini-3.1-flash-image-preview",
+   "strengths": [
+    {
+     "text": "Preview/beta variant of Gemini 3.1 Flash Image for early testing",
+     "basis": "catalog_claim",
+     "source_url": "https://vercel.com",
+     "source_file": "data/research/images/assignment.json",
+     "locator": "gemini-3.1-flash-image-preview entry"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "Preview model; no benchmark data available.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "Preview designation in the catalog"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Preview model. No benchmark data found."
+  },
+  {
+   "id": "google/gemini-3.1-flash-lite-image",
+   "strengths": [
+    {
+     "text": "Fastest and cheapest Gemini image model; engineered for velocity and scale where speed and cost are primary constraints",
+     "basis": "catalog_claim",
+     "source_url": "https://ai.google.dev/gemini-api/docs/image-generation",
+     "source_file": "data/research/images/sources/google_gemini_2_flash_image.html",
+     "locator": "'Our fastest and cheapest Gemini image model'"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "Not optimized for multiple reference images",
+     "basis": "primary_claim",
+     "source_url": "https://ai.google.dev/gemini-api/docs/image-generation",
+     "source_file": "data/research/images/sources/google_gemini_2_flash_image.html",
+     "locator": "'Not optimized for multiple reference images' and 'where speed and cost are the primary operational constraints'"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Lite variant. No benchmark data found."
+  },
+  {
+   "id": "meta/muse-image-1.0",
+   "strengths": [
+    {
+     "text": "Meta AI image generation model from the Muse family",
+     "basis": "catalog_claim",
+     "source_url": "https://vercel.com",
+     "source_file": "data/research/images/assignment.json",
+     "locator": "muse-image-1.0 entry"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources. No separate Muse image model page found at meta.com.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "meta.com/muse-image returned other content"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Muse Image 1.0. Meta's Muse model page was not found at expected URL. No benchmark data retrieved."
+  },
+  {
+   "id": "openai/gpt-image-1",
+   "strengths": [
+    {
+     "text": "OpenAI's first dedicated image generation model; integrates with DALL-E technology",
+     "basis": "catalog_claim",
+     "source_url": "https://platform.openai.com/docs/models/gpt-image-1",
+     "source_file": "data/research/images/sources/openai_gpt_image_1.html",
+     "locator": "GPT-Image-1 Model page"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found in checked sources"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "GPT-Image-1. OpenAI platform documentation page retrieved but benchmark tables are likely client-side rendered and not in saved HTML. No numeric benchmarks extracted."
+  },
+  {
+   "id": "openai/gpt-image-1-mini",
+   "strengths": [
+    {
+     "text": "Smaller/faster variant of GPT-Image-1 for cost-efficient generation",
+     "basis": "catalog_claim",
+     "source_url": "https://vercel.com",
+     "source_file": "data/research/images/assignment.json",
+     "locator": "gpt-image-1-mini entry"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Mini variant. No benchmarks found."
+  },
+  {
+   "id": "openai/gpt-image-1.5",
+   "strengths": [
+    {
+     "text": "Significant improvement over GPT-Image-1; OpenAI's next-generation image generation model",
+     "basis": "catalog_claim",
+     "source_url": "https://openai.com/index/gpt-image-1-5/",
+     "source_file": "data/research/images/assignment.json",
+     "locator": "Assignment catalog entry; announcement URL was not retrieved"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources. Announcement page returned 404.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "URL https://openai.com/index/gpt-image-1-5/ was blocked (not found)"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "GPT-Image-1.5. Announcement page not found at expected URL. No benchmarks retrieved."
+  },
+  {
+   "id": "openai/gpt-image-2",
+   "strengths": [
+    {
+     "text": "GPT-Image-2 - major generation of OpenAI image model with improved capabilities",
+     "basis": "catalog_claim",
+     "source_url": "https://vercel.com",
+     "source_file": "data/research/images/assignment.json",
+     "locator": "gpt-image-2 entry"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "GPT-Image-2. No benchmarks retrieved. openai.com/index/introducing-gpt-image-2/ returned other content."
+  },
+  {
+   "id": "openai/gpt-image-2.5-flare",
+   "strengths": [
+    {
+     "text": "Latest OpenAI image model generation (2.5) with Flare variant",
+     "basis": "catalog_claim",
+     "source_url": "https://vercel.com",
+     "source_file": "data/research/images/assignment.json",
+     "locator": "gpt-image-2.5-flare entry"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "GPT-Image-2.5 Flare. Latest OpenAI image model. No benchmarks found."
+  },
+  {
+   "id": "openai/gpt-image-2.5-sunburst",
+   "strengths": [
+    {
+     "text": "Latest OpenAI image model generation (2.5) with Sunburst variant",
+     "basis": "catalog_claim",
+     "source_url": "https://vercel.com",
+     "source_file": "data/research/images/assignment.json",
+     "locator": "gpt-image-2.5-sunburst entry"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "GPT-Image-2.5 Sunburst. No benchmarks found."
+  },
+  {
+   "id": "prodia/flux-fast-schnell",
+   "strengths": [
+    {
+     "text": "Prodia-hosted FLUX.1-schnell model for fast image generation",
+     "basis": "catalog_claim",
+     "source_url": "https://prodia.com/",
+     "source_file": "data/research/images/sources/prodia.html",
+     "locator": "Prodia homepage (minimal content retrieved)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found. Prodia is a third-party hosting provider, model is based on FLUX.1-schnell (open weights).",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "FLUX fast schnell hosted by Prodia. The base FLUX.1-schnell is open-weights but Prodia's specific version may differ. No benchmarks."
+  },
+  {
+   "id": "quiverai/arrow-1.1",
+   "strengths": [
+    {
+     "text": "QuiverAI Arrow series for image generation",
+     "basis": "catalog_claim",
+     "source_url": "https://quiverai.com/",
+     "source_file": "data/research/images/sources/quiverai_arrow.html",
+     "locator": "QuiverAI homepage (minimal content)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources. Very limited provider documentation available.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "QuiverAI Arrow 1.1. Provider documentation very limited. No benchmarks found."
+  },
+  {
+   "id": "quiverai/arrow-2",
+   "strengths": [
+    {
+     "text": "Second generation QuiverAI Arrow image generation model",
+     "basis": "catalog_claim",
+     "source_url": "https://vercel.com",
+     "source_file": "data/research/images/assignment.json",
+     "locator": "arrow-2 entry"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Arrow 2. No benchmarks found."
+  },
+  {
+   "id": "quiverai/arrow-2-telos",
+   "strengths": [
+    {
+     "text": "Latest QuiverAI Arrow 2 Telos variant with enhanced capabilities",
+     "basis": "catalog_claim",
+     "source_url": "https://vercel.com",
+     "source_file": "data/research/images/assignment.json",
+     "locator": "arrow-2-telos entry"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Arrow 2 Telos variant. No benchmarks found."
+  },
+  {
+   "id": "recraft/recraft-v2",
+   "strengths": [
+    {
+     "text": "Recraft's image generation model v2 with design-focused capabilities",
+     "basis": "catalog_claim",
+     "source_url": "https://www.recraft.ai/docs",
+     "source_file": "data/research/images/sources/recraft_docs_api.html",
+     "locator": "Recraft API documentation - mentions FLUX and Seedream"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources. No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Recraft v2. Recraft API documentation was checked. No benchmarks found."
+  },
+  {
+   "id": "recraft/recraft-v3",
+   "strengths": [
+    {
+     "text": "Third generation Recraft model with improved image generation quality",
+     "basis": "catalog_claim",
+     "source_url": "https://www.recraft.ai/",
+     "source_file": "data/research/images/sources/recraft_main.html",
+     "locator": "Recraft homepage"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Recraft v3. No benchmarks found."
+  },
+  {
+   "id": "recraft/recraft-v4",
+   "strengths": [
+    {
+     "text": "Recraft v4 - latest major generation of Recraft image models",
+     "basis": "catalog_claim",
+     "source_url": "https://vercel.com",
+     "source_file": "data/research/images/assignment.json",
+     "locator": "recraft-v4 entry"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Recraft v4. No benchmarks found."
+  },
+  {
+   "id": "recraft/recraft-v4-pro",
+   "strengths": [
+    {
+     "text": "Pro variant of Recraft v4 for professional-grade image generation",
+     "basis": "catalog_claim",
+     "source_url": "https://vercel.com",
+     "source_file": "data/research/images/assignment.json",
+     "locator": "recraft-v4-pro entry"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Recraft v4 Pro. No benchmarks found."
+  },
+  {
+   "id": "recraft/recraft-v4.1",
+   "strengths": [
+    {
+     "text": "Recraft v4.1 - iterative improvement over v4",
+     "basis": "catalog_claim",
+     "source_url": "https://vercel.com",
+     "source_file": "data/research/images/assignment.json",
+     "locator": "recraft-v4.1 entry"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Recraft v4.1. No benchmarks found."
+  },
+  {
+   "id": "recraft/recraft-v4.1-flash",
+   "strengths": [
+    {
+     "text": "Fast variant of Recraft v4.1 optimized for speed",
+     "basis": "catalog_claim",
+     "source_url": "https://vercel.com",
+     "source_file": "data/research/images/assignment.json",
+     "locator": "recraft-v4.1-flash entry"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Recraft v4.1 Flash. No benchmarks found."
+  },
+  {
+   "id": "recraft/recraft-v4.1-pro",
+   "strengths": [
+    {
+     "text": "Pro variant of Recraft v4.1 for highest quality",
+     "basis": "catalog_claim",
+     "source_url": "https://vercel.com",
+     "source_file": "data/research/images/assignment.json",
+     "locator": "recraft-v4.1-pro entry"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Recraft v4.1 Pro. No benchmarks found."
+  },
+  {
+   "id": "recraft/recraft-v4.1-utility",
+   "strengths": [
+    {
+     "text": "Utility-focused variant of Recraft v4.1 for practical applications",
+     "basis": "catalog_claim",
+     "source_url": "https://vercel.com",
+     "source_file": "data/research/images/assignment.json",
+     "locator": "recraft-v4.1-utility entry"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Recraft v4.1 Utility. No benchmarks found."
+  },
+  {
+   "id": "recraft/recraft-v4.1-utility-pro",
+   "strengths": [
+    {
+     "text": "Pro utility variant of Recraft v4.1 combining utility focus with highest quality",
+     "basis": "catalog_claim",
+     "source_url": "https://vercel.com",
+     "source_file": "data/research/images/assignment.json",
+     "locator": "recraft-v4.1-utility-pro entry"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Recraft v4.1 Utility Pro. No benchmarks found."
+  },
+  {
+   "id": "spacexai/grok-imagine-image",
+   "strengths": [
+    {
+     "text": "xAI Grok image generation model - integrated with Grok ecosystem",
+     "basis": "catalog_claim",
+     "source_url": "https://docs.x.ai/docs/image-generation",
+     "source_file": "data/research/images/sources/xai_models.html",
+     "locator": "xAI docs - image generation mentioned in models documentation"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Grok Imagine Image (original). xAI docs page retrieved but image gen documentation page not found separately. No benchmarks."
+  },
+  {
+   "id": "spacexai/grok-imagine-image-2.0",
+   "strengths": [
+    {
+     "text": "Second generation Grok image generation model from xAI with improved capabilities",
+     "basis": "catalog_claim",
+     "source_url": "https://vercel.com",
+     "source_file": "data/research/images/assignment.json",
+     "locator": "grok-imagine-image-2.0 entry"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No independent benchmark scores found in checked sources.",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "",
+     "locator": "No benchmark data found"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Grok Imagine 2.0. Very new model. No benchmarks found."
+  }
+ ],
+ "benchmarks": [],
+ "sources": [
+  {
+   "url": "https://blackforestlabs.ai/announcing-black-forest-labs/",
+   "file": "data/research/images/sources/bfl_blog_flux1.html",
+   "status": "retrieved",
+   "purpose": "BFL FLUX.1 announcement and state-of-the-art claims",
+   "license": "unknown"
+  },
+  {
+   "url": "https://github.com/black-forest-labs/flux",
+   "file": "data/research/images/sources/bfl_github.html",
+   "status": "retrieved",
+   "purpose": "BFL FLUX official inference repo",
+   "license": "unknown"
+  },
+  {
+   "url": "https://huggingface.co/black-forest-labs",
+   "file": "data/research/images/sources/bfl_hf.html",
+   "status": "retrieved",
+   "purpose": "BFL HuggingFace organization page",
+   "license": "unknown"
+  },
+  {
+   "url": "https://huggingface.co/black-forest-labs/FLUX.1-schnell",
+   "file": "data/research/images/sources/bfl_hf_flux_schnell.html",
+   "status": "retrieved",
+   "purpose": "FLUX.1-schnell model card on HuggingFace",
+   "license": "unknown"
+  },
+  {
+   "url": "https://www.bytedance.com/en/products/seedream",
+   "file": "data/research/images/sources/bytedance_seedream.html",
+   "status": "retrieved",
+   "purpose": "ByteDance Seedream product page",
+   "license": "unknown"
+  },
+  {
+   "url": "https://www.bytedance.com/en/articles/seedream-5-pro",
+   "file": "data/research/images/sources/bytedance_seedream_5.html",
+   "status": "retrieved",
+   "purpose": "ByteDance Seedream 5 announcement",
+   "license": "unknown"
+  },
+  {
+   "url": "https://ai.google.dev/gemini-api/docs/image-generation",
+   "file": "data/research/images/sources/google_gemini_2_flash_image.html",
+   "status": "retrieved",
+   "purpose": "Google Gemini image generation API documentation",
+   "license": "unknown"
+  },
+  {
+   "url": "https://ai.google.dev/gemini-api/docs/models",
+   "file": "data/research/images/sources/google_gemini_models.html",
+   "status": "retrieved",
+   "purpose": "Google Gemini models documentation",
+   "license": "unknown"
+  },
+  {
+   "url": "https://deepmind.google/technologies/imagen-3/",
+   "file": "data/research/images/sources/imagen3.html",
+   "status": "retrieved",
+   "purpose": "Google DeepMind Imagen 3 page",
+   "license": "unknown"
+  },
+  {
+   "url": "https://imagen.research.google/",
+   "file": "data/research/images/sources/imagen_eval.html",
+   "status": "retrieved",
+   "purpose": "Google Imagen research page",
+   "license": "unknown"
+  },
+  {
+   "url": "https://platform.openai.com/docs/models/gpt-image-1",
+   "file": "data/research/images/sources/openai_gpt_image_1.html",
+   "status": "retrieved",
+   "purpose": "OpenAI GPT-Image-1 model documentation",
+   "license": "unknown"
+  },
+  {
+   "url": "https://platform.openai.com/docs/guides/images",
+   "file": "data/research/images/sources/openai_image_generation_guide.html",
+   "status": "retrieved",
+   "purpose": "OpenAI image generation guide",
+   "license": "unknown"
+  },
+  {
+   "url": "https://platform.openai.com/docs/guides/image-generation",
+   "file": "data/research/images/sources/openai_platform_image.html",
+   "status": "retrieved",
+   "purpose": "OpenAI image generation platform docs",
+   "license": "unknown"
+  },
+  {
+   "url": "https://prodia.com/",
+   "file": "data/research/images/sources/prodia.html",
+   "status": "retrieved",
+   "purpose": "Prodia homepage",
+   "license": "unknown"
+  },
+  {
+   "url": "https://quiverai.com/",
+   "file": "data/research/images/sources/quiverai_arrow.html",
+   "status": "retrieved",
+   "purpose": "QuiverAI homepage",
+   "license": "unknown"
+  },
+  {
+   "url": "https://github.com/quiverai",
+   "file": "data/research/images/sources/quiverai_arrow_github.html",
+   "status": "retrieved",
+   "purpose": "QuiverAI GitHub organization",
+   "license": "unknown"
+  },
+  {
+   "url": "https://www.recraft.ai/",
+   "file": "data/research/images/sources/recraft_main.html",
+   "status": "retrieved",
+   "purpose": "Recraft homepage",
+   "license": "unknown"
+  },
+  {
+   "url": "https://www.recraft.ai/docs",
+   "file": "data/research/images/sources/recraft_docs_api.html",
+   "status": "retrieved",
+   "purpose": "Recraft API documentation",
+   "license": "unknown"
+  },
+  {
+   "url": "https://arxiv.org/abs/2504.04362",
+   "file": "data/research/images/sources/seedream_paper.html",
+   "status": "retrieved",
+   "purpose": "Seedream paper abstract page (note: actual HTML returned different paper content)",
+   "license": "unknown"
+  },
+  {
+   "url": "https://arxiv.org/pdf/2504.04362",
+   "file": "data/research/images/sources/seedream_paper_pdf.html",
+   "status": "retrieved",
+   "purpose": "Seedream paper PDF",
+   "license": "unknown"
+  },
+  {
+   "url": "https://github.com/Karine-Huang/T2I-CompBench",
+   "file": "data/research/images/sources/t2i_compbench.html",
+   "status": "retrieved",
+   "purpose": "T2I-CompBench GitHub repository",
+   "license": "unknown"
+  },
+  {
+   "url": "https://github.com/THUDM/ImageReward",
+   "file": "data/research/images/sources/image_reward.html",
+   "status": "retrieved",
+   "purpose": "ImageReward GitHub repository",
+   "license": "unknown"
+  },
+  {
+   "url": "https://docs.x.ai/docs/models",
+   "file": "data/research/images/sources/xai_models.html",
+   "status": "retrieved",
+   "purpose": "xAI models and pricing documentation",
+   "license": "unknown"
+  },
+  {
+   "url": "https://www.recraft.ai/blog/recraft-v3",
+   "file": "",
+   "status": "blocked_404",
+   "purpose": "Recraft v3 blog announcement",
+   "license": "unknown"
+  },
+  {
+   "url": "https://www.recraft.ai/blog/recraft-v4",
+   "file": "",
+   "status": "blocked_404",
+   "purpose": "Recraft v4 blog announcement",
+   "license": "unknown"
+  },
+  {
+   "url": "https://www.recraft.ai/blog/recraft-v4-1",
+   "file": "",
+   "status": "blocked_404",
+   "purpose": "Recraft v4.1 blog announcement",
+   "license": "unknown"
+  },
+  {
+   "url": "https://docs.x.ai/docs/image-generation",
+   "file": "",
+   "status": "blocked_404",
+   "purpose": "xAI image generation documentation",
+   "license": "unknown"
+  },
+  {
+   "url": "https://huggingface.co/ByteDance/Seedream-4.5",
+   "file": "",
+   "status": "blocked_403",
+   "purpose": "ByteDance Seedream 4.5 HuggingFace model card",
+   "license": "unknown"
+  },
+  {
+   "url": "https://huggingface.co/black-forest-labs/FLUX.2",
+   "file": "",
+   "status": "blocked_403",
+   "purpose": "BFL FLUX.2 HuggingFace model card",
+   "license": "unknown"
+  },
+  {
+   "url": "https://www.recraft.ai/recraft-v3",
+   "file": "",
+   "status": "blocked_404",
+   "purpose": "Recraft v3 announcement page",
+   "license": "unknown"
+  },
+  {
+   "url": "https://openai.com/index/gpt-image-1-5/",
+   "file": "",
+   "status": "blocked_404",
+   "purpose": "OpenAI GPT-Image-1.5 announcement",
+   "license": "unknown"
+  },
+  {
+   "url": "https://openai.com/index/introducing-gpt-image-2/",
+   "file": "",
+   "status": "blocked_redirect",
+   "purpose": "OpenAI GPT-Image-2 announcement",
+   "license": "unknown"
+  }
+ ],
+ "gaps": [
+  "No numeric benchmark scores (GenEval, DPG-Bench, T2I-CompBench, FID, CLIP score, PickScore, ImageReward, Artifactor) were extracted from any downloaded source for any of the 41 models.",
+  "Many model announcement/blog pages (Recraft, OpenAI GPT-Image-1.5, OpenAI GPT-Image-2) returned 404 or redirect errors, preventing access to provider-reported benchmark data.",
+  "HuggingFace model cards for BFL and ByteDance models required authentication (403) and could not be read.",
+  "The Artifactor Benchmark leaderboard (likely containing comparative scores across models) could not be accessed via HuggingFace Spaces or GitHub Pages - JS-rendered content not captured.",
+  "Search for 'GenEval', 'DPG-Bench', 'FID', 'CLIP score', 'ImageReward', 'PickScore', 'aesthetic score' across all downloaded HTML pages did not yield numeric benchmark tables - benchmark data appears to be dynamically loaded/rendered and not present in static HTML.",
+  "Google Gemini image generation documentation (ai.google.dev) provides details about model capabilities but no numeric benchmark results in the static HTML captured.",
+  "Seedream paper reference (arxiv.org/abs/2504.04362) returned incorrect content - the arXiv abstract page redirects to a different paper, not the Seedream text-to-image paper.",
+  "Recraft documentation was checked, but it does not establish a general architecture or wrapper relationship for every listed model.",
+  "All 41 models lack published independent benchmark evidence from checked sources. This is a systematic gap due to: (a) the static HTML capture approach missing JavaScript-rendered benchmark tables, (b) many models being very recent releases with limited published evaluations, and (c) access restrictions on HuggingFace model card pages.",
+  "Image-evaluator closure (mmmu/image-evaluators wave): ImageReward capture is the GitHub repo file tree (definition + training code); its published per-model scores are paper-era only and no current assigned image-generation offer appears in any ImageReward, PickScore, FID, CLIP-based aesthetic or text-rendering result table from checked sources. Artifactor wandb report page is dynamically rendered with no static table rows. GenEval (42 cells) and T2I-CompBench remain the only located published result tables covering assigned-family models. MMMU README and site captured (11.5K questions, 30 subjects, 183 subfields; MMMU-Pro separate protocol); MathVista static leaderboard tables captured with 35 rows of paper-era models and no current-offer coverage; per-model input-resolution data is not published by either benchmark."
+ ]
 }
