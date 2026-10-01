@@ -251,6 +251,16 @@
    "evidence_urls": [],
    "desired_fields": ["host registry API", "spawn API", "eligibility surface"],
    "closure": "Read-only discovery recorded in docs/research/host-registry.md with verified host behavior for live-family prioritization and phase 14 contracts; no integration implemented before its contract."
+  },
+  {
+   "id": "anthropic-announcements",
+   "kind": "batch_acquisition",
+   "batches": ["anthropic-announcements"],
+   "evidence_files": ["data/research/anthropic/sources/anthropic_news_opus5_5.html", "data/research/anthropic/sources/anthropic_news_sonnet5_5.html", "data/research/anthropic/sources/anthropic_news_fable_mythos5_1.html", "data/research/anthropic/sources/anthropic_news_claude4.html", "data/research/anthropic/sources/anthropic_news_haiku4_5.html"],
+   "evidence_urls": ["https://www.anthropic.com/claude-opus-5-5", "https://www.anthropic.com/claude-sonnet-5-5", "https://www.anthropic.com/claude-fable-and-mythos-5-1", "https://www.anthropic.com/news/claude-4", "https://www.anthropic.com/news/claude-haiku-4-5"],
+   "desired_fields": ["benchmarkGrid CSV cells", "qualifier", "footnote configuration", "prose benchmark sentences"],
+   "closure": "Announcement pages retained byte-exact; 112 linked cells and one unresolved Mythos row extracted with byte-anchored locators; review round 1 FAIL on metadata defects fixed verbatim; promoted with decision anthropic-announcements.v1 and unresolved.v4.",
+   "status": "done"
   }
  ]
 }

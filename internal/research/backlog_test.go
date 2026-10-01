@@ -44,7 +44,7 @@ func TestBacklogCorpus(t *testing.T) {
 	if imageOut != 41 {
 		t.Fatalf("image-output models = %d, want 41", imageOut)
 	}
-	if !strings.Contains(summary, "28 tasks") {
+	if !strings.Contains(summary, "29 tasks") {
 		t.Fatalf("summary %q missing task count", summary)
 	}
 
@@ -60,7 +60,7 @@ func TestBacklogCorpus(t *testing.T) {
 		"catalog models: 395 (in scope 302, out of scope 93)",
 		"image-output models: 41",
 		"unlocated claims: 56 total",
-		"949 unresolved measurements",
+		"950 unresolved measurements",
 		"no image-specific limit facts",
 		"host-registry-discovery",
 	} {

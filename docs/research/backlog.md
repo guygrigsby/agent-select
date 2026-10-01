@@ -6,7 +6,7 @@ Generated from the assembled build tables and `data/research-inputs/backlog-task
 - kinds: embedding 26, evaluation 2, image 34, language 268, realtime 9, reranking 5, speech 8, transcription 8, video 35
 - image-output models: 41, all assigned to the images batch (34 image-kind, 7 language-kind with image output; the two sets are gated equal)
 - exact-ID price joins: 394 models joined, 1 unjoined
-- benchmark coverage: scores_found 39, no_scores_in_checked_sources 246, unresearched 17, out_of_research_scope 93
+- benchmark coverage: scores_found 51, no_scores_in_checked_sources 240, unresearched 11, out_of_research_scope 93
 
 ## Cross-model gaps
 
@@ -15,7 +15,7 @@ Generated from the assembled build tables and `data/research-inputs/backlog-task
   - images: 39
   - mistral-meta: 13
 - price leaves: 5108 numeric with 2198 carrying source_specific_unresolved units across catalog-joined offers; all provider offers carry 31659 numeric leaves with 3109 unresolved (unjoined offers are models.dev inventory beyond catalog scope)
-- alias/revision gaps: 949 unresolved measurements, 0 identity proposals recorded
+- alias/revision gaps: 950 unresolved measurements, 0 identity proposals recorded
 - image-accounting gaps: 41 of 41 image-output models have no image-specific limit facts (format, mask, alpha, dimensions, count accounting)
 - protocol metadata: cells missing evaluated-revision, harness or setting components stay unresolved rather than comparison-qualified; `accepted_benchmarks` remains empty
 - rights: 302 in-scope models have publication_permission unknown, 0 have a decided permission
@@ -42,6 +42,7 @@ Generated from the assembled build tables and `data/research-inputs/backlog-task
 | swebench | swebench | 0 | data/research/benchmark-sources/_swebench_leaderboard_extracted.json; data/research/benchmark-sources/_swebench_verified.json; data/research/benchmark-sources/_swebench_pro.json | Derived JSON verified against its captured source or quarantined; splits kept separate; no Pro result inferred from the failed fetch. |
 | evalplus | evalplus | 0 | data/research/benchmark-sources/_evalplus_results.json | Genuine result JSON parsed with nulls retained as missing; provenance repaired under review; release/harness metadata located through official links. |
 | aider | aider | 0 | (none captured yet) | Saved leaderboard HTML inspected; a documented structured source used if evidenced; guessed JSON/YAML paths never asserted as API. |
+| anthropic-announcements | anthropic-announcements | 12 | data/research/anthropic/sources/anthropic_news_opus5_5.html; data/research/anthropic/sources/anthropic_news_sonnet5_5.html; data/research/anthropic/sources/anthropic_news_fable_mythos5_1.html; data/research/anthropic/sources/anthropic_news_claude4.html; data/research/anthropic/sources/anthropic_news_haiku4_5.html | Announcement pages retained byte-exact; 112 linked cells and one unresolved Mythos row extracted with byte-anchored locators; review round 1 FAIL on metadata defects fixed verbatim; promoted with decision anthropic-announcements.v1 and unresolved.v4. |
 
 ### Source acquisition
 
