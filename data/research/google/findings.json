@@ -1,888 +1,888 @@
 {
-  "models": [
+ "models": [
+  {
+   "id": "google/gemini-2.5-flash",
+   "strengths": [
     {
-      "id": "google/gemini-2.5-flash",
-      "strengths": [
-        {
-          "text": "Thinking model with configurable reasoning effort; balances price and performance",
-          "basis": "catalog_claim",
-          "source_url": "",
-          "source_file": "data/research/google/assignment.json",
-          "locator": "Gemini 2.5 Flash is a thinking model that offers great, well-rounded capabilities. It is designed to offer a balance between price and performance with multimodal support and a 1M token context window."
-        }
-      ],
-      "weaknesses": [],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Model exists and is documented on ai.google.dev. Benchmarks not found in saved sources (ai.google.dev models page is descriptive, not a benchmark table). Blog posts about Gemini 2.5 refer to Pro version primarily."
-    },
-    {
-      "id": "google/gemini-2.5-flash-image",
-      "strengths": [
-        {
-          "text": "Google's first fully hybrid reasoning model supporting image generation; thinking can be toggled on/off",
-          "basis": "catalog_claim",
-          "source_url": "",
-          "source_file": "data/research/google/assignment.json",
-          "locator": "Nano Banana (Gemini 2.5 Flash Image) is Google's first fully hybrid reasoning model, letting developers turn thinking on or off and set thinking budget"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "Limited context window (32K tokens) compared to other Gemini models (1M tokens)",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "data/research/google/assignment.json",
-          "locator": "context_window: 32768"
-        }
-      ],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Image generation variant; catalog notes context window of 32K vs 1M for text models. No benchmark data found in saved sources."
-    },
-    {
-      "id": "google/gemini-2.5-flash-lite",
-      "strengths": [
-        {
-          "text": "Balanced, low-latency model with configurable thinking budgets and tool connectivity including Google Search grounding",
-          "basis": "catalog_claim",
-          "source_url": "",
-          "source_file": "data/research/google/assignment.json",
-          "locator": "Gemini 2.5 Flash-Lite is a balanced, low-latency model with configurable thinking budgets and tool connectivity"
-        }
-      ],
-      "weaknesses": [],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Model exists and is documented. 1M context. No benchmark data found in saved sources."
-    },
-    {
-      "id": "google/gemini-2.5-pro",
-      "strengths": [
-        {
-          "text": "Google's most advanced reasoning model capable of solving complex problems with 1M token context",
-          "basis": "catalog_claim",
-          "source_url": "",
-          "source_file": "data/research/google/assignment.json",
-          "locator": "Gemini 2.5 Pro is our most advanced reasoning Gemini model, capable of solving complex problems"
-        }
-      ],
-      "weaknesses": [],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "Model exists. Blog mentions it leads on math and science benchmarks (GPQA, AIME 2025) and scores 18.8% on HLE, but no saved source contains a numeric benchmark table for Gemini 2.5 Pro. Blog text refers to 'state-of-the-art' qualitatively."
-    },
-    {
-      "id": "google/gemini-3-flash",
-      "strengths": [
-        {
-          "text": "Described as Google's most intelligent model built for speed with frontier intelligence and superior search/grounding",
-          "basis": "catalog_claim",
-          "source_url": "",
-          "source_file": "data/research/google/assignment.json",
-          "locator": "Google's most intelligent model built for speed, combining frontier intelligence with superior search and grounding."
-        }
-      ],
-      "weaknesses": [],
-      "benchmark_status": "unresearched",
-      "notes": "Future/placeholder model referenced in google-ai-dev-models.html alt-paths as gemini-3-flash-preview. No released version available; no benchmark data exists. Marked unresearched per policy."
-    },
-    {
-      "id": "google/gemini-3-pro-image",
-      "strengths": [
-        {
-          "text": "Nano Banana Pro builds on image generation capabilities into studio-quality, functional design",
-          "basis": "catalog_claim",
-          "source_url": "",
-          "source_file": "data/research/google/assignment.json",
-          "locator": "Nano Banana Pro (Gemini 3 Pro Image) builds on Nano Banana's generation capabilities into a new era of studio-quality, functional design"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "Limited context window (65K tokens) versus larger Gemini models",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "data/research/google/assignment.json",
-          "locator": "context_window: 65536"
-        }
-      ],
-      "benchmark_status": "unresearched",
-      "notes": "Future/placeholder model referenced in google-ai-dev-models.html alt-paths as gemini-3-pro-image. No benchmark data exists."
-    },
-    {
-      "id": "google/gemini-3.1-flash-image",
-      "strengths": [
-        {
-          "text": "Optimized for image understanding and generation with a balance of price and performance",
-          "basis": "catalog_claim",
-          "source_url": "",
-          "source_file": "data/research/google/assignment.json",
-          "locator": "Gemini 3.1 Flash Image is optimized for image understanding and generation and offers a balance of price and performance."
-        }
-      ],
-      "weaknesses": [],
-      "benchmark_status": "unresearched",
-      "notes": "Future model referenced in google-ai-dev-models.html alt-paths. No released version available; no benchmark data exists."
-    },
-    {
-      "id": "google/gemini-3.1-flash-image-preview",
-      "strengths": [
-        {
-          "text": "Preview version of Gemini 3.1 Flash Image (Nano Banana 2) optimized for image understanding and generation",
-          "basis": "catalog_claim",
-          "source_url": "",
-          "source_file": "data/research/google/assignment.json",
-          "locator": "Gemini 3.1 Flash Image (Nano Banana 2) is optimized for image understanding and generation and offers a balance of price and performance."
-        }
-      ],
-      "weaknesses": [],
-      "benchmark_status": "unresearched",
-      "notes": "Future/preview model referenced in google-ai-dev-models.html alt-paths. No benchmark data exists."
-    },
-    {
-      "id": "google/gemini-3.1-flash-lite",
-      "strengths": [
-        {
-          "text": "Outperforms 2.5 Flash Lite on overall quality and lands close to 2.5 Flash performance across key capability areas",
-          "basis": "catalog_claim",
-          "source_url": "",
-          "source_file": "data/research/google/assignment.json",
-          "locator": "Gemini 3.1 Flash Lite outperforms 2.5 Flash Lite on overall quality and lands close to 2.5 Flash performance across key capability areas."
-        }
-      ],
-      "weaknesses": [],
-      "benchmark_status": "unresearched",
-      "notes": "Future model referenced in google-ai-dev-models.html alt-paths. No released version available; no benchmark data exists."
-    },
-    {
-      "id": "google/gemini-3.1-flash-lite-image",
-      "strengths": [
-        {
-          "text": "Google's fastest image generation model enabling rapid creation and iteration",
-          "basis": "catalog_claim",
-          "source_url": "",
-          "source_file": "data/research/google/assignment.json",
-          "locator": "Gemini 3.1 Flash-Lite Image (Nano Banana 2 Lite) is Google's fastest image generation model enabling rapid creation and iteration."
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "Limited context window (65K tokens)",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "data/research/google/assignment.json",
-          "locator": "context_window: 65536"
-        }
-      ],
-      "benchmark_status": "unresearched",
-      "notes": "Future image generation model referenced in google-ai-dev-models.html alt-paths. No benchmark data exists."
-    },
-    {
-      "id": "google/gemini-3.1-pro-preview",
-      "strengths": [
-        {
-          "text": "Improves upon Gemini 2.5 Pro for challenging tasks, especially complex reasoning or agentic workflows",
-          "basis": "catalog_claim",
-          "source_url": "",
-          "source_file": "data/research/google/assignment.json",
-          "locator": "This model improves upon Gemini 2.5 Pro and is catered towards challenging tasks, especially those involving complex reasoning or agentic workflows."
-        }
-      ],
-      "weaknesses": [],
-      "benchmark_status": "unresearched",
-      "notes": "Future/preview model referenced in google-ai-dev-models.html alt-paths. No benchmark data exists."
-    },
-    {
-      "id": "google/gemini-3.5-flash",
-      "strengths": [
-        {
-          "text": "Optimized for coding proficiency and parallel agentic execution loops; defaults to medium thinking effort for faster responses",
-          "basis": "catalog_claim",
-          "source_url": "",
-          "source_file": "data/research/google/assignment.json",
-          "locator": "Google's latest model, highly optimized for coding proficiency and parallel agentic execution loops."
-        }
-      ],
-      "weaknesses": [],
-      "benchmark_status": "unresearched",
-      "notes": "Future model referenced in google-ai-dev-models.html alt-paths. No benchmark data exists. 1M context, video input."
-    },
-    {
-      "id": "google/gemini-3.5-flash-lite",
-      "strengths": [
-        {
-          "text": "Upgraded agentic capabilities making the model ideal for subagents in complex workflows",
-          "basis": "catalog_claim",
-          "source_url": "",
-          "source_file": "data/research/google/assignment.json",
-          "locator": "Gemini 3.5 Flash Lite features upgraded agentic capabilities, making the model ideal for subagents in complex workflows."
-        }
-      ],
-      "weaknesses": [],
-      "benchmark_status": "unresearched",
-      "notes": "Future model referenced in google-ai-dev-models.html alt-paths. No benchmark data exists."
-    },
-    {
-      "id": "google/gemini-3.6-flash",
-      "strengths": [
-        {
-          "text": "Delivers higher quality across coding, agentic workflows, and web development with reduced token consumption",
-          "basis": "catalog_claim",
-          "source_url": "",
-          "source_file": "data/research/google/assignment.json",
-          "locator": "Gemini 3.6 Flash delivers higher quality across coding, agentic workflows, and web development with reduced token consumption and fewer model calls"
-        }
-      ],
-      "weaknesses": [],
-      "benchmark_status": "unresearched",
-      "notes": "Future model referenced in google-ai-dev-models.html alt-paths. No benchmark data exists."
-    },
-    {
-      "id": "google/gemini-3.7-flash",
-      "strengths": [
-        {
-          "text": "High-efficiency, cost-effective model with Pro-level agentic capabilities and major leaps in coding and reasoning",
-          "basis": "catalog_claim",
-          "source_url": "",
-          "source_file": "data/research/google/assignment.json",
-          "locator": "Gemini 3.7 Flash is the high-efficiency, cost-effective powerhouse of the Gemini 3 family. It delivers Pro-level agentic capabilities, major leaps in"
-        }
-      ],
-      "weaknesses": [],
-      "benchmark_status": "unresearched",
-      "notes": "Future model referenced in google-ai-dev-models.html alt-paths. No benchmark data exists."
-    },
-    {
-      "id": "google/gemini-3.8-flash",
-      "strengths": [
-        {
-          "text": "High-efficiency, cost-effective model with Pro-level agentic capabilities and major leaps in coding and reasoning",
-          "basis": "catalog_claim",
-          "source_url": "",
-          "source_file": "data/research/google/assignment.json",
-          "locator": "Gemini 3.8 Flash is the high-efficiency, cost-effective powerhouse of the Gemini 3 family. It delivers Pro-level agentic capabilities, major leaps in"
-        }
-      ],
-      "weaknesses": [],
-      "benchmark_status": "unresearched",
-      "notes": "Future model referenced in google-ai-dev-models.html alt-paths. No benchmark data exists."
-    },
-    {
-      "id": "google/gemini-omni-flash-preview",
-      "strengths": [
-        {
-          "text": "Multimodal model designed for video, image, and text tasks; optimized for video generation with video output",
-          "basis": "catalog_claim",
-          "source_url": "",
-          "source_file": "data/research/google/assignment.json",
-          "locator": "Gemini Omni Flash (Preview) is a multimodal model designed for video, image, and text tasks."
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "Preview status; limited production readiness",
-          "basis": "operational_limit",
-          "source_url": "",
-          "source_file": "data/research/google/assignment.json",
-          "locator": "id includes 'preview' suffix"
-        }
-      ],
-      "benchmark_status": "unresearched",
-      "notes": "Future/preview model referenced in google-ai-dev-models.html alt-paths as gemini-omni-flash. No benchmark data exists."
-    },
-    {
-      "id": "google/gemma-4-26b-a4b-it",
-      "strengths": [
-        {
-          "text": "Strong benchmark performance: MMLU Pro 82.6%, GPQA Diamond 82.3%, AIME 2026 no tools 88.3%",
-          "basis": "primary_claim",
-          "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
-          "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
-          "locator": "evalResults: GPQA Diamond 82.3, MMLU Pro 82.6, AIME 2026 no tools 88.3%"
-        },
-        {
-          "text": "Multimodal: text, image, and audio input support; strong vision benchmark (MMMU Pro 73.8%)",
-          "basis": "primary_claim",
-          "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
-          "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
-          "locator": "evalResults: MMMU Pro Vision 73.8%"
-        },
-        {
-          "text": "Open model with Apache 2.0 license; supports structured output, tool calling, reasoning mode",
-          "basis": "primary_claim",
-          "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
-          "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
-          "locator": "tags: ['transformers', 'safetensors', 'gemma4', 'image-text-to-text', 'license:apache-2.0']"
-        },
-        {
-          "text": "Excellent coding benchmark: LiveCodeBench v6 77.1%, Codeforces ELO 1718",
-          "basis": "primary_claim",
-          "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
-          "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
-          "locator": "Benchmark comparison table: LiveCodeBench v6 77.1%, Codeforces ELO 1718"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "Limited context window (128K tokens) versus Gemini models (1M tokens)",
-          "basis": "operational_limit",
-          "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
-          "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
-          "locator": "Model-card architecture table: Context Length 128K tokens"
-        },
-        {
-          "text": "Lower HLE no-tools score (8.7%) vs larger models like 31B (19.5%)",
-          "basis": "primary_claim",
-          "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
-          "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
-          "locator": "Comparison table: Gemma 4 31B column followed by Gemma 4 26B A4B column; selected 26B value. HLE no tools 8.7%"
-        }
-      ],
-      "benchmark_status": "found",
-      "notes": "Comprehensive provider-reported benchmark data: exact-model evalResults plus the saved comparison table. Comparison-table rows use the explicitly labeled Gemma 4 26B A4B column; no independent verification."
-    },
-    {
-      "id": "google/gemma-4-31b-it",
-      "strengths": [
-        {
-          "text": "Top-tier benchmark performance: MMLU Pro 85.2%, GPQA Diamond 84.3%, AIME 2026 no tools 89.2%",
-          "basis": "primary_claim",
-          "source_url": "https://huggingface.co/google/gemma-4-31B-it",
-          "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
-          "locator": "Benchmark table: MMLU Pro 85.2%, GPQA Diamond 84.3%, AIME 2026 no tools 89.2%"
-        },
-        {
-          "text": "Strong coding and reasoning: LiveCodeBench v6 80.0%, Codeforces ELO 2150, BigBench Extra Hard 74.4%",
-          "basis": "primary_claim",
-          "source_url": "https://huggingface.co/google/gemma-4-31B-it",
-          "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
-          "locator": "Benchmark table: LiveCodeBench v6 80.0%, Codeforces ELO 2150, BigBench Extra Hard 74.4%"
-        },
-        {
-          "text": "Best-in-class vision-language performance: MMMU Pro 76.9%, MATH-Vision 85.6%, MMMLU 88.4%",
-          "basis": "primary_claim",
-          "source_url": "https://huggingface.co/google/gemma-4-31B-it",
-          "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
-          "locator": "Benchmark table: MMMU Pro 76.9%, MATH-Vision 85.6%, MMMLU 88.4%"
-        },
-        {
-          "text": "256K token context window; open model with Apache 2.0 license",
-          "basis": "primary_claim",
-          "source_url": "https://huggingface.co/google/gemma-4-31B-it",
-          "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
-          "locator": "Architecture table: Context Length 256K tokens; tags: 'license:apache-2.0'"
-        },
-        {
-          "text": "HLE with search: 26.5%, the highest among Gemma 4 variants",
-          "basis": "primary_claim",
-          "source_url": "https://huggingface.co/google/gemma-4-31B-it",
-          "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
-          "locator": "Benchmark table: HLE with search 26.5%"
-        }
-      ],
-      "weaknesses": [
-        {
-          "text": "No audio input support (unlike smaller Gemma 4 variants E2B/E4B)",
-          "basis": "operational_limit",
-          "source_url": "https://huggingface.co/google/gemma-4-31B-it",
-          "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
-          "locator": "Architecture table: Supported Modalities Text, Image; Audio: No Audio"
-        },
-        {
-          "text": "Context window (256K) smaller than Gemini models (1M)",
-          "basis": "operational_limit",
-          "source_url": "https://huggingface.co/google/gemma-4-31B-it",
-          "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
-          "locator": "Architecture table: Context Length 256K tokens"
-        }
-      ],
-      "benchmark_status": "found",
-      "notes": "Comprehensive benchmark data found in HF model card and comparison table. This is the largest Gemma 4 model from Google DeepMind."
+     "text": "Thinking model with configurable reasoning effort; balances price and performance",
+     "basis": "catalog_claim",
+     "source_url": "",
+     "source_file": "data/research/google/assignment.json",
+     "locator": "Gemini 2.5 Flash is a thinking model that offers great, well-rounded capabilities. It is designed to offer a balance between price and performance with multimodal support and a 1M token context window."
     }
-  ],
-  "benchmarks": [
+   ],
+   "weaknesses": [],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Model exists and is documented on ai.google.dev. Benchmarks not found in saved sources (ai.google.dev models page is descriptive, not a benchmark table). Blog posts about Gemini 2.5 refer to Pro version primarily."
+  },
+  {
+   "id": "google/gemini-2.5-flash-image",
+   "strengths": [
     {
-      "model_id": "google/gemma-4-26b-a4b-it",
-      "benchmark": "MMLU Pro",
-      "benchmark_version": "unknown",
-      "metric": "accuracy",
-      "value": "82.6",
-      "unit": "percent",
-      "configuration": "instruction-tuned model, no think mode specified",
-      "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
-      "locator": "evalResults: dataset TIGER-Lab/MMLU-Pro, task_id mmlu_pro, value 82.6",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Hugging Face model card explicitly for google/gemma-4-26B-A4B-it"
-    },
-    {
-      "model_id": "google/gemma-4-26b-a4b-it",
-      "benchmark": "GPQA Diamond",
-      "benchmark_version": "unknown",
-      "metric": "accuracy",
-      "value": "82.3",
-      "unit": "percent",
-      "configuration": "instruction-tuned model",
-      "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
-      "locator": "evalResults: dataset Idavidrein/gpqa, task_id diamond, value 82.3",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Hugging Face model card explicitly for google/gemma-4-26B-A4B-it"
-    },
-    {
-      "model_id": "google/gemma-4-26b-a4b-it",
-      "benchmark": "AIME 2026",
-      "benchmark_version": "2026",
-      "metric": "accuracy",
-      "value": "88.3",
-      "unit": "percent",
-      "configuration": "no tools",
-      "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
-      "locator": "Comparison table: columns are Gemma 4 31B and Gemma 4 26B A4B; selected Gemma 4 26B A4B value for AIME 2026 = 88.3.",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Saved comparison table explicitly labels the Gemma 4 26B A4B column; source model card identifies google/gemma-4-26B-A4B-it."
-    },
-    {
-      "model_id": "google/gemma-4-26b-a4b-it",
-      "benchmark": "LiveCodeBench",
-      "benchmark_version": "v6",
-      "metric": "pass@1",
-      "value": "77.1",
-      "unit": "percent",
-      "configuration": "unknown",
-      "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
-      "locator": "Comparison table: columns are Gemma 4 31B and Gemma 4 26B A4B; selected Gemma 4 26B A4B value for LiveCodeBench = 77.1.",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Saved comparison table explicitly labels the Gemma 4 26B A4B column; source model card identifies google/gemma-4-26B-A4B-it."
-    },
-    {
-      "model_id": "google/gemma-4-26b-a4b-it",
-      "benchmark": "Codeforces",
-      "benchmark_version": "unknown",
-      "metric": "ELO",
-      "value": "1718",
-      "unit": "points",
-      "configuration": "unknown",
-      "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
-      "locator": "Comparison table: columns are Gemma 4 31B and Gemma 4 26B A4B; selected Gemma 4 26B A4B value for Codeforces = 1718.",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Saved comparison table explicitly labels the Gemma 4 26B A4B column; source model card identifies google/gemma-4-26B-A4B-it."
-    },
-    {
-      "model_id": "google/gemma-4-26b-a4b-it",
-      "benchmark": "Tau2",
-      "benchmark_version": "average over 3",
-      "metric": "accuracy",
-      "value": "68.2",
-      "unit": "percent",
-      "configuration": "unknown",
-      "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
-      "locator": "Comparison table: columns are Gemma 4 31B and Gemma 4 26B A4B; selected Gemma 4 26B A4B value for Tau2 = 68.2.",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Saved comparison table explicitly labels the Gemma 4 26B A4B column; source model card identifies google/gemma-4-26B-A4B-it."
-    },
-    {
-      "model_id": "google/gemma-4-26b-a4b-it",
-      "benchmark": "HLE (Humanity's Last Exam)",
-      "benchmark_version": "unknown",
-      "metric": "accuracy",
-      "value": "8.7",
-      "unit": "percent",
-      "configuration": "no tools",
-      "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
-      "locator": "Comparison table: columns are Gemma 4 31B and Gemma 4 26B A4B; selected Gemma 4 26B A4B value for HLE (Humanity's Last Exam) = 8.7.",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Saved comparison table explicitly labels the Gemma 4 26B A4B column; source model card identifies google/gemma-4-26B-A4B-it."
-    },
-    {
-      "model_id": "google/gemma-4-26b-a4b-it",
-      "benchmark": "HLE (Humanity's Last Exam)",
-      "benchmark_version": "unknown",
-      "metric": "accuracy",
-      "value": "17.2",
-      "unit": "percent",
-      "configuration": "with search",
-      "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
-      "locator": "evalResults: dataset cais/hle, task_id hle, value 17.2, notes: With search",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Hugging Face model card explicitly for google/gemma-4-26B-A4B-it"
-    },
-    {
-      "model_id": "google/gemma-4-26b-a4b-it",
-      "benchmark": "BigBench Extra Hard",
-      "benchmark_version": "unknown",
-      "metric": "accuracy",
-      "value": "64.8",
-      "unit": "percent",
-      "configuration": "unknown",
-      "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
-      "locator": "Comparison table: columns are Gemma 4 31B and Gemma 4 26B A4B; selected Gemma 4 26B A4B value for BigBench Extra Hard = 64.8.",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Saved comparison table explicitly labels the Gemma 4 26B A4B column; source model card identifies google/gemma-4-26B-A4B-it."
-    },
-    {
-      "model_id": "google/gemma-4-26b-a4b-it",
-      "benchmark": "MMMLU",
-      "benchmark_version": "unknown",
-      "metric": "accuracy",
-      "value": "86.3",
-      "unit": "percent",
-      "configuration": "unknown",
-      "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
-      "locator": "Comparison table: columns are Gemma 4 31B and Gemma 4 26B A4B; selected Gemma 4 26B A4B value for MMMLU = 86.3.",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Saved comparison table explicitly labels the Gemma 4 26B A4B column; source model card identifies google/gemma-4-26B-A4B-it."
-    },
-    {
-      "model_id": "google/gemma-4-26b-a4b-it",
-      "benchmark": "MMMU Pro",
-      "benchmark_version": "vision",
-      "metric": "accuracy",
-      "value": "73.8",
-      "unit": "percent",
-      "configuration": "vision modality",
-      "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
-      "locator": "evalResults: dataset MMMU/MMMU_Pro, task_id mmmu_pro_vision, value 73.8",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Hugging Face model card explicitly for google/gemma-4-26B-A4B-it"
-    },
-    {
-      "model_id": "google/gemma-4-26b-a4b-it",
-      "benchmark": "OmniDocBench 1.5",
-      "benchmark_version": "1.5",
-      "metric": "average edit distance",
-      "value": "0.149",
-      "unit": "fraction",
-      "configuration": "lower is better",
-      "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
-      "locator": "Comparison table: columns are Gemma 4 31B and Gemma 4 26B A4B; selected Gemma 4 26B A4B value for OmniDocBench 1.5 = 0.149.",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Saved comparison table explicitly labels the Gemma 4 26B A4B column; source model card identifies google/gemma-4-26B-A4B-it."
-    },
-    {
-      "model_id": "google/gemma-4-26b-a4b-it",
-      "benchmark": "MATH-Vision",
-      "benchmark_version": "unknown",
-      "metric": "accuracy",
-      "value": "82.4",
-      "unit": "percent",
-      "configuration": "unknown",
-      "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
-      "locator": "Comparison table: columns are Gemma 4 31B and Gemma 4 26B A4B; selected Gemma 4 26B A4B value for MATH-Vision = 82.4.",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Saved comparison table explicitly labels the Gemma 4 26B A4B column; source model card identifies google/gemma-4-26B-A4B-it."
-    },
-    {
-      "model_id": "google/gemma-4-26b-a4b-it",
-      "benchmark": "MedXPertQA MM",
-      "benchmark_version": "unknown",
-      "metric": "accuracy",
-      "value": "58.1",
-      "unit": "percent",
-      "configuration": "multimodal",
-      "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
-      "locator": "Comparison table: columns are Gemma 4 31B and Gemma 4 26B A4B; selected Gemma 4 26B A4B value for MedXPertQA MM = 58.1.",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Saved comparison table explicitly labels the Gemma 4 26B A4B column; source model card identifies google/gemma-4-26B-A4B-it."
-    },
-    {
-      "model_id": "google/gemma-4-26b-a4b-it",
-      "benchmark": "MRCR v2 8 needle 128k",
-      "benchmark_version": "v2",
-      "metric": "average accuracy",
-      "value": "44.1",
-      "unit": "percent",
-      "configuration": "8 needle, 128K context",
-      "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
-      "locator": "Comparison table: columns are Gemma 4 31B and Gemma 4 26B A4B; selected Gemma 4 26B A4B value for MRCR v2 8 needle 128k = 44.1.",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Saved comparison table explicitly labels the Gemma 4 26B A4B column; source model card identifies google/gemma-4-26B-A4B-it."
-    },
-    {
-      "model_id": "google/gemma-4-31b-it",
-      "benchmark": "MMLU Pro",
-      "benchmark_version": "unknown",
-      "metric": "accuracy",
-      "value": "85.2",
-      "unit": "percent",
-      "configuration": "instruction-tuned model",
-      "source_url": "https://huggingface.co/google/gemma-4-31B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
-      "locator": "Benchmark table: MMLU Pro 85.2%",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
-    },
-    {
-      "model_id": "google/gemma-4-31b-it",
-      "benchmark": "AIME 2026",
-      "benchmark_version": "2026",
-      "metric": "accuracy",
-      "value": "89.2",
-      "unit": "percent",
-      "configuration": "no tools",
-      "source_url": "https://huggingface.co/google/gemma-4-31B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
-      "locator": "Benchmark table: AIME 2026 no tools 89.2%",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
-    },
-    {
-      "model_id": "google/gemma-4-31b-it",
-      "benchmark": "LiveCodeBench",
-      "benchmark_version": "v6",
-      "metric": "pass@1",
-      "value": "80.0",
-      "unit": "percent",
-      "configuration": "unknown",
-      "source_url": "https://huggingface.co/google/gemma-4-31B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
-      "locator": "Benchmark table: LiveCodeBench v6 80.0%",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
-    },
-    {
-      "model_id": "google/gemma-4-31b-it",
-      "benchmark": "Codeforces",
-      "benchmark_version": "unknown",
-      "metric": "ELO",
-      "value": "2150",
-      "unit": "points",
-      "configuration": "unknown",
-      "source_url": "https://huggingface.co/google/gemma-4-31B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
-      "locator": "Benchmark table: Codeforces ELO 2150",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
-    },
-    {
-      "model_id": "google/gemma-4-31b-it",
-      "benchmark": "GPQA Diamond",
-      "benchmark_version": "unknown",
-      "metric": "accuracy",
-      "value": "84.3",
-      "unit": "percent",
-      "configuration": "instruction-tuned model",
-      "source_url": "https://huggingface.co/google/gemma-4-31B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
-      "locator": "Benchmark table: GPQA Diamond 84.3%",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
-    },
-    {
-      "model_id": "google/gemma-4-31b-it",
-      "benchmark": "Tau2",
-      "benchmark_version": "average over 3",
-      "metric": "accuracy",
-      "value": "76.9",
-      "unit": "percent",
-      "configuration": "unknown",
-      "source_url": "https://huggingface.co/google/gemma-4-31B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
-      "locator": "Benchmark table: Tau2 (average over 3) 76.9%",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
-    },
-    {
-      "model_id": "google/gemma-4-31b-it",
-      "benchmark": "HLE (Humanity's Last Exam)",
-      "benchmark_version": "unknown",
-      "metric": "accuracy",
-      "value": "19.5",
-      "unit": "percent",
-      "configuration": "no tools",
-      "source_url": "https://huggingface.co/google/gemma-4-31B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
-      "locator": "Benchmark table: HLE no tools 19.5%",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
-    },
-    {
-      "model_id": "google/gemma-4-31b-it",
-      "benchmark": "HLE (Humanity's Last Exam)",
-      "benchmark_version": "unknown",
-      "metric": "accuracy",
-      "value": "26.5",
-      "unit": "percent",
-      "configuration": "with search",
-      "source_url": "https://huggingface.co/google/gemma-4-31B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
-      "locator": "Benchmark table: HLE with search 26.5%",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
-    },
-    {
-      "model_id": "google/gemma-4-31b-it",
-      "benchmark": "BigBench Extra Hard",
-      "benchmark_version": "unknown",
-      "metric": "accuracy",
-      "value": "74.4",
-      "unit": "percent",
-      "configuration": "unknown",
-      "source_url": "https://huggingface.co/google/gemma-4-31B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
-      "locator": "Benchmark table: BigBench Extra Hard 74.4%",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
-    },
-    {
-      "model_id": "google/gemma-4-31b-it",
-      "benchmark": "MMMLU",
-      "benchmark_version": "unknown",
-      "metric": "accuracy",
-      "value": "88.4",
-      "unit": "percent",
-      "configuration": "unknown",
-      "source_url": "https://huggingface.co/google/gemma-4-31B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
-      "locator": "Benchmark table: MMMLU 88.4%",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
-    },
-    {
-      "model_id": "google/gemma-4-31b-it",
-      "benchmark": "MMMU Pro",
-      "benchmark_version": "vision",
-      "metric": "accuracy",
-      "value": "76.9",
-      "unit": "percent",
-      "configuration": "vision modality",
-      "source_url": "https://huggingface.co/google/gemma-4-31B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
-      "locator": "Benchmark table: Vision MMMU Pro 76.9%",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
-    },
-    {
-      "model_id": "google/gemma-4-31b-it",
-      "benchmark": "OmniDocBench 1.5",
-      "benchmark_version": "1.5",
-      "metric": "average edit distance",
-      "value": "0.131",
-      "unit": "fraction",
-      "configuration": "lower is better",
-      "source_url": "https://huggingface.co/google/gemma-4-31B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
-      "locator": "Benchmark table: OmniDocBench 1.5 (average edit distance, lower is better) 0.131",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
-    },
-    {
-      "model_id": "google/gemma-4-31b-it",
-      "benchmark": "MATH-Vision",
-      "benchmark_version": "unknown",
-      "metric": "accuracy",
-      "value": "85.6",
-      "unit": "percent",
-      "configuration": "unknown",
-      "source_url": "https://huggingface.co/google/gemma-4-31B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
-      "locator": "Benchmark table: MATH-Vision 85.6%",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
-    },
-    {
-      "model_id": "google/gemma-4-31b-it",
-      "benchmark": "MedXPertQA MM",
-      "benchmark_version": "unknown",
-      "metric": "accuracy",
-      "value": "61.3",
-      "unit": "percent",
-      "configuration": "multimodal",
-      "source_url": "https://huggingface.co/google/gemma-4-31B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
-      "locator": "Benchmark table: MedXPertQA MM 61.3%",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
-    },
-    {
-      "model_id": "google/gemma-4-31b-it",
-      "benchmark": "MRCR v2 8 needle 128k",
-      "benchmark_version": "v2",
-      "metric": "average accuracy",
-      "value": "66.4",
-      "unit": "percent",
-      "configuration": "8 needle, 128K context",
-      "source_url": "https://huggingface.co/google/gemma-4-31B-it",
-      "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
-      "locator": "Benchmark table: MRCR v2 8 needle 128k (average) 66.4%",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
+     "text": "Google's first fully hybrid reasoning model supporting image generation; thinking can be toggled on/off",
+     "basis": "catalog_claim",
+     "source_url": "",
+     "source_file": "data/research/google/assignment.json",
+     "locator": "Nano Banana (Gemini 2.5 Flash Image) is Google's first fully hybrid reasoning model, letting developers turn thinking on or off and set thinking budget"
     }
-  ],
-  "sources": [
+   ],
+   "weaknesses": [
     {
-      "url": "https://ai.google.dev/gemini-api/docs/models",
-      "file": "data/research/google/sources/google-ai-dev-models.html",
-      "status": "retrieved",
-      "purpose": "Google official Gemini API model documentation listing available models, capabilities, and specifications",
-      "license": "unknown"
-    },
-    {
-      "url": "https://ai.google.dev/gemini-api/docs/models#gemini-2.5-flash",
-      "file": "data/research/google/sources/gemini-models-overview.html",
-      "status": "retrieved",
-      "purpose": "Gemini 2.5 Flash model overview from Google AI Dev",
-      "license": "unknown"
-    },
-    {
-      "url": "https://ai.google.dev/gemini-api/docs/models#gemini-2.5-flash-lite",
-      "file": "data/research/google/sources/google-ai-dev-flash-lite.html",
-      "status": "retrieved",
-      "purpose": "Gemini 2.5 Flash Lite model documentation (same content as models page)",
-      "license": "unknown"
-    },
-    {
-      "url": "https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/",
-      "file": "data/research/google/sources/google-blog-gemini-2.5-march2025.html",
-      "status": "retrieved",
-      "purpose": "Google blog post announcing Gemini 2.5 models with thinking capabilities",
-      "license": "unknown"
-    },
-    {
-      "url": "https://blog.google/technology/google-deepmind/gemini-2-5-pro-exp-thinking-model/",
-      "file": "data/research/google/sources/google-blog-gemini-2.5-pro.html",
-      "status": "redirect_or_not_found",
-      "purpose": "Attempted Google Blog source; saved artifact indicates redirect/404 and is not used as content evidence.",
-      "license": "unknown"
-    },
-    {
-      "url": "https://blog.google/technology/google-deepmind/gemini-2-5-flash/",
-      "file": "data/research/google/sources/google-blog-gemini-2.5-flash.html",
-      "status": "not_found",
-      "purpose": "Attempted to fetch Gemini 2.5 Flash dedicated blog post - returned 404",
-      "license": "unknown"
-    },
-    {
-      "url": "https://huggingface.co/google/gemma-4-26b-a4b-it",
-      "file": "data/research/google/sources/hf-gemma-4-26b.html",
-      "status": "retrieved",
-      "purpose": "Hugging Face model card for Gemma 4 26B A4B IT containing eval results JSON with benchmark scores",
-      "license": "Apache 2.0 (model license, not source)"
-    },
-    {
-      "url": "https://huggingface.co/google/gemma-4-31b-it",
-      "file": "data/research/google/sources/hf-gemma-4-31b.html",
-      "status": "retrieved",
-      "purpose": "Hugging Face model card for Gemma 4 31B IT containing comprehensive benchmark comparison table",
-      "license": "Apache 2.0 (model license, not source)"
+     "text": "Limited context window (32K tokens) compared to other Gemini models (1M tokens)",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "data/research/google/assignment.json",
+     "locator": "context_window: 32768"
     }
-  ],
-  "gaps": [
-    "No benchmark tables found for Gemini 2.5 Flash/Pro/Flash Lite in any saved source. The ai.google.dev models page is descriptive only (specs, not benchmarks). Blog posts describe performance qualitatively.",
-    "All Gemini 3.x, 3.1, 3.5, 3.6, 3.7, 3.8, and Omni models are future/unreleased. They exist as alt-paths in google-ai-dev-models.html but have no released versions, no benchmarks, and catalog claims only. Per policy these are marked unresearched.",
-    "Gemini 2.5 Flash dedicated blog page returned 404; only the general Gemini 2.5 announcement blog was available.",
-    "No independent (third-party) benchmark evaluations were collected. All benchmark data comes from provider-reported sources (Google/Hugging Face).",
-    "Missing Gemini 2.5 models on LMSYS/Chatbot Arena or other leaderboard data - not checked in this research pass.",
-    "Gemini 2.5 Flash Image (Nano Banana) and Gemini 2.5 Flash Lite have no benchmark evidence in saved sources; catalog provides only qualitative descriptions."
-  ]
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Image generation variant; catalog notes context window of 32K vs 1M for text models. No benchmark data found in saved sources."
+  },
+  {
+   "id": "google/gemini-2.5-flash-lite",
+   "strengths": [
+    {
+     "text": "Balanced, low-latency model with configurable thinking budgets and tool connectivity including Google Search grounding",
+     "basis": "catalog_claim",
+     "source_url": "",
+     "source_file": "data/research/google/assignment.json",
+     "locator": "Gemini 2.5 Flash-Lite is a balanced, low-latency model with configurable thinking budgets and tool connectivity"
+    }
+   ],
+   "weaknesses": [],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Model exists and is documented. 1M context. No benchmark data found in saved sources."
+  },
+  {
+   "id": "google/gemini-2.5-pro",
+   "strengths": [
+    {
+     "text": "Google's most advanced reasoning model capable of solving complex problems with 1M token context",
+     "basis": "catalog_claim",
+     "source_url": "",
+     "source_file": "data/research/google/assignment.json",
+     "locator": "Gemini 2.5 Pro is our most advanced reasoning Gemini model, capable of solving complex problems"
+    }
+   ],
+   "weaknesses": [],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Model exists. Blog mentions it leads on math and science benchmarks (GPQA, AIME 2025) and scores 18.8% on HLE, but no saved source contains a numeric benchmark table for Gemini 2.5 Pro. Blog text refers to 'state-of-the-art' qualitatively."
+  },
+  {
+   "id": "google/gemini-3-flash",
+   "strengths": [
+    {
+     "text": "Described as Google's most intelligent model built for speed with frontier intelligence and superior search/grounding",
+     "basis": "catalog_claim",
+     "source_url": "",
+     "source_file": "data/research/google/assignment.json",
+     "locator": "Google's most intelligent model built for speed, combining frontier intelligence with superior search and grounding."
+    }
+   ],
+   "weaknesses": [],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Future/placeholder model referenced in google-ai-dev-models.html alt-paths as gemini-3-flash-preview. No released version available; no benchmark data exists. Marked unresearched per policy."
+  },
+  {
+   "id": "google/gemini-3-pro-image",
+   "strengths": [
+    {
+     "text": "Nano Banana Pro builds on image generation capabilities into studio-quality, functional design",
+     "basis": "catalog_claim",
+     "source_url": "",
+     "source_file": "data/research/google/assignment.json",
+     "locator": "Nano Banana Pro (Gemini 3 Pro Image) builds on Nano Banana's generation capabilities into a new era of studio-quality, functional design"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "Limited context window (65K tokens) versus larger Gemini models",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "data/research/google/assignment.json",
+     "locator": "context_window: 65536"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Future/placeholder model referenced in google-ai-dev-models.html alt-paths as gemini-3-pro-image. No benchmark data exists."
+  },
+  {
+   "id": "google/gemini-3.1-flash-image",
+   "strengths": [
+    {
+     "text": "Optimized for image understanding and generation with a balance of price and performance",
+     "basis": "catalog_claim",
+     "source_url": "",
+     "source_file": "data/research/google/assignment.json",
+     "locator": "Gemini 3.1 Flash Image is optimized for image understanding and generation and offers a balance of price and performance."
+    }
+   ],
+   "weaknesses": [],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Future model referenced in google-ai-dev-models.html alt-paths. No released version available; no benchmark data exists."
+  },
+  {
+   "id": "google/gemini-3.1-flash-image-preview",
+   "strengths": [
+    {
+     "text": "Preview version of Gemini 3.1 Flash Image (Nano Banana 2) optimized for image understanding and generation",
+     "basis": "catalog_claim",
+     "source_url": "",
+     "source_file": "data/research/google/assignment.json",
+     "locator": "Gemini 3.1 Flash Image (Nano Banana 2) is optimized for image understanding and generation and offers a balance of price and performance."
+    }
+   ],
+   "weaknesses": [],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Future/preview model referenced in google-ai-dev-models.html alt-paths. No benchmark data exists."
+  },
+  {
+   "id": "google/gemini-3.1-flash-lite",
+   "strengths": [
+    {
+     "text": "Outperforms 2.5 Flash Lite on overall quality and lands close to 2.5 Flash performance across key capability areas",
+     "basis": "catalog_claim",
+     "source_url": "",
+     "source_file": "data/research/google/assignment.json",
+     "locator": "Gemini 3.1 Flash Lite outperforms 2.5 Flash Lite on overall quality and lands close to 2.5 Flash performance across key capability areas."
+    }
+   ],
+   "weaknesses": [],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Future model referenced in google-ai-dev-models.html alt-paths. No released version available; no benchmark data exists."
+  },
+  {
+   "id": "google/gemini-3.1-flash-lite-image",
+   "strengths": [
+    {
+     "text": "Google's fastest image generation model enabling rapid creation and iteration",
+     "basis": "catalog_claim",
+     "source_url": "",
+     "source_file": "data/research/google/assignment.json",
+     "locator": "Gemini 3.1 Flash-Lite Image (Nano Banana 2 Lite) is Google's fastest image generation model enabling rapid creation and iteration."
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "Limited context window (65K tokens)",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "data/research/google/assignment.json",
+     "locator": "context_window: 65536"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Future image generation model referenced in google-ai-dev-models.html alt-paths. No benchmark data exists."
+  },
+  {
+   "id": "google/gemini-3.1-pro-preview",
+   "strengths": [
+    {
+     "text": "Improves upon Gemini 2.5 Pro for challenging tasks, especially complex reasoning or agentic workflows",
+     "basis": "catalog_claim",
+     "source_url": "",
+     "source_file": "data/research/google/assignment.json",
+     "locator": "This model improves upon Gemini 2.5 Pro and is catered towards challenging tasks, especially those involving complex reasoning or agentic workflows."
+    }
+   ],
+   "weaknesses": [],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Future/preview model referenced in google-ai-dev-models.html alt-paths. No benchmark data exists."
+  },
+  {
+   "id": "google/gemini-3.5-flash",
+   "strengths": [
+    {
+     "text": "Optimized for coding proficiency and parallel agentic execution loops; defaults to medium thinking effort for faster responses",
+     "basis": "catalog_claim",
+     "source_url": "",
+     "source_file": "data/research/google/assignment.json",
+     "locator": "Google's latest model, highly optimized for coding proficiency and parallel agentic execution loops."
+    }
+   ],
+   "weaknesses": [],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Future model referenced in google-ai-dev-models.html alt-paths. No benchmark data exists. 1M context, video input."
+  },
+  {
+   "id": "google/gemini-3.5-flash-lite",
+   "strengths": [
+    {
+     "text": "Upgraded agentic capabilities making the model ideal for subagents in complex workflows",
+     "basis": "catalog_claim",
+     "source_url": "",
+     "source_file": "data/research/google/assignment.json",
+     "locator": "Gemini 3.5 Flash Lite features upgraded agentic capabilities, making the model ideal for subagents in complex workflows."
+    }
+   ],
+   "weaknesses": [],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Future model referenced in google-ai-dev-models.html alt-paths. No benchmark data exists."
+  },
+  {
+   "id": "google/gemini-3.6-flash",
+   "strengths": [
+    {
+     "text": "Delivers higher quality across coding, agentic workflows, and web development with reduced token consumption",
+     "basis": "catalog_claim",
+     "source_url": "",
+     "source_file": "data/research/google/assignment.json",
+     "locator": "Gemini 3.6 Flash delivers higher quality across coding, agentic workflows, and web development with reduced token consumption and fewer model calls"
+    }
+   ],
+   "weaknesses": [],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Future model referenced in google-ai-dev-models.html alt-paths. No benchmark data exists."
+  },
+  {
+   "id": "google/gemini-3.7-flash",
+   "strengths": [
+    {
+     "text": "High-efficiency, cost-effective model with Pro-level agentic capabilities and major leaps in coding and reasoning",
+     "basis": "catalog_claim",
+     "source_url": "",
+     "source_file": "data/research/google/assignment.json",
+     "locator": "Gemini 3.7 Flash is the high-efficiency, cost-effective powerhouse of the Gemini 3 family. It delivers Pro-level agentic capabilities, major leaps in"
+    }
+   ],
+   "weaknesses": [],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Future model referenced in google-ai-dev-models.html alt-paths. No benchmark data exists."
+  },
+  {
+   "id": "google/gemini-3.8-flash",
+   "strengths": [
+    {
+     "text": "High-efficiency, cost-effective model with Pro-level agentic capabilities and major leaps in coding and reasoning",
+     "basis": "catalog_claim",
+     "source_url": "",
+     "source_file": "data/research/google/assignment.json",
+     "locator": "Gemini 3.8 Flash is the high-efficiency, cost-effective powerhouse of the Gemini 3 family. It delivers Pro-level agentic capabilities, major leaps in"
+    }
+   ],
+   "weaknesses": [],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Future model referenced in google-ai-dev-models.html alt-paths. No benchmark data exists."
+  },
+  {
+   "id": "google/gemini-omni-flash-preview",
+   "strengths": [
+    {
+     "text": "Multimodal model designed for video, image, and text tasks; optimized for video generation with video output",
+     "basis": "catalog_claim",
+     "source_url": "",
+     "source_file": "data/research/google/assignment.json",
+     "locator": "Gemini Omni Flash (Preview) is a multimodal model designed for video, image, and text tasks."
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "Preview status; limited production readiness",
+     "basis": "operational_limit",
+     "source_url": "",
+     "source_file": "data/research/google/assignment.json",
+     "locator": "id includes 'preview' suffix"
+    }
+   ],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Future/preview model referenced in google-ai-dev-models.html alt-paths as gemini-omni-flash. No benchmark data exists."
+  },
+  {
+   "id": "google/gemma-4-26b-a4b-it",
+   "strengths": [
+    {
+     "text": "Strong benchmark performance: MMLU Pro 82.6%, GPQA Diamond 82.3%, AIME 2026 no tools 88.3%",
+     "basis": "primary_claim",
+     "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+     "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
+     "locator": "evalResults: GPQA Diamond 82.3, MMLU Pro 82.6, AIME 2026 no tools 88.3%"
+    },
+    {
+     "text": "Multimodal: text, image, and audio input support; strong vision benchmark (MMMU Pro 73.8%)",
+     "basis": "primary_claim",
+     "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+     "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
+     "locator": "evalResults: MMMU Pro Vision 73.8%"
+    },
+    {
+     "text": "Open model with Apache 2.0 license; supports structured output, tool calling, reasoning mode",
+     "basis": "primary_claim",
+     "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+     "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
+     "locator": "tags: ['transformers', 'safetensors', 'gemma4', 'image-text-to-text', 'license:apache-2.0']"
+    },
+    {
+     "text": "Excellent coding benchmark: LiveCodeBench v6 77.1%, Codeforces ELO 1718",
+     "basis": "primary_claim",
+     "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+     "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
+     "locator": "Benchmark comparison table: LiveCodeBench v6 77.1%, Codeforces ELO 1718"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "Limited context window (128K tokens) versus Gemini models (1M tokens)",
+     "basis": "operational_limit",
+     "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+     "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
+     "locator": "Model-card architecture table: Context Length 128K tokens"
+    },
+    {
+     "text": "Lower HLE no-tools score (8.7%) vs larger models like 31B (19.5%)",
+     "basis": "primary_claim",
+     "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+     "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
+     "locator": "Comparison table: Gemma 4 31B column followed by Gemma 4 26B A4B column; selected 26B value. HLE no tools 8.7%"
+    }
+   ],
+   "benchmark_status": "found",
+   "notes": "Comprehensive provider-reported benchmark data: exact-model evalResults plus the saved comparison table. Comparison-table rows use the explicitly labeled Gemma 4 26B A4B column; no independent verification."
+  },
+  {
+   "id": "google/gemma-4-31b-it",
+   "strengths": [
+    {
+     "text": "Top-tier benchmark performance: MMLU Pro 85.2%, GPQA Diamond 84.3%, AIME 2026 no tools 89.2%",
+     "basis": "primary_claim",
+     "source_url": "https://huggingface.co/google/gemma-4-31B-it",
+     "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
+     "locator": "Benchmark table: MMLU Pro 85.2%, GPQA Diamond 84.3%, AIME 2026 no tools 89.2%"
+    },
+    {
+     "text": "Strong coding and reasoning: LiveCodeBench v6 80.0%, Codeforces ELO 2150, BigBench Extra Hard 74.4%",
+     "basis": "primary_claim",
+     "source_url": "https://huggingface.co/google/gemma-4-31B-it",
+     "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
+     "locator": "Benchmark table: LiveCodeBench v6 80.0%, Codeforces ELO 2150, BigBench Extra Hard 74.4%"
+    },
+    {
+     "text": "Best-in-class vision-language performance: MMMU Pro 76.9%, MATH-Vision 85.6%, MMMLU 88.4%",
+     "basis": "primary_claim",
+     "source_url": "https://huggingface.co/google/gemma-4-31B-it",
+     "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
+     "locator": "Benchmark table: MMMU Pro 76.9%, MATH-Vision 85.6%, MMMLU 88.4%"
+    },
+    {
+     "text": "256K token context window; open model with Apache 2.0 license",
+     "basis": "primary_claim",
+     "source_url": "https://huggingface.co/google/gemma-4-31B-it",
+     "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
+     "locator": "Architecture table: Context Length 256K tokens; tags: 'license:apache-2.0'"
+    },
+    {
+     "text": "HLE with search: 26.5%, the highest among Gemma 4 variants",
+     "basis": "primary_claim",
+     "source_url": "https://huggingface.co/google/gemma-4-31B-it",
+     "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
+     "locator": "Benchmark table: HLE with search 26.5%"
+    }
+   ],
+   "weaknesses": [
+    {
+     "text": "No audio input support (unlike smaller Gemma 4 variants E2B/E4B)",
+     "basis": "operational_limit",
+     "source_url": "https://huggingface.co/google/gemma-4-31B-it",
+     "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
+     "locator": "Architecture table: Supported Modalities Text, Image; Audio: No Audio"
+    },
+    {
+     "text": "Context window (256K) smaller than Gemini models (1M)",
+     "basis": "operational_limit",
+     "source_url": "https://huggingface.co/google/gemma-4-31B-it",
+     "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
+     "locator": "Architecture table: Context Length 256K tokens"
+    }
+   ],
+   "benchmark_status": "found",
+   "notes": "Comprehensive benchmark data found in HF model card and comparison table. This is the largest Gemma 4 model from Google DeepMind."
+  }
+ ],
+ "benchmarks": [
+  {
+   "model_id": "google/gemma-4-26b-a4b-it",
+   "benchmark": "MMLU Pro",
+   "benchmark_version": "unknown",
+   "metric": "accuracy",
+   "value": "82.6",
+   "unit": "percent",
+   "configuration": "instruction-tuned model, no think mode specified",
+   "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
+   "locator": "evalResults: dataset TIGER-Lab/MMLU-Pro, task_id mmlu_pro, value 82.6",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Hugging Face model card explicitly for google/gemma-4-26B-A4B-it"
+  },
+  {
+   "model_id": "google/gemma-4-26b-a4b-it",
+   "benchmark": "GPQA Diamond",
+   "benchmark_version": "unknown",
+   "metric": "accuracy",
+   "value": "82.3",
+   "unit": "percent",
+   "configuration": "instruction-tuned model",
+   "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
+   "locator": "evalResults: dataset Idavidrein/gpqa, task_id diamond, value 82.3",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Hugging Face model card explicitly for google/gemma-4-26B-A4B-it"
+  },
+  {
+   "model_id": "google/gemma-4-26b-a4b-it",
+   "benchmark": "AIME 2026",
+   "benchmark_version": "2026",
+   "metric": "accuracy",
+   "value": "88.3",
+   "unit": "percent",
+   "configuration": "no tools",
+   "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
+   "locator": "Comparison table: columns are Gemma 4 31B and Gemma 4 26B A4B; selected Gemma 4 26B A4B value for AIME 2026 = 88.3.",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Saved comparison table explicitly labels the Gemma 4 26B A4B column; source model card identifies google/gemma-4-26B-A4B-it."
+  },
+  {
+   "model_id": "google/gemma-4-26b-a4b-it",
+   "benchmark": "LiveCodeBench",
+   "benchmark_version": "v6",
+   "metric": "pass@1",
+   "value": "77.1",
+   "unit": "percent",
+   "configuration": "unknown",
+   "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
+   "locator": "Comparison table: columns are Gemma 4 31B and Gemma 4 26B A4B; selected Gemma 4 26B A4B value for LiveCodeBench = 77.1.",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Saved comparison table explicitly labels the Gemma 4 26B A4B column; source model card identifies google/gemma-4-26B-A4B-it."
+  },
+  {
+   "model_id": "google/gemma-4-26b-a4b-it",
+   "benchmark": "Codeforces",
+   "benchmark_version": "unknown",
+   "metric": "ELO",
+   "value": "1718",
+   "unit": "points",
+   "configuration": "unknown",
+   "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
+   "locator": "Comparison table: columns are Gemma 4 31B and Gemma 4 26B A4B; selected Gemma 4 26B A4B value for Codeforces = 1718.",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Saved comparison table explicitly labels the Gemma 4 26B A4B column; source model card identifies google/gemma-4-26B-A4B-it."
+  },
+  {
+   "model_id": "google/gemma-4-26b-a4b-it",
+   "benchmark": "Tau2",
+   "benchmark_version": "average over 3",
+   "metric": "accuracy",
+   "value": "68.2",
+   "unit": "percent",
+   "configuration": "unknown",
+   "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
+   "locator": "Comparison table: columns are Gemma 4 31B and Gemma 4 26B A4B; selected Gemma 4 26B A4B value for Tau2 = 68.2.",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Saved comparison table explicitly labels the Gemma 4 26B A4B column; source model card identifies google/gemma-4-26B-A4B-it."
+  },
+  {
+   "model_id": "google/gemma-4-26b-a4b-it",
+   "benchmark": "HLE (Humanity's Last Exam)",
+   "benchmark_version": "unknown",
+   "metric": "accuracy",
+   "value": "8.7",
+   "unit": "percent",
+   "configuration": "no tools",
+   "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
+   "locator": "Comparison table: columns are Gemma 4 31B and Gemma 4 26B A4B; selected Gemma 4 26B A4B value for HLE (Humanity's Last Exam) = 8.7.",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Saved comparison table explicitly labels the Gemma 4 26B A4B column; source model card identifies google/gemma-4-26B-A4B-it."
+  },
+  {
+   "model_id": "google/gemma-4-26b-a4b-it",
+   "benchmark": "HLE (Humanity's Last Exam)",
+   "benchmark_version": "unknown",
+   "metric": "accuracy",
+   "value": "17.2",
+   "unit": "percent",
+   "configuration": "with search",
+   "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
+   "locator": "evalResults: dataset cais/hle, task_id hle, value 17.2, notes: With search",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Hugging Face model card explicitly for google/gemma-4-26B-A4B-it"
+  },
+  {
+   "model_id": "google/gemma-4-26b-a4b-it",
+   "benchmark": "BigBench Extra Hard",
+   "benchmark_version": "unknown",
+   "metric": "accuracy",
+   "value": "64.8",
+   "unit": "percent",
+   "configuration": "unknown",
+   "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
+   "locator": "Comparison table: columns are Gemma 4 31B and Gemma 4 26B A4B; selected Gemma 4 26B A4B value for BigBench Extra Hard = 64.8.",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Saved comparison table explicitly labels the Gemma 4 26B A4B column; source model card identifies google/gemma-4-26B-A4B-it."
+  },
+  {
+   "model_id": "google/gemma-4-26b-a4b-it",
+   "benchmark": "MMMLU",
+   "benchmark_version": "unknown",
+   "metric": "accuracy",
+   "value": "86.3",
+   "unit": "percent",
+   "configuration": "unknown",
+   "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
+   "locator": "Comparison table: columns are Gemma 4 31B and Gemma 4 26B A4B; selected Gemma 4 26B A4B value for MMMLU = 86.3.",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Saved comparison table explicitly labels the Gemma 4 26B A4B column; source model card identifies google/gemma-4-26B-A4B-it."
+  },
+  {
+   "model_id": "google/gemma-4-26b-a4b-it",
+   "benchmark": "MMMU Pro",
+   "benchmark_version": "vision",
+   "metric": "accuracy",
+   "value": "73.8",
+   "unit": "percent",
+   "configuration": "vision modality",
+   "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
+   "locator": "evalResults: dataset MMMU/MMMU_Pro, task_id mmmu_pro_vision, value 73.8",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Hugging Face model card explicitly for google/gemma-4-26B-A4B-it"
+  },
+  {
+   "model_id": "google/gemma-4-26b-a4b-it",
+   "benchmark": "OmniDocBench 1.5",
+   "benchmark_version": "1.5",
+   "metric": "average edit distance",
+   "value": "0.149",
+   "unit": "fraction",
+   "configuration": "lower is better",
+   "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
+   "locator": "Comparison table: columns are Gemma 4 31B and Gemma 4 26B A4B; selected Gemma 4 26B A4B value for OmniDocBench 1.5 = 0.149.",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Saved comparison table explicitly labels the Gemma 4 26B A4B column; source model card identifies google/gemma-4-26B-A4B-it."
+  },
+  {
+   "model_id": "google/gemma-4-26b-a4b-it",
+   "benchmark": "MATH-Vision",
+   "benchmark_version": "unknown",
+   "metric": "accuracy",
+   "value": "82.4",
+   "unit": "percent",
+   "configuration": "unknown",
+   "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
+   "locator": "Comparison table: columns are Gemma 4 31B and Gemma 4 26B A4B; selected Gemma 4 26B A4B value for MATH-Vision = 82.4.",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Saved comparison table explicitly labels the Gemma 4 26B A4B column; source model card identifies google/gemma-4-26B-A4B-it."
+  },
+  {
+   "model_id": "google/gemma-4-26b-a4b-it",
+   "benchmark": "MedXPertQA MM",
+   "benchmark_version": "unknown",
+   "metric": "accuracy",
+   "value": "58.1",
+   "unit": "percent",
+   "configuration": "multimodal",
+   "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
+   "locator": "Comparison table: columns are Gemma 4 31B and Gemma 4 26B A4B; selected Gemma 4 26B A4B value for MedXPertQA MM = 58.1.",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Saved comparison table explicitly labels the Gemma 4 26B A4B column; source model card identifies google/gemma-4-26B-A4B-it."
+  },
+  {
+   "model_id": "google/gemma-4-26b-a4b-it",
+   "benchmark": "MRCR v2 8 needle 128k",
+   "benchmark_version": "v2",
+   "metric": "average accuracy",
+   "value": "44.1",
+   "unit": "percent",
+   "configuration": "8 needle, 128K context",
+   "source_url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-26b.html",
+   "locator": "Comparison table: columns are Gemma 4 31B and Gemma 4 26B A4B; selected Gemma 4 26B A4B value for MRCR v2 8 needle 128k = 44.1.",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Saved comparison table explicitly labels the Gemma 4 26B A4B column; source model card identifies google/gemma-4-26B-A4B-it."
+  },
+  {
+   "model_id": "google/gemma-4-31b-it",
+   "benchmark": "MMLU Pro",
+   "benchmark_version": "unknown",
+   "metric": "accuracy",
+   "value": "85.2",
+   "unit": "percent",
+   "configuration": "instruction-tuned model",
+   "source_url": "https://huggingface.co/google/gemma-4-31B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
+   "locator": "Benchmark table: MMLU Pro 85.2%",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
+  },
+  {
+   "model_id": "google/gemma-4-31b-it",
+   "benchmark": "AIME 2026",
+   "benchmark_version": "2026",
+   "metric": "accuracy",
+   "value": "89.2",
+   "unit": "percent",
+   "configuration": "no tools",
+   "source_url": "https://huggingface.co/google/gemma-4-31B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
+   "locator": "Benchmark table: AIME 2026 no tools 89.2%",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
+  },
+  {
+   "model_id": "google/gemma-4-31b-it",
+   "benchmark": "LiveCodeBench",
+   "benchmark_version": "v6",
+   "metric": "pass@1",
+   "value": "80.0",
+   "unit": "percent",
+   "configuration": "unknown",
+   "source_url": "https://huggingface.co/google/gemma-4-31B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
+   "locator": "Benchmark table: LiveCodeBench v6 80.0%",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
+  },
+  {
+   "model_id": "google/gemma-4-31b-it",
+   "benchmark": "Codeforces",
+   "benchmark_version": "unknown",
+   "metric": "ELO",
+   "value": "2150",
+   "unit": "points",
+   "configuration": "unknown",
+   "source_url": "https://huggingface.co/google/gemma-4-31B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
+   "locator": "Benchmark table: Codeforces ELO 2150",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
+  },
+  {
+   "model_id": "google/gemma-4-31b-it",
+   "benchmark": "GPQA Diamond",
+   "benchmark_version": "unknown",
+   "metric": "accuracy",
+   "value": "84.3",
+   "unit": "percent",
+   "configuration": "instruction-tuned model",
+   "source_url": "https://huggingface.co/google/gemma-4-31B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
+   "locator": "Benchmark table: GPQA Diamond 84.3%",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
+  },
+  {
+   "model_id": "google/gemma-4-31b-it",
+   "benchmark": "Tau2",
+   "benchmark_version": "average over 3",
+   "metric": "accuracy",
+   "value": "76.9",
+   "unit": "percent",
+   "configuration": "unknown",
+   "source_url": "https://huggingface.co/google/gemma-4-31B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
+   "locator": "Benchmark table: Tau2 (average over 3) 76.9%",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
+  },
+  {
+   "model_id": "google/gemma-4-31b-it",
+   "benchmark": "HLE (Humanity's Last Exam)",
+   "benchmark_version": "unknown",
+   "metric": "accuracy",
+   "value": "19.5",
+   "unit": "percent",
+   "configuration": "no tools",
+   "source_url": "https://huggingface.co/google/gemma-4-31B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
+   "locator": "Benchmark table: HLE no tools 19.5%",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
+  },
+  {
+   "model_id": "google/gemma-4-31b-it",
+   "benchmark": "HLE (Humanity's Last Exam)",
+   "benchmark_version": "unknown",
+   "metric": "accuracy",
+   "value": "26.5",
+   "unit": "percent",
+   "configuration": "with search",
+   "source_url": "https://huggingface.co/google/gemma-4-31B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
+   "locator": "Benchmark table: HLE with search 26.5%",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
+  },
+  {
+   "model_id": "google/gemma-4-31b-it",
+   "benchmark": "BigBench Extra Hard",
+   "benchmark_version": "unknown",
+   "metric": "accuracy",
+   "value": "74.4",
+   "unit": "percent",
+   "configuration": "unknown",
+   "source_url": "https://huggingface.co/google/gemma-4-31B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
+   "locator": "Benchmark table: BigBench Extra Hard 74.4%",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
+  },
+  {
+   "model_id": "google/gemma-4-31b-it",
+   "benchmark": "MMMLU",
+   "benchmark_version": "unknown",
+   "metric": "accuracy",
+   "value": "88.4",
+   "unit": "percent",
+   "configuration": "unknown",
+   "source_url": "https://huggingface.co/google/gemma-4-31B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
+   "locator": "Benchmark table: MMMLU 88.4%",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
+  },
+  {
+   "model_id": "google/gemma-4-31b-it",
+   "benchmark": "MMMU Pro",
+   "benchmark_version": "vision",
+   "metric": "accuracy",
+   "value": "76.9",
+   "unit": "percent",
+   "configuration": "vision modality",
+   "source_url": "https://huggingface.co/google/gemma-4-31B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
+   "locator": "Benchmark table: Vision MMMU Pro 76.9%",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
+  },
+  {
+   "model_id": "google/gemma-4-31b-it",
+   "benchmark": "OmniDocBench 1.5",
+   "benchmark_version": "1.5",
+   "metric": "average edit distance",
+   "value": "0.131",
+   "unit": "fraction",
+   "configuration": "lower is better",
+   "source_url": "https://huggingface.co/google/gemma-4-31B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
+   "locator": "Benchmark table: OmniDocBench 1.5 (average edit distance, lower is better) 0.131",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
+  },
+  {
+   "model_id": "google/gemma-4-31b-it",
+   "benchmark": "MATH-Vision",
+   "benchmark_version": "unknown",
+   "metric": "accuracy",
+   "value": "85.6",
+   "unit": "percent",
+   "configuration": "unknown",
+   "source_url": "https://huggingface.co/google/gemma-4-31B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
+   "locator": "Benchmark table: MATH-Vision 85.6%",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
+  },
+  {
+   "model_id": "google/gemma-4-31b-it",
+   "benchmark": "MedXPertQA MM",
+   "benchmark_version": "unknown",
+   "metric": "accuracy",
+   "value": "61.3",
+   "unit": "percent",
+   "configuration": "multimodal",
+   "source_url": "https://huggingface.co/google/gemma-4-31B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
+   "locator": "Benchmark table: MedXPertQA MM 61.3%",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
+  },
+  {
+   "model_id": "google/gemma-4-31b-it",
+   "benchmark": "MRCR v2 8 needle 128k",
+   "benchmark_version": "v2",
+   "metric": "average accuracy",
+   "value": "66.4",
+   "unit": "percent",
+   "configuration": "8 needle, 128K context",
+   "source_url": "https://huggingface.co/google/gemma-4-31B-it",
+   "source_file": "data/research/google/sources/hf-gemma-4-31b.html",
+   "locator": "Benchmark table: MRCR v2 8 needle 128k (average) 66.4%",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Hugging Face model card explicitly for google/gemma-4-31B-it"
+  }
+ ],
+ "sources": [
+  {
+   "url": "https://ai.google.dev/gemini-api/docs/models",
+   "file": "data/research/google/sources/google-ai-dev-models.html",
+   "status": "retrieved",
+   "purpose": "Google official Gemini API model documentation listing available models, capabilities, and specifications",
+   "license": "unknown"
+  },
+  {
+   "url": "https://ai.google.dev/gemini-api/docs/models#gemini-2.5-flash",
+   "file": "data/research/google/sources/gemini-models-overview.html",
+   "status": "retrieved",
+   "purpose": "Gemini 2.5 Flash model overview from Google AI Dev",
+   "license": "unknown"
+  },
+  {
+   "url": "https://ai.google.dev/gemini-api/docs/models#gemini-2.5-flash-lite",
+   "file": "data/research/google/sources/google-ai-dev-flash-lite.html",
+   "status": "retrieved",
+   "purpose": "Gemini 2.5 Flash Lite model documentation (same content as models page)",
+   "license": "unknown"
+  },
+  {
+   "url": "https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/",
+   "file": "data/research/google/sources/google-blog-gemini-2.5-march2025.html",
+   "status": "retrieved",
+   "purpose": "Google blog post announcing Gemini 2.5 models with thinking capabilities",
+   "license": "unknown"
+  },
+  {
+   "url": "https://blog.google/technology/google-deepmind/gemini-2-5-pro-exp-thinking-model/",
+   "file": "data/research/google/sources/google-blog-gemini-2.5-pro.html",
+   "status": "redirect_or_not_found",
+   "purpose": "Attempted Google Blog source; saved artifact indicates redirect/404 and is not used as content evidence.",
+   "license": "unknown"
+  },
+  {
+   "url": "https://blog.google/technology/google-deepmind/gemini-2-5-flash/",
+   "file": "data/research/google/sources/google-blog-gemini-2.5-flash.html",
+   "status": "not_found",
+   "purpose": "Attempted to fetch Gemini 2.5 Flash dedicated blog post - returned 404",
+   "license": "unknown"
+  },
+  {
+   "url": "https://huggingface.co/google/gemma-4-26b-a4b-it",
+   "file": "data/research/google/sources/hf-gemma-4-26b.html",
+   "status": "retrieved",
+   "purpose": "Hugging Face model card for Gemma 4 26B A4B IT containing eval results JSON with benchmark scores",
+   "license": "Apache 2.0 (model license, not source)"
+  },
+  {
+   "url": "https://huggingface.co/google/gemma-4-31b-it",
+   "file": "data/research/google/sources/hf-gemma-4-31b.html",
+   "status": "retrieved",
+   "purpose": "Hugging Face model card for Gemma 4 31B IT containing comprehensive benchmark comparison table",
+   "license": "Apache 2.0 (model license, not source)"
+  }
+ ],
+ "gaps": [
+  "No benchmark tables found for Gemini 2.5 Flash/Pro/Flash Lite in any saved source. The ai.google.dev models page is descriptive only (specs, not benchmarks). Blog posts describe performance qualitatively.",
+  "All Gemini 3.x, 3.1, 3.5, 3.6, 3.7, 3.8, and Omni models are future/unreleased. They exist as alt-paths in google-ai-dev-models.html but have no released versions, no benchmarks, and catalog claims only. Per policy these are marked unresearched.",
+  "Gemini 2.5 Flash dedicated blog page returned 404; only the general Gemini 2.5 announcement blog was available.",
+  "No independent (third-party) benchmark evaluations were collected. All benchmark data comes from provider-reported sources (Google/Hugging Face).",
+  "Missing Gemini 2.5 models on LMSYS/Chatbot Arena or other leaderboard data - not checked in this research pass.",
+  "Gemini 2.5 Flash Image (Nano Banana) and Gemini 2.5 Flash Lite have no benchmark evidence in saved sources; catalog provides only qualitative descriptions."
+ ]
 }

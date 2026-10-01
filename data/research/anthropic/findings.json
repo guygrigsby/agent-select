@@ -26,8 +26,8 @@
     }
    ],
    "weaknesses": [],
-   "benchmark_status": "unresearched",
-   "notes": "No exact-model numeric benchmark was established from the saved sources; future/unfamiliar releases were not assigned predecessor results. Status correction: prior found status was inconsistent with the exported benchmarks array, which contains no numeric row for this exact ID; benchmark extraction is not complete. This does not establish that no published benchmark exists, and no adjacent revision result is assigned."
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "No exact-model numeric benchmark was established from the saved sources; exact-model benchmarks found in the anthropic-announcements batch (launch grids); status there is found"
   },
   {
    "id": "anthropic/claude-haiku-4.5",
@@ -41,8 +41,8 @@
     }
    ],
    "weaknesses": [],
-   "benchmark_status": "unresearched",
-   "notes": "No exact-model numeric benchmark was established from the saved sources; future/unfamiliar releases were not assigned predecessor results. Status correction: prior found status was inconsistent with the exported benchmarks array, which contains no numeric row for this exact ID; benchmark extraction is not complete. This does not establish that no published benchmark exists, and no adjacent revision result is assigned."
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "No exact-model numeric benchmark was established from the saved sources; exact-model benchmarks found in the anthropic-announcements batch (launch grids); status there is found"
   },
   {
    "id": "anthropic/claude-opus-4",
@@ -56,8 +56,8 @@
     }
    ],
    "weaknesses": [],
-   "benchmark_status": "unresearched",
-   "notes": "No exact-model numeric benchmark was established from the saved sources; future/unfamiliar releases were not assigned predecessor results. Status correction: prior found status was inconsistent with the exported benchmarks array, which contains no numeric row for this exact ID; benchmark extraction is not complete. This does not establish that no published benchmark exists, and no adjacent revision result is assigned."
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "No exact-model numeric benchmark was established from the saved sources; exact-model benchmarks found in the anthropic-announcements batch (launch grids); status there is found"
   },
   {
    "id": "anthropic/claude-opus-4.5",
@@ -120,8 +120,8 @@
     }
    ],
    "weaknesses": [],
-   "benchmark_status": "unresearched",
-   "notes": "No exact-model numeric benchmark was established from the saved sources; future/unfamiliar releases were not assigned predecessor results. Status correction: prior found status was inconsistent with the exported benchmarks array, which contains no numeric row for this exact ID; benchmark extraction is not complete. This does not establish that no published benchmark exists, and no adjacent revision result is assigned."
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "No exact-model numeric benchmark was established from the saved sources; exact-model benchmarks found in the anthropic-announcements batch (launch grids); status there is found"
   },
   {
    "id": "anthropic/claude-opus-5.5-fast",
@@ -142,8 +142,8 @@
     }
    ],
    "weaknesses": [],
-   "benchmark_status": "unresearched",
-   "notes": "No exact-model numeric benchmark was established from the saved sources; future/unfamiliar releases were not assigned predecessor results. Status correction: prior found status was inconsistent with the exported benchmarks array, which contains no numeric row for this exact ID; benchmark extraction is not complete. This does not establish that no published benchmark exists, and no adjacent revision result is assigned."
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "No exact-model numeric benchmark was established from the saved sources; exact-model benchmarks found in the anthropic-announcements batch (launch grids); status there is found"
   },
   {
    "id": "anthropic/claude-sonnet-4.5",
@@ -178,8 +178,8 @@
     }
    ],
    "weaknesses": [],
-   "benchmark_status": "unresearched",
-   "notes": "No exact-model numeric benchmark was established from the saved sources; future/unfamiliar releases were not assigned predecessor results. Status correction: prior found status was inconsistent with the exported benchmarks array, which contains no numeric row for this exact ID; benchmark extraction is not complete. This does not establish that no published benchmark exists, and no adjacent revision result is assigned."
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "No exact-model numeric benchmark was established from the saved sources; exact-model benchmarks found in the anthropic-announcements batch (launch grids); status there is found"
   }
  ],
  "benchmarks": [],

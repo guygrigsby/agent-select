@@ -6,7 +6,7 @@ Generated from the assembled build tables and `data/research-inputs/backlog-task
 - kinds: embedding 26, evaluation 2, image 34, language 268, realtime 9, reranking 5, speech 8, transcription 8, video 35
 - image-output models: 41, all assigned to the images batch (34 image-kind, 7 language-kind with image output; the two sets are gated equal)
 - exact-ID price joins: 394 models joined, 1 unjoined
-- benchmark coverage: scores_found 51, no_scores_in_checked_sources 240, unresearched 11, out_of_research_scope 93
+- benchmark coverage: scores_found 51, no_scores_in_checked_sources 250, unresearched 1, out_of_research_scope 93
 
 ## Cross-model gaps
 

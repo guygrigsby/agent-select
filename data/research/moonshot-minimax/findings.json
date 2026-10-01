@@ -1,369 +1,369 @@
 {
-  "models": [
+ "models": [
+  {
+   "id": "minimax/minimax-m2",
+   "strengths": [
     {
-      "id": "minimax/minimax-m2",
-      "strengths": [
-        {
-          "text": "Coding and agentic workflows; 230B total / 10B active MoE.",
-          "basis": "primary_claim",
-          "source_url": "https://github.com/MiniMax-AI/MiniMax-M2",
-          "source_file": "data/research/moonshot-minimax/sources/github_minimax_m2_readme_full.md",
-          "locator": "Coding and agentic workflows; 230B total / 10B active MoE."
-        }
-      ],
-      "weaknesses": [],
-      "benchmark_status": "found",
-      "notes": "Published measurements for this exact ID are exported from the provider README captures in this batch. Provider-reported, not independently reproduced; comparability and calibration remain unresolved."
-    },
-    {
-      "id": "minimax/minimax-m2.1",
-      "strengths": [],
-      "weaknesses": [],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "No model-specific benchmark table found in the checked saved sources; do not inherit scores from adjacent revisions."
-    },
-    {
-      "id": "minimax/minimax-m2.1-lightning",
-      "strengths": [],
-      "weaknesses": [],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "No model-specific benchmark table found in the checked saved sources; do not inherit scores from adjacent revisions."
-    },
-    {
-      "id": "minimax/minimax-m2.5",
-      "strengths": [],
-      "weaknesses": [],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "No model-specific benchmark table found in the checked saved sources; do not inherit scores from adjacent revisions."
-    },
-    {
-      "id": "minimax/minimax-m2.5-highspeed",
-      "strengths": [],
-      "weaknesses": [],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "No model-specific benchmark table found in the checked saved sources; do not inherit scores from adjacent revisions."
-    },
-    {
-      "id": "minimax/minimax-m2.7",
-      "strengths": [],
-      "weaknesses": [],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "No model-specific benchmark table found in the checked saved sources; do not inherit scores from adjacent revisions."
-    },
-    {
-      "id": "minimax/minimax-m2.7-highspeed",
-      "strengths": [],
-      "weaknesses": [],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "No model-specific benchmark table found in the checked saved sources; do not inherit scores from adjacent revisions."
-    },
-    {
-      "id": "minimax/minimax-m3",
-      "strengths": [
-        {
-          "text": "Native multimodal model with 1M context; approximately 428B total / 23B activated parameters.",
-          "basis": "primary_claim",
-          "source_url": "https://github.com/MiniMax-AI/MiniMax-M3",
-          "source_file": "data/research/moonshot-minimax/sources/github_minimax_m3_readme.md",
-          "locator": "Native multimodal model with 1M context; approximately 428B total / 23B activated parameters."
-        }
-      ],
-      "weaknesses": [],
-      "benchmark_status": "unresearched",
-      "notes": "Published evidence is provider/model-card material; benchmark results are not independent unless noted. Status correction: prior found status was inconsistent with the exported benchmarks array, which contains no numeric row for this exact ID; benchmark extraction is not complete. This does not establish that no published benchmark exists, and no adjacent revision result is assigned."
-    },
-    {
-      "id": "moonshotai/kimi-k2",
-      "strengths": [
-        {
-          "text": "Kimi K2 Instruct reports coding, reasoning, and tool-use evaluations.",
-          "basis": "primary_claim",
-          "source_url": "https://huggingface.co/moonshotai/Kimi-K2-Instruct",
-          "source_file": "data/research/moonshot-minimax/sources/kimi_k2_readme.md",
-          "locator": "Kimi K2 Instruct reports coding, reasoning, and tool-use evaluations."
-        }
-      ],
-      "weaknesses": [],
-      "benchmark_status": "found",
-      "notes": "Published measurements for this exact ID are exported from the provider README captures in this batch. Provider-reported, not independently reproduced; comparability and calibration remain unresolved."
-    },
-    {
-      "id": "moonshotai/kimi-k2-thinking",
-      "strengths": [],
-      "weaknesses": [],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "No model-specific benchmark table found in the checked saved sources; do not inherit scores from adjacent revisions."
-    },
-    {
-      "id": "moonshotai/kimi-k2.5",
-      "strengths": [
-        {
-          "text": "Kimi K2.5 reports text, vision, and agentic evaluation results.",
-          "basis": "primary_claim",
-          "source_url": "https://huggingface.co/moonshotai/Kimi-K2.5",
-          "source_file": "data/research/moonshot-minimax/sources/kimi_k25_readme.md",
-          "locator": "Kimi K2.5 reports text, vision, and agentic evaluation results."
-        }
-      ],
-      "weaknesses": [],
-      "benchmark_status": "found",
-      "notes": "Published measurements for this exact ID are exported from the provider README captures in this batch. Provider-reported, not independently reproduced; comparability and calibration remain unresolved."
-    },
-    {
-      "id": "moonshotai/kimi-k2.6",
-      "strengths": [],
-      "weaknesses": [],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "No model-specific benchmark table found in the checked saved sources; do not inherit scores from adjacent revisions."
-    },
-    {
-      "id": "moonshotai/kimi-k2.7-code",
-      "strengths": [],
-      "weaknesses": [],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "No model-specific benchmark table found in the checked saved sources; do not inherit scores from adjacent revisions."
-    },
-    {
-      "id": "moonshotai/kimi-k2.7-code-highspeed",
-      "strengths": [],
-      "weaknesses": [],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "No model-specific benchmark table found in the checked saved sources; do not inherit scores from adjacent revisions."
-    },
-    {
-      "id": "moonshotai/kimi-k3",
-      "strengths": [
-        {
-          "text": "Kimi K3 reports reasoning, coding, agentic, and multimodal evaluations.",
-          "basis": "primary_claim",
-          "source_url": "https://huggingface.co/moonshotai/Kimi-K3",
-          "source_file": "data/research/moonshot-minimax/sources/kimi_k3_readme.md",
-          "locator": "Kimi K3 reports reasoning, coding, agentic, and multimodal evaluations."
-        }
-      ],
-      "weaknesses": [],
-      "benchmark_status": "found",
-      "notes": "Published measurements for this exact ID are exported from the provider README captures in this batch. Provider-reported, not independently reproduced; comparability and calibration remain unresolved."
-    },
-    {
-      "id": "moonshotai/kimi-k3-fast",
-      "strengths": [],
-      "weaknesses": [],
-      "benchmark_status": "not_found_in_checked_sources",
-      "notes": "No model-specific benchmark table found in the checked saved sources; do not inherit scores from adjacent revisions."
+     "text": "Coding and agentic workflows; 230B total / 10B active MoE.",
+     "basis": "primary_claim",
+     "source_url": "https://github.com/MiniMax-AI/MiniMax-M2",
+     "source_file": "data/research/moonshot-minimax/sources/github_minimax_m2_readme_full.md",
+     "locator": "Coding and agentic workflows; 230B total / 10B active MoE."
     }
-  ],
-  "benchmarks": [
+   ],
+   "weaknesses": [],
+   "benchmark_status": "found",
+   "notes": "Published measurements for this exact ID are exported from the provider README captures in this batch. Provider-reported, not independently reproduced; comparability and calibration remain unresolved."
+  },
+  {
+   "id": "minimax/minimax-m2.1",
+   "strengths": [],
+   "weaknesses": [],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "No model-specific benchmark table found in the checked saved sources; do not inherit scores from adjacent revisions."
+  },
+  {
+   "id": "minimax/minimax-m2.1-lightning",
+   "strengths": [],
+   "weaknesses": [],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "No model-specific benchmark table found in the checked saved sources; do not inherit scores from adjacent revisions."
+  },
+  {
+   "id": "minimax/minimax-m2.5",
+   "strengths": [],
+   "weaknesses": [],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "No model-specific benchmark table found in the checked saved sources; do not inherit scores from adjacent revisions."
+  },
+  {
+   "id": "minimax/minimax-m2.5-highspeed",
+   "strengths": [],
+   "weaknesses": [],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "No model-specific benchmark table found in the checked saved sources; do not inherit scores from adjacent revisions."
+  },
+  {
+   "id": "minimax/minimax-m2.7",
+   "strengths": [],
+   "weaknesses": [],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "No model-specific benchmark table found in the checked saved sources; do not inherit scores from adjacent revisions."
+  },
+  {
+   "id": "minimax/minimax-m2.7-highspeed",
+   "strengths": [],
+   "weaknesses": [],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "No model-specific benchmark table found in the checked saved sources; do not inherit scores from adjacent revisions."
+  },
+  {
+   "id": "minimax/minimax-m3",
+   "strengths": [
     {
-      "model_id": "minimax/minimax-m2",
-      "benchmark": "SWE-bench Verified",
-      "benchmark_version": "unknown",
-      "metric": "pass rate",
-      "value": "69.4",
-      "unit": "percent",
-      "configuration": "R2E-Gym on OpenHands; 128k context; 100 max steps; no test-time scaling.",
-      "source_url": "https://github.com/MiniMax-AI/MiniMax-M2",
-      "source_file": "data/research/moonshot-minimax/sources/github_minimax_m2_readme_full.md",
-      "locator": "| **SWE-bench Verified** | 69.4 |",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Source table explicitly names exact model."
-    },
-    {
-      "model_id": "minimax/minimax-m2",
-      "benchmark": "AIME25",
-      "benchmark_version": "2025",
-      "metric": "accuracy",
-      "value": "78",
-      "unit": "percent",
-      "configuration": "Artificial Analysis-aligned methodology; configuration details not otherwise stated.",
-      "source_url": "https://github.com/MiniMax-AI/MiniMax-M2",
-      "source_file": "data/research/moonshot-minimax/sources/github_minimax_m2_readme_full.md",
-      "locator": "| AIME25 | 78 |",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Source table explicitly names exact model."
-    },
-    {
-      "model_id": "minimax/minimax-m2",
-      "benchmark": "MMLU-Pro",
-      "benchmark_version": "unknown",
-      "metric": "accuracy",
-      "value": "82",
-      "unit": "percent",
-      "configuration": "Artificial Analysis-aligned methodology; configuration details not otherwise stated.",
-      "source_url": "https://github.com/MiniMax-AI/MiniMax-M2",
-      "source_file": "data/research/moonshot-minimax/sources/github_minimax_m2_readme_full.md",
-      "locator": "| MMLU-Pro | 82 |",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Source table explicitly names exact model."
-    },
-    {
-      "model_id": "moonshotai/kimi-k2",
-      "benchmark": "LiveCodeBench",
-      "benchmark_version": "v6 (Aug 24 - May 25)",
-      "metric": "pass@1",
-      "value": "53.7",
-      "unit": "percent",
-      "configuration": "Instruction model evaluation; 8k output token length unless stated otherwise.",
-      "source_url": "https://huggingface.co/moonshotai/Kimi-K2-Instruct",
-      "source_file": "data/research/moonshot-minimax/sources/kimi_k2_readme.md",
-      "locator": "LiveCodeBench v6 ... Pass@1 ... 53.7",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Source table explicitly names exact model."
-    },
-    {
-      "model_id": "moonshotai/kimi-k2",
-      "benchmark": "SWE-bench Verified",
-      "benchmark_version": "unknown",
-      "metric": "pass@1",
-      "value": "65.8",
-      "unit": "percent",
-      "configuration": "Agentic coding, single attempt, bash/editor tools; no test-time compute.",
-      "source_url": "https://huggingface.co/moonshotai/Kimi-K2-Instruct",
-      "source_file": "data/research/moonshot-minimax/sources/kimi_k2_readme.md",
-      "locator": "Kimi K2 achieves 65.8% pass@1 ... single-attempt patches, no test-time compute.",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Source table explicitly names exact model."
-    },
-    {
-      "model_id": "moonshotai/kimi-k2",
-      "benchmark": "SWE-bench Multilingual",
-      "benchmark_version": "unknown",
-      "metric": "pass@1",
-      "value": "47.3",
-      "unit": "percent",
-      "configuration": "Agentic coding, single attempt, same conditions as stated for K2.",
-      "source_url": "https://huggingface.co/moonshotai/Kimi-K2-Instruct",
-      "source_file": "data/research/moonshot-minimax/sources/kimi_k2_readme.md",
-      "locator": "47.3% pass@1 on the SWE-bench Multilingual tests",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Source table explicitly names exact model."
-    },
-    {
-      "model_id": "moonshotai/kimi-k2.5",
-      "benchmark": "AIME 2025",
-      "benchmark_version": "2025",
-      "metric": "accuracy",
-      "value": "96.1",
-      "unit": "percent",
-      "configuration": "Thinking mode; maximum completion budget 96k; averaged over 32 runs (avg@32).",
-      "source_url": "https://huggingface.co/moonshotai/Kimi-K2.5",
-      "source_file": "data/research/moonshot-minimax/sources/kimi_k25_readme.md",
-      "locator": "AIME 2025 ... 96.1",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Source table explicitly names exact model."
-    },
-    {
-      "model_id": "moonshotai/kimi-k2.5",
-      "benchmark": "GPQA-Diamond",
-      "benchmark_version": "unknown",
-      "metric": "accuracy",
-      "value": "87.6",
-      "unit": "percent",
-      "configuration": "Thinking mode; maximum completion budget 96k; averaged over 8 runs (avg@8).",
-      "source_url": "https://huggingface.co/moonshotai/Kimi-K2.5",
-      "source_file": "data/research/moonshot-minimax/sources/kimi_k25_readme.md",
-      "locator": "GPQA-Diamond ... 87.6",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Source table explicitly names exact model."
-    },
-    {
-      "model_id": "moonshotai/kimi-k2.5",
-      "benchmark": "HLE-Full (w/ tools)",
-      "benchmark_version": "unknown",
-      "metric": "accuracy",
-      "value": "50.2",
-      "unit": "percent",
-      "configuration": "Tools enabled; full set; search/code/web tools; configuration notes in source.",
-      "source_url": "https://huggingface.co/moonshotai/Kimi-K2.5",
-      "source_file": "data/research/moonshot-minimax/sources/kimi_k25_readme.md",
-      "locator": "HLE-Full (w/ tools) ... 50.2",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Source table explicitly names exact model."
-    },
-    {
-      "model_id": "moonshotai/kimi-k3",
-      "benchmark": "GPQA Diamond",
-      "benchmark_version": "unknown",
-      "metric": "accuracy",
-      "value": "93.5",
-      "unit": "percent",
-      "configuration": "Reasoning effort max; temperature 1.0; single-step top-p 0.95.",
-      "source_url": "https://huggingface.co/moonshotai/Kimi-K3",
-      "source_file": "data/research/moonshot-minimax/sources/kimi_k3_readme.md",
-      "locator": "GPQA Diamond ... 93.5",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Source table explicitly names exact model."
-    },
-    {
-      "model_id": "moonshotai/kimi-k3",
-      "benchmark": "DeepSWE",
-      "benchmark_version": "v1.1",
-      "metric": "pass rate",
-      "value": "67.5",
-      "unit": "percent",
-      "configuration": "Kimi Code harness; source notes task version and comparisons.",
-      "source_url": "https://huggingface.co/moonshotai/Kimi-K3",
-      "source_file": "data/research/moonshot-minimax/sources/kimi_k3_readme.md",
-      "locator": "DeepSWE ... 67.5",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Source table explicitly names exact model."
-    },
-    {
-      "model_id": "moonshotai/kimi-k3",
-      "benchmark": "Terminal-Bench",
-      "benchmark_version": "2.1",
-      "metric": "pass rate",
-      "value": "88.3",
-      "unit": "percent",
-      "configuration": "Kimi Code harness.",
-      "source_url": "https://huggingface.co/moonshotai/Kimi-K3",
-      "source_file": "data/research/moonshot-minimax/sources/kimi_k3_readme.md",
-      "locator": "Terminal-Bench 2.1 ... 88.3",
-      "evidence_class": "provider_reported",
-      "identity_basis": "Source table explicitly names exact model."
+     "text": "Native multimodal model with 1M context; approximately 428B total / 23B activated parameters.",
+     "basis": "primary_claim",
+     "source_url": "https://github.com/MiniMax-AI/MiniMax-M3",
+     "source_file": "data/research/moonshot-minimax/sources/github_minimax_m3_readme.md",
+     "locator": "Native multimodal model with 1M context; approximately 428B total / 23B activated parameters."
     }
-  ],
-  "sources": [
+   ],
+   "weaknesses": [],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "Checked sources: provider model card and platform docs (hf_minimax_m3_readme.md, minimax_blog.html, minimax_platform_docs.html). No exact-model numeric benchmark row exists for this ID; provider prose makes claims without published tables. This does not establish that no published benchmark exists elsewhere."
+  },
+  {
+   "id": "moonshotai/kimi-k2",
+   "strengths": [
     {
-      "url": "https://raw.githubusercontent.com/MiniMax-AI/MiniMax-M2/main/README.md",
-      "file": "data/research/moonshot-minimax/sources/github_minimax_m2_readme_full.md",
-      "status": "retrieved",
-      "purpose": "MiniMax M2 claims and benchmark tables",
-      "license": "unknown"
-    },
-    {
-      "url": "https://raw.githubusercontent.com/MiniMax-AI/MiniMax-M3/main/README.md",
-      "file": "data/research/moonshot-minimax/sources/github_minimax_m3_readme.md",
-      "status": "retrieved",
-      "purpose": "MiniMax M3 capability claims",
-      "license": "unknown"
-    },
-    {
-      "url": "https://huggingface.co/moonshotai/Kimi-K2-Instruct/raw/main/README.md",
-      "file": "data/research/moonshot-minimax/sources/kimi_k2_readme.md",
-      "status": "retrieved",
-      "purpose": "Kimi K2 evaluation table",
-      "license": "modified MIT (verified in HF API)"
-    },
-    {
-      "url": "https://huggingface.co/moonshotai/Kimi-K2.5/raw/main/README.md",
-      "file": "data/research/moonshot-minimax/sources/kimi_k25_readme.md",
-      "status": "retrieved",
-      "purpose": "Kimi K2.5 evaluation table",
-      "license": "unknown"
-    },
-    {
-      "url": "https://huggingface.co/moonshotai/Kimi-K3/raw/main/README.md",
-      "file": "data/research/moonshot-minimax/sources/kimi_k3_readme.md",
-      "status": "retrieved",
-      "purpose": "Kimi K3 evaluation table",
-      "license": "unknown"
+     "text": "Kimi K2 Instruct reports coding, reasoning, and tool-use evaluations.",
+     "basis": "primary_claim",
+     "source_url": "https://huggingface.co/moonshotai/Kimi-K2-Instruct",
+     "source_file": "data/research/moonshot-minimax/sources/kimi_k2_readme.md",
+     "locator": "Kimi K2 Instruct reports coding, reasoning, and tool-use evaluations."
     }
-  ],
-  "gaps": [
-    "No numeric benchmark table was found for M2.1, M2.1 Lightning, M2.5, M2.5 High Speed, M2.7, M2.7 High Speed, K2 Thinking, K2.6, K2.7 Code, K2.7 Code High Speed, or K3 Fast in the checked saved sources.",
-    "Future-dated or unfamiliar catalog revisions were not assigned predecessor scores.",
-    "The checked benchmark tables are provider/model-card reported; independent replication was not established.",
-    "Status correction: withdrew prior found status for minimax/minimax-m2, minimax/minimax-m3, moonshotai/kimi-k2, moonshotai/kimi-k2.5, moonshotai/kimi-k3 because the exported benchmarks array has no numeric row for this exact ID. Extraction is incomplete; this does not establish that no published benchmark exists, and adjacent revisions were not substituted."
-  ]
+   ],
+   "weaknesses": [],
+   "benchmark_status": "found",
+   "notes": "Published measurements for this exact ID are exported from the provider README captures in this batch. Provider-reported, not independently reproduced; comparability and calibration remain unresolved."
+  },
+  {
+   "id": "moonshotai/kimi-k2-thinking",
+   "strengths": [],
+   "weaknesses": [],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "No model-specific benchmark table found in the checked saved sources; do not inherit scores from adjacent revisions."
+  },
+  {
+   "id": "moonshotai/kimi-k2.5",
+   "strengths": [
+    {
+     "text": "Kimi K2.5 reports text, vision, and agentic evaluation results.",
+     "basis": "primary_claim",
+     "source_url": "https://huggingface.co/moonshotai/Kimi-K2.5",
+     "source_file": "data/research/moonshot-minimax/sources/kimi_k25_readme.md",
+     "locator": "Kimi K2.5 reports text, vision, and agentic evaluation results."
+    }
+   ],
+   "weaknesses": [],
+   "benchmark_status": "found",
+   "notes": "Published measurements for this exact ID are exported from the provider README captures in this batch. Provider-reported, not independently reproduced; comparability and calibration remain unresolved."
+  },
+  {
+   "id": "moonshotai/kimi-k2.6",
+   "strengths": [],
+   "weaknesses": [],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "No model-specific benchmark table found in the checked saved sources; do not inherit scores from adjacent revisions."
+  },
+  {
+   "id": "moonshotai/kimi-k2.7-code",
+   "strengths": [],
+   "weaknesses": [],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "No model-specific benchmark table found in the checked saved sources; do not inherit scores from adjacent revisions."
+  },
+  {
+   "id": "moonshotai/kimi-k2.7-code-highspeed",
+   "strengths": [],
+   "weaknesses": [],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "No model-specific benchmark table found in the checked saved sources; do not inherit scores from adjacent revisions."
+  },
+  {
+   "id": "moonshotai/kimi-k3",
+   "strengths": [
+    {
+     "text": "Kimi K3 reports reasoning, coding, agentic, and multimodal evaluations.",
+     "basis": "primary_claim",
+     "source_url": "https://huggingface.co/moonshotai/Kimi-K3",
+     "source_file": "data/research/moonshot-minimax/sources/kimi_k3_readme.md",
+     "locator": "Kimi K3 reports reasoning, coding, agentic, and multimodal evaluations."
+    }
+   ],
+   "weaknesses": [],
+   "benchmark_status": "found",
+   "notes": "Published measurements for this exact ID are exported from the provider README captures in this batch. Provider-reported, not independently reproduced; comparability and calibration remain unresolved."
+  },
+  {
+   "id": "moonshotai/kimi-k3-fast",
+   "strengths": [],
+   "weaknesses": [],
+   "benchmark_status": "not_found_in_checked_sources",
+   "notes": "No model-specific benchmark table found in the checked saved sources; do not inherit scores from adjacent revisions."
+  }
+ ],
+ "benchmarks": [
+  {
+   "model_id": "minimax/minimax-m2",
+   "benchmark": "SWE-bench Verified",
+   "benchmark_version": "unknown",
+   "metric": "pass rate",
+   "value": "69.4",
+   "unit": "percent",
+   "configuration": "R2E-Gym on OpenHands; 128k context; 100 max steps; no test-time scaling.",
+   "source_url": "https://github.com/MiniMax-AI/MiniMax-M2",
+   "source_file": "data/research/moonshot-minimax/sources/github_minimax_m2_readme_full.md",
+   "locator": "| **SWE-bench Verified** | 69.4 |",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Source table explicitly names exact model."
+  },
+  {
+   "model_id": "minimax/minimax-m2",
+   "benchmark": "AIME25",
+   "benchmark_version": "2025",
+   "metric": "accuracy",
+   "value": "78",
+   "unit": "percent",
+   "configuration": "Artificial Analysis-aligned methodology; configuration details not otherwise stated.",
+   "source_url": "https://github.com/MiniMax-AI/MiniMax-M2",
+   "source_file": "data/research/moonshot-minimax/sources/github_minimax_m2_readme_full.md",
+   "locator": "| AIME25 | 78 |",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Source table explicitly names exact model."
+  },
+  {
+   "model_id": "minimax/minimax-m2",
+   "benchmark": "MMLU-Pro",
+   "benchmark_version": "unknown",
+   "metric": "accuracy",
+   "value": "82",
+   "unit": "percent",
+   "configuration": "Artificial Analysis-aligned methodology; configuration details not otherwise stated.",
+   "source_url": "https://github.com/MiniMax-AI/MiniMax-M2",
+   "source_file": "data/research/moonshot-minimax/sources/github_minimax_m2_readme_full.md",
+   "locator": "| MMLU-Pro | 82 |",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Source table explicitly names exact model."
+  },
+  {
+   "model_id": "moonshotai/kimi-k2",
+   "benchmark": "LiveCodeBench",
+   "benchmark_version": "v6 (Aug 24 - May 25)",
+   "metric": "pass@1",
+   "value": "53.7",
+   "unit": "percent",
+   "configuration": "Instruction model evaluation; 8k output token length unless stated otherwise.",
+   "source_url": "https://huggingface.co/moonshotai/Kimi-K2-Instruct",
+   "source_file": "data/research/moonshot-minimax/sources/kimi_k2_readme.md",
+   "locator": "LiveCodeBench v6 ... Pass@1 ... 53.7",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Source table explicitly names exact model."
+  },
+  {
+   "model_id": "moonshotai/kimi-k2",
+   "benchmark": "SWE-bench Verified",
+   "benchmark_version": "unknown",
+   "metric": "pass@1",
+   "value": "65.8",
+   "unit": "percent",
+   "configuration": "Agentic coding, single attempt, bash/editor tools; no test-time compute.",
+   "source_url": "https://huggingface.co/moonshotai/Kimi-K2-Instruct",
+   "source_file": "data/research/moonshot-minimax/sources/kimi_k2_readme.md",
+   "locator": "Kimi K2 achieves 65.8% pass@1 ... single-attempt patches, no test-time compute.",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Source table explicitly names exact model."
+  },
+  {
+   "model_id": "moonshotai/kimi-k2",
+   "benchmark": "SWE-bench Multilingual",
+   "benchmark_version": "unknown",
+   "metric": "pass@1",
+   "value": "47.3",
+   "unit": "percent",
+   "configuration": "Agentic coding, single attempt, same conditions as stated for K2.",
+   "source_url": "https://huggingface.co/moonshotai/Kimi-K2-Instruct",
+   "source_file": "data/research/moonshot-minimax/sources/kimi_k2_readme.md",
+   "locator": "47.3% pass@1 on the SWE-bench Multilingual tests",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Source table explicitly names exact model."
+  },
+  {
+   "model_id": "moonshotai/kimi-k2.5",
+   "benchmark": "AIME 2025",
+   "benchmark_version": "2025",
+   "metric": "accuracy",
+   "value": "96.1",
+   "unit": "percent",
+   "configuration": "Thinking mode; maximum completion budget 96k; averaged over 32 runs (avg@32).",
+   "source_url": "https://huggingface.co/moonshotai/Kimi-K2.5",
+   "source_file": "data/research/moonshot-minimax/sources/kimi_k25_readme.md",
+   "locator": "AIME 2025 ... 96.1",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Source table explicitly names exact model."
+  },
+  {
+   "model_id": "moonshotai/kimi-k2.5",
+   "benchmark": "GPQA-Diamond",
+   "benchmark_version": "unknown",
+   "metric": "accuracy",
+   "value": "87.6",
+   "unit": "percent",
+   "configuration": "Thinking mode; maximum completion budget 96k; averaged over 8 runs (avg@8).",
+   "source_url": "https://huggingface.co/moonshotai/Kimi-K2.5",
+   "source_file": "data/research/moonshot-minimax/sources/kimi_k25_readme.md",
+   "locator": "GPQA-Diamond ... 87.6",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Source table explicitly names exact model."
+  },
+  {
+   "model_id": "moonshotai/kimi-k2.5",
+   "benchmark": "HLE-Full (w/ tools)",
+   "benchmark_version": "unknown",
+   "metric": "accuracy",
+   "value": "50.2",
+   "unit": "percent",
+   "configuration": "Tools enabled; full set; search/code/web tools; configuration notes in source.",
+   "source_url": "https://huggingface.co/moonshotai/Kimi-K2.5",
+   "source_file": "data/research/moonshot-minimax/sources/kimi_k25_readme.md",
+   "locator": "HLE-Full (w/ tools) ... 50.2",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Source table explicitly names exact model."
+  },
+  {
+   "model_id": "moonshotai/kimi-k3",
+   "benchmark": "GPQA Diamond",
+   "benchmark_version": "unknown",
+   "metric": "accuracy",
+   "value": "93.5",
+   "unit": "percent",
+   "configuration": "Reasoning effort max; temperature 1.0; single-step top-p 0.95.",
+   "source_url": "https://huggingface.co/moonshotai/Kimi-K3",
+   "source_file": "data/research/moonshot-minimax/sources/kimi_k3_readme.md",
+   "locator": "GPQA Diamond ... 93.5",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Source table explicitly names exact model."
+  },
+  {
+   "model_id": "moonshotai/kimi-k3",
+   "benchmark": "DeepSWE",
+   "benchmark_version": "v1.1",
+   "metric": "pass rate",
+   "value": "67.5",
+   "unit": "percent",
+   "configuration": "Kimi Code harness; source notes task version and comparisons.",
+   "source_url": "https://huggingface.co/moonshotai/Kimi-K3",
+   "source_file": "data/research/moonshot-minimax/sources/kimi_k3_readme.md",
+   "locator": "DeepSWE ... 67.5",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Source table explicitly names exact model."
+  },
+  {
+   "model_id": "moonshotai/kimi-k3",
+   "benchmark": "Terminal-Bench",
+   "benchmark_version": "2.1",
+   "metric": "pass rate",
+   "value": "88.3",
+   "unit": "percent",
+   "configuration": "Kimi Code harness.",
+   "source_url": "https://huggingface.co/moonshotai/Kimi-K3",
+   "source_file": "data/research/moonshot-minimax/sources/kimi_k3_readme.md",
+   "locator": "Terminal-Bench 2.1 ... 88.3",
+   "evidence_class": "provider_reported",
+   "identity_basis": "Source table explicitly names exact model."
+  }
+ ],
+ "sources": [
+  {
+   "url": "https://raw.githubusercontent.com/MiniMax-AI/MiniMax-M2/main/README.md",
+   "file": "data/research/moonshot-minimax/sources/github_minimax_m2_readme_full.md",
+   "status": "retrieved",
+   "purpose": "MiniMax M2 claims and benchmark tables",
+   "license": "unknown"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/MiniMax-AI/MiniMax-M3/main/README.md",
+   "file": "data/research/moonshot-minimax/sources/github_minimax_m3_readme.md",
+   "status": "retrieved",
+   "purpose": "MiniMax M3 capability claims",
+   "license": "unknown"
+  },
+  {
+   "url": "https://huggingface.co/moonshotai/Kimi-K2-Instruct/raw/main/README.md",
+   "file": "data/research/moonshot-minimax/sources/kimi_k2_readme.md",
+   "status": "retrieved",
+   "purpose": "Kimi K2 evaluation table",
+   "license": "modified MIT (verified in HF API)"
+  },
+  {
+   "url": "https://huggingface.co/moonshotai/Kimi-K2.5/raw/main/README.md",
+   "file": "data/research/moonshot-minimax/sources/kimi_k25_readme.md",
+   "status": "retrieved",
+   "purpose": "Kimi K2.5 evaluation table",
+   "license": "unknown"
+  },
+  {
+   "url": "https://huggingface.co/moonshotai/Kimi-K3/raw/main/README.md",
+   "file": "data/research/moonshot-minimax/sources/kimi_k3_readme.md",
+   "status": "retrieved",
+   "purpose": "Kimi K3 evaluation table",
+   "license": "unknown"
+  }
+ ],
+ "gaps": [
+  "No numeric benchmark table was found for M2.1, M2.1 Lightning, M2.5, M2.5 High Speed, M2.7, M2.7 High Speed, K2 Thinking, K2.6, K2.7 Code, K2.7 Code High Speed, or K3 Fast in the checked saved sources.",
+  "Future-dated or unfamiliar catalog revisions were not assigned predecessor scores.",
+  "The checked benchmark tables are provider/model-card reported; independent replication was not established.",
+  "Status correction: withdrew prior found status for minimax/minimax-m2, minimax/minimax-m3, moonshotai/kimi-k2, moonshotai/kimi-k2.5, moonshotai/kimi-k3 because the exported benchmarks array has no numeric row for this exact ID. Extraction is incomplete; this does not establish that no published benchmark exists, and adjacent revisions were not substituted."
+ ]
 }

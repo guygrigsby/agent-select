@@ -1,0 +1,36 @@
+{
+ "batch": "moonshot-minimax",
+ "scope": "published_measurements",
+ "state": "source_validated",
+ "reason": "Status-only correction superseding moonshot-minimax.v3: minimax-m3 carried a reviewed note naming checked provider sources with no exact-model numeric row; benchmark_status now reads not_found_in_checked_sources to match. No measurement rows, sources or claims changed.",
+ "review_path": "data/reviews/phase3-provenance-2026-09-30.md",
+ "pins": [
+  {
+   "path": "data/research/moonshot-minimax/findings.json",
+   "sha256": "ab9566429be15fd0b96a7ef67106569cdcd27d14802f7cb00a60f6224a7a9268"
+  },
+  {
+   "path": "data/research/moonshot-minimax/sources/github_minimax_m2_readme_full.md",
+   "sha256": "e464eb0a1b4addabf59cc0084b22fdf1ecf84ffb77a35effeec32a39ca14cff0"
+  },
+  {
+   "path": "data/research/moonshot-minimax/sources/kimi_k25_readme.md",
+   "sha256": "1b04bed9c6c25894171c0ab5e0b4c4d57667698a654dbfd5a6c1649b922810a5"
+  },
+  {
+   "path": "data/research/moonshot-minimax/sources/kimi_k2_readme.md",
+   "sha256": "72e2785dbd9ada9355ea3a812d2a9da606f1ae07feea7a0f7e18b8111deb8837"
+  },
+  {
+   "path": "data/research/moonshot-minimax/sources/kimi_k3_readme.md",
+   "sha256": "57de265b5842dfa465c6e73b368b0e15a89b8793b5450528dad577da202cc6fe"
+  },
+  {
+   "path": "data/reviews/phase3-provenance-2026-09-30.md",
+   "sha256": "ec8dff760ce0e122edad3360a4da3e40f34d030c703b853378ea065378fd608b"
+  }
+ ],
+ "decision_version": 4,
+ "decided_at": "2026-10-01T00:00:00Z",
+ "supersedes": "data/reviews/decisions/moonshot-minimax.v3.json"
+}
