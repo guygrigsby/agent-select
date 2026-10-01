@@ -520,6 +520,12 @@ func (p *Ports) RecordAttempt(ctx context.Context, params RecordAttemptParams) (
 		if obs.ObservationID == "" || obs.Outcome == "" || params.CollectorVersion == "" {
 			return RecordAttemptResult{}, errf(CodeInvalidRequest, "observation id, outcome and collector version are required")
 		}
+		// Remote fetch success requires a real 200 exchange. Status 0 is the
+		// host_local receipt marker and never legal from a fetch port.
+		if obs.Outcome == "success" && obs.HTTPStatus != 200 {
+			return RecordAttemptResult{}, errf(CodeInvalidEvidence,
+				"fetch success requires http status 200, got %d", obs.HTTPStatus)
+		}
 		if obs.Outcome == "unchanged" && obs.PriorObservationID == "" {
 			return RecordAttemptResult{}, errf(CodeInvalidRequest, "unchanged requires a prior observation")
 		}
@@ -534,6 +540,13 @@ func (p *Ports) RecordAttempt(ctx context.Context, params RecordAttemptParams) (
 			VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)`,
 			obs.ObservationID, sourceID, obs.ResourceURL, obs.RetrievedAt, obs.HTTPStatus,
 			obs.Outcome, bodyHash, obs.HeadersBytes, params.CollectorVersion); err != nil {
+			// A CHECK rejection here is evidence-shaped caller data (outcome/
+			// status pairing), not a transient storage fault.
+			var pgErr *pgconn.PgError
+			if errors.As(err, &pgErr) && pgErr.Code == "23514" {
+				return RecordAttemptResult{}, errf(CodeInvalidEvidence,
+					"observation outcome %q with status %d is not a legal pairing", obs.Outcome, obs.HTTPStatus)
+			}
 			return RecordAttemptResult{}, storageErr(err)
 		}
 		if obs.Outcome == "unchanged" {
@@ -821,25 +834,42 @@ func assertionID(jobID string, ordinal int) string {
 // insertAssertion stores one assertion and its child inside a savepoint. A
 // CHECK rejection rolls the savepoint back and classifies the assertion as
 // quarantined (ok=false, nothing stored); anything else is a storage error.
-// The assertions row is inserted with ON CONFLICT DO NOTHING so replay of the
-// identical work tuple is idempotent.
+// Content-addressed dedup: assertions are unique on (observation, subject,
+// locator, fingerprint) regardless of the minted id, so a re-parse of the
+// same observation that yields byte-identical content counts as accepted
+// without inserting a duplicate row pair.
 func insertAssertion(ctx context.Context, tx pgx.Tx, jobID string, ordinal int,
 	observationID string, a AssertionInput) (bool, error) {
 	id := assertionID(jobID, ordinal)
 	childBytes, err := canonicalize(childPayload(a))
 	if err != nil {
+		var se *Error
+		if errors.As(err, &se) {
+			return false, err // canonical-v1 boundary violation: evidence-shaped
+		}
 		return false, storageErr(err)
 	}
 	fingerprint := canonicalHash(childBytes)
 	if _, err := tx.Exec(ctx, `SAVEPOINT assertion_insert`); err != nil {
 		return false, storageErr(err)
 	}
-	if _, err := tx.Exec(ctx, `
+	ct, err := tx.Exec(ctx, `
 		INSERT INTO assertions (id,observation_id,subject_source_id,subject_upstream_id,locator,verbatim,parser_version,evidence_class,payload_fingerprint)
-		VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)`,
+		VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)
+		ON CONFLICT (observation_id,subject_source_id,subject_upstream_id,locator,payload_fingerprint)
+		DO NOTHING`,
 		id, observationID, a.SubjectSourceID, a.SubjectUpstreamID, a.Locator,
-		a.Verbatim, a.ParserVersion, a.EvidenceClass, fingerprint); err != nil {
+		a.Verbatim, a.ParserVersion, a.EvidenceClass, fingerprint)
+	if err != nil {
 		return false, quarantineOrStorage(ctx, tx, err)
+	}
+	if ct.RowsAffected() == 0 {
+		// Identical content already stored under its first id; the child row
+		// committed with it. Nothing to add.
+		if _, err := tx.Exec(ctx, `RELEASE SAVEPOINT assertion_insert`); err != nil {
+			return false, storageErr(err)
+		}
+		return true, nil
 	}
 	var execErr error
 	switch {
@@ -940,13 +970,26 @@ func (p *Ports) DeferJob(ctx context.Context, jobID string, token int64,
 	if err := requireActiveLease(ctx, tx, jobID, token, observedAt); err != nil {
 		return err
 	}
-	if _, err := tx.Exec(ctx, `
-		INSERT INTO job_attempts (job_id,token,observed_at,outcome,detail,retry_not_before)
-		VALUES ($1,$2,$3,$4,$5,$6) ON CONFLICT DO NOTHING`,
-		jobID, token, observedAt, outcome, detail, retryNotBefore); err != nil {
+	// A completed job is terminal: no unlisted transitions, no junk attempt
+	// evidence on a closed aggregate.
+	var one int
+	err = tx.QueryRow(ctx, `SELECT 1 FROM job_completions WHERE job_id = $1`, jobID).Scan(&one)
+	if err == nil {
+		return errf(CodeConflict, "job %s is completed", jobID)
+	}
+	if err != pgx.ErrNoRows {
 		return storageErr(err)
 	}
-	if outcome == "deferred" {
+	ct, err := tx.Exec(ctx, `
+		INSERT INTO job_attempts (job_id,token,observed_at,outcome,detail,retry_not_before)
+		VALUES ($1,$2,$3,$4,$5,$6) ON CONFLICT DO NOTHING`,
+		jobID, token, observedAt, outcome, detail, retryNotBefore)
+	if err != nil {
+		return storageErr(err)
+	}
+	// Replay of the identical attempt row is a no-op and must not re-emit.
+	inserted := ct.RowsAffected()
+	if outcome == "deferred" && inserted > 0 {
 		var sourceID string
 		if err := tx.QueryRow(ctx,
 			`SELECT source_id FROM jobs WHERE id = $1`, jobID).Scan(&sourceID); err != nil {
@@ -993,9 +1036,25 @@ func (p *Ports) CompleteJob(ctx context.Context, jobID string, token int64,
 	if storedOutputID != outputID {
 		return "", errf(CodeConflict, "output %s is not the recorded output of job %s", outputID, jobID)
 	}
+	// Replay of an existing completion returns without re-emitting; a
+	// completion minted by a different token is a conflict.
+	var doneToken int64
+	err = tx.QueryRow(ctx, `SELECT token FROM job_completions WHERE job_id = $1`, jobID).Scan(&doneToken)
+	if err == nil {
+		if doneToken != token {
+			return "", errf(CodeConflict, "job %s completed under token %d", jobID, doneToken)
+		}
+		if err := tx.Commit(ctx); err != nil {
+			return "", storageErr(err)
+		}
+		return jobID, nil
+	}
+	if err != pgx.ErrNoRows {
+		return "", storageErr(err)
+	}
 	if _, err := tx.Exec(ctx, `
 		INSERT INTO job_completions (job_id,token,output_id,completed_at)
-		VALUES ($1,$2,$3,$4) ON CONFLICT (job_id) DO NOTHING`,
+		VALUES ($1,$2,$3,$4)`,
 		jobID, token, outputID, completedAt); err != nil {
 		return "", storageErr(err)
 	}
@@ -1111,13 +1170,15 @@ func (p *Ports) RetirePublicationChannel(ctx context.Context, channel string,
 	return LaneState{Channel: channel, Class: class, RetiredAt: existing}, nil
 }
 
-// projectionPolicyDoc is the closed projection policy grammar.
+// projectionPolicyDoc is the closed projection policy grammar. The pointer
+// and presence checks make every required member mandatory: an omitted
+// member is rejected, not defaulted.
 type projectionPolicyDoc struct {
 	Version                 string            `json:"version"`
 	Weights                 map[string]int64  `json:"weights"`
 	TaskMap                 map[string]string `json:"task_map"`
 	BasisRules              map[string]string `json:"basis_rules"`
-	ZeroImageChargeEvidence bool              `json:"zero_image_charge_evidence"`
+	ZeroImageChargeEvidence *bool             `json:"zero_image_charge_evidence"`
 }
 
 var taskTokens = map[string]bool{
@@ -1126,38 +1187,52 @@ var taskTokens = map[string]bool{
 	"image_generation": true, "image_editing": true,
 }
 
+// ProjectionPolicyState is the register_projection_policy response: the
+// stored row, returned identically on registration and on replay.
+type ProjectionPolicyState struct {
+	Version     string
+	ContentHash []byte
+	RecordedAt  time.Time
+}
+
 // RegisterProjectionPolicy implements register_projection_policy: canonical
 // content, closed grammar, version match, immutable and idempotent by version
-// plus content hash.
+// plus content hash. Identical replay returns the stored row.
 func (p *Ports) RegisterProjectionPolicy(ctx context.Context, version string,
-	contentBytes []byte, recordedAt time.Time) error {
+	contentBytes []byte, recordedAt time.Time) (ProjectionPolicyState, error) {
 	if version == "" {
-		return errf(CodeInvalidRequest, "version is required")
+		return ProjectionPolicyState{}, errf(CodeInvalidRequest, "version is required")
 	}
 	if !isCanonical(contentBytes) {
-		return errf(CodeInvalidEvidence, "projection policy bytes are not canonical-v1")
+		return ProjectionPolicyState{}, errf(CodeInvalidEvidence, "projection policy bytes are not canonical-v1")
 	}
 	var doc projectionPolicyDoc
 	if err := strictDecode(contentBytes, &doc); err != nil {
-		return err
+		return ProjectionPolicyState{}, err
 	}
 	if doc.Version != version {
-		return errf(CodeInvalidEvidence, "content version %q does not match %q", doc.Version, version)
+		return ProjectionPolicyState{}, errf(CodeInvalidEvidence, "content version %q does not match %q", doc.Version, version)
 	}
 	if len(doc.Weights) == 0 {
-		return errf(CodeInvalidEvidence, "weights map is required")
+		return ProjectionPolicyState{}, errf(CodeInvalidEvidence, "weights map is required")
+	}
+	if doc.TaskMap == nil {
+		return ProjectionPolicyState{}, errf(CodeInvalidEvidence, "task_map is required")
+	}
+	if doc.ZeroImageChargeEvidence == nil {
+		return ProjectionPolicyState{}, errf(CodeInvalidEvidence, "zero_image_charge_evidence is required")
 	}
 	for task, w := range doc.Weights {
 		if !taskTokens[task] {
-			return errf(CodeInvalidEvidence, "weight key %q is not a task token", task)
+			return ProjectionPolicyState{}, errf(CodeInvalidEvidence, "weight key %q is not a task token", task)
 		}
 		if w < 1 || w > 10000 {
-			return errf(CodeInvalidEvidence, "weight for %s is outside 1..10000", task)
+			return ProjectionPolicyState{}, errf(CodeInvalidEvidence, "weight for %s is outside 1..10000", task)
 		}
 	}
 	for metric, task := range doc.TaskMap {
 		if metric == "" || !taskTokens[task] {
-			return errf(CodeInvalidEvidence, "task_map entry %q is not a task mapping", metric)
+			return ProjectionPolicyState{}, errf(CodeInvalidEvidence, "task_map entry %q is not a task mapping", metric)
 		}
 	}
 	permitted := map[string]string{
@@ -1167,12 +1242,12 @@ func (p *Ports) RegisterProjectionPolicy(ctx context.Context, version string,
 		"host_observed":        "host_observed",
 	}
 	if len(doc.BasisRules) != len(permitted) {
-		return errf(CodeInvalidEvidence, "basis_rules must cover the four evidence classes")
+		return ProjectionPolicyState{}, errf(CodeInvalidEvidence, "basis_rules must cover the four evidence classes")
 	}
 	for class, basis := range doc.BasisRules {
 		want, ok := permitted[class]
 		if !ok || basis != want {
-			return errf(CodeInvalidEvidence, "basis rule %q->%q is not the permitted derivation", class, basis)
+			return ProjectionPolicyState{}, errf(CodeInvalidEvidence, "basis rule %q->%q is not the permitted derivation", class, basis)
 		}
 	}
 	sum := canonicalHash(contentBytes)
@@ -1180,17 +1255,19 @@ func (p *Ports) RegisterProjectionPolicy(ctx context.Context, version string,
 		INSERT INTO projection_policies (version,content_hash,content_bytes,recorded_at)
 		VALUES ($1,$2,$3,$4) ON CONFLICT DO NOTHING`, version, sum, contentBytes, recordedAt)
 	if err != nil {
-		return storageErr(err)
+		return ProjectionPolicyState{}, storageErr(err)
 	}
-	var stored []byte
+	var storedHash []byte
+	var storedAt time.Time
 	if err := p.Pool.QueryRow(ctx,
-		`SELECT content_hash FROM projection_policies WHERE version = $1`, version).Scan(&stored); err != nil {
-		return storageErr(err)
+		`SELECT content_hash, recorded_at FROM projection_policies WHERE version = $1`, version).
+		Scan(&storedHash, &storedAt); err != nil {
+		return ProjectionPolicyState{}, storageErr(err)
 	}
-	if string(stored) != string(sum) {
-		return errf(CodeConflict, "version %s already registered with different content", version)
+	if string(storedHash) != string(sum) {
+		return ProjectionPolicyState{}, errf(CodeConflict, "version %s already registered with different content", version)
 	}
-	return nil
+	return ProjectionPolicyState{Version: version, ContentHash: storedHash, RecordedAt: storedAt}, nil
 }
 
 // ---------------------------------------------------------------------------
@@ -1238,6 +1315,26 @@ type RecordReceiptResult struct {
 	UsageHash     []byte
 }
 
+// receiptDoc is the closed receipt document grammar pinned by
+// host-integration.md Outcome capture. strictDecode rejects any member
+// outside it, so task prompts, file contents, images, tool outputs and
+// credentials are mechanically refused.
+type receiptDoc struct {
+	ReceiptID        string          `json:"receipt_id"`
+	RequestID        string          `json:"request_id"`
+	OfferID          string          `json:"offer_id"`
+	Task             string          `json:"task"`
+	Outcome          string          `json:"outcome"`
+	ValidatorVersion string          `json:"validator_version"`
+	Usage            []receiptDocUse `json:"usage"`
+}
+
+type receiptDocUse struct {
+	Component string `json:"component"`
+	Known     bool   `json:"known"`
+	Value     int64  `json:"value"`
+}
+
 // RecordReceipt implements record_receipt: host_local observation with HTTP
 // status 0 (honest absence marker), typed outcome fact with the validation
 // split, usage facts split by knowledge and ReceiptRecorded. Idempotent by
@@ -1259,8 +1356,38 @@ func (p *Ports) RecordReceipt(ctx context.Context, params RecordReceiptParams) (
 	if !validated && params.ValidatorVersion != "" {
 		return RecordReceiptResult{}, errf(CodeInvalidRequest, "unvalidated outcomes carry no validator_version")
 	}
-	if len(params.ReceiptBytes) == 0 || !isCanonical(params.ReceiptBytes) {
-		return RecordReceiptResult{}, errf(CodeInvalidRequest, "receipt bytes must be canonical-v1")
+	if len(params.ReceiptBytes) == 0 {
+		return RecordReceiptResult{}, errf(CodeInvalidRequest, "receipt bytes are required")
+	}
+	var doc receiptDoc
+	if err := strictDecode(params.ReceiptBytes, &doc); err != nil {
+		return RecordReceiptResult{}, err
+	}
+	// The stored document must state exactly the same facts the port writes.
+	if doc.ReceiptID != params.ReceiptID || doc.RequestID != params.RequestID ||
+		doc.OfferID != params.OfferID || doc.Task != params.Task || doc.Outcome != params.Outcome ||
+		doc.ValidatorVersion != params.ValidatorVersion {
+		return RecordReceiptResult{}, errf(CodeInvalidEvidence,
+			"receipt document does not match the submitted receipt facts")
+	}
+	if len(doc.Usage) != len(params.Usage) {
+		return RecordReceiptResult{}, errf(CodeInvalidEvidence,
+			"receipt document usage does not match the submitted usage")
+	}
+	docUsage := map[string]ReceiptUsage{}
+	for _, u := range doc.Usage {
+		if _, dup := docUsage[u.Component]; dup {
+			return RecordReceiptResult{}, errf(CodeInvalidEvidence,
+				"receipt document repeats usage component %s", u.Component)
+		}
+		docUsage[u.Component] = ReceiptUsage{Component: u.Component, Known: u.Known, Value: u.Value}
+	}
+	for _, u := range params.Usage {
+		d, ok := docUsage[u.Component]
+		if !ok || d.Known != u.Known || (u.Known && d.Value != u.Value) {
+			return RecordReceiptResult{}, errf(CodeInvalidEvidence,
+				"receipt document usage %s does not match the submitted usage", u.Component)
+		}
 	}
 	if params.CollectorVersion == "" {
 		return RecordReceiptResult{}, errf(CodeInvalidRequest, "collector version is required")
@@ -1276,6 +1403,10 @@ func (p *Ports) RecordReceipt(ctx context.Context, params RecordReceiptParams) (
 		seen[u.Component] = true
 		if u.Known && u.Value < 0 {
 			return RecordReceiptResult{}, errf(CodeInvalidRequest, "known usage %s is negative", u.Component)
+		}
+		if u.Known && (u.Value > maxSafeInteger) {
+			return RecordReceiptResult{}, errf(CodeInvalidEvidence,
+				"known usage %s exceeds the signed 53-bit range", u.Component)
 		}
 	}
 	if len(seen) != len(usageComponents) {
@@ -1495,6 +1626,12 @@ func emitEvent(ctx context.Context, tx pgx.Tx, aggregateID, name string,
 		return errf(CodeInvalidEvidence, "event payload encoding failed")
 	}
 	payloadHash := canonicalHash(payloadBytes)
+	// Mint the sequence under a transaction-scoped advisory lock on the
+	// aggregate: two jobs contributing to one aggregate hold different job
+	// locks and would otherwise race on max(sequence)+1.
+	if _, err := tx.Exec(ctx, `SELECT pg_advisory_xact_lock(hashtext($1))`, aggregateID); err != nil {
+		return storageErr(err)
+	}
 	var seq int64
 	if err := tx.QueryRow(ctx, `
 		SELECT coalesce(max(aggregate_sequence),0) + 1 FROM outbox_events

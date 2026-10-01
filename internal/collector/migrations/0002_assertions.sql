@@ -37,6 +37,9 @@ CREATE TABLE image_format_assertions (
         ('text_assistance','vision_understanding','image_generation','image_editing')),
     role TEXT NOT NULL CHECK (role IN
         ('request','input_image','output_image','reference','mask')),
+    -- format is an open vocabulary by design: advertised format names follow
+    -- upstream providers (for example webp, png, jpeg) and are validated at
+    -- ingestion against the source-advertised set, not a closed enum here.
     format TEXT NOT NULL CHECK (format <> ''),
     CHECK (operation <> 'text_assistance')
 );
@@ -74,25 +77,35 @@ CREATE TABLE limit_assertions (
         ('text_assistance','vision_understanding','image_generation','image_editing')),
     role TEXT NOT NULL CHECK (role IN
         ('request','input_image','output_image','reference','mask')),
-    -- Legal name/unit/scope/role combinations per image-capabilities.md.
+    -- Legal name/unit/scope/operation/role combinations per
+    -- image-capabilities.md: generation/editing only for output images,
+    -- mask only for editing, input roles unrestricted by operation.
     CHECK (
         (limit_name = 'context_tokens' AND unit = 'token' AND role = 'request')
         OR (limit_name = 'input_tokens' AND unit = 'token' AND scope = 'input' AND role = 'request')
         OR (limit_name = 'output_tokens' AND unit = 'token' AND scope = 'output' AND role = 'request')
         OR (limit_name = 'image_count' AND unit = 'image' AND scope IN ('input','output')
-            AND ((scope = 'input' AND role = 'input_image') OR (scope = 'output' AND role = 'output_image')))
+            AND ((scope = 'input' AND role = 'input_image')
+                 OR (scope = 'output' AND role = 'output_image'
+                     AND operation IN ('image_generation','image_editing'))))
         OR (limit_name = 'reference_image_count' AND unit = 'image' AND scope = 'input' AND role = 'reference')
         OR (limit_name = 'mask_count' AND unit = 'image' AND scope = 'input' AND role = 'mask'
             AND operation = 'image_editing')
         OR (limit_name IN ('image_width','image_height') AND unit = 'pixel' AND
-            ((scope = 'input' AND role IN ('input_image','reference','mask'))
-             OR (scope = 'output' AND role = 'output_image')))
+            ((scope = 'input' AND role IN ('input_image','reference','mask')
+              AND (role <> 'mask' OR operation = 'image_editing'))
+             OR (scope = 'output' AND role = 'output_image'
+                 AND operation IN ('image_generation','image_editing'))))
         OR (limit_name = 'image_pixels' AND unit = 'pixel_area' AND
-            ((scope = 'input' AND role IN ('input_image','reference','mask'))
-             OR (scope = 'output' AND role = 'output_image')))
+            ((scope = 'input' AND role IN ('input_image','reference','mask')
+              AND (role <> 'mask' OR operation = 'image_editing'))
+             OR (scope = 'output' AND role = 'output_image'
+                 AND operation IN ('image_generation','image_editing'))))
         OR (limit_name = 'image_bytes' AND unit = 'byte' AND
-            ((scope = 'input' AND role IN ('input_image','reference','mask'))
-             OR (scope = 'output' AND role = 'output_image')))
+            ((scope = 'input' AND role IN ('input_image','reference','mask')
+              AND (role <> 'mask' OR operation = 'image_editing'))
+             OR (scope = 'output' AND role = 'output_image'
+                 AND operation IN ('image_generation','image_editing'))))
     )
 );
 CREATE INDEX limit_intersection ON limit_assertions (operation, scope, role, limit_name);

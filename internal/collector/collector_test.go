@@ -236,9 +236,20 @@ func TestJobAttemptFencingAndRetryChecks(t *testing.T) {
 		`INSERT INTO job_attempts (job_id,token,observed_at,outcome,detail,retry_not_before)
 		 VALUES ('j1',1,$1,'quarantined','',$2)`, now, now.Add(time.Minute))
 	wantFail(t, "quarantined with shifted retry_not_before", err)
+	// A live attempt makes the lease delete-restricted: attempts are evidence.
 	mustExec(t, pool,
 		`INSERT INTO job_attempts (job_id,token,observed_at,outcome,detail,retry_not_before)
-		 VALUES ('j1',1,$1,'deferred','',$2)`, now, now.Add(time.Minute))
+		 VALUES ('j1',1,$1,'observed','',$1)`, now)
+	wantFail(t, "lease delete with attempt evidence", func() error {
+		_, err := pool.Exec(ctx, `DELETE FROM job_leases WHERE job_id = 'j1' AND token = 1`)
+		return err
+	}())
+	mustExec(t, pool,
+		`INSERT INTO job_leases (job_id,token,worker_id,leased_at,expires_at)
+		 VALUES ('j1',2,'w2',$1,$2)`, now, now.Add(time.Minute))
+	mustExec(t, pool,
+		`INSERT INTO job_attempts (job_id,token,observed_at,outcome,detail,retry_not_before)
+		 VALUES ('j1',2,$1,'deferred','',$2)`, now, now.Add(time.Minute))
 }
 
 func TestPublicationTriggerRejectsClassMismatchAndRetiredChannel(t *testing.T) {
@@ -424,6 +435,31 @@ func TestLimitAssertionLegalCombinations(t *testing.T) {
 		mkLimit("image_pixels", "pixel_area", "maximum", "input", "image_generation", "output_image", 1<<20))
 	wantFail(t, "image_bytes output with mask role",
 		mkLimit("image_bytes", "byte", "maximum", "output", "image_editing", "mask", 999))
+	// Output images exist only for generation/editing: text assistance and
+	// vision understanding never carry an output_image role.
+	wantFail(t, "image_width output with text_assistance",
+		mkLimit("image_width", "pixel", "maximum", "output", "text_assistance", "output_image", 4096))
+	wantFail(t, "image_height output with vision_understanding",
+		mkLimit("image_height", "pixel", "maximum", "output", "vision_understanding", "output_image", 4096))
+	wantFail(t, "image_count output with text_assistance",
+		mkLimit("image_count", "image", "maximum", "output", "text_assistance", "output_image", 2))
+	// Mask is legal only for editing, on every mask-bearing name.
+	wantFail(t, "mask limit with vision_understanding",
+		mkLimit("image_width", "pixel", "maximum", "input", "vision_understanding", "mask", 512))
+	wantFail(t, "image_pixels input mask with generation",
+		mkLimit("image_pixels", "pixel_area", "maximum", "input", "image_generation", "mask", 1<<20))
+	// Legal operation arms: generation output image, editing mask input.
+	if err := mkLimit("image_width", "pixel", "maximum", "output", "image_generation", "output_image", 2048); err != nil {
+		t.Fatalf("image_width generation output rejected: %v", err)
+	}
+	if err := mkLimit("image_width", "pixel", "maximum", "input", "image_editing", "mask", 512); err != nil {
+		t.Fatalf("image_width editing mask rejected: %v", err)
+	}
+	// Input roles are unrestricted by operation: text assistance with an
+	// input image is not forbidden by the spec.
+	if err := mkLimit("image_width", "pixel", "maximum", "input", "text_assistance", "input_image", 1024); err != nil {
+		t.Fatalf("image_width text input rejected: %v", err)
+	}
 }
 
 func TestPriceScopeKnowledgeEncoding(t *testing.T) {

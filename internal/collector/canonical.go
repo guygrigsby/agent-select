@@ -5,18 +5,74 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
+	"math"
+	"strconv"
 
 	"github.com/cyberphone/json-canonicalization/go/src/webpki.org/jsoncanonicalizer"
 )
 
+// maxSafeInteger is the signed 53-bit ceiling of canonical-v1 integers.
+const maxSafeInteger = int64(1)<<53 - 1
+
 // canonicalize encodes v as JSON and transforms it to RFC 8785 (JCS) form,
-// the canonical-v1 byte encoding pinned by delivery-storage.md.
+// the canonical-v1 byte encoding pinned by delivery-storage.md. Integers
+// outside the signed 53-bit range are rejected here: JCS number serialization
+// would silently round them through float64, so the hash would pin mutated
+// facts.
 func canonicalize(v any) ([]byte, error) {
 	raw, err := json.Marshal(v)
 	if err != nil {
 		return nil, err
 	}
+	if err := checkNumberBounds(raw); err != nil {
+		return nil, err
+	}
 	return jsoncanonicalizer.Transform(raw)
+}
+
+// checkNumberBounds walks raw JSON and rejects integer literals outside the
+// signed 53-bit range and non-representable numbers. Every path that accepts
+// caller-supplied bytes or marshals caller-supplied values into canonical-v1
+// runs this first.
+func checkNumberBounds(raw []byte) error {
+	dec := json.NewDecoder(bytes.NewReader(raw))
+	dec.UseNumber()
+	var doc any
+	if err := dec.Decode(&doc); err != nil {
+		return errf(CodeInvalidEvidence, "payload is not valid JSON: %v", err)
+	}
+	var walk func(v any) error
+	walk = func(v any) error {
+		switch t := v.(type) {
+		case json.Number:
+			s := t.String()
+			if n, err := strconv.ParseInt(s, 10, 64); err == nil {
+				if n > maxSafeInteger || n < -maxSafeInteger {
+					return errf(CodeInvalidEvidence, "integer %s exceeds the signed 53-bit range", s)
+				}
+				return nil
+			}
+			f, err := t.Float64()
+			if err != nil || math.IsNaN(f) || math.IsInf(f, 0) {
+				return errf(CodeInvalidEvidence, "number %s is not representable as a double", s)
+			}
+			return nil
+		case map[string]any:
+			for _, vv := range t {
+				if err := walk(vv); err != nil {
+					return err
+				}
+			}
+		case []any:
+			for _, vv := range t {
+				if err := walk(vv); err != nil {
+					return err
+				}
+			}
+		}
+		return nil
+	}
+	return walk(doc)
 }
 
 // canonicalHash is SHA-256 over the exact canonical bytes.
@@ -36,10 +92,14 @@ func isCanonical(b []byte) bool {
 }
 
 // strictDecode decodes canonical bytes into a closed struct schema: unknown
-// members are rejected and the input must already be canonical.
+// members are rejected, the input must already be canonical and integer
+// literals must stay inside the signed 53-bit range.
 func strictDecode(data []byte, v any) error {
 	if !isCanonical(data) {
 		return errf(CodeInvalidEvidence, "payload bytes are not canonical-v1")
+	}
+	if err := checkNumberBounds(data); err != nil {
+		return err
 	}
 	dec := json.NewDecoder(bytes.NewReader(data))
 	dec.DisallowUnknownFields()

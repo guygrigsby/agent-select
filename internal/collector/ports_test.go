@@ -1,10 +1,14 @@
 package collector
 
 import (
+	"bytes"
 	"context"
+	"encoding/json"
 	"fmt"
 	"testing"
 	"time"
+
+	"github.com/cyberphone/json-canonicalization/go/src/webpki.org/jsoncanonicalizer"
 )
 
 func mustPort(t *testing.T) *Ports {
@@ -136,9 +140,16 @@ func leaseFetchJob(t *testing.T, p *Ports, sourceID string) (jobID string, token
 
 func countEvents(t *testing.T, p *Ports) int {
 	t.Helper()
+	return countEventsName(t, p, "", "")
+}
+
+// countEventsName counts events, optionally restricted to one aggregate and
+// event name.
+func countEventsName(t *testing.T, p *Ports, aggregateID, name string) int {
+	t.Helper()
+	q := `SELECT count(*) FROM outbox_events WHERE ($1 = '' OR aggregate_id = $1) AND ($2 = '' OR event_name = $2)`
 	var n int
-	if err := p.Pool.QueryRow(context.Background(),
-		`SELECT count(*) FROM outbox_events`).Scan(&n); err != nil {
+	if err := p.Pool.QueryRow(context.Background(), q, aggregateID, name).Scan(&n); err != nil {
 		t.Fatal(err)
 	}
 	return n
@@ -381,7 +392,6 @@ func TestRecordAttemptParseResolveCompile(t *testing.T) {
 	}); codeOf(t, err) != CodeInvalidEvidence {
 		t.Fatal("resolve accepted a blocked finding")
 	}
-	blocked := countEvents(t, p)
 	resolveOK := canonical(t, map[string]any{
 		"stage": "resolve", "observation_id": fetchObs.ObservationID,
 		"finding_ids": []string{"some-model|vercel_catalog"},
@@ -432,7 +442,6 @@ func TestRecordAttemptParseResolveCompile(t *testing.T) {
 	if linkObs != nil {
 		t.Fatal("compile link carries an observation")
 	}
-	_ = blocked
 }
 
 func TestDeferJobAndStateDerivation(t *testing.T) {
@@ -585,8 +594,16 @@ func TestRecordReceiptLifecycle(t *testing.T) {
 	registerSource(t, p, "host", "host_local", true)
 	receipt := canonical(t, map[string]any{
 		"receipt_id": "rcpt-1", "request_id": "req-1", "offer_id": "prov/up",
-		"task": "code", "outcome": "validated_success",
-		"usage": map[string]any{"input_tokens": int64(100), "output_tokens": int64(50)},
+		"task": "code", "outcome": "validated_success", "validator_version": "tests-1",
+		"usage": []map[string]any{
+			{"component": "input_tokens", "known": true, "value": int64(100)},
+			{"component": "output_tokens", "known": true, "value": int64(50)},
+			{"component": "input_images", "known": false},
+			{"component": "output_images", "known": false},
+			{"component": "references", "known": false},
+			{"component": "searches", "known": false},
+			{"component": "elapsed_millis", "known": false},
+		},
 	})
 	res, err := p.RecordReceipt(ctx, RecordReceiptParams{
 		ReceiptID: "rcpt-1", RequestID: "req-1", OfferID: "prov/up",
@@ -638,8 +655,22 @@ func TestRecordReceiptLifecycle(t *testing.T) {
 	if err != nil || res2.ObservationID != res.ObservationID {
 		t.Fatalf("replay %+v err %v", res2, err)
 	}
-	// Same ID different bytes conflicts.
-	other := canonical(t, map[string]any{"receipt_id": "rcpt-1", "x": int64(1)})
+	// Same ID different bytes conflicts: the differing document is itself a
+	// legal closed-grammar receipt, so the rejection is the body-hash
+	// comparison.
+	other := canonical(t, map[string]any{
+		"receipt_id": "rcpt-1", "request_id": "req-1", "offer_id": "prov/up",
+		"task": "code", "outcome": "cancelled",
+		"usage": []map[string]any{
+			{"component": "input_tokens", "known": false},
+			{"component": "output_tokens", "known": false},
+			{"component": "input_images", "known": false},
+			{"component": "output_images", "known": false},
+			{"component": "references", "known": false},
+			{"component": "searches", "known": false},
+			{"component": "elapsed_millis", "known": false},
+		},
+	})
 	if _, err := p.RecordReceipt(ctx, RecordReceiptParams{
 		ReceiptID: "rcpt-1", RequestID: "req-1", OfferID: "prov/up",
 		Task: "code", Outcome: "cancelled", RecordedAt: now,
@@ -655,12 +686,25 @@ func TestRecordReceiptLifecycle(t *testing.T) {
 	}); codeOf(t, err) != CodeInvalidRequest {
 		t.Fatal("unvalidated with validator accepted")
 	}
-	// Missing usage component rejected.
+	// Missing usage component rejected: the document matches the short
+	// submission so the rejection is the seven-component rule itself.
 	short := allUsage(nil)[:6]
+	shortDoc := canonical(t, map[string]any{
+		"receipt_id": "rcpt-3", "request_id": "req-1", "offer_id": "prov/up",
+		"task": "code", "outcome": "cancelled",
+		"usage": []map[string]any{
+			{"component": "input_tokens", "known": false},
+			{"component": "output_tokens", "known": false},
+			{"component": "input_images", "known": false},
+			{"component": "output_images", "known": false},
+			{"component": "references", "known": false},
+			{"component": "searches", "known": false},
+		},
+	})
 	if _, err := p.RecordReceipt(ctx, RecordReceiptParams{
 		ReceiptID: "rcpt-3", RequestID: "req-1", OfferID: "prov/up",
 		Task: "code", Outcome: "cancelled", RecordedAt: now,
-		Usage: short, ReceiptBytes: other, CollectorVersion: "c1",
+		Usage: short, ReceiptBytes: shortDoc, CollectorVersion: "c1",
 	}); codeOf(t, err) != CodeInvalidRequest {
 		t.Fatal("partial usage accepted")
 	}
@@ -741,20 +785,29 @@ func TestRegisterProjectionPolicy(t *testing.T) {
 	ctx := context.Background()
 	now := time.Now().UTC()
 	doc := validProjectionPolicy(t)
-	if err := p.RegisterProjectionPolicy(ctx, "pp-1", doc, now); err != nil {
+	st, err := p.RegisterProjectionPolicy(ctx, "pp-1", doc, now)
+	if err != nil {
 		t.Fatal(err)
 	}
-	if err := p.RegisterProjectionPolicy(ctx, "pp-1", doc, now.Add(time.Second)); err != nil {
+	if st.Version != "pp-1" || !st.RecordedAt.Equal(now) || len(st.ContentHash) != 32 {
+		t.Fatalf("stored row %+v", st)
+	}
+	// Identical replay returns the stored row unchanged.
+	replay, err := p.RegisterProjectionPolicy(ctx, "pp-1", doc, now.Add(time.Second))
+	if err != nil {
 		t.Fatal(err)
+	}
+	if !replay.RecordedAt.Equal(st.RecordedAt) || string(replay.ContentHash) != string(st.ContentHash) {
+		t.Fatalf("replay returned %+v, want the stored row %+v", replay, st)
 	}
 	// Same version, different canonical content: conflict.
 	different := projectionPolicy(t, "pp-1",
 		map[string]any{"code": int64(101)}, permittedBasis())
-	if err := p.RegisterProjectionPolicy(ctx, "pp-1", different, now); codeOf(t, err) != CodeConflict {
+	if _, err := p.RegisterProjectionPolicy(ctx, "pp-1", different, now); codeOf(t, err) != CodeConflict {
 		t.Fatal("version re-registration with different content accepted")
 	}
 	// Version mismatch inside content.
-	if err := p.RegisterProjectionPolicy(ctx, "pp-2", doc, now); codeOf(t, err) != CodeInvalidEvidence {
+	if _, err := p.RegisterProjectionPolicy(ctx, "pp-2", doc, now); codeOf(t, err) != CodeInvalidEvidence {
 		t.Fatal("version mismatch accepted")
 	}
 	// Illegal basis derivation.
@@ -765,18 +818,53 @@ func TestRegisterProjectionPolicy(t *testing.T) {
 			"competitor_reported":  "published",
 			"host_observed":        "host_observed",
 		})
-	if err := p.RegisterProjectionPolicy(ctx, "pp-3", bad, now); codeOf(t, err) != CodeInvalidEvidence {
+	if _, err := p.RegisterProjectionPolicy(ctx, "pp-3", bad, now); codeOf(t, err) != CodeInvalidEvidence {
 		t.Fatal("illegal basis derivation accepted")
 	}
 	// Weight out of range.
 	badW := projectionPolicy(t, "pp-4", map[string]any{"code": int64(10001)}, permittedBasis())
-	if err := p.RegisterProjectionPolicy(ctx, "pp-4", badW, now); codeOf(t, err) != CodeInvalidEvidence {
+	if _, err := p.RegisterProjectionPolicy(ctx, "pp-4", badW, now); codeOf(t, err) != CodeInvalidEvidence {
 		t.Fatal("out-of-range weight accepted")
 	}
 	// Non-canonical bytes rejected.
-	if err := p.RegisterProjectionPolicy(ctx, "pp-5", []byte("{not json}"), now); codeOf(t, err) != CodeInvalidEvidence {
+	if _, err := p.RegisterProjectionPolicy(ctx, "pp-5", []byte("{not json}"), now); codeOf(t, err) != CodeInvalidEvidence {
 		t.Fatal("non-canonical content accepted")
 	}
+	// Missing required members are rejected, not defaulted.
+	for name, drop := range map[string]string{
+		"task_map":                   "task_map",
+		"zero_image_charge_evidence": "zero_image_charge_evidence",
+	} {
+		missing := dropMember(t, doc, drop)
+		if _, err := p.RegisterProjectionPolicy(ctx, "pp-missing-"+name, missing, now); codeOf(t, err) != CodeInvalidEvidence {
+			t.Fatalf("%s omission accepted", drop)
+		}
+	}
+}
+
+// dropMember re-encodes a canonical object without one member.
+func dropMember(t *testing.T, doc []byte, member string) []byte {
+	t.Helper()
+	var m map[string]any
+	dec := json.NewDecoder(bytes.NewReader(doc))
+	dec.UseNumber()
+	if err := dec.Decode(&m); err != nil {
+		t.Fatal(err)
+	}
+	delete(m, member)
+	out, err := json.Marshal(m)
+	if err != nil {
+		t.Fatal(err)
+	}
+	cb, err := canonicalizeBytesForTest(out)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return cb
+}
+
+func canonicalizeBytesForTest(b []byte) ([]byte, error) {
+	return jsoncanonicalizer.Transform(b)
 }
 
 func TestOutboxDeliveryScanAndReceipts(t *testing.T) {
@@ -786,7 +874,19 @@ func TestOutboxDeliveryScanAndReceipts(t *testing.T) {
 	registerSource(t, p, "host", "host_local", true)
 	for i := range 3 {
 		id := fmt.Sprintf("rcpt-%d", i)
-		body := canonical(t, map[string]any{"receipt_id": id, "n": i})
+		body := canonical(t, map[string]any{
+			"receipt_id": id, "request_id": "req", "offer_id": "prov/up",
+			"task": "code", "outcome": "cancelled",
+			"usage": []map[string]any{
+				{"component": "input_tokens", "known": false},
+				{"component": "output_tokens", "known": false},
+				{"component": "input_images", "known": false},
+				{"component": "output_images", "known": false},
+				{"component": "references", "known": false},
+				{"component": "searches", "known": false},
+				{"component": "elapsed_millis", "known": false},
+			},
+		})
 		if _, err := p.RecordReceipt(ctx, RecordReceiptParams{
 			ReceiptID: id, RequestID: "req", OfferID: "prov/up",
 			Task: "code", Outcome: "cancelled", RecordedAt: now.Add(time.Duration(i) * time.Second),
@@ -829,5 +929,191 @@ func TestOutboxDeliveryScanAndReceipts(t *testing.T) {
 	// Bad scan arguments are rejected.
 	if _, err := p.DeliveryScan(ctx, "", 10); codeOf(t, err) != CodeInvalidRequest {
 		t.Fatal("empty consumer accepted")
+	}
+}
+
+func TestRecordAttemptFetchSuccessRequires200(t *testing.T) {
+	p := mustPort(t)
+	ctx := context.Background()
+	registerSource(t, p, "sf", "provider_api", true)
+	submit := func(status int, outcome string) error {
+		obs := &AttemptObservation{
+			ResourceURL: "https://sf/r", RetrievedAt: time.Now().UTC(),
+			HTTPStatus: status, Outcome: outcome,
+			BodyBytes: []byte("b"), HeadersBytes: []byte("h"),
+		}
+		output := fetchEnvelopeDoc(t, obs)
+		r, err := p.EnqueueJob(ctx, "sf", "https://sf/r"+fmt.Sprint(status, outcome),
+			"fetch", hash32([]byte(fmt.Sprint(status, outcome))), "p1", time.Now().UTC())
+		if err != nil {
+			t.Fatal(err)
+		}
+		lease, err := p.LeaseJob(ctx, r.JobID, "w1", time.Minute, time.Now().UTC())
+		if err != nil {
+			t.Fatal(err)
+		}
+		obs.ObservationID = "obs-" + r.JobID
+		output = fetchEnvelopeDoc(t, obs)
+		_, err = p.RecordAttempt(ctx, RecordAttemptParams{
+			JobID: r.JobID, Token: lease.Token, CollectorVersion: "c1",
+			RecordedAt: time.Now().UTC(), Observation: obs, OutputBytes: output,
+		})
+		return err
+	}
+	// Status 0 is the host_local receipt marker only: fabricating success
+	// without an HTTP exchange is rejected.
+	if err := submit(0, "success"); codeOf(t, err) != CodeInvalidEvidence {
+		t.Fatalf("success with 0 accepted: %v", err)
+	}
+	if err := submit(302, "success"); codeOf(t, err) != CodeInvalidEvidence {
+		t.Fatalf("success with 302 accepted: %v", err)
+	}
+	// Honest failure outcomes pass with their real statuses.
+	if err := submit(503, "http_error"); err != nil {
+		t.Fatalf("http_error with 503 rejected: %v", err)
+	}
+}
+
+func TestRecordReceiptRejectsForbiddenPayload(t *testing.T) {
+	p := mustPort(t)
+	ctx := context.Background()
+	registerSource(t, p, "shost", "host_local", true)
+	base := func(mutate func(map[string]any)) []byte {
+		doc := map[string]any{
+			"receipt_id": "rc-1",
+			"request_id": "rq-1",
+			"offer_id":   "of-1",
+			"task":       "code",
+			"outcome":    "unvalidated_completion",
+			"usage": []map[string]any{
+				{"component": "input_tokens", "known": true, "value": int64(10)},
+				{"component": "output_tokens", "known": false},
+				{"component": "input_images", "known": false},
+				{"component": "output_images", "known": false},
+				{"component": "references", "known": false},
+				{"component": "searches", "known": false},
+				{"component": "elapsed_millis", "known": true, "value": int64(5)},
+			},
+		}
+		if mutate != nil {
+			mutate(doc)
+		}
+		return canonical(t, doc)
+	}
+	params := func(bytes []byte) RecordReceiptParams {
+		return RecordReceiptParams{
+			ReceiptID: "rc-1", RequestID: "rq-1", OfferID: "of-1",
+			Task: "code", Outcome: "unvalidated_completion",
+			RecordedAt: time.Now().UTC(), CollectorVersion: "c1",
+			Usage:        allUsage(map[string]int64{"input_tokens": 10, "elapsed_millis": 5}),
+			ReceiptBytes: bytes,
+		}
+	}
+	// Legal document records fine.
+	if _, err := p.RecordReceipt(ctx, params(base(nil))); err != nil {
+		t.Fatal(err)
+	}
+	// A task prompt smuggled into the receipt is an unknown member and is
+	// mechanically rejected.
+	for _, member := range []string{"prompt", "tool_output", "file_contents", "image"} {
+		b := base(func(m map[string]any) { m[member] = "SUMMARIZE THE FOLLOWING" })
+		if _, err := p.RecordReceipt(ctx, params(b)); codeOf(t, err) != CodeInvalidEvidence {
+			t.Fatalf("receipt with %s accepted", member)
+		}
+	}
+	// Document facts diverging from the submitted receipt facts are rejected.
+	b := base(func(m map[string]any) { m["offer_id"] = "of-other" })
+	if _, err := p.RecordReceipt(ctx, params(b)); codeOf(t, err) != CodeInvalidEvidence {
+		t.Fatal("diverging receipt document accepted")
+	}
+	// Same receipt id already stored with different bytes: conflict.
+	// The mutated document and the submitted facts stay consistent
+	// (input_tokens=11 both places) so the rejection comes from the stored
+	// body-hash comparison, not the doc cross-check.
+	b = base(func(m map[string]any) {
+		m["usage"].([]map[string]any)[0]["value"] = int64(11)
+	})
+	p11 := params(b)
+	p11.Usage = allUsage(map[string]int64{"input_tokens": 11, "elapsed_millis": 5})
+	if _, err := p.RecordReceipt(ctx, p11); codeOf(t, err) != CodeConflict {
+		t.Fatal("receipt id replay with different bytes accepted")
+	}
+}
+
+func TestCanonicalIntegerBounds(t *testing.T) {
+	legal := int64(1)<<53 - 1
+	if _, err := canonicalize(map[string]any{"v": legal}); err != nil {
+		t.Fatalf("2^53-1 rejected: %v", err)
+	}
+	for _, n := range []int64{int64(1) << 53, -int64(1) << 53, int64(1)<<53 + 7} {
+		if _, err := canonicalize(map[string]any{"v": n}); codeOf(t, err) != CodeInvalidEvidence {
+			t.Fatalf("%d accepted by canonicalize", n)
+		}
+	}
+	// Canonical bytes carrying an out-of-range integer literal are rejected
+	// at the strict-decode boundary even though JCS re-serialization of the
+	// literal happens to be a fixed point.
+	big := []byte(`{"v":9007199254740994}`)
+	var out map[string]any
+	if err := strictDecode(big, &out); codeOf(t, err) != CodeInvalidEvidence {
+		t.Fatal("2^53+2 literal accepted by strictDecode")
+	}
+}
+
+func TestDeferAndCompleteTerminalGuards(t *testing.T) {
+	p := mustPort(t)
+	ctx := context.Background()
+	now := time.Now().UTC()
+	registerSource(t, p, "st", "provider_api", true)
+	r, err := p.EnqueueJob(ctx, "st", "https://st/r", "fetch", hash32([]byte("w")), "p1", now)
+	if err != nil {
+		t.Fatal(err)
+	}
+	lease, err := p.LeaseJob(ctx, r.JobID, "w1", time.Minute, now)
+	if err != nil {
+		t.Fatal(err)
+	}
+	obs := &AttemptObservation{
+		ObservationID: "obs-" + r.JobID, ResourceURL: "https://st/r", RetrievedAt: now,
+		HTTPStatus: 200, Outcome: "success", BodyBytes: []byte("b"), HeadersBytes: []byte("h"),
+	}
+	if _, err := p.RecordAttempt(ctx, RecordAttemptParams{
+		JobID: r.JobID, Token: lease.Token, CollectorVersion: "c1",
+		RecordedAt: now, Observation: obs, OutputBytes: fetchEnvelopeDoc(t, obs),
+	}); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := p.CompleteJob(ctx, r.JobID, lease.Token, "out-"+r.JobID, now); err != nil {
+		t.Fatal(err)
+	}
+	// Replay returns the same completion id and does not re-emit.
+	cid, err := p.CompleteJob(ctx, r.JobID, lease.Token, "out-"+r.JobID, now.Add(time.Second))
+	if err != nil || cid != r.JobID {
+		t.Fatalf("completion replay: %v %s", err, cid)
+	}
+	if n := countEventsName(t, p, r.JobID, "JobCompleted"); n != 1 {
+		t.Fatalf("JobCompleted emitted %d times", n)
+	}
+	// Deferring a completed job is an unlisted transition: conflict, and no
+	// attempt evidence is appended.
+	if err := p.DeferJob(ctx, r.JobID, lease.Token, "deferred", "", now, now.Add(time.Minute)); codeOf(t, err) != CodeConflict {
+		t.Fatal("defer of a completed job accepted")
+	}
+	// Identical defer replay does not re-emit JobDeferred.
+	r2, err := p.EnqueueJob(ctx, "st", "https://st/r2", "fetch", hash32([]byte("w2")), "p1", now)
+	if err != nil {
+		t.Fatal(err)
+	}
+	l2, err := p.LeaseJob(ctx, r2.JobID, "w1", time.Minute, now)
+	if err != nil {
+		t.Fatal(err)
+	}
+	for range 2 {
+		if err := p.DeferJob(ctx, r2.JobID, l2.Token, "deferred", "", now, now.Add(time.Minute)); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if n := countEventsName(t, p, r2.JobID, "JobDeferred"); n != 1 {
+		t.Fatalf("JobDeferred emitted %d times", n)
 	}
 }
