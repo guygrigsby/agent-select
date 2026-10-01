@@ -92,6 +92,9 @@ func loadInputs(root string) (*Config, *Inventory, *Ledger, *BuildResult, []*tab
 	if err != nil {
 		return nil, nil, nil, nil, nil, err
 	}
+	if err := CheckPolicyBatches(pol, batchDirs); err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
 	for _, batch := range pol.Batches() {
 		for _, r := range pol.ByBatch[batch] {
 			// Gate 5: policy evidence paths are read evidence paths.

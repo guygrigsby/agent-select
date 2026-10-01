@@ -48,6 +48,23 @@ type Policies struct {
 // Batches returns the policy file batches in file order.
 func (p *Policies) Batches() []string { return p.order }
 
+// CheckPolicyBatches enforces the §2.5 load-time unknown-batch rule: every
+// policies file must name a batch that has findings. The assembled-table
+// restatement (policies batch absent from source_access) still runs at
+// gate 6.
+func CheckPolicyBatches(p *Policies, knownBatches []string) error {
+	known := make(map[string]bool, len(knownBatches))
+	for _, b := range knownBatches {
+		known[b] = true
+	}
+	for _, batch := range p.Batches() {
+		if !known[batch] {
+			return invalidf("policies/%s.json: names a batch absent from data/research/ (unknown batch name)", batch)
+		}
+	}
+	return nil
+}
+
 func strictDecodePolicy(raw []byte, v interface{}) error {
 	dec := json.NewDecoder(bytes.NewReader(raw))
 	dec.DisallowUnknownFields()
@@ -68,6 +85,9 @@ func LoadPolicies(root string) (*Policies, error) {
 	if err != nil {
 		return nil, iof("read %s: %v", rel(root, dir), err)
 	}
+	// the dir listing is name-sorted, so the first sighting of a URL is
+	// deterministic and the duplicate diagnostic names a stable pair.
+	seenURL := map[string]string{}
 	p := &Policies{ByBatch: map[string][]PolicyRecord{}}
 	for _, e := range ents {
 		name := e.Name()
@@ -119,6 +139,10 @@ func LoadPolicies(root string) (*Policies, error) {
 				return nil, invalidf("%s: license_text exceeds 65536 UTF-8 bytes", where)
 			}
 			sorted = append(sorted, r.URL)
+			if prev, dup := seenURL[r.URL]; dup {
+				return nil, invalidf("policies/%s record %d: duplicate url %q already recorded in policies/%s", name, i+1, r.URL, prev)
+			}
+			seenURL[r.URL] = name
 		}
 		if !sort.StringsAreSorted(sorted) {
 			return nil, invalidf("policies/%s: records not sorted by url", name)

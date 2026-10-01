@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 )
 
@@ -157,5 +158,47 @@ func TestEnvelopeDetector(t *testing.T) {
 	}
 	if !parsesAsSuccessFormat("a.csv", []byte("model,acc\nm,0.5\n")) {
 		t.Fatal("two-column CSV with data row must parse")
+	}
+}
+
+// TestPolicyLoadDiagnostics covers the §2.5 load-time diagnostics from the
+// source-policies review: duplicate URLs across files and unknown batch
+// names must surface as exit 1 before any database insert runs.
+func TestPolicyLoadDiagnostics(t *testing.T) {
+	root := t.TempDir()
+	dir := filepath.Join(root, "data", "research-inputs", "policies")
+	os.MkdirAll(dir, 0o755)
+	rec := func(u string) string {
+		return `[{"url":"` + u + `","source_kind":"provider_docs","terms_url":"https://e.invalid/t","research":"unknown","extraction":"unknown","redistribution":"unknown","license_name":"","license_text":"","evidence":{"path":"data/research/x/y.json","retrieved_at":"2026-09-30T00:00:00.000Z","outcome":"success"}}]`
+	}
+	os.WriteFile(filepath.Join(dir, "alpha.json"), []byte(rec("https://e.invalid/a")), 0o644)
+	os.WriteFile(filepath.Join(dir, "beta.json"), []byte(rec("https://e.invalid/b")), 0o644)
+	os.WriteFile(filepath.Join(dir, "gamma.json"), []byte(rec("https://e.invalid/a")), 0o644)
+
+	pol, err := LoadPolicies(root)
+	if err == nil {
+		t.Fatal("duplicate URL across files must fail load")
+	}
+	ce, ok := err.(*Error)
+	if !ok || ce.Code != ExitInvalid {
+		t.Fatalf("duplicate URL must be exit 1, got %v", err)
+	}
+	if !strings.Contains(err.Error(), "alpha.json") || !strings.Contains(err.Error(), "gamma.json") {
+		t.Fatalf("duplicate diagnostic must name both files, got %v", err)
+	}
+
+	// drop the duplicate; unknown batch names are load-time exit 1
+	os.Remove(filepath.Join(dir, "gamma.json"))
+	pol, err = LoadPolicies(root)
+	if err != nil {
+		t.Fatalf("clean pair must load: %v", err)
+	}
+	if err := CheckPolicyBatches(pol, []string{"alpha"}); err == nil {
+		t.Fatal("beta.json names a batch without findings and must fail")
+	} else if ce, ok := err.(*Error); !ok || ce.Code != ExitInvalid {
+		t.Fatalf("unknown batch must be exit 1, got %v", err)
+	}
+	if err := CheckPolicyBatches(pol, []string{"alpha", "beta"}); err != nil {
+		t.Fatalf("known batches must pass: %v", err)
 	}
 }

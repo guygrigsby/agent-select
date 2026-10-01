@@ -348,10 +348,12 @@ terms material); `evidence.outcome` ∈ `success`, `http_error`,
   literal `unknown`.
 
 Load-time violations (shape, enums, sorting, timestamp order, unknown batch
-names) are exit 1 naming file and record. The semantic rules above that need
-assembled tables run as gate 6. Terms captures are ordinary inventory rows
-(`captured_remote`, real retrieval time, `timestamp_basis` stating the fetch)
-and join `source_files` like any evidence.
+names, duplicate URLs across files) are exit 1 naming file and record. The
+semantic rules above that need assembled tables run as gate 6 (the gate-6
+restatement of the no-duplicates and known-batch rules is defense in depth;
+the load-time diagnostic fires first). Terms captures are ordinary inventory
+rows (`captured_remote`, real retrieval time, `timestamp_basis` stating the
+fetch) and join `source_files` like any evidence.
 
 ## 3. Outputs and publication
 

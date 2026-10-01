@@ -462,6 +462,7 @@ func writeDB(path string, tables []*tableRows) error {
 		`PRAGMA page_size=4096`,
 		`PRAGMA journal_mode=OFF`,
 		`PRAGMA encoding='UTF-8'`,
+		`PRAGMA foreign_keys=ON`,
 	} {
 		if _, err := db.Exec(pragma); err != nil {
 			return iof("pragma %s: %v", pragma, err)
