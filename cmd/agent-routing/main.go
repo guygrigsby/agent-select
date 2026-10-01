@@ -10,6 +10,7 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/guygrigsby/agent-routing/internal/collector"
 	"github.com/guygrigsby/agent-routing/internal/research"
 )
 
@@ -26,6 +27,9 @@ func run(args []string) int {
 		return research.ExitUsage
 	}
 	rest := fs.Args()
+	if len(rest) >= 1 && rest[0] == "collect" {
+		return runCollect(rest[1:], fs)
+	}
 	if len(rest) < 2 || rest[0] != "research" {
 		usage()
 		return research.ExitUsage
@@ -99,6 +103,36 @@ func jsonable(v any) any {
 func usage() {
 	fmt.Fprintln(os.Stderr, "usage: agent-routing [--root dir] [--json] research {check|rebuild|coverage|backlog}")
 	fmt.Fprintln(os.Stderr, "       agent-routing [--root dir] research backlog [--report PATH|--check PATH]")
+	fmt.Fprintln(os.Stderr, "       agent-routing collect [--dsn DSN]")
+}
+
+// runCollect runs the collector daemon until SIGINT/SIGTERM: migrate,
+// reconcile expired leases, then collect claimable work. The DSN resolves
+// from --dsn, AGENT_ROUTING_DSN or config.toml (see internal/collector).
+func runCollect(args []string, parent *flag.FlagSet) int {
+	cfs := flag.NewFlagSet("collect", flag.ContinueOnError)
+	cfs.SetOutput(os.Stderr)
+	dsnFlag := cfs.String("dsn", "", "Postgres DSN (overrides env/config)")
+	if err := cfs.Parse(args); err != nil {
+		return research.ExitUsage
+	}
+	cfg, err := collector.LoadCollectorConfig()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "agent-routing: config: %v\n", err)
+		return research.ExitIO
+	}
+	dsn, err := collector.ResolveDSN(*dsnFlag, cfg)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "agent-routing: %v\n", err)
+		return research.ExitUsage
+	}
+	ctx, cancel := collector.SignalContext()
+	defer cancel()
+	if err := collector.RunCollector(ctx, dsn, cfg); err != nil {
+		fmt.Fprintf(os.Stderr, "agent-routing: %v\n", err)
+		return research.ExitIO
+	}
+	return research.ExitOK
 }
 
 // runBacklog handles the backlog subcommand's extra flags. Both modes run
