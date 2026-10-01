@@ -7,7 +7,7 @@
   "extraction": "denied",
   "redistribution": "unknown",
   "license_name": "proprietary",
-  "license_text": "(D) use any deep linking, robot, spider, scraper or other automated means to access the Services and collect content for any purpose without Arcee AI’s express written permission",
+  "license_text": "(D) use any deep linking, robot, spider, scraper or other automated means to access the Services and collect content for any purpose without Arcee AI\u2019s express written permission",
   "evidence": {
    "path": "data/research/terms/other-text/arcee-terms.html",
    "retrieved_at": "2026-09-30T23:16:11.382Z",
@@ -199,7 +199,7 @@
   "extraction": "denied",
   "redistribution": "denied",
   "license_name": "proprietary",
-  "license_text": "copy, rent, lease, sell, loan, transfer, assign, license or purport to sublicense, resell, distribute, modify, alter, or create derivative works of any part of the Service or any of our Intellectual Property (as defined below), including, without limitation by any automated or non-automated “scraping”",
+  "license_text": "copy, rent, lease, sell, loan, transfer, assign, license or purport to sublicense, resell, distribute, modify, alter, or create derivative works of any part of the Service or any of our Intellectual Property (as defined below), including, without limitation by any automated or non-automated \u201cscraping\u201d",
   "evidence": {
    "path": "data/research/terms/other-text/fireworks-terms-of-service.txt",
    "retrieved_at": "2026-09-30T23:19:54.613Z",
@@ -215,7 +215,7 @@
   "extraction": "denied",
   "redistribution": "denied",
   "license_name": "proprietary",
-  "license_text": "copy, rent, lease, sell, loan, transfer, assign, license or purport to sublicense, resell, distribute, modify, alter, or create derivative works of any part of the Service or any of our Intellectual Property (as defined below), including, without limitation by any automated or non-automated “scraping”",
+  "license_text": "copy, rent, lease, sell, loan, transfer, assign, license or purport to sublicense, resell, distribute, modify, alter, or create derivative works of any part of the Service or any of our Intellectual Property (as defined below), including, without limitation by any automated or non-automated \u201cscraping\u201d",
   "evidence": {
    "path": "data/research/terms/other-text/fireworks-terms-of-service.txt",
    "retrieved_at": "2026-09-30T23:19:54.613Z",
@@ -231,13 +231,13 @@
   "extraction": "allowed",
   "redistribution": "allowed",
   "license_name": "apache-2.0",
-  "license_text": "This project is open-sourced under the Apache 2.0 License.",
+  "license_text": "This project is open-sourced under the \\u003ca href=\\\"https://www.apache.org/licenses/LICENSE-2.0\\\" rel=\\\"nofollow\\\"\\u003eApache 2.0 License",
   "evidence": {
    "path": "data/research/other-text/sources/stepfun-step-3.5-flash-github.md",
    "retrieved_at": "2026-09-30T01:37:30.744Z",
    "outcome": "success"
   },
-  "notes": "Saved repo page contains the License section and the Apache-2.0 license badge; Apache-2.0 grants express redistribution rights."
+  "notes": "Saved repo page contains the License section and the Apache-2.0 license badge; Apache-2.0 grants express redistribution rights. license_text re-anchored to the raw escaped page bytes naming the Apache 2.0 License."
  },
  {
   "url": "https://huggingface.co/arcee-ai/Trinity-Large-Thinking/raw/main/README.md",
@@ -327,7 +327,7 @@
   "extraction": "denied",
   "redistribution": "denied",
   "license_name": "proprietary",
-  "license_text": "“crawls,” “scrapes,” or “spiders” any page, data, or portion of or relating to the Services or Content (through use of manual or automated means); copies or stores any significant portion of the Content",
+  "license_text": "\u201ccrawls,\u201d \u201cscrapes,\u201d or \u201cspiders\u201d any page, data, or portion of or relating to the Services or Content (through use of manual or automated means); copies or stores any significant portion of the Content",
   "evidence": {
    "path": "data/research/terms/other-text/inception-terms.html",
    "retrieved_at": "2026-09-30T23:16:18.994Z",
@@ -407,7 +407,7 @@
   "extraction": "denied",
   "redistribution": "denied",
   "license_name": "proprietary",
-  "license_text": "sublicense, resell, distribute, modify, alter, or create derivative works of any part of the Services or any of our intellectual property, including, without limitation by any automated or non-automated “scraping;”",
+  "license_text": "sublicense, resell, distribute, modify, alter, or create derivative works of any part of the Services or any of our intellectual property, including, without limitation by any automated or non-automated \u201cscraping;\u201d",
   "evidence": {
    "path": "data/research/terms/other-text/tml-terms.html",
    "retrieved_at": "2026-09-30T23:16:21.360Z",

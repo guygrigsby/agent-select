@@ -55,13 +55,13 @@
   "extraction": "allowed",
   "redistribution": "denied",
   "license_name": "llama3.1",
-  "license_text": "You are granted a non-exclusive, worldwide, non-transferable and royalty-free limited license under Meta’s intellectual property or other rights owned by Meta embodied in the Llama Materials to use, reproduce, distribute, copy, create derivative works of, and make modifications to the Llama Materials.\\nb. Redistribution and Use.\\ni. If you distribute or make available the Llama Materials (or any derivative works ther\n\nIf, on the Llama 3.1 version release date, the monthly active users of the products or services made available by or for Licensee, or Licensee’s affiliates, is greater than 700 million monthly active users in the preceding calendar month, you must request a license from Meta, which Meta may grant to you in its sole discretion, and you are not authorized to exercise any of the rights under this Agreement unless or until Meta otherwise expressly grants you such rights.\\n3. Disc",
+  "license_text": "You are granted a non-exclusive, worldwide, non-transferable and royalty-free limited license under Meta\u2019s intellectual property or other rights owned by Meta embodied in the Llama Materials to use, reproduce, distribute, copy, create derivative works of, and make modifications to the Llama Materials.",
   "evidence": {
    "path": "data/research/mistral-meta/sources/hf_llama3_1_modelcard_view.html",
    "retrieved_at": "2026-09-30T01:37:25.248Z",
    "outcome": "success"
   },
-  "notes": "Gated model page was captured with the full Llama 3.1 Community License embedded and license:llama3.1 tag; custom community license carries the explicit 700M-MAU additional-terms restriction and incorporated AUP, so redistribution is denied despite the distribution grant."
+  "notes": "Gated model page was captured with the full Llama 3.1 Community License embedded and license:llama3.1 tag; custom community license carries the explicit 700M-MAU additional-terms restriction and incorporated AUP, so redistribution is denied despite the distribution grant. license_text re-anchored to a contiguous run of the retained model-card page bytes."
  },
  {
   "url": "https://huggingface.co/meta-llama/Llama-3.1-70B-Instruct/raw/main/README.md",
@@ -119,13 +119,13 @@
   "extraction": "allowed",
   "redistribution": "denied",
   "license_name": "mrl",
-  "license_text": "**2.1. Grant of rights**.  Subject to Section 3 below, Mistral AI hereby\n  grants You a non-exclusive, royalty-free, worldwide, non-sublicensable,\n  non-transferable, limited license to use, copy, modify, and Distribute under\n  the conditions provided in Section 2.2 below, the Mistral Model and any\n  Derivatives made by or for Mistral AI and to create Derivatives of the Mistral\n  Model.\n\n  **2.2.\n\n**3.2. Usage Limitation.** You shall only use the Mistral Models, Derivatives\n  (whether or not created by Mistral AI) and Outputs for Research Purposes.\n\n  ## 4. Intellectual Property\n\n  **4.1. Trademarks.** No trademar",
+  "license_text": "**2.1. Grant of rights**.  Subject to Section 3 below, Mistral AI hereby grants You a non-exclusive, royalty-free, worldwide, non-sublicensable, non-transferable, limited license to use, copy, modify, and Distribute under the conditions provided in Section 2.2 below, the Mistral Model and any Derivatives made by or for Mistral AI and to create Derivatives of the Mistral Model.",
   "evidence": {
    "path": "data/research/terms/_shared/mrl-0.1.html",
    "retrieved_at": "2026-10-01T00:11:34.235Z",
    "outcome": "success"
   },
-  "notes": "Saved README carries the full Mistral AI Research License (license: other, license_name: mrl); MRL grants use/copy/modify/distribute but Section 3.2 restricts all use to non-commercial Research Purposes and bars commercial-entity distribution even free of charge, so redistribution is denied."
+  "notes": "Saved README carries the full Mistral AI Research License (license: other, license_name: mrl); MRL grants use/copy/modify/distribute but Section 3.2 restricts all use to non-commercial Research Purposes and bars commercial-entity distribution even free of charge, so redistribution is denied. license_text re-anchored to a contiguous markdown run of the retained MRL page bytes."
  },
  {
   "url": "https://huggingface.co/mistralai/Mistral-Large-3/raw/main/README.md",
@@ -135,13 +135,13 @@
   "extraction": "allowed",
   "redistribution": "allowed",
   "license_name": "apache-2.0",
-  "license_text": "## License\n\nThis model is licensed under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0.txt).\n\n*You must not use this model in a manner that infringes, misappropriates, or otherw",
+  "license_text": "Subject to the terms and conditions of\n      this License, each Contributor hereby grants to You a perpetual,\n      worldwide, non-exclusive, no-charge, royalty-free, irrevocable\n      copyright license to reproduce, prepare Derivative Works of,\n      publicly display, publicly perform, sublicense, and distribute the\n      Work and such Derivative Works in Source or Object form.",
   "evidence": {
    "path": "data/research/terms/_shared/apache-2.0.txt",
    "retrieved_at": "2026-10-01T00:11:38.818Z",
    "outcome": "success"
   },
-  "notes": "Saved README states license: apache-2.0 and links the Apache 2.0 text; express permissive grant supports all three uses."
+  "notes": "Saved README states license: apache-2.0 and links the Apache 2.0 text; express permissive grant supports all three uses. license_text re-anchored to the Apache-2.0 section 2 grant held in evidence.path; model-card phrasing quoted earlier lived outside evidence bytes."
  },
  {
   "url": "https://huggingface.co/mistralai/Mistral-Nemo-Instruct-2407/raw/main/README.md",
@@ -151,13 +151,13 @@
   "extraction": "allowed",
   "redistribution": "allowed",
   "license_name": "apache-2.0",
-  "license_text": "- Released under the **Apache 2 License**\n- Pre-trained and instructed versions\n- Trained with a **128k context window**",
+  "license_text": "Subject to the terms and conditions of\n      this License, each Contributor hereby grants to You a perpetual,\n      worldwide, non-exclusive, no-charge, royalty-free, irrevocable\n      copyright license to reproduce, prepare Derivative Works of,\n      publicly display, publicly perform, sublicense, and distribute the\n      Work and such Derivative Works in Source or Object form.",
   "evidence": {
    "path": "data/research/terms/_shared/apache-2.0.txt",
    "retrieved_at": "2026-10-01T00:11:38.818Z",
    "outcome": "success"
   },
-  "notes": "Saved README states license: apache-2.0 and 'Released under the Apache 2 License'; express permissive grant supports all three uses."
+  "notes": "Saved README states license: apache-2.0 and 'Released under the Apache 2 License'; express permissive grant supports all three uses. license_text re-anchored to the Apache-2.0 section 2 grant held in evidence.path; model-card phrasing quoted earlier lived outside evidence bytes."
  },
  {
   "url": "https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/raw/main/README.md",
@@ -167,13 +167,13 @@
   "extraction": "allowed",
   "redistribution": "allowed",
   "license_name": "apache-2.0",
-  "license_text": "- **Apache 2.0 License:** Open license allowing usage and modification for both commercial and non-commercial purposes.\n- **Context Window:** A 128k context window.\n- **System Prompt:** Maintains stro",
+  "license_text": "Subject to the terms and conditions of\n      this License, each Contributor hereby grants to You a perpetual,\n      worldwide, non-exclusive, no-charge, royalty-free, irrevocable\n      copyright license to reproduce, prepare Derivative Works of,\n      publicly display, publicly perform, sublicense, and distribute the\n      Work and such Derivative Works in Source or Object form.",
   "evidence": {
    "path": "data/research/terms/_shared/apache-2.0.txt",
    "retrieved_at": "2026-10-01T00:11:38.818Z",
    "outcome": "success"
   },
-  "notes": "Saved README states license: apache-2.0 with an explicit Apache 2.0 open-license clause; express permissive grant supports all three uses."
+  "notes": "Saved README states license: apache-2.0 with an explicit Apache 2.0 open-license clause; express permissive grant supports all three uses. license_text re-anchored to the Apache-2.0 section 2 grant held in evidence.path; model-card phrasing quoted earlier lived outside evidence bytes."
  },
  {
   "url": "https://mistral.ai/news/codestral-2501/",
@@ -247,13 +247,13 @@
   "extraction": "allowed",
   "redistribution": "denied",
   "license_name": "Llama 3.1 Community License",
-  "license_text": "a. Grant of Rights. You are granted a non-exclusive, worldwide, non-transferable and royalty-free limited license under Meta’s intellectual property or other rights owned by Meta embodied in the Llama Materials to use, reproduce, distribute, copy, create derivative works of, and make modifications to the Llama Materials.  \n\n    b. Redistribution and Use.  \n\n          i. If you\n\nAdditional Commercial Terms. If, on the Llama 3.1 version release date, the monthly active users of the products or services made available by or for Licensee, or Licensee’s affiliates, is greater than 700 million monthly active users in the preceding calendar month, you must request a license from Meta, which Meta may grant to you in its sole discretion, and you are not authorized to exercise any of the rights under this Agreement unless or until Meta otherwise expressly grants you such rights.",
+  "license_text": "a. Grant of Rights. You are granted a non-exclusive, worldwide, non-transferable and royalty-free limited license under Meta\u2019s intellectual property or other rights owned by Meta embodied in the Llama Materials to use, reproduce, distribute, copy, create derivative works of, and make modifications to the Llama Materials.",
   "evidence": {
    "path": "data/research/terms/mistral-meta/llama3_1-LICENSE.txt",
    "retrieved_at": "2026-09-30T23:31:33.552Z",
    "outcome": "success"
   },
-  "notes": "Retrieved model card declares the Llama 3.1 Community License; the raw LICENSE was fetched and grants use/reproduction/distribution but its Additional Commercial Terms bar exercise of rights above 700M MAU without separate Meta grant and incorporate the AUP, so redistribution is denied per the gated-license rule."
+  "notes": "Retrieved model card declares the Llama 3.1 Community License; the raw LICENSE was fetched and grants use/reproduction/distribution but its Additional Commercial Terms bar exercise of rights above 700M MAU without separate Meta grant and incorporate the AUP, so redistribution is denied per the gated-license rule. license_text re-anchored to a contiguous evidence.path excerpt; the multi-section splice was dropped."
  },
  {
   "url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama3_3/MODEL_CARD.md",
@@ -263,13 +263,13 @@
   "extraction": "allowed",
   "redistribution": "denied",
   "license_name": "Llama 3.3 Community License",
-  "license_text": "a. Grant of Rights. You are granted a non-exclusive, worldwide, non-transferable and royalty-free limited license under Meta’s intellectual property or other rights owned by Meta embodied in the Llama Materials to use, reproduce, distribute, copy, create derivative works of, and make modifications to the Llama Materials.  \n\nb. Redistribution and Use.  \n\ni. If you distribute or\n\nAdditional Commercial Terms**. If, on the Llama 3.3 version release date, the monthly active users of the products or services made available by or for Licensee, or Licensee’s affiliates, is greater than 700 million monthly active users in the preceding calendar month, you must request a license from Meta, which Meta may grant to you in its sole discretion, and you are not authorized to exercise any of the rights under this Agreement unless or until Meta otherwise expressly grants you such rights.\n\n3**. Disclaimer",
+  "license_text": "a. Grant of Rights. You are granted a non-exclusive, worldwide, non-transferable and royalty-free limited license under Meta\u2019s intellectual property or other rights owned by Meta embodied in the Llama Materials to use, reproduce, distribute, copy, create derivative works of, and make modifications to the Llama Materials.",
   "evidence": {
    "path": "data/research/terms/mistral-meta/llama3_3-LICENSE.txt",
    "retrieved_at": "2026-09-30T23:31:34.599Z",
    "outcome": "success"
   },
-  "notes": "Retrieved model card declares the Llama 3.3 Community License; the raw LICENSE carries the same gated structure (distribution grant conditioned on attribution, AUP and the 700M-MAU additional-terms restriction), so redistribution is denied."
+  "notes": "Retrieved model card declares the Llama 3.3 Community License; the raw LICENSE carries the same gated structure (distribution grant conditioned on attribution, AUP and the 700M-MAU additional-terms restriction), so redistribution is denied. license_text re-anchored to a contiguous evidence.path excerpt; the multi-section splice was dropped."
  },
  {
   "url": "https://raw.githubusercontent.com/meta-llama/llama-models/main/models/llama4/MODEL_CARD.md",
@@ -279,13 +279,13 @@
   "extraction": "allowed",
   "redistribution": "denied",
   "license_name": "Llama 4 Community License",
-  "license_text": "a. Grant of Rights. You are granted a non-exclusive, worldwide, non-transferable and royalty-free limited license under Meta’s intellectual property or other rights owned by Meta embodied in the Llama Materials to use, reproduce, distribute, copy, create derivative works of, and make modifications to the Llama Materials.  \n\n\nb. Redistribution and Use.  \n\n\ni. If you distribute o\n\nAdditional Commercial Terms. If, on the Llama 4 version release date, the monthly active users of the products or services made available by or for Licensee, or Licensee’s affiliates, is greater than 700 million monthly active users in the preceding calendar month, you must request a license from Meta, which Meta may grant to you in its sole discretion, and you are not authorized to exercise any of the rights under this Agreement unless or until Meta otherwise expressly grants you such rights.",
+  "license_text": "a. Grant of Rights. You are granted a non-exclusive, worldwide, non-transferable and royalty-free limited license under Meta\u2019s intellectual property or other rights owned by Meta embodied in the Llama Materials to use, reproduce, distribute, copy, create derivative works of, and make modifications to the Llama Materials.",
   "evidence": {
    "path": "data/research/terms/mistral-meta/llama4-LICENSE.txt",
    "retrieved_at": "2026-09-30T23:31:35.652Z",
    "outcome": "success"
   },
-  "notes": "Retrieved model card declares the Llama 4 Community License; the fetched raw LICENSE grants distribution with attribution/AUP conditions and the 700M-MAU additional-terms restriction (no EU multimodal clause in the saved text), so redistribution is denied."
+  "notes": "Retrieved model card declares the Llama 4 Community License; the fetched raw LICENSE grants distribution with attribution/AUP conditions and the 700M-MAU additional-terms restriction (no EU multimodal clause in the saved text), so redistribution is denied. license_text re-anchored to a contiguous evidence.path excerpt; the multi-section splice was dropped."
  },
  {
   "url": "https://raw.githubusercontent.com/mistralai/mistral-eval/main/README.md",

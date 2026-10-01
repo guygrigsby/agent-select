@@ -39,13 +39,13 @@
   "extraction": "allowed",
   "redistribution": "allowed",
   "license_name": "kimi-k3",
-  "license_text": "Permission is hereby granted, free of charge, to any person (the \"Licensee\") obtaining a copy of this software ... to deal in the Software without restriction. This includes, without limitation, the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software ... The requirements set forth in Sections 2 and 3 do not apply to: (a) internal use of the Software, defined as any use that does not make the Software, its outputs, or its underlying capabilities available to third parties.",
+  "license_text": "Permission is hereby granted, free of charge, to any person (the \"Licensee\")\nobtaining a copy of this software \u2014 including the model weights, parameters,\nconfiguration files, inference and training code, and associated documentation\n(collectively, the \"Software\") \u2014 to deal in the Software without restriction.",
   "evidence": {
    "path": "data/research/terms/moonshot-minimax/kimi-k3-license.txt",
    "retrieved_at": "2026-09-30T23:09:20.829Z",
    "outcome": "success"
   },
-  "notes": "Model card tags license other/kimi-k3 and links the Kimi K3 License, which expressly grants publish and distribute without restriction and exempts internal third-party-free use from its MaaS-revenue and branding conditions, so research, extraction and redistribution are permitted within that internal scope."
+  "notes": "Model card tags license other/kimi-k3 and links the Kimi K3 License, which expressly grants publish and distribute without restriction and exempts internal third-party-free use from its MaaS-revenue and branding conditions, so research, extraction and redistribution are permitted within that internal scope. license_text re-anchored to the contiguous opening grant sentences of the retained license bytes."
  },
  {
   "url": "https://raw.githubusercontent.com/MiniMax-AI/MiniMax-M2/main/README.md",
@@ -71,12 +71,12 @@
   "extraction": "allowed",
   "redistribution": "denied",
   "license_name": "minimax-community",
-  "license_text": "Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software for non-commercial purposes, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or provide copies of the Software ... If the Software (or any derivative works thereof) is used for any Commercial Use for your products or services: 1. you shall prominently display \"Built with MiniMax M3\" on a related website, user interface, blogpost, about page or product documentation. 2. you shall obtain a separate, prior written authorization from MiniMax ... if such products and services generate more than 20 million US dollars (or equivalent in other currencies) in yearly revenue.",
+  "license_text": "Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \u201cSoftware\u201d), to deal in the Software for non-commercial purposes, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or provide copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:",
   "evidence": {
    "path": "data/research/terms/moonshot-minimax/minimax-m3-license.txt",
    "retrieved_at": "2026-09-30T23:09:38.774Z",
    "outcome": "success"
   },
-  "notes": "README links the MiniMax Community License (GitHub raw LICENSE is 404, one retry); the grant is non-commercial only with commercial-use attribution and authorization conditions plus prohibited-uses appendix, so internal research and extraction are permitted but redistribution is denied as an explicit non-commercial restriction, matching the community-license rule."
+  "notes": "README links the MiniMax Community License (GitHub raw LICENSE is 404, one retry); the grant is non-commercial only with commercial-use attribution and authorization conditions plus prohibited-uses appendix, so internal research and extraction are permitted but redistribution is denied as an explicit non-commercial restriction, matching the community-license rule. license_text re-anchored to the contiguous grant sentence of the retained license bytes."
  }
 ]

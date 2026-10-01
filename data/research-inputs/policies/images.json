@@ -55,7 +55,7 @@
   "extraction": "allowed",
   "redistribution": "unknown",
   "license_name": "proprietary",
-  "license_text": "and our family of generative AI and foundation models with the prefix “FLUX” (&quot;<strong>Flux models</strong>&quot;), including Beta Offerings (defined below) offered to you",
+  "license_text": "and our family of generative AI and foundation models with the prefix \u201cFLUX\u201d (&quot;<strong>Flux models</strong>&quot;), including Beta Offerings (defined below) offered to you",
   "evidence": {
    "path": "data/research/terms/images/bfl-terms-of-service.html",
    "retrieved_at": "2026-09-30T23:53:27.620Z",
@@ -135,13 +135,13 @@
   "extraction": "allowed",
   "redistribution": "allowed",
   "license_name": "Apache-2.0",
-  "license_text": "\"license\":{\"spdxId\":\"Apache-2.0\",\"name\":\"Apache License 2.0\"}",
+  "license_text": "2. Grant of Copyright License. Subject to the terms and conditions of\",\"      this License, each Contributor hereby grants to You a perpetual,\",\"      worldwide, non-exclusive, no-charge, royalty-free, irrevocable\",\"      copyright license to reproduce, prepare Derivative Works of,\",\"      publicly display, publicly perform, sublicense, and distribute the\",\"      Work and such Derivative Works in Source or Object form.",
   "evidence": {
    "path": "data/research/terms/_shared/imagereward-license.html",
    "retrieved_at": "2026-10-01T00:11:29.459Z",
    "outcome": "success"
   },
-  "notes": "Repository has moved to zai-org/ImageReward (THUDM redirects) and the saved capture of the renamed repo shows the Apache-2.0 license badge verbatim, allowing research, extraction and redistribution under Apache-2.0."
+  "notes": "Repository has moved to zai-org/ImageReward (THUDM redirects) and the saved capture of the renamed repo shows the Apache-2.0 license badge verbatim, allowing research, extraction and redistribution under Apache-2.0. license_text re-anchored to the embedded Apache-2.0 section 2 grant in the retained capture; the earlier badge-JSON quote lived outside evidence bytes."
  },
  {
   "url": "https://github.com/black-forest-labs/flux",
@@ -407,7 +407,7 @@
   "extraction": "denied",
   "redistribution": "denied",
   "license_name": "proprietary",
-  "license_text": "(vii) use any automated or programmatic method to access the Services, generate Assets, or extract data from the Services, including scraping, web harvesting, or web data extraction; or (viii) reproduce, duplicate, copy, sell, resell, or exploit any portion of the Site or Services, use of the Site or Services, or access to the Site or Services, or any contact on the Site or Services, without Recraft’s express written permission",
+  "license_text": "(vii) use any automated or programmatic method to access the Services, generate Assets, or extract data from the Services, including scraping, web harvesting, or web data extraction; or (viii) reproduce, duplicate, copy, sell, resell, or exploit any portion of the Site or Services, use of the Site or Services, or access to the Site or Services, or any contact on the Site or Services, without Recraft\u2019s express written permission",
   "evidence": {
    "path": "data/research/terms/images/recraft-terms.html",
    "retrieved_at": "2026-09-30T23:54:10.114Z",
@@ -471,7 +471,7 @@
   "extraction": "allowed",
   "redistribution": "denied",
   "license_name": "proprietary",
-  "license_text": "(vii) use any automated or programmatic method to access the Services, generate Assets, or extract data from the Services, including scraping, web harvesting, or web data extraction; or (viii) reproduce, duplicate, copy, sell, resell, or exploit any portion of the Site or Services, use of the Site or Services, or access to the Site or Services, or any contact on the Site or Services, without Recraft’s express written permission",
+  "license_text": "(vii) use any automated or programmatic method to access the Services, generate Assets, or extract data from the Services, including scraping, web harvesting, or web data extraction; or (viii) reproduce, duplicate, copy, sell, resell, or exploit any portion of the Site or Services, use of the Site or Services, or access to the Site or Services, or any contact on the Site or Services, without Recraft\u2019s express written permission",
   "evidence": {
    "path": "data/research/terms/images/recraft-terms.html",
    "retrieved_at": "2026-09-30T23:54:10.114Z",
