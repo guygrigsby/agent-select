@@ -12,8 +12,8 @@ import (
 
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	"github.com/guygrigsby/agent-routing/internal/collector"
-	"github.com/guygrigsby/agent-routing/routing"
+	"github.com/guygrigsby/agent-select/internal/collector"
+	"github.com/guygrigsby/agent-select/routing"
 )
 
 func runReceipt(args []string) int {

@@ -11,8 +11,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/guygrigsby/agent-routing/internal/collector"
-	"github.com/guygrigsby/agent-routing/internal/research"
+	"github.com/guygrigsby/agent-select/internal/collector"
+	"github.com/guygrigsby/agent-select/internal/research"
 )
 
 func main() {

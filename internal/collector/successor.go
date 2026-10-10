@@ -11,7 +11,7 @@ import (
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	"github.com/guygrigsby/agent-routing/routing"
+	"github.com/guygrigsby/agent-select/routing"
 )
 
 // SuccessorConfig pins the publisher loop's channel identity and bootstrap

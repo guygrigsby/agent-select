@@ -10,8 +10,8 @@ import (
 	"io"
 	"os"
 
-	"github.com/guygrigsby/agent-routing/internal/collector"
-	"github.com/guygrigsby/agent-routing/routing"
+	"github.com/guygrigsby/agent-select/internal/collector"
+	"github.com/guygrigsby/agent-select/routing"
 )
 
 // CLI adapter exit codes (closed table, cli-adapter.md "Errors and exit

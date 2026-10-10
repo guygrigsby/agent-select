@@ -10,7 +10,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/guygrigsby/agent-routing/internal/research"
+	"github.com/guygrigsby/agent-select/internal/research"
 )
 
 // TestResearchCommonLeadingFlagsReachLegacyPath pins the pre-adapter

@@ -12,7 +12,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/guygrigsby/agent-routing/routing"
+	"github.com/guygrigsby/agent-select/routing"
 )
 
 func testStore(t *testing.T, keep int) *ArtifactStore {

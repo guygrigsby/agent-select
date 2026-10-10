@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/guygrigsby/agent-routing/internal/collector"
+	"github.com/guygrigsby/agent-select/internal/collector"
 )
 
 func TestReceiptPortFailureNeverEchoesDetails(t *testing.T) {

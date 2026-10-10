@@ -161,7 +161,7 @@ func (f *HTTPFetcher) Fetch(ctx context.Context, sourceID, resourceURL string) (
 	}
 	ua := f.UserAgent
 	if ua == "" {
-		ua = "agent-routing-collector/0.1 (+https://github.com/guygrigsby/agent-routing)"
+		ua = "agent-routing-collector/0.1 (+https://github.com/guygrigsby/agent-select)"
 	}
 	req.Header.Set("User-Agent", ua)
 	req.Header.Set("Accept", "application/json, text/html;q=0.9, */*;q=0.5")

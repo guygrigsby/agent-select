@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/guygrigsby/agent-routing/routing"
+	"github.com/guygrigsby/agent-select/routing"
 )
 
 func ms(t time.Time) time.Time { return t.Truncate(time.Millisecond) }

@@ -15,7 +15,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/guygrigsby/agent-routing/routing"
+	"github.com/guygrigsby/agent-select/routing"
 )
 
 var adapterFixtureTime = time.Date(2026, 9, 30, 12, 0, 0, 0, time.UTC)

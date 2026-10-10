@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/guygrigsby/agent-routing/routing"
+	"github.com/guygrigsby/agent-select/routing"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgconn"
 )
