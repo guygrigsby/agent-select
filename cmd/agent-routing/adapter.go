@@ -91,7 +91,8 @@ func readArtifact(path string) ([]byte, *routing.Snapshot, int) {
 		if errors.As(derr, &re) {
 			return nil, nil, adapterFail(re.Code, re.Detail, routingCodeExit(re.Code))
 		}
-		return nil, nil, adapterFail(routing.CodeInvalidSnapshot, derr.Error(), adapterExitSnapshot)
+		// Fixed label: the raw error never crosses the boundary.
+		return nil, nil, adapterFail(routing.CodeInvalidSnapshot, "decode failed", adapterExitSnapshot)
 	}
 	return data, snap, -1
 }
@@ -138,7 +139,8 @@ func runRoute(args []string) int {
 		if errors.As(werr, &re) {
 			return adapterFail("invalid_request_wire", re.Detail, adapterExitUsage)
 		}
-		return adapterFail("invalid_request_wire", werr.Error(), adapterExitUsage)
+		// Fixed label: raw decoder errors carry untrusted bytes.
+		return adapterFail("invalid_request_wire", "request document is invalid", adapterExitUsage)
 	}
 	req, nerr := routing.NewRequest(rd)
 	if nerr != nil {
@@ -146,7 +148,7 @@ func runRoute(args []string) int {
 		if errors.As(nerr, &re) {
 			return adapterFail(re.Code, re.Detail, routingCodeExit(re.Code))
 		}
-		return adapterFail(routing.CodeInvalidRequest, nerr.Error(), adapterExitUsage)
+		return adapterFail(routing.CodeInvalidRequest, "request failed domain validation", adapterExitUsage)
 	}
 
 	decision, err := engine.Route(req)
@@ -163,7 +165,7 @@ func runRoute(args []string) int {
 		if errors.As(err, &re) {
 			return adapterFail(re.Code, re.Detail, routingCodeExit(re.Code))
 		}
-		return adapterFail("internal_error", err.Error(), adapterExitInternal)
+		return adapterFail("internal_error", "routing failed", adapterExitInternal)
 	}
 	return adapterExitOK
 }
@@ -220,18 +222,21 @@ func runSnapshotAdopt(args []string) int {
 		return exit
 	}
 	hash := snap.Hash()
+	// Fixed labels below: raw storage errors carry caller-supplied paths
+	// (embedded newlines forge log lines), so only fixed diagnostics cross
+	// the stderr boundary. Exit codes stay per the cli-adapter.md table.
 	store, serr := collector.NewArtifactStore(*storePath, adapterKeepGenerations)
 	if serr != nil {
-		return adapterFail(routing.CodeSnapshotUnavailable, "store directory unusable: "+serr.Error(), adapterExitSnapshot)
+		return adapterFail(routing.CodeSnapshotUnavailable, "store directory unusable", adapterExitSnapshot)
 	}
 	if err := store.Stage(hash, data); err != nil {
-		return adapterFail(routing.CodeSnapshotUnavailable, "staging failed: "+err.Error(), adapterExitSnapshot)
+		return adapterFail(routing.CodeSnapshotUnavailable, "staging failed", adapterExitSnapshot)
 	}
 	if err := store.Adopt(hash); err != nil {
-		return adapterFail(routing.CodeSnapshotUnavailable, "adoption failed, prior generation retained: "+err.Error(), adapterExitSnapshot)
+		return adapterFail(routing.CodeSnapshotUnavailable, "adoption failed, prior generation retained", adapterExitSnapshot)
 	}
 	if err := store.Prune(); err != nil {
-		return adapterFail(routing.CodeSnapshotUnavailable, "adoption succeeded but pruning failed: "+err.Error(), adapterExitSnapshot)
+		return adapterFail(routing.CodeSnapshotUnavailable, "adoption succeeded but pruning failed", adapterExitSnapshot)
 	}
 	fmt.Println(hash)
 	return adapterExitOK

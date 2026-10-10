@@ -5,6 +5,7 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
+	"io"
 	"math/big"
 	"strconv"
 	"time"
@@ -93,7 +94,12 @@ func strictCheck(data []byte) error {
 	if err := walkValue(dec); err != nil {
 		return err
 	}
-	if dec.More() {
+	// Exactly one complete JSON value. More() is not an EOF test: it also
+	// returns false for trailing '}' and ']' bytes, so a document followed
+	// by a stray closer or a closer plus a second value would pass. Pull
+	// the next token instead and require the stdlib io.EOF: anything else
+	// is trailing data, rejected by a fixed label without echoing it.
+	if _, err := dec.Token(); err != io.EOF {
 		return invalidSnapshot("trailing values after the JSON document")
 	}
 	return nil

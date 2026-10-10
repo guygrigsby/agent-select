@@ -1,0 +1,36 @@
+**SPEC PASS. QUALITY PASS** for the current EOF-check and snapshot-diagnostic remediation.
+
+Verified independently in `/tmp/routing-remediation-review.BiyS5n`:
+- Public `DecodeRequestWire` rejected eight suffix variants: stray `}`/`]`, hostile extra objects, extra primitive, garbage and NUL.
+- Compiled CLI rejected poisoned requests with exit **2**, poisoned snapshots with **4**, empty stdout and exactly one safe stderr line.
+- Store creation, staging, adoption and pruning failures leaked no path, newline-forgery or credential markers.
+- Invalid adoption preserved `CURRENT` and prior artifact bytes. Pruning failure correctly reported that adoption had succeeded.
+- Valid route/adoption remained exit **0**; no-offer routing remained **3**.
+- Focused decoder, error-safety, route/snapshot tests and adoption race test passed. Nearby error forwarding showed no reachable content leak or fail-open.
+
+Nonblocking observations:
+- **Minor — `routing/security_suffix_test.go:58–61`:** the decoder regression permits decoder success if `NewRequest` subsequently fails. It should assert decoder rejection directly; independent probes confirmed rejection today.
+- **Minor, pre-existing — `routing/wire.go:36–47`:** malformed JSON returns `invalid_snapshot`, despite the API comment promising `invalid_request`. CLI remapping remains correct.
+
+All four reviewed files were unchanged against the archived candidate at completion. No shared files were modified; excluded areas were not graded.
+
+**Recommendation: accept this scoped remediation. This does not restore lost historical security signoff.**
+
+Parent acceptance: isolated c90e0cb plus only the four reviewed remediation files.
+routing/canonical.go sha256=0c447bb2860a9889af19733b74a79240c081b2aac55af6e54ed60d5d21ad62df
+routing/security_suffix_test.go sha256=3e1bedb355ccb628b26e68ce27f909c82b6a1abb96b171981c1cae0ae208bb7a
+cmd/agent-routing/adapter.go sha256=8e8da7f7df091d295a0c465814048a5fdfe3bb1ba5198236dd252a1cda549067
+cmd/agent-routing/security_boundary_test.go sha256=9dbb1325aa582c0ad174eb30af5650d5f0a1b5210bc0ba1c25005172b840cddd
+go test ./routing ./cmd/agent-routing -count=1: PASS (0.413s / 0.335s).
+go test -race ./routing -run ^TestAdoptRace$ -count=1: PASS (1.212s).
+go vet ./routing ./cmd/agent-routing and CLI build: PASS.
+Initial native probe found an old poisoned fixture on disk and correctly rejected it; extracted its original document before testing the valid path.
+valid route: exit 0, selected p/m
+poisoned route: exit 2, empty stdout, one safe line b'}\n'
+poisoned route: exit 2, empty stdout, one safe line b']\n'
+poisoned route: exit 2, empty stdout, one safe line b'} {"credential":"secret"}\n'
+poisoned route: exit 2, empty stdout, one safe line b' {"credential":"secret"}\n'
+poisoned route: exit 2, empty stdout, one safe line b' true\n'
+poisoned route: exit 2, empty stdout, one safe line b' garbage\n'
+poisoned route: exit 2, empty stdout, one safe line b'\x00\n'
+hostile store path: exit 4, empty stdout, one safe line
