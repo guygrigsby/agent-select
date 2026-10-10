@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/guygrigsby/agent-routing/internal/collector"
 	"github.com/guygrigsby/agent-routing/internal/research"
@@ -20,8 +21,12 @@ func main() {
 
 func run(args []string) int {
 	// Adapter commands (cli-adapter.md) dispatch before research flags:
-	// they take no --root/--json and own their exit table.
-	if len(args) == 0 || (args[0] != "research" && args[0] != "collect") {
+	// they take no --root/--json and own their exit table. A leading flag
+	// (the §1 common --root/--json before the subcommand) stays on the
+	// legacy research path, whose usage error is exit 64; only bare
+	// subcommands (known adapter commands or an unknown one, which is a
+	// usage error on the adapter exit table) dispatch here.
+	if len(args) == 0 || (args[0] != "research" && args[0] != "collect" && !strings.HasPrefix(args[0], "-")) {
 		// Unknown subcommand is a usage error on the adapter exit table.
 		return runAdapter(args)
 	}
