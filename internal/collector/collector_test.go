@@ -6,6 +6,9 @@ import (
 	"crypto/sha256"
 	"fmt"
 	"github.com/jackc/pgx/v5/pgxpool"
+	// Registers the "pgx" database/sql driver used by wait.ForSQL below.
+	_ "github.com/jackc/pgx/v5/stdlib"
+	"github.com/moby/moby/api/types/network"
 	"github.com/testcontainers/testcontainers-go"
 	"github.com/testcontainers/testcontainers-go/wait"
 	"os"
@@ -21,7 +24,16 @@ func startPostgres(t *testing.T) *pgxpool.Pool {
 		Image:        "postgres:16-alpine",
 		Env:          map[string]string{"POSTGRES_PASSWORD": "test", "POSTGRES_DB": "collector"},
 		ExposedPorts: []string{"5432/tcp"},
-		WaitingFor:   wait.ForListeningPort("5432/tcp"),
+		// Postgres accepts TCP connections before recovery finishes, so a
+		// listening port is not SQL readiness. ForSQL polls SELECT 1 over
+		// the real wire with a bounded startup timeout, and only then does
+		// the container count as started.
+		WaitingFor: wait.ForAll(
+			wait.ForListeningPort("5432/tcp"),
+			wait.ForSQL("5432/tcp", "pgx", func(host string, port network.Port) string {
+				return fmt.Sprintf("postgres://postgres:test@%s:%s/collector?sslmode=disable", host, port.Port())
+			}),
+		),
 	}
 	c, err := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: req,
