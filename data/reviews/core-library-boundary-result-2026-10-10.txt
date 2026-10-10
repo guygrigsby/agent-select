@@ -1,0 +1,7 @@
+--- FAIL: TestParentBaselineWireSuffixRejected (0.00s)
+    zz_parent_boundary_test.go:20: baseline accepts root suffix "}\n"
+    zz_parent_boundary_test.go:20: baseline accepts root suffix "]\n"
+    zz_parent_boundary_test.go:20: baseline accepts root suffix "} {\"credential\":\"secret\"}\n"
+FAIL
+FAIL	github.com/guygrigsby/agent-routing/routing	0.210s
+FAIL

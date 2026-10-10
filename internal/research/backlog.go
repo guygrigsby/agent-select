@@ -10,6 +10,17 @@ import (
 	"strings"
 )
 
+// Task status vocabulary (§10.2): closed set. Every task must carry an
+// explicit status in the durable input; open records that the original
+// closure condition stands unmet and never means "done because a research
+// wave happened".
+const (
+	TaskStatusOpen       = "open"
+	TaskStatusInProgress = "in_progress"
+	TaskStatusBlocked    = "blocked"
+	TaskStatusDone       = "done"
+)
+
 // BacklogTask is one acquisition/extraction task from
 // data/research-inputs/backlog-tasks.json (§10.2).
 type BacklogTask struct {
@@ -20,6 +31,12 @@ type BacklogTask struct {
 	EvidenceURLs  []string `json:"evidence_urls"`
 	DesiredFields []string `json:"desired_fields"`
 	Closure       string   `json:"closure"`
+	// Status is open|in_progress|blocked|done and is required: §10.2 rejects
+	// absent or unknown status. Any status requires a trimmed nonempty
+	// status_basis citing repo evidence, so the generated report always
+	// renders a status that lives in the durable input.
+	Status      string `json:"status"`
+	StatusBasis string `json:"status_basis"`
 }
 
 type taskFile struct {
@@ -29,8 +46,9 @@ type taskFile struct {
 // LoadTasks reads and validates backlog-tasks.json. Validation is part of
 // gate coverage: every model_research batch must be claimed by a task, every
 // evidence file must be in the capture inventory (same seam as the batch
-// findings gate), and every task must name desired fields and a closure
-// condition.
+// findings gate), and every task must name desired fields, a closure
+// condition and an explicit status with a trimmed nonempty status_basis
+// (§10.2 rejects absent or unknown status and empty status basis).
 func LoadTasks(root string, inv *Inventory, researchBatches []string) ([]BacklogTask, error) {
 	p := filepath.Join(root, "data", "research-inputs", "backlog-tasks.json")
 	raw, err := os.ReadFile(p)
@@ -70,6 +88,14 @@ func LoadTasks(root string, inv *Inventory, researchBatches []string) ([]Backlog
 		}
 		if t.Closure == "" {
 			return nil, invalidf("%s task %s: closure condition empty", rel(root, p), t.ID)
+		}
+		switch t.Status {
+		case TaskStatusOpen, TaskStatusInProgress, TaskStatusBlocked, TaskStatusDone:
+			if strings.TrimSpace(t.StatusBasis) == "" {
+				return nil, invalidf("%s task %s: status %s requires a nonempty trimmed status_basis citing repo evidence", rel(root, p), t.ID, t.Status)
+			}
+		default:
+			return nil, invalidf("%s task %s: status %q outside open|in_progress|blocked|done; §10.2 requires an explicit status", rel(root, p), t.ID, t.Status)
 		}
 		for _, b := range t.Batches {
 			claimed[b] = true
@@ -423,28 +449,37 @@ func RenderBacklogReport(rows []BacklogRow, tables []*tableRows, tasks []Backlog
 	fmt.Fprintf(&b, "- access states over in-scope models: %s\n", strings.Join(asc, ", "))
 
 	b.WriteString("\n## Acquisition and extraction tasks\n\n")
+	sc := map[string]int{}
+	for _, task := range tasks {
+		sc[task.Status]++
+	}
+	var scs []string
+	for _, s := range []string{TaskStatusOpen, TaskStatusInProgress, TaskStatusBlocked, TaskStatusDone} {
+		scs = append(scs, fmt.Sprintf("%s %d", s, sc[s]))
+	}
+	fmt.Fprintf(&b, "%d tasks: %s. open means the original closure condition stands unmet; done means the original closure was independently verified, with a bounded outcome closing only where the original closure expressly permits it; blocked means a rights/policy blocker is recorded from existing evidence and stays blocked.\n\n", len(tasks), strings.Join(scs, ", "))
 	b.WriteString("### Batch acquisition\n\n")
-	b.WriteString("| task | batches | models | evidence files | closure condition |\n")
-	b.WriteString("|---|---|---|---|---|\n")
+	b.WriteString("| task | batches | models | evidence files | status | status basis | closure condition |\n")
+	b.WriteString("|---|---|---|---|---|---|---|\n")
 	for _, task := range tasks {
 		if task.Kind != "batch_acquisition" {
 			continue
 		}
 		n := batchModelCount(t.BatchModels, task.Batches)
-		fmt.Fprintf(&b, "| %s | %s | %d | %s | %s |\n",
+		fmt.Fprintf(&b, "| %s | %s | %d | %s | %s | %s | %s |\n",
 			task.ID, strings.Join(task.Batches, ";"), n,
-			taskFileList(task.EvidenceFiles), task.Closure)
+			taskFileList(task.EvidenceFiles), task.Status, task.StatusBasis, task.Closure)
 	}
 	b.WriteString("\n### Source acquisition\n\n")
-	b.WriteString("| task | evidence files | desired fields | closure condition |\n")
-	b.WriteString("|---|---|---|---|\n")
+	b.WriteString("| task | evidence files | desired fields | status | status basis | closure condition |\n")
+	b.WriteString("|---|---|---|---|---|---|\n")
 	for _, task := range tasks {
 		if task.Kind != "source_acquisition" {
 			continue
 		}
-		fmt.Fprintf(&b, "| %s | %s | %s | %s |\n",
+		fmt.Fprintf(&b, "| %s | %s | %s | %s | %s | %s |\n",
 			task.ID, taskFileList(task.EvidenceFiles),
-			strings.Join(task.DesiredFields, "; "), task.Closure)
+			strings.Join(task.DesiredFields, "; "), task.Status, task.StatusBasis, task.Closure)
 	}
 	b.WriteString("\n## Per-model records\n\n")
 	fmt.Fprintf(&b, "The machine-readable backlog is `agent-routing research backlog` (stdout TSV, %d rows, one per catalog model). Columns: %s\n", len(rows), strings.ReplaceAll(strings.Join(strings.Split(BacklogHeader, "\t")[1:], ", "), "_", " "))

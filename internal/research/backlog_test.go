@@ -68,6 +68,38 @@ func TestBacklogCorpus(t *testing.T) {
 			t.Fatalf("report missing %q", want)
 		}
 	}
+	// Task status counts come from the durable task file, never a pinned
+	// total here: the report must render exactly what the tasks carry
+	// (§10.2 explicit status contract; the drift gate catches divergence).
+	_, inv, _, _, tables, err := loadInputs(root)
+	if err != nil {
+		t.Fatalf("loadInputs: %v", err)
+	}
+	tasks, err := LoadTasks(root, inv, researchBatchNames(tables))
+	if err != nil {
+		t.Fatalf("LoadTasks: %v", err)
+	}
+	sc := map[string]int{}
+	for _, tk := range tasks {
+		sc[tk.Status]++
+	}
+	wantTasks := fmt.Sprintf("%d tasks: %s %d, %s %d, %s %d, %s %d",
+		len(tasks), TaskStatusOpen, sc[TaskStatusOpen], TaskStatusInProgress, sc[TaskStatusInProgress],
+		TaskStatusBlocked, sc[TaskStatusBlocked], TaskStatusDone, sc[TaskStatusDone])
+	if !strings.Contains(string(report), wantTasks) {
+		t.Fatalf("report missing derived task counts %q", wantTasks)
+	}
+	// Status and basis appear per task; LiveCodeBench must render blocked.
+	for _, ln := range strings.Split(string(report), "\n") {
+		if strings.HasPrefix(ln, "| livecodebench |") {
+			if !strings.Contains(ln, "| blocked |") {
+				t.Fatalf("livecodebench row must render status blocked: %s", ln)
+			}
+			if !strings.Contains(ln, "policies/livecodebench.json") {
+				t.Fatalf("livecodebench status_basis must cite the policy evidence: %s", ln)
+			}
+		}
+	}
 }
 
 // TestBacklogDriftCheck verifies the drift gate: a matching file passes, an
@@ -88,6 +120,162 @@ func TestBacklogDriftCheck(t *testing.T) {
 	err = BacklogCheck(root, "docs/research/backlog.md")
 	if ce, ok := err.(*Error); err == nil || !ok || ce.Code != ExitInvalid {
 		t.Fatalf("stale report error = %v, want ExitInvalid", err)
+	}
+}
+
+// TestBacklogTaskStatus drives the §10.2 status contract: every task must
+// carry an explicit status from the closed enum with a trimmed nonempty
+// status_basis citing repo evidence; absent, null and unknown statuses and
+// empty or whitespace-only bases are all rejected ExitInvalid.
+func TestBacklogTaskStatus(t *testing.T) {
+	root := copyCorpus(t)
+	_, inv, _, _, tables, err := loadInputs(root)
+	if err != nil {
+		t.Fatalf("loadInputs: %v", err)
+	}
+	batches := researchBatchNames(tables)
+	p := filepath.Join(root, "data", "research-inputs", "backlog-tasks.json")
+	orig, _ := os.ReadFile(p)
+	defer os.WriteFile(p, orig, 0o644)
+	restore := func(t *testing.T) {
+		t.Helper()
+		if err := os.WriteFile(p, orig, 0o644); err != nil {
+			t.Fatal(err)
+		}
+	}
+
+	t.Run("explicit statuses preserved", func(t *testing.T) {
+		tasks, err := LoadTasks(root, inv, batches)
+		if err != nil {
+			t.Fatalf("LoadTasks: %v", err)
+		}
+		byID := map[string]BacklogTask{}
+		for _, tk := range tasks {
+			byID[tk.ID] = tk
+		}
+		if tk := byID["geneval"]; tk.Status != TaskStatusDone || tk.StatusBasis == "" {
+			t.Fatalf("geneval status = %q basis = %q, want done with a basis", tk.Status, tk.StatusBasis)
+		}
+		if tk := byID["livecodebench"]; tk.Status != TaskStatusBlocked || tk.StatusBasis == "" {
+			t.Fatalf("livecodebench status = %q basis = %q, want blocked with a basis", tk.Status, tk.StatusBasis)
+		}
+		if tk := byID["arena"]; tk.Status != TaskStatusBlocked || !strings.Contains(tk.StatusBasis, "policies/arena.json") {
+			t.Fatalf("arena status = %q basis = %q, want blocked citing the policy", tk.Status, tk.StatusBasis)
+		}
+	})
+	t.Run("missing status rejected", func(t *testing.T) {
+		restore(t)
+		editTasks(t, p, "geneval", func(tk map[string]any) { delete(tk, "status") })
+		_, err := LoadTasks(root, inv, batches)
+		if ce, ok := err.(*Error); err == nil || !ok || ce.Code != ExitInvalid {
+			t.Fatalf("missing status must fail ExitInvalid under research-artifact.md §10.2, got %v", err)
+		}
+	})
+	t.Run("null status rejected", func(t *testing.T) {
+		restore(t)
+		editTasks(t, p, "geneval", func(tk map[string]any) { tk["status"] = nil })
+		_, err := LoadTasks(root, inv, batches)
+		if ce, ok := err.(*Error); err == nil || !ok || ce.Code != ExitInvalid {
+			t.Fatalf("null status must fail ExitInvalid, got %v", err)
+		}
+	})
+	t.Run("invalid status rejected", func(t *testing.T) {
+		restore(t)
+		editTasks(t, p, "geneval", func(tk map[string]any) { tk["status"] = "closed" })
+		_, err := LoadTasks(root, inv, batches)
+		if ce, ok := err.(*Error); err == nil || !ok || ce.Code != ExitInvalid || !strings.Contains(err.Error(), "open|in_progress|blocked|done") {
+			t.Fatalf("error = %v, want ExitInvalid naming the status enum", err)
+		}
+	})
+	t.Run("empty status_basis rejected", func(t *testing.T) {
+		restore(t)
+		editTasks(t, p, "geneval", func(tk map[string]any) {
+			tk["status"] = "done"
+			tk["status_basis"] = ""
+		})
+		_, err := LoadTasks(root, inv, batches)
+		if ce, ok := err.(*Error); err == nil || !ok || ce.Code != ExitInvalid || !strings.Contains(err.Error(), "status_basis") {
+			t.Fatalf("error = %v, want ExitInvalid naming status_basis", err)
+		}
+	})
+	t.Run("whitespace-only status_basis rejected", func(t *testing.T) {
+		restore(t)
+		editTasks(t, p, "geneval", func(tk map[string]any) {
+			tk["status"] = "done"
+			tk["status_basis"] = " \t\n "
+		})
+		_, err := LoadTasks(root, inv, batches)
+		if ce, ok := err.(*Error); err == nil || !ok || ce.Code != ExitInvalid || !strings.Contains(err.Error(), "status_basis") {
+			t.Fatalf("error = %v, want ExitInvalid naming status_basis", err)
+		}
+	})
+}
+
+func TestBacklogMissingStatusRejected(t *testing.T) {
+	root := copyCorpus(t)
+	_, inv, _, _, tables, err := loadInputs(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	editTasks(t, filepath.Join(root, "data", "research-inputs", "backlog-tasks.json"), "geneval", func(task map[string]any) {
+		delete(task, "status")
+	})
+	_, err = LoadTasks(root, inv, researchBatchNames(tables))
+	if e, ok := err.(*Error); !ok || e.Code != ExitInvalid {
+		t.Fatalf("missing status must fail ExitInvalid under research-artifact.md §10.2, got %v", err)
+	}
+}
+
+// editTasks rewrites one task object in backlog-tasks.json (test copies
+// only) so status-contract mutations do not depend on key order.
+func editTasks(t *testing.T, p, id string, fn func(tk map[string]any)) {
+	t.Helper()
+	raw, err := os.ReadFile(p)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var doc struct {
+		Tasks []map[string]any `json:"tasks"`
+	}
+	if err := json.Unmarshal(raw, &doc); err != nil {
+		t.Fatal(err)
+	}
+	for _, tk := range doc.Tasks {
+		if tk["id"] == id {
+			fn(tk)
+		}
+	}
+	out, err := json.Marshal(&doc)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(p, out, 0o644); err != nil {
+		t.Fatal(err)
+	}
+}
+
+// TestBacklogStatusDrift pins the drift-guard half of the status contract:
+// the generated report must expose status and basis so a status change in
+// the durable input makes the committed report stale under --check.
+func TestBacklogStatusDrift(t *testing.T) {
+	root := copyCorpus(t)
+	_, report, _, err := Backlog(root)
+	if err != nil {
+		t.Fatalf("Backlog: %v", err)
+	}
+	p := filepath.Join(root, "docs", "research", "backlog.md")
+	os.MkdirAll(filepath.Dir(p), 0o755)
+	os.WriteFile(p, report, 0o644)
+	if err := BacklogCheck(root, "docs/research/backlog.md"); err != nil {
+		t.Fatalf("fresh report must pass --check: %v", err)
+	}
+	editTasks(t, filepath.Join(root, "data", "research-inputs", "backlog-tasks.json"), "aider", func(tk map[string]any) {
+		tk["status"] = "in_progress"
+		tk["status_basis"] = "probe basis"
+	})
+	err = BacklogCheck(root, "docs/research/backlog.md")
+	if ce, ok := err.(*Error); err == nil || !ok || ce.Code != ExitInvalid || !strings.Contains(err.Error(), "stale") {
+		t.Fatalf("status change must make the committed report stale, got %v", err)
 	}
 }
 

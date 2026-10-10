@@ -714,10 +714,18 @@ acquisition/extraction task: `id`, `kind`
 (`batch_acquisition` with ≥1 `batches`, or `source_acquisition`),
 `evidence_files` (each must be in the capture inventory — gate 5 applies),
 `evidence_urls`, `desired_fields`, `closure` (a task closes with verified
-evidence or a bounded documented outcome, never web exhaustion). Validation
-rejects: duplicate ids, kind/batch mismatches, uninventoried evidence,
-empty desired fields, empty closure, and any research-row batch without
-a claiming task.
+evidence or a bounded documented outcome, never web exhaustion), `status`
+(`open`, `in_progress`, `blocked` or `done`) and `status_basis` (nonempty
+repository evidence or issue reference explaining that classification).
+Every task has an explicit status. An unmet original closure stays open;
+a completed bounded research wave does not close broader acquisition work.
+Policy-blocked sources remain blocked without another fetch attempt.
+Validation rejects: duplicate ids, kind/batch mismatches, uninventoried
+evidence, empty desired fields, empty closure, absent or unknown status,
+empty status basis and any research-row batch without a claiming task.
+These are immutable control-input classifications, not new Knowledge
+aggregate transitions. Existing `research backlog` returns their generated
+status and basis; no event or production table is introduced.
 
 ### 10.3 Backlog gates
 

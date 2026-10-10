@@ -27,6 +27,10 @@ func run(args []string) int {
 	// subcommands (known adapter commands or an unknown one, which is a
 	// usage error on the adapter exit table) dispatch here.
 	if len(args) == 0 || (args[0] != "research" && args[0] != "collect" && !strings.HasPrefix(args[0], "-")) {
+		// receipt record shares the adapter exit table.
+		if len(args) >= 1 && args[0] == "receipt" {
+			return runReceipt(args)
+		}
 		// Unknown subcommand is a usage error on the adapter exit table.
 		return runAdapter(args)
 	}

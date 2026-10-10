@@ -151,6 +151,11 @@ func requestWire(t *testing.T, rd routing.RequestData) []byte {
 // captureRun runs run(args) with stdout and stderr swapped for pipes.
 func captureRun(t *testing.T, args []string) (stdout, stderr string, exit int) {
 	t.Helper()
+	return captureExit(t, func() int { return run(args) })
+}
+
+func captureExit(t *testing.T, invoke func() int) (stdout, stderr string, exit int) {
+	t.Helper()
 	outR, outW, err := os.Pipe()
 	if err != nil {
 		t.Fatal(err)
@@ -161,7 +166,7 @@ func captureRun(t *testing.T, args []string) (stdout, stderr string, exit int) {
 	}
 	oldOut, oldErr := os.Stdout, os.Stderr
 	os.Stdout, os.Stderr = outW, errW
-	exit = run(args)
+	exit = invoke()
 	outW.Close()
 	errW.Close()
 	os.Stdout, os.Stderr = oldOut, oldErr
@@ -444,5 +449,173 @@ func TestRouteReadsStdinRequest(t *testing.T) {
 	}
 	if !strings.Contains(stdout, `"selected"`) {
 		t.Fatalf("stdin request did not produce a selection: %s", stdout)
+	}
+}
+
+func TestReceiptRecordUsagePaths(t *testing.T) {
+	dir := t.TempDir()
+	badDoc := filepath.Join(dir, "bad.json")
+	writeFileT(t, badDoc, []byte(`{"receipt_id":"r1","task_prompt":"leak"}`+"\n"))
+	missing := filepath.Join(dir, "absent.json")
+	cases := []struct {
+		name string
+		args []string
+		code string
+	}{
+		{"missing flag", []string{"receipt", "record"}, "usage"},
+		{"unknown sub", []string{"receipt", "replay"}, "usage"},
+		{"unreadable doc", []string{"receipt", "record", "--receipt", missing}, "invalid_request"},
+		{"unknown member", []string{"receipt", "record", "--receipt", badDoc}, "invalid_request"},
+	}
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			stdout, stderr, exit := captureRun(t, tc.args)
+			if exit != adapterExitUsage || stdout != "" {
+				t.Fatalf("exit %d stdout %q", exit, stdout)
+			}
+			lines := strings.Split(strings.TrimSuffix(stderr, "\n"), "\n")
+			if len(lines) != 1 {
+				t.Fatalf("stderr one line: %q", stderr)
+			}
+			if tc.code == "usage" {
+				if !strings.HasPrefix(lines[0], "usage: ") {
+					t.Fatalf("usage form: %q", lines[0])
+				}
+			} else if !strings.HasPrefix(lines[0], "agent-routing: "+tc.code+":") {
+				t.Fatalf("code form: %q", lines[0])
+			}
+		})
+	}
+}
+
+// receiptSecret is the canary the boundary tests plant in DSNs and receipt
+// documents: nothing the caller supplies may reappear in a diagnostic.
+const receiptSecret = "SUP3RSECRET-DO-NOT-LEAK-8c41"
+
+// receiptDocument builds the canonical-v1 encoding of one closed-grammar
+// receipt document, with overrides for the case under test.
+func receiptDocument(t *testing.T, overrides map[string]any) []byte {
+	t.Helper()
+	doc := map[string]any{
+		"receipt_id": "rcpt-cli-1", "request_id": "req-cli-1",
+		"offer_id": "prov/up", "task": "code", "outcome": "cancelled",
+		"validator_version": "",
+		"usage": []map[string]any{
+			{"component": "input_tokens", "known": false},
+			{"component": "output_tokens", "known": false},
+			{"component": "input_images", "known": false},
+			{"component": "output_images", "known": false},
+			{"component": "references", "known": false},
+			{"component": "searches", "known": false},
+			{"component": "elapsed_millis", "known": false},
+		},
+	}
+	for k, v := range overrides {
+		doc[k] = v
+	}
+	b, err := routing.CanonicalEncode(doc)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return b
+}
+
+// secretBearingDSN carries the canary secret as the password; bad inserts
+// a parse-breaking fragment after it.
+func secretBearingDSN(bad string) string {
+	if bad != "" {
+		return "postgres://node:" + receiptSecret + bad + "@127.0.0.1:1/none"
+	}
+	return "postgres://node:" + receiptSecret + "@127.0.0.1:1/none?sslmode=disable"
+}
+
+// TestReceiptRecordSafeDiagnostics pins the process-boundary safety rule
+// (cli-adapter.md, host-integration.md "Security and trust boundaries"):
+// whatever the caller supplied (DSN credentials, receipt document secrets)
+// never appears in the one-line diagnostic, raw config/pgx/storage error
+// details never cross the boundary, and invalid documents exit 2 before any
+// config or storage is touched.
+func TestReceiptRecordSafeDiagnostics(t *testing.T) {
+	dir := t.TempDir()
+	// Hermetic config: a machine's config.toml (its contents, its parse
+	// errors) must not influence or leak through the run.
+	t.Setenv("HOME", dir)
+	t.Setenv("AGENT_ROUTING_DSN", "")
+
+	valid := filepath.Join(dir, "valid.json")
+	writeFileT(t, valid, receiptDocument(t, nil))
+	secretTask := filepath.Join(dir, "secret-task.json")
+	writeFileT(t, secretTask, receiptDocument(t, map[string]any{"task": receiptSecret}))
+	secretMember := filepath.Join(dir, "secret-member.json")
+	writeFileT(t, secretMember, receiptDocument(t, map[string]any{"task_prompt": receiptSecret}))
+
+	cases := []struct {
+		name     string
+		args     []string
+		exitWant int
+		codeWant string
+	}{
+		{"bad dsn parse", []string{"receipt", "record", "--receipt", valid, "--dsn", secretBearingDSN("%ZZ")}, adapterExitSnapshot, "snapshot_unavailable"},
+		{"dsn connect refused", []string{"receipt", "record", "--receipt", valid, "--dsn", secretBearingDSN("")}, adapterExitSnapshot, "temporarily_unavailable"},
+		{"secret in closed token", []string{"receipt", "record", "--receipt", secretTask, "--dsn", secretBearingDSN("")}, adapterExitUsage, "invalid_request"},
+		{"secret in unknown member", []string{"receipt", "record", "--receipt", secretMember, "--dsn", secretBearingDSN("")}, adapterExitUsage, "invalid_request"},
+	}
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			stdout, stderr, exit := captureRun(t, tc.args)
+			if exit != tc.exitWant {
+				t.Fatalf("exit = %d, want %d, stderr %q", exit, tc.exitWant, stderr)
+			}
+			if stdout != "" {
+				t.Fatalf("stdout not empty: %q", stdout)
+			}
+			lines := strings.Split(strings.TrimSuffix(stderr, "\n"), "\n")
+			if len(lines) != 1 {
+				t.Fatalf("stderr not one line: %q", stderr)
+			}
+			if !strings.HasPrefix(lines[0], "agent-routing: "+tc.codeWant+": ") {
+				t.Fatalf("code form: %q", lines[0])
+			}
+			if strings.Contains(lines[0], receiptSecret) {
+				t.Fatalf("supplied secret leaked in diagnostic: %q", lines[0])
+			}
+			if strings.Contains(lines[0], "cannot parse") || strings.Contains(lines[0], "failed to connect") {
+				t.Fatalf("raw driver detail crossed the boundary: %q", lines[0])
+			}
+		})
+	}
+}
+
+// TestReceiptRecordConfigErrorSafe: a malformed config.toml whose offending
+// line carries a DSN password must not surface through the config error.
+func TestReceiptRecordConfigErrorSafe(t *testing.T) {
+	dir := t.TempDir()
+	t.Setenv("HOME", dir)
+	t.Setenv("AGENT_ROUTING_DSN", "")
+	cfgDir := filepath.Join(dir, "Library", "Application Support", "agent-routing")
+	if err := os.MkdirAll(cfgDir, 0o755); err != nil {
+		t.Fatal(err)
+	}
+	writeFileT(t, filepath.Join(cfgDir, "config.toml"),
+		[]byte("dsn = \"postgres://node:"+receiptSecret+"@db/host\"\n[unclosed\n"))
+	valid := filepath.Join(dir, "valid.json")
+	writeFileT(t, valid, receiptDocument(t, nil))
+
+	stdout, stderr, exit := captureRun(t, []string{"receipt", "record", "--receipt", valid, "--dsn", secretBearingDSN("")})
+	if exit != adapterExitInternal {
+		t.Fatalf("exit = %d, want %d, stderr %q", exit, adapterExitInternal, stderr)
+	}
+	if stdout != "" {
+		t.Fatalf("stdout not empty: %q", stdout)
+	}
+	lines := strings.Split(strings.TrimSuffix(stderr, "\n"), "\n")
+	if len(lines) != 1 {
+		t.Fatalf("stderr not one line: %q", stderr)
+	}
+	if !strings.HasPrefix(lines[0], "agent-routing: internal_error: ") {
+		t.Fatalf("code form: %q", lines[0])
+	}
+	if strings.Contains(lines[0], receiptSecret) {
+		t.Fatalf("supplied secret leaked in diagnostic: %q", lines[0])
 	}
 }

@@ -3,6 +3,7 @@
 package collector
 
 import (
+	"bytes"
 	"context"
 	"crypto/rand"
 	"encoding/hex"
@@ -1341,10 +1342,142 @@ type receiptDoc struct {
 	Usage            []receiptDocUse `json:"usage"`
 }
 
+// receiptDocUse decodes one usage element. Value is a pointer so that a
+// missing or null value is distinguishable from an explicit zero: known
+// usage must state its measurement, and zero is only ever accepted when the
+// document carries it.
 type receiptDocUse struct {
 	Component string `json:"component"`
 	Known     bool   `json:"known"`
-	Value     int64  `json:"value"`
+	Value     *int64 `json:"value,omitempty"`
+}
+
+// toUsage converts a decoded usage element to the port fact. Unknown usage
+// keeps its existing semantics: any document value is ignored and the fact
+// value stays zero.
+func (u receiptDocUse) toUsage() ReceiptUsage {
+	value := int64(0)
+	if u.Value != nil {
+		value = *u.Value
+	}
+	return ReceiptUsage{Component: u.Component, Known: u.Known, Value: value}
+}
+
+// decodeReceipt is the shared receipt-document decoder for both grammar
+// paths. strictDecode closes the schema (unknown members rejected, canonical
+// framing, 53-bit integers); on top of it this requires known usage to carry
+// an explicit value, so no zero is fabricated from absent evidence, and
+// re-canonicalizes the decoded document, which enforces the exact required
+// member set, exact casing, no duplicates and the null/presence shape
+// without a second schema map: encoding/json also accepts case-aliased
+// members and missing or null fields that the grammar forbids, but their
+// decoded form never re-canonicalizes to the original bytes.
+func decodeReceipt(data []byte) (receiptDoc, error) {
+	var doc receiptDoc
+	if err := strictDecode(data, &doc); err != nil {
+		return receiptDoc{}, err
+	}
+	for _, u := range doc.Usage {
+		if u.Known && u.Value == nil {
+			return receiptDoc{}, errf(CodeInvalidEvidence,
+				"known usage %s carries no explicit value", u.Component)
+		}
+	}
+	round, err := canonicalize(doc)
+	if err != nil {
+		return receiptDoc{}, err
+	}
+	if !bytes.Equal(round, data) {
+		return receiptDoc{}, errf(CodeInvalidEvidence,
+			"receipt document does not match the closed receipt grammar")
+	}
+	return doc, nil
+}
+
+// validateReceipt is the single semantic grammar source for receipt
+// submissions, shared by the host boundary (ParseReceipt, upfront, before
+// any config or storage is touched) and the port (RecordReceipt, revalidate
+// on record). It owns framing (canonical bytes, strict decode), the ID
+// requirements, the closed task and outcome tokens, the validator split,
+// document/submission coherence and the seven usage components.
+// requireCollectorVersion separates the caller fact only the port can
+// check: ParseReceipt output does not yet carry one. Error details quote
+// submitted content and stay inside the collector; boundaries that print
+// diagnostics wrap them (see ParseReceipt).
+func validateReceipt(params RecordReceiptParams, requireCollectorVersion bool) (receiptDoc, error) {
+	if params.ReceiptID == "" || params.RequestID == "" || params.OfferID == "" {
+		return receiptDoc{}, errf(CodeInvalidRequest, "receipt, request and offer ids are required")
+	}
+	if !taskTokens[params.Task] {
+		return receiptDoc{}, errf(CodeInvalidRequest, "task %q is not a token", params.Task)
+	}
+	if !outcomeTokens[params.Outcome] {
+		return receiptDoc{}, errf(CodeInvalidRequest, "outcome %q is not a token", params.Outcome)
+	}
+	validated := params.Outcome == "validated_success" || params.Outcome == "validated_failure"
+	if validated && params.ValidatorVersion == "" {
+		return receiptDoc{}, errf(CodeInvalidRequest, "validated outcomes require validator_version")
+	}
+	if !validated && params.ValidatorVersion != "" {
+		return receiptDoc{}, errf(CodeInvalidRequest, "unvalidated outcomes carry no validator_version")
+	}
+	if len(params.ReceiptBytes) == 0 {
+		return receiptDoc{}, errf(CodeInvalidRequest, "receipt bytes are required")
+	}
+	doc, err := decodeReceipt(params.ReceiptBytes)
+	if err != nil {
+		return receiptDoc{}, err
+	}
+	// The stored document must state exactly the same facts the port writes.
+	if doc.ReceiptID != params.ReceiptID || doc.RequestID != params.RequestID ||
+		doc.OfferID != params.OfferID || doc.Task != params.Task || doc.Outcome != params.Outcome ||
+		doc.ValidatorVersion != params.ValidatorVersion {
+		return receiptDoc{}, errf(CodeInvalidEvidence,
+			"receipt document does not match the submitted receipt facts")
+	}
+	if len(doc.Usage) != len(params.Usage) {
+		return receiptDoc{}, errf(CodeInvalidEvidence,
+			"receipt document usage does not match the submitted usage")
+	}
+	docUsage := map[string]ReceiptUsage{}
+	for _, u := range doc.Usage {
+		if _, dup := docUsage[u.Component]; dup {
+			return receiptDoc{}, errf(CodeInvalidEvidence,
+				"receipt document repeats usage component %s", u.Component)
+		}
+		docUsage[u.Component] = u.toUsage()
+	}
+	for _, u := range params.Usage {
+		d, ok := docUsage[u.Component]
+		if !ok || d.Known != u.Known || (u.Known && d.Value != u.Value) {
+			return receiptDoc{}, errf(CodeInvalidEvidence,
+				"receipt document usage %s does not match the submitted usage", u.Component)
+		}
+	}
+	if requireCollectorVersion && params.CollectorVersion == "" {
+		return receiptDoc{}, errf(CodeInvalidRequest, "collector version is required")
+	}
+	seen := map[string]bool{}
+	for _, u := range params.Usage {
+		if !usageComponentToken(u.Component) {
+			return receiptDoc{}, errf(CodeInvalidRequest, "usage component %q is not a token", u.Component)
+		}
+		if seen[u.Component] {
+			return receiptDoc{}, errf(CodeInvalidRequest, "usage component %s appears twice", u.Component)
+		}
+		seen[u.Component] = true
+		if u.Known && u.Value < 0 {
+			return receiptDoc{}, errf(CodeInvalidRequest, "known usage %s is negative", u.Component)
+		}
+		if u.Known && (u.Value > maxSafeInteger) {
+			return receiptDoc{}, errf(CodeInvalidEvidence,
+				"known usage %s exceeds the signed 53-bit range", u.Component)
+		}
+	}
+	if len(seen) != len(usageComponents) {
+		return receiptDoc{}, errf(CodeInvalidRequest, "usage must cover the seven components exactly once")
+	}
+	return doc, nil
 }
 
 // RecordReceipt implements record_receipt: host_local observation with HTTP
@@ -1352,78 +1485,10 @@ type receiptDocUse struct {
 // split, usage facts split by knowledge and ReceiptRecorded. Idempotent by
 // receipt ID plus body hash.
 func (p *Ports) RecordReceipt(ctx context.Context, params RecordReceiptParams) (RecordReceiptResult, error) {
-	if params.ReceiptID == "" || params.RequestID == "" || params.OfferID == "" {
-		return RecordReceiptResult{}, errf(CodeInvalidRequest, "receipt, request and offer ids are required")
-	}
-	if !taskTokens[params.Task] {
-		return RecordReceiptResult{}, errf(CodeInvalidRequest, "task %q is not a token", params.Task)
-	}
-	if !outcomeTokens[params.Outcome] {
-		return RecordReceiptResult{}, errf(CodeInvalidRequest, "outcome %q is not a token", params.Outcome)
-	}
-	validated := params.Outcome == "validated_success" || params.Outcome == "validated_failure"
-	if validated && params.ValidatorVersion == "" {
-		return RecordReceiptResult{}, errf(CodeInvalidRequest, "validated outcomes require validator_version")
-	}
-	if !validated && params.ValidatorVersion != "" {
-		return RecordReceiptResult{}, errf(CodeInvalidRequest, "unvalidated outcomes carry no validator_version")
-	}
-	if len(params.ReceiptBytes) == 0 {
-		return RecordReceiptResult{}, errf(CodeInvalidRequest, "receipt bytes are required")
-	}
-	var doc receiptDoc
-	if err := strictDecode(params.ReceiptBytes, &doc); err != nil {
+	if _, err := validateReceipt(params, true); err != nil {
 		return RecordReceiptResult{}, err
 	}
-	// The stored document must state exactly the same facts the port writes.
-	if doc.ReceiptID != params.ReceiptID || doc.RequestID != params.RequestID ||
-		doc.OfferID != params.OfferID || doc.Task != params.Task || doc.Outcome != params.Outcome ||
-		doc.ValidatorVersion != params.ValidatorVersion {
-		return RecordReceiptResult{}, errf(CodeInvalidEvidence,
-			"receipt document does not match the submitted receipt facts")
-	}
-	if len(doc.Usage) != len(params.Usage) {
-		return RecordReceiptResult{}, errf(CodeInvalidEvidence,
-			"receipt document usage does not match the submitted usage")
-	}
-	docUsage := map[string]ReceiptUsage{}
-	for _, u := range doc.Usage {
-		if _, dup := docUsage[u.Component]; dup {
-			return RecordReceiptResult{}, errf(CodeInvalidEvidence,
-				"receipt document repeats usage component %s", u.Component)
-		}
-		docUsage[u.Component] = ReceiptUsage{Component: u.Component, Known: u.Known, Value: u.Value}
-	}
-	for _, u := range params.Usage {
-		d, ok := docUsage[u.Component]
-		if !ok || d.Known != u.Known || (u.Known && d.Value != u.Value) {
-			return RecordReceiptResult{}, errf(CodeInvalidEvidence,
-				"receipt document usage %s does not match the submitted usage", u.Component)
-		}
-	}
-	if params.CollectorVersion == "" {
-		return RecordReceiptResult{}, errf(CodeInvalidRequest, "collector version is required")
-	}
-	seen := map[string]bool{}
-	for _, u := range params.Usage {
-		if !usageComponentToken(u.Component) {
-			return RecordReceiptResult{}, errf(CodeInvalidRequest, "usage component %q is not a token", u.Component)
-		}
-		if seen[u.Component] {
-			return RecordReceiptResult{}, errf(CodeInvalidRequest, "usage component %s appears twice", u.Component)
-		}
-		seen[u.Component] = true
-		if u.Known && u.Value < 0 {
-			return RecordReceiptResult{}, errf(CodeInvalidRequest, "known usage %s is negative", u.Component)
-		}
-		if u.Known && (u.Value > maxSafeInteger) {
-			return RecordReceiptResult{}, errf(CodeInvalidEvidence,
-				"known usage %s exceeds the signed 53-bit range", u.Component)
-		}
-	}
-	if len(seen) != len(usageComponents) {
-		return RecordReceiptResult{}, errf(CodeInvalidRequest, "usage must cover the seven components exactly once")
-	}
+	validated := params.Outcome == "validated_success" || params.Outcome == "validated_failure"
 
 	tx, err := p.Pool.Begin(ctx)
 	if err != nil {
@@ -1702,4 +1767,37 @@ func (p *Ports) RecordConsumerReceipt(ctx context.Context, consumerID, eventID s
 		return storageErr(err)
 	}
 	return nil
+}
+
+// ParseReceipt decodes one canonical-v1 receipt document and validates it
+// against the shared receipt grammar (framing, IDs, closed tokens, the
+// validator split, the seven usage components) before any config or
+// storage is touched, so an invalid document fails at the host boundary
+// instead of when postgres opens. ReceiptBytes keeps the exact input
+// bytes for the body hash and idempotency; the port re-validates on
+// record. Error details are fixed and safe for the host boundary: never
+// document content, per cli-adapter.md's safe-detail rule.
+func ParseReceipt(data []byte) (RecordReceiptParams, error) {
+	doc, err := decodeReceipt(data)
+	if err != nil {
+		return RecordReceiptParams{}, errf(CodeInvalidRequest,
+			"receipt document is not a canonical closed-grammar document")
+	}
+	params := RecordReceiptParams{
+		ReceiptID:        doc.ReceiptID,
+		RequestID:        doc.RequestID,
+		OfferID:          doc.OfferID,
+		Task:             doc.Task,
+		Outcome:          doc.Outcome,
+		ValidatorVersion: doc.ValidatorVersion,
+		ReceiptBytes:     data,
+	}
+	for _, u := range doc.Usage {
+		params.Usage = append(params.Usage, u.toUsage())
+	}
+	if _, err := validateReceipt(params, false); err != nil {
+		return RecordReceiptParams{}, errf(CodeInvalidRequest,
+			"receipt document does not satisfy the receipt contract")
+	}
+	return params, nil
 }

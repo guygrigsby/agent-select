@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"strings"
 	"testing"
 	"time"
 
@@ -1150,5 +1151,170 @@ func TestDeferAndCompleteTerminalGuards(t *testing.T) {
 	}
 	if n := countEventsName(t, p, r2.JobID, "JobDeferred"); n != 1 {
 		t.Fatalf("JobDeferred emitted %d times", n)
+	}
+}
+
+// TestParseReceiptRoundTrip covers the host-boundary parse path the receipt
+// CLI uses: one canonical document in, port-accepted parameters out, with
+// replay idempotency and same-ID-different-bytes conflict.
+func TestParseReceiptRoundTrip(t *testing.T) {
+	p := mustPort(t)
+	ctx := context.Background()
+	registerSource(t, p, "host", "host_local", true)
+	doc := canonical(t, map[string]any{
+		"receipt_id": "rcpt-parse-1", "request_id": "req-p1", "offer_id": "prov/up",
+		"task": "code", "outcome": "unvalidated_completion", "validator_version": "",
+		"usage": []map[string]any{
+			{"component": "input_tokens", "known": true, "value": int64(120)},
+			{"component": "output_tokens", "known": true, "value": int64(80)},
+			{"component": "input_images", "known": false},
+			{"component": "output_images", "known": false},
+			{"component": "references", "known": false},
+			{"component": "searches", "known": false},
+			{"component": "elapsed_millis", "known": true, "value": int64(2400)},
+		},
+	})
+	params, err := ParseReceipt(doc)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if params.ReceiptID != "rcpt-parse-1" || len(params.Usage) != 7 || string(params.ReceiptBytes) != string(doc) {
+		t.Fatalf("parse mismatch: %+v", params)
+	}
+	params.RecordedAt = time.Now().UTC()
+	params.CollectorVersion = "receipt-cli-test"
+	res, err := p.RecordReceipt(ctx, params)
+	if err != nil {
+		t.Fatal(err)
+	}
+	// Identical bytes replay to the same observation.
+	params2, err := ParseReceipt(doc)
+	if err != nil {
+		t.Fatal(err)
+	}
+	params2.RecordedAt = time.Now().UTC().Add(time.Minute)
+	params2.CollectorVersion = "receipt-cli-test"
+	res2, err := p.RecordReceipt(ctx, params2)
+	if err != nil || res2.ObservationID != res.ObservationID {
+		t.Fatalf("replay: %+v err %v", res2, err)
+	}
+	// Unknown member is rejected at parse.
+	bad := append([]byte(nil), doc...)
+	bad = append(bad[:len(bad)-1], []byte(`,"task_prompt":"leak"}`+"\n")...)
+	if _, err := ParseReceipt(bad); err == nil {
+		t.Fatal("unknown member accepted")
+	}
+	// Same ID different bytes conflicts at the port.
+	other := canonical(t, map[string]any{
+		"receipt_id": "rcpt-parse-1", "request_id": "req-p1", "offer_id": "prov/up",
+		"task": "code", "outcome": "cancelled", "validator_version": "",
+		"usage": []map[string]any{
+			{"component": "input_tokens", "known": false},
+			{"component": "output_tokens", "known": false},
+			{"component": "input_images", "known": false},
+			{"component": "output_images", "known": false},
+			{"component": "references", "known": false},
+			{"component": "searches", "known": false},
+			{"component": "elapsed_millis", "known": false},
+		},
+	})
+	po, err := ParseReceipt(other)
+	if err != nil {
+		t.Fatal(err)
+	}
+	po.RecordedAt = time.Now().UTC()
+	po.CollectorVersion = "receipt-cli-test"
+	if _, err := p.RecordReceipt(ctx, po); err == nil || !strings.Contains(err.Error(), "conflict") {
+		t.Fatalf("same ID different bytes must conflict, got %v", err)
+	}
+}
+
+// TestParseReceiptRejectsUpfront covers the host-boundary parse path's
+// upfront semantic validation (shared grammar via validateReceipt): every
+// invalid receipt class fails at ParseReceipt, before any config or
+// storage is touched. No database is needed for the rejections.
+func TestParseReceiptRejectsUpfront(t *testing.T) {
+	base := func(overrides map[string]any) []byte {
+		doc := map[string]any{
+			"receipt_id": "rcpt-v", "request_id": "req-v", "offer_id": "prov/up",
+			"task": "code", "outcome": "cancelled", "validator_version": "",
+			"usage": []map[string]any{
+				{"component": "input_tokens", "known": false},
+				{"component": "output_tokens", "known": false},
+				{"component": "input_images", "known": false},
+				{"component": "output_images", "known": false},
+				{"component": "references", "known": false},
+				{"component": "searches", "known": false},
+				{"component": "elapsed_millis", "known": false},
+			},
+		}
+		for k, v := range overrides {
+			doc[k] = v
+		}
+		return canonical(t, doc)
+	}
+	usage := func(n int, over map[string]map[string]any) []map[string]any {
+		var u []map[string]any
+		for i, c := range usageComponents {
+			if i >= n {
+				break
+			}
+			if o, ok := over[c]; ok {
+				u = append(u, o)
+			} else {
+				u = append(u, map[string]any{"component": c, "known": false})
+			}
+		}
+		return u
+	}
+	cases := []struct {
+		name string
+		doc  []byte
+	}{
+		{"non canonical bytes", append([]byte(`{"receipt_id":"r"}`), '\n')},
+		{"unknown member", append(base(nil)[:len(base(nil))-1], []byte(`,"task_prompt":"x"}`)...)},
+		{"empty receipt id", base(map[string]any{"receipt_id": ""})},
+		{"empty request id", base(map[string]any{"request_id": ""})},
+		{"empty offer id", base(map[string]any{"offer_id": ""})},
+		{"task not a token", base(map[string]any{"task": "not-a-token"})},
+		{"outcome not a token", base(map[string]any{"outcome": "exploded"})},
+		{"validated without validator", base(map[string]any{"outcome": "validated_success"})},
+		{"unvalidated with validator", base(map[string]any{"validator_version": "v1"})},
+		{"six usage components", base(map[string]any{"usage": usage(6, nil)})},
+		{"unknown usage component", base(map[string]any{"usage": usage(7, map[string]map[string]any{
+			"input_tokens": {"component": "bogus_tokens", "known": false},
+		})})},
+		{"duplicate usage component", base(map[string]any{"usage": append(usage(7, nil),
+			map[string]any{"component": "input_tokens", "known": false})})},
+		{"negative known usage", base(map[string]any{"usage": usage(7, map[string]map[string]any{
+			"input_tokens": {"component": "input_tokens", "known": true, "value": int64(-1)},
+		})})},
+		{"usage beyond 53-bit", []byte(strings.ReplaceAll(string(base(map[string]any{"usage": usage(7, map[string]map[string]any{
+			"input_tokens": {"component": "input_tokens", "known": true, "value": maxSafeInteger},
+		})})), "9007199254740991", "9007199254740992"))},
+	}
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			if _, err := ParseReceipt(tc.doc); err == nil {
+				t.Fatal("invalid receipt accepted at parse")
+			} else if codeOf(t, err) != CodeInvalidRequest {
+				t.Fatalf("parse rejection code %s, want invalid_request", codeOf(t, err))
+			}
+		})
+	}
+	// The valid document parses, keeps exact input bytes and never carries
+	// a collector version (caller fact).
+	params, err := ParseReceipt(base(nil))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if string(params.ReceiptBytes) != string(base(nil)) || params.CollectorVersion != "" {
+		t.Fatalf("parse must keep exact bytes and no collector version: %+v", params)
+	}
+	// Validated outcome with a validator parses.
+	if _, err := ParseReceipt(base(map[string]any{
+		"outcome": "validated_success", "validator_version": "tests-1",
+	})); err != nil {
+		t.Fatal(err)
 	}
 }
