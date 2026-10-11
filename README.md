@@ -1,5 +1,24 @@
-# Agent routing
+# agent-select
 
-Rank host-supplied live offers with the [offline Go library](routing/). `Engine.Route` enforces capabilities, resource bounds, budgets and freshness, then orders candidates by exact cost and disclosed heuristic estimates. Estimates are not success probabilities. See the [routing contract](docs/specs/educated-routing.md) and [ADR 0003](docs/adr/0003-educated-guess-routing.md). See the [CLI contract](docs/specs/cli-adapter.md) for commands and process boundaries. Real host integration is tracked in `ar-7xd.5`.
+Rank the models you can run for the task at hand. A Go library plus a thin CLI.
 
-Inspect `data/research.sqlite` for captured catalogs, provider prices, claims, benchmark cells and unresolved identities. `make check` runs tests, lint, evidence-integrity checks and the [backlog](docs/research/backlog.md) drift gate. Passing it does not establish model quality, comparable benchmarks or current-offer identity. See [evidence qualification](docs/research/qualification.md). Keep evidence local while source rights remain unresolved. MIT covers original project material, not third-party evidence or datasets. Earlier specifications remain proposals outside the accepted delivery slice.
+```go
+cands := []route.Candidate{
+    {ID: "qwen-27b", Caps: []string{"tools"}, ContextTokens: 131072, InputUSDPerMTok: ptr(0.0), OutputUSDPerMTok: ptr(0.0)},
+    {ID: "sonnet", Caps: []string{"tools"}, ContextTokens: 1_000_000, InputUSDPerMTok: ptr(2.0), OutputUSDPerMTok: ptr(10.0)},
+}
+res := route.Rank(cands, route.Task{Name: "code", Mode: route.Quality, Need: []string{"tools"},
+    InputTokens: 100_000, OutputTokens: 8_000}, route.Table{"sonnet": {"code": 0.9}, "qwen-27b": {"code": 0.5}})
+best, ok := res.Best()
+```
+
+- You supply candidates (what you can run right now), a task (needs and bounds) and optionally a `Scorer`.
+- Hard constraints reject with a reason code: missing capability, context or output too small or unknown, over budget, too slow, unscored, below minimum score.
+- Order is cost or quality first, then the other, then latency, then ID. Unknown values rank after known ones and never count as free or perfect.
+- Scorers: `Table` (operator-declared, per model and task with `*` wildcards), `History` (smoothed pass rate from outcomes you record, persists as JSON) and `Chain` (first opinion wins). Implement `Scorer` to plug in benchmarks or anything else.
+
+`agent-select rank < request.json` does the same from the shell; see `cmd/agent-select`.
+
+The earlier evidence-pipeline design (snapshots, Postgres collector, research artifact) lives on the `archive` branch. See [ADR 0001](docs/adr/0001-lean-core.md).
+
+MIT licensed.

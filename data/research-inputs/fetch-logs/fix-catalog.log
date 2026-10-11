@@ -1,5 +1,0 @@
-# Durable redacted fetch-command record recovered from the fix-catalog.log session transcript.
-# Verbatim agent-issued fetch commands (curl/python), deduplicated, in original order.
-# Credential scan clean at recovery time. Format: "### N" then the verbatim command.
-### 1
-sleep 1; curl -L --max-time 20 -A 'agent-routing-research/0.1' -sS -D /tmp/vercel-doc.headers -o /tmp/vercel-doc.html https://ai-sdk.dev/providers/ai-sdk-providers/ai-gateway; sleep 1; curl -L --max-time 20 -A 'agent-routing-research/0.1' -sS -D /tmp/modelsdev-doc.headers -o /tmp/modelsdev-doc.html https://github.com/vercel/ai/tree/5eb85cc45a259553501f535b8ac79a77d0e79223/packages/gateway; sleep 1; curl -L --max-time 20 -A 'agent-routing-research/0.1' -sS -D /tmp/modelsdev-license.headers -o /tmp/modelsdev-license https://raw.githubusercontent.com/vercel-labs/models.dev/main/LICENSE; cat /tmp/vercel-doc.headers /tmp/modelsdev-doc.headers /tmp/modelsdev-license.headers

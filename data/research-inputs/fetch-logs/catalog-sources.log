@@ -1,7 +1,0 @@
-# Durable redacted fetch-command record recovered from the catalog-sources.log session transcript.
-# Verbatim agent-issued fetch commands (curl/python), deduplicated, in original order.
-# Credential scan clean at recovery time. Format: "### N" then the verbatim command.
-### 1
-curl -s --max-time 40 -H 'User-Agent: agent-routing-research/0.1' -D /tmp/vercel-gw-headers.txt 'https://sdk.vercel.ai/providers/ai-sdk-providers/ai-gateway' -o /tmp/vercel-gw-page.html 2>&1 && echo "Status: $?"
-### 2
-curl -s --max-time 40 -H 'User-Agent: agent-routing-research/0.1' -D /tmp/vercel-models-headers2.txt 'https://gateway.ai.cloudflare.com/v1/models' -o /tmp/vercel-models-v2.json 2>&1 && echo "Status: $?"
