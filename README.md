@@ -17,7 +17,7 @@ best, ok := res.Best()
 - Order is cost or quality first, then the other, then latency, then ID. Unknown values rank after known ones and never count as free or perfect.
 - Scorers: `Table` (operator-declared, per model and task with `*` wildcards), `History` (smoothed pass rate from outcomes you record, persists as JSON) and `Chain` (first opinion wins). Implement `Scorer` to plug in benchmarks or anything else.
 
-`agent-select rank < request.json` does the same from the shell; see `cmd/agent-select`.
+`agent-select rank < request.json` does the same from the shell; see `cmd/agent-select`. Hosts in other languages keep outcomes in an append-only log: `agent-select record --history FILE --task T --id ID --verdict pass|fail` appends one, and `rank --history FILE` scores from it ahead of the request's table ([ADR 0002](docs/adr/0002-outcome-log.md)).
 
 The earlier evidence-pipeline design (snapshots, Postgres collector, research artifact) lives on the `archive` branch. See [ADR 0001](docs/adr/0001-lean-core.md).
 

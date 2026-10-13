@@ -1,6 +1,7 @@
 package route
 
 import (
+	"bytes"
 	"strings"
 	"testing"
 )
@@ -59,5 +60,29 @@ func TestHistorySmoothedRateAndPersistence(t *testing.T) {
 	}
 	if s2, _ := h2.Score("code", Candidate{ID: "m"}); s2.Value != s.Value {
 		t.Errorf("round trip = %+v", s2)
+	}
+}
+
+func TestHistoryOutcomeLog(t *testing.T) {
+	var log bytes.Buffer
+	for range 3 {
+		if err := AppendOutcome(&log, Outcome{Task: "code", ID: "m", Pass: true}); err != nil {
+			t.Fatal(err)
+		}
+	}
+	log.WriteString("not json\n\n")
+	if err := AppendOutcome(&log, Outcome{Task: "code", ID: "m", Pass: false}); err != nil {
+		t.Fatal(err)
+	}
+	if err := AppendOutcome(&log, Outcome{ID: "m", Pass: true}); err == nil {
+		t.Error("an outcome without a task must be refused")
+	}
+	h := NewHistory(4)
+	skipped, err := h.ReadLog(&log)
+	if err != nil || skipped != 1 {
+		t.Fatalf("ReadLog skipped=%d err=%v", skipped, err)
+	}
+	if s, ok := h.Score("code", Candidate{ID: "m"}); !ok || s.Value != 4.0/6.0 { // (3+1)/(4+2)
+		t.Errorf("score = %+v %v", s, ok)
 	}
 }

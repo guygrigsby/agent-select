@@ -1,8 +1,11 @@
 package route
 
 import (
+	"bufio"
 	"encoding/json"
+	"errors"
 	"fmt"
+	"io"
 	"sync"
 )
 
@@ -116,4 +119,44 @@ func (h *History) UnmarshalJSON(b []byte) error {
 	defer h.mu.Unlock()
 	h.counts = c
 	return nil
+}
+
+// Outcome is one recorded verdict, a line of an outcome log.
+type Outcome struct {
+	Task string `json:"task"`
+	ID   string `json:"id"`
+	Pass bool   `json:"pass"`
+}
+
+// AppendOutcome writes o as one JSON line in a single Write, so concurrent
+// appenders to a file opened with O_APPEND do not interleave.
+func AppendOutcome(w io.Writer, o Outcome) error {
+	if o.Task == "" || o.ID == "" {
+		return errors.New("outcome needs a task and an id")
+	}
+	b, err := json.Marshal(o)
+	if err != nil {
+		return err
+	}
+	_, err = w.Write(append(b, '\n'))
+	return err
+}
+
+// ReadLog records every outcome in an outcome log. Blank lines are ignored;
+// malformed ones (a torn final write, a hand edit) are skipped and counted,
+// so one bad line does not discard the rest of the evidence.
+func (h *History) ReadLog(r io.Reader) (skipped int, err error) {
+	sc := bufio.NewScanner(r)
+	for sc.Scan() {
+		if len(sc.Bytes()) == 0 {
+			continue
+		}
+		var o Outcome
+		if json.Unmarshal(sc.Bytes(), &o) != nil || o.Task == "" || o.ID == "" {
+			skipped++
+			continue
+		}
+		h.Record(o.Task, o.ID, o.Pass)
+	}
+	return skipped, sc.Err()
 }
