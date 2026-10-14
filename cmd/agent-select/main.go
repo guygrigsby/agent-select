@@ -9,8 +9,9 @@
 //	agent-select judge --history FILE --task T --id ID < run.json
 //
 // FILE is an append-only outcome log. rank scores from it first and falls
-// back to the request's scores table. classify and judge call Jev with
-// TYPESAFE_API_KEY (TYPESAFE_URL overrides the endpoint): classify prints
+// back to the request's scores table. classify and judge call Jev at
+// TYPESAFE_URL, a gateway such as Aperture's /v1/systemone, or at TypeSafe
+// with TYPESAFE_API_KEY: classify prints
 // the task fields of a rank request, judge records a verdict Jev is sure of.
 package main
 
@@ -37,14 +38,14 @@ type request struct {
 
 type task struct {
 	Name          string   `json:"name"`
-	Mode          string   `json:"mode"`
+	Mode          string   `json:"mode,omitempty"`
 	Need          []string `json:"need"`
 	InputTokens   int64    `json:"input_tokens"`
 	OutputTokens  int64    `json:"output_tokens"`
-	MaxCostUSD    *float64 `json:"max_cost_usd"`
-	MaxLatencyMS  int64    `json:"max_latency_ms"`
-	MinScore      *float64 `json:"min_score"`
-	AllowUnscored bool     `json:"allow_unscored"`
+	MaxCostUSD    *float64 `json:"max_cost_usd,omitempty"`
+	MaxLatencyMS  int64    `json:"max_latency_ms,omitempty"`
+	MinScore      *float64 `json:"min_score,omitempty"`
+	AllowUnscored bool     `json:"allow_unscored,omitempty"`
 }
 
 type candidate struct {
@@ -136,12 +137,12 @@ func appendOutcome(path string, o route.Outcome, errw io.Writer) int {
 const jevTimeout = 2 * time.Minute
 
 func jevClient(errw io.Writer) *jev.Client {
-	key := os.Getenv("TYPESAFE_API_KEY")
-	if key == "" {
-		fmt.Fprintln(errw, "agent-select: TYPESAFE_API_KEY is not set")
+	c := &jev.Client{Key: os.Getenv("TYPESAFE_API_KEY"), URL: os.Getenv("TYPESAFE_URL")}
+	if c.Key == "" && c.URL == "" {
+		fmt.Fprintln(errw, "agent-select: set TYPESAFE_URL to a gateway, or TYPESAFE_API_KEY")
 		return nil
 	}
-	return &jev.Client{Key: key, URL: os.Getenv("TYPESAFE_URL")}
+	return c
 }
 
 func writeJSON(out, errw io.Writer, v any) int {

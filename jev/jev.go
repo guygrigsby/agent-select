@@ -31,10 +31,11 @@ const (
 	userAgent      = "agent-select (+https://github.com/guygrigsby/agent-select)"
 )
 
-// Client calls the TypeSafe evaluation endpoint. Only Key is required.
+// Client calls a System One evaluation endpoint: TypeSafe's with a Key, or
+// a gateway that authenticates the caller itself with none.
 type Client struct {
-	Key   string
-	URL   string       // default the public endpoint
+	Key   string       // sent only over https or to loopback
+	URL   string       // default TypeSafe's public endpoint
 	Model string       // default jev-latest
 	HTTP  *http.Client // default one with a 30s timeout
 	// Backoff is the first retry delay on 429 or 529 without Retry-After;
@@ -88,8 +89,8 @@ func (c *Client) ask(ctx context.Context, state any, qs map[string]question) (ma
 		return nil, "", err
 	}
 	endpoint := or(c.URL, defaultURL)
-	if u, err := url.Parse(endpoint); err != nil || (u.Scheme != "https" && !(u.Scheme == "http" && isLoopback(u.Hostname()))) {
-		return nil, "", fmt.Errorf("jev: endpoint must be https: %q", endpoint)
+	if u, err := url.Parse(endpoint); err != nil || (c.Key != "" && u.Scheme != "https" && !(u.Scheme == "http" && isLoopback(u.Hostname()))) {
+		return nil, "", fmt.Errorf("jev: a key goes only to an https endpoint: %q", endpoint)
 	}
 	hc := http.Client{Timeout: 30 * time.Second}
 	if c.HTTP != nil {
@@ -106,7 +107,9 @@ func (c *Client) ask(ctx context.Context, state any, qs map[string]question) (ma
 		if err != nil {
 			return nil, "", err
 		}
-		req.Header.Set("Authorization", "Bearer "+c.Key)
+		if c.Key != "" {
+			req.Header.Set("Authorization", "Bearer "+c.Key)
+		}
 		req.Header.Set("Content-Type", "application/json")
 		req.Header.Set("User-Agent", userAgent)
 		resp, err := hc.Do(req)

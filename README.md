@@ -19,7 +19,7 @@ best, ok := res.Best()
 
 `agent-select rank < request.json` does the same from the shell; see `cmd/agent-select`. Hosts in other languages keep outcomes in an append-only log: `agent-select record --history FILE --task T --id ID --verdict pass|fail` appends one, and `rank --history FILE` scores from it ahead of the request's table ([ADR 0002](docs/adr/0002-outcome-log.md)).
 
-Package `jev` fills the inputs a host cannot compute: `Classify` turns a prompt into a task (name, needs, token sizes) from the host's own task and capability vocabulary, and `Judge` grades a finished run so `History` has outcomes to learn from. Both call TypeSafe's Jev; `Rank` never does. From the shell: `agent-select classify --taxonomy FILE < prompt` and `agent-select judge --history FILE --task T --id ID < run.json`, with `TYPESAFE_API_KEY` set ([ADR 0003](docs/adr/0003-jev-classify-and-judge.md)).
+Package `jev` fills the inputs a host cannot compute: `Classify` turns a prompt into a task (name, needs, token sizes) from the host's own task and capability vocabulary, and `Judge` grades a finished run so `History` has outcomes to learn from. Both call TypeSafe's Jev; `Rank` never does. From the shell: `agent-select classify --taxonomy FILE < prompt` and `agent-select judge --history FILE --task T --id ID < run.json`, with `TYPESAFE_URL` pointing at a gateway that serves `/v1/systemone` (Aperture: `http://ai/v1/systemone`, no key) or `TYPESAFE_API_KEY` for TypeSafe directly ([ADR 0003](docs/adr/0003-jev-classify-and-judge.md)).
 
 The earlier evidence-pipeline design (snapshots, Postgres collector, research artifact) lives on the `archive` branch. See [ADR 0001](docs/adr/0001-lean-core.md).
 

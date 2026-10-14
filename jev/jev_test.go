@@ -3,6 +3,7 @@ package jev
 import (
 	"context"
 	"encoding/json"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"slices"
@@ -215,5 +216,22 @@ func TestKeyNeverSentInClear(t *testing.T) {
 	}
 	if _, err := (&Client{Key: "k", URL: "http://example.com/v1"}).Judge(context.Background(), Run{Request: "a", Result: "b"}); err == nil {
 		t.Error("plain http to a remote host must be refused")
+	}
+}
+
+type roundTrip func(*http.Request) (*http.Response, error)
+
+func (f roundTrip) RoundTrip(r *http.Request) (*http.Response, error) { return f(r) }
+
+func TestGatewayWithoutKey(t *testing.T) {
+	hc := &http.Client{Transport: roundTrip(func(r *http.Request) (*http.Response, error) {
+		if h := r.Header.Get("Authorization"); h != "" {
+			t.Errorf("no key must send no Authorization, got %q", h)
+		}
+		return &http.Response{StatusCode: 200, Header: http.Header{},
+			Body: io.NopCloser(strings.NewReader(`{"model":"m","answers":{"done":{"type":"noul","noul":1}}}`))}, nil
+	})}
+	if _, err := (&Client{URL: "http://ai/v1/systemone", HTTP: hc}).Judge(context.Background(), Run{Request: "a", Result: "b"}); err != nil {
+		t.Errorf("a keyless gateway on plain http carries no secret: %v", err)
 	}
 }

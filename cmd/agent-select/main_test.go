@@ -91,6 +91,7 @@ func TestClassify(t *testing.T) {
 		}
 	}
 	t.Setenv("TYPESAFE_API_KEY", "")
+	t.Setenv("TYPESAFE_URL", "")
 	if got := run([]string{"classify", "--taxonomy", tx}, strings.NewReader("x"), &out, &errw); got != 2 {
 		t.Errorf("no key: exit %d, want 2", got)
 	}
