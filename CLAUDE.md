@@ -2,7 +2,7 @@
 
 Small, pure Go library that ranks candidate models. Keep it that way.
 
-- `route/` is the library; `cmd/agent-select` is a thin CLI over it with no logic of its own.
+- `route/` is the library; `jev/` is the only network code (task classification and judging) and `route` never imports it; `cmd/agent-select` is a thin CLI over both with no logic of its own.
 - No dependencies beyond the standard library. No network, clock or hidden state in `Rank`.
 - Unknown is never zero or perfect. Hosts supply candidates from their live registry; there is no model list here.
 - Quality evidence is a `Scorer` plug-in, not a prerequisite. New evidence sources are new Scorers.

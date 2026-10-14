@@ -126,6 +126,9 @@ type Outcome struct {
 	Task string `json:"task"`
 	ID   string `json:"id"`
 	Pass bool   `json:"pass"`
+	// Judge names the model that gave the verdict; empty means a
+	// mechanical check. History counts both alike.
+	Judge string `json:"judge,omitempty"`
 }
 
 // AppendOutcome writes o as one JSON line in a single Write, so concurrent

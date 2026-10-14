@@ -5,12 +5,17 @@
 //
 //	agent-select rank [--history FILE] [--min-runs N] < request.json
 //	agent-select record --history FILE --task T --id ID --verdict pass|fail
+//	agent-select classify --taxonomy TAXONOMY < prompt
+//	agent-select judge --history FILE --task T --id ID < run.json
 //
 // FILE is an append-only outcome log. rank scores from it first and falls
-// back to the request's scores table.
+// back to the request's scores table. classify and judge call Jev with
+// TYPESAFE_API_KEY (TYPESAFE_URL overrides the endpoint): classify prints
+// the task fields of a rank request, judge records a verdict Jev is sure of.
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"errors"
 	"flag"
@@ -20,6 +25,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/guygrigsby/agent-select/jev"
 	"github.com/guygrigsby/agent-select/route"
 )
 
@@ -65,12 +71,15 @@ type response struct {
 
 const usage = `usage:
   agent-select rank [--history FILE] [--min-runs N] < request.json
-  agent-select record --history FILE --task T --id ID --verdict pass|fail`
+  agent-select record --history FILE --task T --id ID --verdict pass|fail
+  agent-select classify --taxonomy TAXONOMY < prompt
+  agent-select judge --history FILE --task T --id ID < run.json`
 
 func main() { os.Exit(run(os.Args[1:], os.Stdin, os.Stdout, os.Stderr)) }
 
-// run exits 0 with a selection or a recorded outcome, 3 with no selection,
-// 2 on bad input and 1 when an outcome could not be written.
+// run exits 0 with a selection, classification or recorded outcome, 3 with
+// no selection or an undecided judge, 2 on bad input and 1 when Jev or the
+// outcome log failed.
 func run(args []string, in io.Reader, out, errw io.Writer) int {
 	if len(args) == 0 {
 		fmt.Fprintln(errw, usage)
@@ -81,6 +90,10 @@ func run(args []string, in io.Reader, out, errw io.Writer) int {
 		return rank(args[1:], in, out, errw)
 	case "record":
 		return record(args[1:], errw)
+	case "classify":
+		return classify(args[1:], in, out, errw)
+	case "judge":
+		return judge(args[1:], in, out, errw)
 	}
 	fmt.Fprintln(errw, usage)
 	return 2
@@ -99,7 +112,11 @@ func record(args []string, errw io.Writer) int {
 		return 2
 	}
 	o.Pass = *verdict == "pass"
-	f, err := os.OpenFile(*path, os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0o644)
+	return appendOutcome(*path, o, errw)
+}
+
+func appendOutcome(path string, o route.Outcome, errw io.Writer) int {
+	f, err := os.OpenFile(path, os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0o644)
 	if err != nil {
 		fmt.Fprintf(errw, "agent-select: %v\n", err)
 		return 1
@@ -113,6 +130,113 @@ func record(args []string, errw io.Writer) int {
 		return 1
 	}
 	return 0
+}
+
+// jevTimeout bounds one classify or judge, retries included.
+const jevTimeout = 2 * time.Minute
+
+func jevClient(errw io.Writer) *jev.Client {
+	key := os.Getenv("TYPESAFE_API_KEY")
+	if key == "" {
+		fmt.Fprintln(errw, "agent-select: TYPESAFE_API_KEY is not set")
+		return nil
+	}
+	return &jev.Client{Key: key, URL: os.Getenv("TYPESAFE_URL")}
+}
+
+func writeJSON(out, errw io.Writer, v any) int {
+	enc := json.NewEncoder(out)
+	enc.SetIndent("", "  ")
+	if err := enc.Encode(v); err != nil {
+		fmt.Fprintf(errw, "agent-select: %v\n", err)
+		return 1
+	}
+	return 0
+}
+
+func classify(args []string, in io.Reader, out, errw io.Writer) int {
+	fl := flag.NewFlagSet("classify", flag.ContinueOnError)
+	fl.SetOutput(errw)
+	path := fl.String("taxonomy", "", "JSON file of task names and capability tags with their meanings")
+	if fl.Parse(args) != nil || *path == "" || fl.NArg() > 0 {
+		fmt.Fprintln(errw, usage)
+		return 2
+	}
+	var tx jev.Taxonomy
+	b, err := os.ReadFile(*path)
+	if err == nil {
+		err = json.Unmarshal(b, &tx)
+	}
+	if err != nil {
+		fmt.Fprintf(errw, "agent-select: bad taxonomy: %v\n", err)
+		return 2
+	}
+	prompt, err := io.ReadAll(in)
+	if err != nil {
+		fmt.Fprintf(errw, "agent-select: %v\n", err)
+		return 2
+	}
+	c := jevClient(errw)
+	if c == nil {
+		return 2
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), jevTimeout)
+	defer cancel()
+	res, err := c.Classify(ctx, string(prompt), tx)
+	if err != nil {
+		fmt.Fprintf(errw, "agent-select: %v\n", err)
+		return 1
+	}
+	return writeJSON(out, errw, struct {
+		Task           task    `json:"task"`
+		TaskConfidence float64 `json:"task_confidence"`
+		Model          string  `json:"model"`
+	}{task{Name: res.Task.Name, Need: res.Task.Need, InputTokens: res.Task.InputTokens, OutputTokens: res.Task.OutputTokens},
+		res.TaskConfidence, res.Model})
+}
+
+func judge(args []string, in io.Reader, out, errw io.Writer) int {
+	fl := flag.NewFlagSet("judge", flag.ContinueOnError)
+	fl.SetOutput(errw)
+	path := fl.String("history", "", "outcome log to append a decided verdict to")
+	var o route.Outcome
+	fl.StringVar(&o.Task, "task", "", "task name, as given to rank")
+	fl.StringVar(&o.ID, "id", "", "candidate id that ran")
+	if fl.Parse(args) != nil || *path == "" || o.Task == "" || o.ID == "" || fl.NArg() > 0 {
+		fmt.Fprintln(errw, usage)
+		return 2
+	}
+	var r jev.Run
+	dec := json.NewDecoder(in)
+	dec.DisallowUnknownFields()
+	if err := dec.Decode(&r); err != nil {
+		fmt.Fprintf(errw, "agent-select: bad run: %v\n", err)
+		return 2
+	}
+	c := jevClient(errw)
+	if c == nil {
+		return 2
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), jevTimeout)
+	defer cancel()
+	v, err := c.Judge(ctx, r)
+	if err != nil {
+		fmt.Fprintf(errw, "agent-select: %v\n", err)
+		return 1
+	}
+	if code := writeJSON(out, errw, struct {
+		Pass    bool    `json:"pass"`
+		Decided bool    `json:"decided"`
+		P       float64 `json:"p"`
+		Model   string  `json:"model"`
+	}{v.Pass, v.Decided, v.P, v.Model}); code != 0 {
+		return code
+	}
+	if !v.Decided {
+		return 3
+	}
+	o.Pass, o.Judge = v.Pass, v.Model
+	return appendOutcome(*path, o, errw)
 }
 
 // history loads the outcome log. A missing log is no history yet; an
@@ -175,10 +299,7 @@ func rank(args []string, in io.Reader, out, errw io.Writer) int {
 	for _, r := range res.Ranked {
 		resp.Ranked = append(resp.Ranked, ranked{ID: r.ID, Score: r.Score, CostUSD: r.CostUSD, Warnings: r.Warnings})
 	}
-	enc := json.NewEncoder(out)
-	enc.SetIndent("", "  ")
-	if err := enc.Encode(resp); err != nil {
-		fmt.Fprintf(errw, "agent-select: %v\n", err)
+	if writeJSON(out, errw, resp) != 0 {
 		return 2
 	}
 	if len(resp.Ranked) == 0 {
