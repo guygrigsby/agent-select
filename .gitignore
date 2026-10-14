@@ -10,3 +10,4 @@ data/.research-rebuild.lock
 data/.research-rebuild.journal
 data/.research-staging/
 data/.research-backup/
+dist/
